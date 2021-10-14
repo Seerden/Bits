@@ -8,7 +8,6 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        watchContentBase: true,
     },
     module: {
         rules: [
