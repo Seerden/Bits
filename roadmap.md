@@ -24,12 +24,12 @@
 
 # Learning objectives and overview
 - [] Testing React reducers
-- [] Add an animation library to my frontend skillset;
+- [] Add an animation library to my frontend skillset:
     - [] Learn the basics of an animation library (Framer/Spring).
     - [] Implement a few minimal, nonobstructive, yet interesting animations in this project.
-- [] Become more adept at SQL;
+- [] Become more adept at SQL:
     - [] Learn PostgreSQL.
     - [] Use `pg` as database in this project.
-- [] Learn Docker
+- [] Learn Docker:
     - [] Deploy project as image on Docker
         - [] Host project on DO droplet, launch from containers
