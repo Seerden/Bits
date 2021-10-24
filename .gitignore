@@ -3,3 +3,5 @@
 client/dist
 
 # **/*.md
+
+server/*.md
