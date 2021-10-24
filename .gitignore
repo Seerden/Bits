@@ -7,3 +7,5 @@ client/dist
 server/*.md
 
 **/*.env
+
+server/**/*.pgsql
