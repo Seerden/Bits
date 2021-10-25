@@ -1,5 +1,5 @@
 import './HabitRangeInstance.scss';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 type HabitRange = {
     value?: number,
@@ -11,12 +11,6 @@ const HabitRangeInstance = ({ value = 0, intervalMax }: HabitRange) => {
     
     const [sliderValue, setSliderValue] = useState<number>(value);
 
-    const handleSliderChange = useCallback((e, newValue) => {
-        if (newValue !== sliderValue) {
-            setSliderValue(newValue);
-        }
-    }, [sliderValue]);
-
     function handleInputChangeOrBlur(e) {
         const { value } = e.target;
         const newValue = value > 0 ? value : 0;
@@ -27,6 +21,7 @@ const HabitRangeInstance = ({ value = 0, intervalMax }: HabitRange) => {
     return (
         <div className={`${base}`}>
             <input 
+                className={`${base}__slider`}
                 type="range" 
                 value={sliderValue}    
                 onChange={handleInputChangeOrBlur}
