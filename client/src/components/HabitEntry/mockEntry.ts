@@ -1,0 +1,1 @@
+export const mockEntry: boolean[] = [true, false, true]

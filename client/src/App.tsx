@@ -1,10 +1,24 @@
+import HabitEntry from "components/HabitEntry/HabitEntry";
+import { mockEntry } from "components/HabitEntry/mockEntry";
+import HabitToggleInstance from "components/HabitInstance/HabitInstance";
 import NewHabit from "components/NewHabit/NewHabit";
 import "./App.scss";
 
 const App = (props) => {
     return (
         <div className="App">
-            <NewHabit/>
+            {/* <NewHabit/> */}
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: "center",
+                margin: "0 auto",
+                marginTop: "10rem",
+                padding: "5rem",
+                outline: "2px solid red"
+            }}>
+                <HabitEntry data={mockEntry} />
+            </div>
         </div>
     )
 };
