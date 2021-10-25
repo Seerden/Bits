@@ -1,4 +1,4 @@
-import HabitToggleInstance from "components/HabitInstance/HabitInstance";
+import HabitToggleInstance from "components/HabitInstance/HabitToggleInstance";
 import './HabitEntry.scss';
 
 type HabitEntryProps = {
