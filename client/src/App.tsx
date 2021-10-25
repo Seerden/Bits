@@ -1,9 +1,5 @@
 import CompactHabit from "components/CompactHabit/CompactHabit";
-import HabitEntry from "components/HabitEntry/HabitEntry";
-import { mockEntry } from "components/HabitEntry/mockEntry";
 import HabitRangeInstance from "components/HabitInstance/HabitRangeInstance";
-import HabitToggleInstance from "components/HabitInstance/HabitToggleInstance";
-import NewHabit from "components/NewHabit/NewHabit";
 import "./App.scss";
 
 const App = (props) => {

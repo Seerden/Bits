@@ -1,5 +1,4 @@
 import './HabitRangeInstance.scss';
-import Slider from '@mui/material/Slider';
 import { useCallback, useState } from 'react';
 
 type HabitRange = {
@@ -27,12 +26,11 @@ const HabitRangeInstance = ({ value = 0, intervalMax }: HabitRange) => {
 
     return (
         <div className={`${base}`}>
-            <Slider 
-                className={`${base}__slider`}
-                defaultValue={0}
-                valueLabelDisplay={'auto'}
-                value={sliderValue}
-                onChange={handleSliderChange}
+            <input 
+                type="range" 
+                value={sliderValue}    
+                onChange={handleInputChangeOrBlur}
+                onBlur={handleInputChangeOrBlur}
                 max={intervalMax}
             />
             <input 
