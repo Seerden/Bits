@@ -1,3 +1,4 @@
+import CompactHabit from "components/CompactHabit/CompactHabit";
 import HabitEntry from "components/HabitEntry/HabitEntry";
 import { mockEntry } from "components/HabitEntry/mockEntry";
 import HabitToggleInstance from "components/HabitInstance/HabitInstance";
@@ -17,7 +18,7 @@ const App = (props) => {
                 padding: "5rem",
                 outline: "2px solid red"
             }}>
-                <HabitEntry data={mockEntry} />
+                <CompactHabit {...{name: 'TestHabit', completion: [[true, false], [false, false]]}} />
             </div>
         </div>
     )

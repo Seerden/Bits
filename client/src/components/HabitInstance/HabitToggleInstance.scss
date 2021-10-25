@@ -8,6 +8,7 @@ $width: 1.5rem;
     width: $width;
     height: $width;
     margin: 0.2rem 0.5rem;
+    user-select: none;
 
     border: 1px solid #333;
     border-radius: 50%;
