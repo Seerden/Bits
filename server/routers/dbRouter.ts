@@ -1,5 +1,6 @@
 import express from 'express';
-import { makePooledQuery } from '../db/dbQuery';
+import { getUsers } from '../db/queries/getUsers';
+import { insertUser } from '../db/queries/insertUser';
 
 const dbRouter = express.Router();
 
@@ -9,12 +10,24 @@ dbRouter.get('/', (req, res) => {
 
 // Test query: select all users and return as json
 dbRouter.get('/users', async (req, res) => {
-    const { rows } = await makePooledQuery({
-        name: 'get users',
-        text: 'select * from users'
-    });
-
+    const rows = await getUsers();
     res.json(rows)
+})
+
+dbRouter.post('/user', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const insertedUser = await insertUser(username, password);
+        res.send(insertedUser);
+    } catch (e) {
+        res
+            .status(401)
+            .send({
+                success: false,
+                message: "Error inserting user into database. Perhaps the username already exists."
+            })
+    }
 })
 
 export default dbRouter;
