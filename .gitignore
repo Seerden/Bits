@@ -4,8 +4,6 @@ client/dist
 
 # **/*.md
 
-server/*.md
-
-**/*.env
-
+server/**/*.env
 server/**/*.pgsql
+server/**/*.rest

@@ -1,16 +1,18 @@
 {
-  "name": "bits",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "jest": "^27.0.1"
-  }
+    "name": "bits",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start-dev": "concurrently \"npm:serve --prefix ./client\" \"npm:start-dev --prefix ./server\"",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jest": "^26.0.23",
+        "concurrently": "^6.3.0",
+        "jest": "^27.0.1"
+    }
 }
