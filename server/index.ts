@@ -5,7 +5,7 @@ import dbRouter from './routers/dbRouter';
 import session from 'express-session';
 import { config } from 'dotenv';
 import { getUser } from './db/queries/getUsers';
-import { sessionConfig } from './auth/session';
+import { sessionConfig } from './auth/sessionConfig';
 
 config();
 

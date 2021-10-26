@@ -14,8 +14,12 @@
         "experimentalDecorators": true,
         "types": ["node"],
         "typeRoots": [
-            "./node_modules/@types"
-        ]
+            "./node_modules/@types",
+            "../../shared/types"
+        ],
+        "paths": {
+            "@shared/*": ["../shared/*"]
+        }
     },
     "exclude": ["./node_modules", "node_modules"]    
 }
