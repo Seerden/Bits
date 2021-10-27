@@ -1,52 +1,37 @@
 import { useEffect, useReducer } from "react";
+import type { NewHabit } from '../../../../shared/types/Habit';
 
-enum HabitTypeEnum {
-    TOGGLE = 'toggle',
-    RANGE = 'range'
-}
-
-enum Frequencies {
-    DAILY = 'daily', 
-    WEEKLY = 'weekly',
-    MONTHLY = 'monthly'
-}
-
-type Habit = {
-    name: String,
-    description: String,
-    type: HabitTypeEnum.TOGGLE | HabitTypeEnum.RANGE,
-    frequency: Frequencies.DAILY | Frequencies.WEEKLY | Frequencies.MONTHLY,
-    history?: any[]  // @todo: habit histories not yet implemented
-}
-
-const defaultHabit: Habit = {
+const defaultHabit: Omit<NewHabit, 'userId'> = {
     name: '',
-    description: '',
-    type: HabitTypeEnum.TOGGLE,
-    frequency: Frequencies.DAILY
+    description: null,
+    completionFrequency: 1,
+    startDate: null,
+    endDate: null,
+    completionType: 'toggle',
+    completionInterval: null,
+    completionTimescale: 'day'
 }
 
-function reduceNewHabitForm(state: Habit, { formField, value }) {  // @todo: implement reducer to handle NewHabit form input onChange events
-    switch (formField) {
-        case 'name':
-        case 'description':  // overload switch case to perform same logic for various fields
-        case 'frequency':
-        case 'type':
-            return {...state, [formField]: value};
-        
-        default:
-            return state;
-    }
+type ReducerProps<T extends keyof typeof defaultHabit> = {
+    formField: T,
+    value: NewHabit[T]
+} 
+// @todo: this doesn't quite accomplish what I want 
+//      (value is still left as a union of string | number | date, 
+//      instead of just the type belonging to that specific property)
 
-    // or replace the switch statement with a mapping of some kind, depending on how complex the form logic gets
-}
+function reduceNewHabitForm(
+    state: typeof defaultHabit,
+    { formField, value }: ReducerProps<keyof typeof defaultHabit>
+): typeof defaultHabit {
+    return { ...state, [formField]: value };
+};
 
+/**
+ * This hook provides the functionality for the NewHabit form
+ */
 export function useNewHabit(props?: any) {
     const [newHabit, dispatchNewHabit] = useReducer(reduceNewHabitForm, defaultHabit);
-
-    // useEffect(() => {  // @dev: log changes to newHabit form on change
-    //     console.log(newHabit);
-    // }, [newHabit])
 
     return [newHabit, dispatchNewHabit] as const;
 };

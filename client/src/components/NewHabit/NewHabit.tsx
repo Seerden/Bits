@@ -61,15 +61,27 @@ const NewHabit = (props) => {
                 <section className="field__group">
                     <select
                         name="type"
-                        onChange={e => dispatchNewHabit({ formField: 'type', value: e.target.value })}
+                        onChange={e => dispatchNewHabit({ formField: 'completionType', value: e.target.value })}
                     >
                         <option value="toggle">
                             Toggle
                         </option>
-                        <option value="range">
+                        <option value="interval">
                             Range
                         </option>
                     </select>
+                    {
+                        newHabit.completionType === 'interval' &&
+                        <>
+                            <label htmlFor="completionInterval">Target:</label>
+                            <input 
+                                type="number" 
+                                name="completionInterval" 
+                                style={{ width: '3.5rem' }}
+                                onBlur={e => dispatchNewHabit( { formField: 'completionInterval', value: +e.target.value })}
+                            />
+                        </>
+                    }
                 </section>
             </p>
 
@@ -79,12 +91,20 @@ const NewHabit = (props) => {
                 </label>
                 <section className="field__group">
                     <section>
-                        <label htmlFor="start">Start</label>
-                        <input type="date" name="start" />
+                        <label htmlFor="startDate">Start</label>
+                        <input 
+                            type="date" 
+                            name="startDate" 
+                            onChange={e => dispatchNewHabit({ formField: 'endDate', value: e.target.valueAsDate })}
+                        />
                     </section>
                     <section>
-                        <label htmlFor="end">End</label>
-                        <input type="date" name="end" />
+                        <label htmlFor="endDate">End</label>
+                        <input 
+                            type="date" 
+                            name="endDate"
+                            onChange={e => dispatchNewHabit({ formField: 'endDate', value: e.target.valueAsDate })}
+                        />
                     </section>
                 </section>
             </p>
