@@ -43,7 +43,8 @@ module.exports = {
             components: path.resolve(__dirname, 'src', 'components/'),
             hooks: path.resolve(__dirname, 'src', 'hooks/'),
             helpers: path.resolve(__dirname, 'src', 'helpers/'),
-            state: path.resolve(__dirname, 'src', 'state/')
+            state: path.resolve(__dirname, 'src', 'state/'),
+            types: path.resolve(__dirname, 'src', 'types/'),
         }
     },
     plugins: [new miniCss()]

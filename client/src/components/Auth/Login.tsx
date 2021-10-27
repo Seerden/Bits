@@ -1,38 +1,10 @@
-import { useFetchUsers } from "helpers/api/fetchUsers";
-import { useAuth } from "hooks/useAuth";
 import { useToggle } from "hooks/useToggle";
-import { useCallback, useEffect, useState } from "react";
-import { useLoginMutation } from "./loginMutation";
+import { useLoginForm } from "./useLoginForm";
 
-type Credentials = {
-    username: string,
-    password: string,
-}
-
-const defaultCredentials = {
-    username: '',
-    password: ''
-}
-
-const Login = (props) => {
+const Login = () => {
     const base = "Login";    
     const [showPassword, toggleShowPassword] = useToggle({ initial: false });
-    const [credentials, setCredentials] = useState<Credentials>(defaultCredentials);
-
-    function handleInputBlur(e: React.ChangeEvent<HTMLInputElement>, field: keyof Credentials) {
-        const { value } = e.target;
-        setCredentials(cur => ({ ...cur, [field]: value}))
-    }
-
-    const { data, mutate } = useLoginMutation();
-    const { data: users } = useFetchUsers();
-
-    const handleSubmit = useCallback(() => {
-        mutate(credentials);
-    }, [mutate, credentials])
-
-    // @todo: handle successful/failed login requests
-    // @todo: move mutation and effects to useAuth
+    const { handleSubmit, handleInputChangeOrBlur } = useLoginForm();
 
     return (
         <form 
@@ -45,18 +17,21 @@ const Login = (props) => {
             <input 
                 type="text" 
                 name="username"
-                onChange={e => handleInputBlur(e, 'username')}
+                onChange={e => handleInputChangeOrBlur(e, 'username')}
             />
+
             <input 
                 type={showPassword ? 'text' : 'password'} 
                 name="password" 
-                onChange={e => handleInputBlur(e, 'password')}
+                onChange={e => handleInputChangeOrBlur(e, 'password')}
             />
+
             <input 
                 type="button" 
                 value={`${showPassword ? 'Hide' : 'Show'} password`} 
                 onClick={toggleShowPassword}
             />
+            
             <input 
                 type="submit" 
                 value="Login"

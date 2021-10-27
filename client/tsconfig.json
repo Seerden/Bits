@@ -22,7 +22,8 @@
             "components/*": ["src/components/*"],
             "hooks/*": ["src/hooks/*"],
             "helpers/*": ["src/helpers/*"],
-            "state/*": ["src/state/*"]
+            "state/*": ["src/state/*"],
+            "types/*": ["src/types/*"]
         }
     }
 }
