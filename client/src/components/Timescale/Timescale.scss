@@ -1,0 +1,15 @@
+.Timescale {
+    outline: 1px solid orangered;
+
+    @media screen and (min-width: 1280px) {
+        margin: 0 auto;
+        max-width: 60rem;
+        margin-top: 25vh;
+        color: azure;
+        padding: 1.5rem 2rem;
+    }
+}
+
+.DateEntry {
+
+}

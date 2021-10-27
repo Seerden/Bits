@@ -1,12 +1,14 @@
 import CompactHabit from "components/CompactHabit/CompactHabit";
 import HabitRangeInstance from "components/HabitInstance/HabitRangeInstance";
+import NewHabit from "components/NewHabit/NewHabit";
+import Timescale from "components/Timescale/Timescale";
 import "./App.scss";
 
 const App = (props) => {
     return (
         <div className="App">
-            {/* <NewHabit/> */}
-            <div style={{
+            <NewHabit />
+            {/* <div style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: "center",
@@ -17,7 +19,7 @@ const App = (props) => {
             }}>
                 <CompactHabit {...{name: 'TestHabit', completion: [[true, false], [false, false]]}} />
             </div>
-            <HabitRangeInstance intervalMax={1200}/>
+            <HabitRangeInstance intervalMax={1200}/> */}
         </div>
     )
 };
