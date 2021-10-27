@@ -1,3 +1,4 @@
+import Login from "components/Auth/Login";
 import CompactHabit from "components/CompactHabit/CompactHabit";
 import HabitRangeInstance from "components/HabitInstance/HabitRangeInstance";
 import NewHabit from "components/NewHabit/NewHabit";
@@ -20,6 +21,7 @@ const App = (props) => {
                 <CompactHabit {...{name: 'TestHabit', completion: [[true, false], [false, false]]}} />
             </div>
             <HabitRangeInstance intervalMax={1200}/> */}
+            <Login />
         </div>
     )
 };

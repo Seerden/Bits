@@ -8,6 +8,15 @@ module.exports = {
     },
     devServer: {
         port: 3000,
+        proxy: {
+            "/api": {
+                "target": "http://localhost:5000",
+                "pathRewrite": {
+                    "^/api": ""
+                },
+                "changeOrigin": true
+            }
+        }
     },
     module: {
         rules: [
@@ -33,6 +42,8 @@ module.exports = {
         alias: {
             components: path.resolve(__dirname, 'src', 'components/'),
             hooks: path.resolve(__dirname, 'src', 'hooks/'),
+            helpers: path.resolve(__dirname, 'src', 'helpers/'),
+            state: path.resolve(__dirname, 'src', 'state/')
         }
     },
     plugins: [new miniCss()]

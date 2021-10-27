@@ -36,7 +36,7 @@ passport.deserializeUser(async (username: any, done) => {
 app.use('/db', dbRouter);
 
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/me',
+    successRedirect: '/api/me',  // @note: the /api is needed to work with the proxy set in the client's webpack config -- strange
     failureRedirect: '/login/fail'
 }));
 app.post('/login/fail', (req, res) => {
