@@ -1,12 +1,14 @@
-import { useEffect, useReducer } from "react";
+import { usePostNewHabit } from "helpers/api/habitMutation";
+import { useAuth } from "hooks/useAuth";
+import { useCallback, useEffect, useReducer } from "react";
 import type { NewHabit } from '../../../../shared/types/Habit';
 
 const defaultHabit: Omit<NewHabit, 'userId'> = {
-    name: '',
+    habitName: '',
     description: null,
-    completionFrequency: 1,
     startDate: null,
     endDate: null,
+    completionFrequency: 1,
     completionType: 'toggle',
     completionInterval: null,
     completionTimescale: 'day'
@@ -32,6 +34,21 @@ function reduceNewHabitForm(
  */
 export function useNewHabit(props?: any) {
     const [newHabit, dispatchNewHabit] = useReducer(reduceNewHabitForm, defaultHabit);
+    const { data, mutate } = usePostNewHabit();
+    const [user] = useAuth();
 
-    return [newHabit, dispatchNewHabit] as const;
+    const handleSubmitNewHabit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        mutate({
+            ...newHabit,
+            userId: user.userId
+        });
+
+    }, [newHabit]);
+
+    // @todo: handle successful/failed mutation
+
+    return [newHabit, dispatchNewHabit, handleSubmitNewHabit] as const;
 };

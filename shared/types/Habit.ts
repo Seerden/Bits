@@ -12,7 +12,7 @@ export interface HabitHistory extends NewHabitHistory {
 
 export type NewHabit = {
     userId: string,
-    name: string,
+    habitName: string,
     description?: string,
     completionType: 'interval' | 'toggle',
     completionTimescale: 'day' | 'week' | 'month' | 'year',
@@ -20,7 +20,6 @@ export type NewHabit = {
     completionInterval: number,
     startDate?: Date,
     endDate?: Date
-    
 };
 
 export interface Habit extends NewHabit {
