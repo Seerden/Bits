@@ -22,7 +22,7 @@ app.use(session(sessionConfig));
 passport.use(strategy);
 app.use(passport.initialize());
 app.use(passport.session());
-passport.serializeUser((user: any, done) => done(null, user.user_name));
+passport.serializeUser((user: any, done) => done(null, user.username));
 passport.deserializeUser(async (username: any, done) => {
     try {
         const [user] = await getUser(username);
@@ -52,8 +52,8 @@ app.get('/logout', (req, res) => {
     });
 });
 app.get('/me', (req, res) => {
-    // @ts-ignore: @todo: expand Express.User type to include user_name and user_id definitions
-    req.isAuthenticated && req.user ? res.send(req.user.user_name) : res.send({ error: 'Not logged in' })
+    // @ts-ignore: @todo: expand Express.User type to include username and user_id definitions
+    req.isAuthenticated && req.user ? res.send(req.user.username) : res.send({ error: 'Not logged in' })
 });
 
 const port = process.env.PORT || 5000;

@@ -12,7 +12,7 @@ export async function getUsers() {
 export async function getUser(username: string) {
     const { rows } = await makePooledQuery({
         name: 'get user by username',
-        text: 'select * from users where user_name = $1',
+        text: 'select * from users where username = $1',
         values: [username]
     });
 

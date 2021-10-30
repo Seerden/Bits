@@ -48,8 +48,13 @@ function reduceNewHabitForm(
  */
 export function useNewHabit(props?: any) {
     const [newHabit, dispatchNewHabit] = useReducer(reduceNewHabitForm, defaultHabit);
-    const { data, mutate } = usePostNewHabit();
+    const { data, mutate, isSuccess } = usePostNewHabit();
     const [user] = useAuth();
+
+    // @dev: alert successful post
+    useEffect(() => {
+        isSuccess && alert('New habit POST successful')
+    }, [isSuccess]);
 
     const handleSubmitNewHabit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
