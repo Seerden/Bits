@@ -1,5 +1,7 @@
+import { NewHabit } from '@shared/types/Habit';
 import express from 'express';
 import { getUsers } from '../db/queries/getUsers';
+import { insertHabit } from '../db/queries/insertHabit';
 import { insertUser } from '../db/queries/insertUser';
 
 const dbRouter = express.Router();
@@ -27,6 +29,21 @@ dbRouter.post('/user', async (req, res) => {
                 success: false,
                 message: "Error inserting user into database. Perhaps the username already exists."
             })
+    }
+})
+
+dbRouter.post('/habit', async (req, res) => {
+    const newHabit: NewHabit = req.body;
+
+    try {
+        const insertedHabit = await insertHabit(newHabit);
+        res.send(insertedHabit);
+    } catch (error) {
+        console.error(error.stack)
+        res.status(400).send({ 
+            message: 'Error inserting habit into database',
+            error
+        })
     }
 })
 

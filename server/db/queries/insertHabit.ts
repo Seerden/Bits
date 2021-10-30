@@ -10,7 +10,7 @@ export async function insertHabit(newHabit: NewHabit) {
     // or just use the pg-promise library, or switch to an ORM...
     const { 
         userId,
-        name, 
+        habitName, 
         description, 
         completionType,
         completionTimescale, 
@@ -20,24 +20,25 @@ export async function insertHabit(newHabit: NewHabit) {
         endDate
     } = newHabit;
 
-    const result = await makePooledQuery({
-        text:
-            `insert into habits 
-            (user_id, name, description, completion_type, completion_timescale, completion_frequency, completion_interval \
-                start_date, end_date)
-            values($1, $2, $3, $4, $5, $6, $7, $8, $9)
-            `,
-        values: [
-            userId,
-            name, 
-            description, 
-            completionType,
-            completionTimescale, 
-            completionFrequency,
-            completionInterval,
-            startDate,
-            endDate]
-    })
-
-    return result.rows[0]
+    try {
+        const result = await makePooledQuery({
+            text:
+                `insert into habits (user_id, habit_name, description, completion_type, completion_timescale, completion_frequency, completion_interval, start_date, end_date) values($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *`,
+            values: [
+                userId,
+                habitName, 
+                description, 
+                completionType,
+                completionTimescale, 
+                completionFrequency,
+                completionInterval,
+                startDate,
+                endDate]
+        })
+        
+        return result.rows[0]
+        
+    } catch (error) {
+        throw new Error(error);
+    }
 }

@@ -13,15 +13,14 @@ type QueryArgs = {
  */
 export async function makePooledQuery(queryOptions: QueryArgs){ 
     const client = await pool.connect();
-    let response: QueryResult<any> | undefined;
 
     try {
-        response = await client.query({ ...queryOptions })
+        const response = await client.query({ ...queryOptions })
+        return response;
     } catch (e) {
         throw(e);
     } finally {
         client.release();
-        return response;
     }
 }
 
