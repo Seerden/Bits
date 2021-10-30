@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import type { Credentials } from "types/credentials";
-import { useLoginMutation } from "helpers/api/loginMutation";
+import { useAuth } from "hooks/useAuth";
 
 const defaultCredentials = {
     username: '',
@@ -9,12 +9,12 @@ const defaultCredentials = {
 
 export function useLoginForm() {
     const [credentials, setCredentials] = useState<Credentials>(defaultCredentials);
-    const { data, mutate } = useLoginMutation();
+    const { login } = useAuth();
     
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = () => {
     // @todo: handle successful/failed login requests
-        mutate(credentials);
-    }, [mutate, credentials])
+        login(credentials);
+    };
 
     function handleInputChangeOrBlur(e: React.ChangeEvent<HTMLInputElement>, field: keyof Credentials) {
         const { value } = e.target;
