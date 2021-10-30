@@ -3,11 +3,21 @@ import { RiCheckboxCircleFill, RiCheckboxBlankCircleFill } from 'react-icons/ri'
 
 import './HabitToggleInstance.scss';
 
-type HabitToggleInstanceProps = {
-    startsChecked: boolean,
+type HabitInstanceProps = {
+    date: Date,
+    index: number,
+    habitId: string
 }
 
-const HabitToggleInstance = ({ startsChecked }: HabitToggleInstanceProps) => {
+interface HabitToggleInstanceProps extends HabitInstanceProps {
+    startsChecked: boolean    
+}
+
+interface HabitRangeInstanceProps extends HabitInstanceProps {
+    rangeValue: number
+}
+
+const HabitToggleInstance = ({ startsChecked, date, index, habitId }: HabitToggleInstanceProps) => {
     const base = "HabitToggleInstance";
     const [checked, toggleChecked] = useToggle({ initial: startsChecked });
 

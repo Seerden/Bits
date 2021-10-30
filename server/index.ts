@@ -52,8 +52,12 @@ app.get('/logout', (req, res) => {
     });
 });
 app.get('/me', (req, res) => {
-    // @ts-ignore: @todo: expand Express.User type to include username and user_id definitions
-    req.isAuthenticated && req.user ? res.send(req.user.username) : res.send({ error: 'Not logged in' })
+    if (req.isAuthenticated && req.user) {
+        // @ts-ignore: @todo: expand Express.User type to include username and user_id definitions
+        res.send(req.user.username);
+    } else {
+        res.send({ error: 'Not logged in' })
+    }
 });
 
 const port = process.env.PORT || 5000;
