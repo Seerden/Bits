@@ -1,6 +1,9 @@
 import './NewHabit.scss';
 import { useNewHabit } from './useNewHabit';
 
+// @todo: implement field validators in the form, instead of checking for validity in the submission handlers
+// not required for MVP, so leave it as is for the time being
+
 const NewHabit = () => {
     const base = "NewHabit";
     const [newHabit, dispatchNewHabit, handleSubmitNewHabit] = useNewHabit();
