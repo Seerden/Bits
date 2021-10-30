@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import type { Credentials } from "types/credentials";
-import { useLoginMutation } from "./loginMutation";
+import { useLoginMutation } from "helpers/api/loginMutation";
 
 const defaultCredentials = {
     username: '',

@@ -1,33 +1,38 @@
 import './Timescale.scss';
 import type { TimescaleType } from '../../../../shared/types/Timescale';
+import { getDatesForLabels } from 'helpers/time/dateList';
+import { timescaleFormatters } from 'helpers/time/format';
+import { useMemo } from 'react';
+import { useRecoilState } from 'recoil';
+import { timescaleState } from 'state/timescale';
 
-interface TimescaleProps extends TimescaleType {
+interface TimescaleProps  {
     length?: number
 }
 
-const Timescale = ({ timescale, length = 7 }: TimescaleProps) => {
+const Timescale = ({ length = 6 }: TimescaleProps) => {
     const base = "Timescale";
+    const [timescale, setTimescale] = useRecoilState(timescaleState)
+    const formatter = timescaleFormatters[timescale];
 
-    const timescaleItems = [...Array(length).keys()].map(entry => entry) // map dates in range of timescale to habit table headers
-    
-    return (
-        <div className={`${base}`}>
-            A
-        </div>
-    )
+    const { dates, labels } = useMemo(() => {
+        const dates = getDatesForLabels(timescale, length)
+
+        return {
+            dates,
+            labels: dates.map(entry => formatter(entry))
+        }
+    }, [timescale])
+
+return (
+    <div className={`${base}`}>
+        <ul className={`${base}__label`}>
+            {
+                labels.map(label => <li>{label}</li>)
+            }
+        </ul>
+    </div>
+)
 }
 
 export default Timescale
-
-type DateEntryProps = {
-    label: string,
-}
-
-const DateEntry = ({ label }: DateEntryProps) => {
-
-    return (
-        <li className="DateEntry">
-            { label }
-        </li>
-    )
-}
