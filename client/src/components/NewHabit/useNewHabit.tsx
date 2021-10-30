@@ -49,7 +49,7 @@ function reduceNewHabitForm(
 export function useNewHabit(props?: any) {
     const [newHabit, dispatchNewHabit] = useReducer(reduceNewHabitForm, defaultHabit);
     const { data, mutate, isSuccess } = usePostNewHabit();
-    const [user] = useAuth();
+    const { currentUser: user } = useAuth();
 
     // @dev: alert successful post
     useEffect(() => {
