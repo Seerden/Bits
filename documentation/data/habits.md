@@ -10,8 +10,8 @@ Since this is a habit tracker, habits are the core data of this application. The
     tags: Unkown[],  // Categorization/tagging yet to be conceptualized
     completionType: 'interval' | 'toggle',
     completionTimescale: 'day' | 'week' | 'month' | 'year',
-    completionFrequency: Number[],
-    completionInterval?: Number[]
+    completionFrequency: Number,
+    completionInterval?: Number
     timespan: {
         start: Date,
         end: Date

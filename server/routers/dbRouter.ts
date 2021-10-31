@@ -1,12 +1,11 @@
-import { DateRange } from '@shared/types/Date';
-import { NewHabit } from '@shared/types/Habit';
 import express from 'express';
-import { getHabits, getHabitsByUser, getHabitsInRange } from '../db/queries/getHabits';
 import { getUsers } from '../db/queries/getUsers';
-import { insertHabit } from '../db/queries/insertHabit';
 import { insertUser } from '../db/queries/insertUser';
+import habitRouter from './habitRouter';
 
 const dbRouter = express.Router();
+
+dbRouter.use('/habits', habitRouter);
 
 dbRouter.get('/', (req, res) => {
     res.send('GET /db/ successful')
@@ -16,7 +15,7 @@ dbRouter.get('/', (req, res) => {
 dbRouter.get('/users', async (req, res) => {
     const rows = await getUsers();
     res.json(rows)
-})
+});
 
 dbRouter.post('/user', async (req, res) => {
     const { username, password } = req.body;
@@ -32,46 +31,6 @@ dbRouter.post('/user', async (req, res) => {
                 message: "Error inserting user into database. Perhaps the username already exists."
             })
     }
-})
-
-dbRouter.get('/habits', async (req, res) => {
-    try {
-        const habits = await getHabits();
-        res.send(habits);
-    } catch (error) {
-        res.status(401).send('Error fetching habits from database')        
-    }
 });
-
-dbRouter.get('/habits/range', async (req, res) => {
-    const dateRange = req.query as unknown as DateRange;
-    const response = await getHabitsInRange(dateRange as DateRange);
-
-    res.send(response);
-})
-
-dbRouter.get('/habits/u/:username', async (req, res) => {
-    try {
-        const habits = await getHabitsByUser(req.params.username);
-        res.send(habits)
-    } catch (error) {
-        res.status(401).send('Error fetching habits from database')        
-    }
-})
-
-dbRouter.post('/habit', async (req, res) => {
-    const newHabit: NewHabit = req.body;
-
-    try {
-        const insertedHabit = await insertHabit(newHabit);
-        res.send(insertedHabit);
-    } catch (error) {
-        console.error(error.stack)
-        res.status(401).send({ 
-            message: 'Error inserting habit into database',
-            error
-        })
-    }
-})
 
 export default dbRouter;

@@ -1,3 +1,4 @@
+import CompactHabit from "components/CompactHabit/CompactHabit";
 import Timescale from "components/Timescale/Timescale";
 import { getDatesForLabels, getTimestepIndex, timesteps } from "helpers/time/dateList";
 import { timescaleFormatters } from "helpers/time/format";
