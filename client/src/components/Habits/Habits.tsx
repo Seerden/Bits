@@ -4,12 +4,14 @@ import { timescaleFormatters } from "helpers/time/format";
 import { useCallback, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import { timescaleState } from "state/timescale";
+import { useHabits } from "./useHabits";
 
 const Habits = () => {
     const base = "Habits";
     const [timestep, setTimestep] = useRecoilState(timescaleState);
     const [length, setLength] = useState<number>(6);
     const formatter = timescaleFormatters[timestep];
+    const data = useHabits();
 
     const cycleTimestep = useCallback(() => {
         const currentIndex = getTimestepIndex(timestep);
@@ -23,7 +25,7 @@ const Habits = () => {
             dates,
             labels: dates.map(entry => formatter(entry))
         }
-    }, [timestep])
+    }, [timestep]);
 
     return (
         <div className={`${base}`}>
