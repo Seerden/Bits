@@ -15,21 +15,20 @@
 - Create minimum viable version of the form;
     - [x] Implement reducer in useNewHabit to update newHabit state based on user input.
     - [x] Implement onChange handlers that call the reducer, for each field in NewHabit.
-    - [] Set up database skeleton on the backend.
+    - [x] Set up database skeleton on the backend.
     - [] Implement REST route on front- and backend to (GET, PUT and) POST Habits.
 
 - Create Habit completion timeline;
     - [] Start conceptualizing the task timeline layout and functionality. 
-    - [] Look into Framer and Spring to determine which is most appropriate for this project.
 
 # Learning objectives and overview
 - [] Testing React reducers
 - [] Add an animation library to my frontend skillset:
     - [] Learn the basics of an animation library (Framer/Spring).
     - [] Implement a few minimal, nonobstructive, yet interesting animations in this project.
-- [] Become more adept at SQL:
-    - [] Learn PostgreSQL.
-    - [] Use `pg` as database in this project.
+- [x] Become more adept at SQL:
+    - [x] Learn PostgreSQL.
+    - [x] Use `pg` as database in this project.
 - [] Learn Docker:
     - [] Deploy project as image on Docker
         - [] Host project on DO droplet, launch from containers

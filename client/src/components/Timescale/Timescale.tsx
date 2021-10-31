@@ -1,38 +1,49 @@
 import './Timescale.scss';
-import type { TimescaleType } from '../../../../shared/types/Timescale';
-import { getDatesForLabels } from 'helpers/time/dateList';
+import { getDatesForLabels, getTimestepIndex, timestepDisplayStringMap, timesteps } from 'helpers/time/dateList';
 import { timescaleFormatters } from 'helpers/time/format';
-import { useMemo } from 'react';
-import { useRecoilState } from 'recoil';
-import { timescaleState } from 'state/timescale';
+import { useCallback, useMemo } from 'react';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { Timestep } from 'types/time';
 
-interface TimescaleProps  {
-    length?: number
+interface TimescaleProps {
+    length?: number,
+    timestep: Timestep,
+    labels: string[],
+    setTimestep: SetterOrUpdater<Timestep>,
+    cycleTimestep: () => any
 }
 
-const Timescale = ({ length = 6 }: TimescaleProps) => {
+const Timescale = ({ 
+    length = 6,
+    labels,
+    timestep,
+    setTimestep,
+    cycleTimestep
+}: TimescaleProps) => {
     const base = "Timescale";
-    const [timescale, setTimescale] = useRecoilState(timescaleState)
-    const formatter = timescaleFormatters[timescale];
-
-    const { dates, labels } = useMemo(() => {
-        const dates = getDatesForLabels(timescale, length)
-
-        return {
-            dates,
-            labels: dates.map(entry => formatter(entry))
-        }
-    }, [timescale])
-
-return (
-    <div className={`${base}`}>
-        <ul className={`${base}__label`}>
-            {
-                labels.map(label => <li>{label}</li>)
-            }
-        </ul>
-    </div>
-)
+    
+    return (
+        <div className={`${base}`}>
+            <ul className={`${base}__list`}>
+                {
+                    labels.map((label, index) =>
+                        <li
+                            className={`${base}__list--entry`}
+                            key={index}
+                        >
+                            {label}
+                        </li>
+                    )
+                }
+            </ul>
+            <button
+                className={`${base}__cycle`}
+                onClick={cycleTimestep}
+            >
+                {timestepDisplayStringMap[timestep].toUpperCase()}
+            </button>
+        </div>
+    )
 }
 
 export default Timescale

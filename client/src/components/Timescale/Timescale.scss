@@ -1,4 +1,7 @@
 .Timescale {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
     outline: 1px solid orangered;
 
     @media screen and (min-width: 1280px) {
@@ -8,8 +11,48 @@
         color: azure;
         padding: 1.5rem 2rem;
     }
-}
 
-.DateEntry {
+    &__list {
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
 
+        display: flex;
+        justify-content: space-evenly;
+
+        &--entry {
+            display: inline-block;
+            width: 5rem;
+            overflow: hidden;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            background-color: #292929;
+            user-select: none;
+            box-shadow: 0 0.2rem 0.5rem -0.3rem #111, 0 -0.2rem 0.5rem -0.3rem #111;
+        }
+    }
+
+    &__cycle {
+        font-size: 0.82rem;
+        width: 4.5rem;
+        max-width: 4.5rem;
+        overflow: hidden;
+        height: 2.2rem;
+        align-self: center;
+        background-color: #222;
+        outline: 0.2rem solid #555;
+        color: azure;
+        border: none;
+        border-radius: 0.5rem;
+
+        &:hover {
+            background-color: #444;
+            box-shadow: 0rem 0rem 0.5rem 0 black, 0 0.15rem 0.5rem -0.2rem black;
+            transform: translateY(-2px);
+        }
+    }
 }

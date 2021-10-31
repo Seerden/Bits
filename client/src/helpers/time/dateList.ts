@@ -72,3 +72,17 @@ export function formatDates(dates: Dayjs[], format: string) {
     return dates.map(date => date.format(format));
 }
 
+type TimestepStringMap = {
+    [k in Timestep]: string
+}
+
+export const timestepDisplayStringMap: TimestepStringMap = {
+    day: 'daily',
+    week: 'weekly',
+    month: 'monthly',
+    year: 'yearly'
+}
+
+export const timesteps: Timestep[] = Array.from(Object.keys(timestepDisplayStringMap)) as Timestep[];
+
+export const getTimestepIndex = (timestep: Timestep) => timesteps.findIndex(val => val === timestep);
