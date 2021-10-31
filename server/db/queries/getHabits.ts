@@ -1,4 +1,5 @@
 import { makePooledQuery } from "../dbQuery";
+import type { DateRange } from '@shared/types/Date';
 
 export async function getHabits(options?: any) {
     const { rows } = await makePooledQuery({
@@ -7,7 +8,27 @@ export async function getHabits(options?: any) {
     });
 
     return rows;
-}
+};
+
+export async function getHabitsInRange (dateRange: DateRange) {
+    const { from, to } = dateRange;
+
+    try {
+        const { rows } = await makePooledQuery({
+            name: 'get habits from user in date range',
+            text: `
+                select * from habits h
+                inner join habithistories c
+                on c.habit_id = h.habit_id
+                and c.habit_entry_date between $1 and $2
+            `,
+            values: [from, to]
+        });
+        return rows;
+    } catch (error) {
+        console.error(error)        
+    }
+};
 
 export async function getHabitsByUser(username: string) {
     try {

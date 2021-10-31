@@ -1,6 +1,7 @@
+import { DateRange } from '@shared/types/Date';
 import { NewHabit } from '@shared/types/Habit';
 import express from 'express';
-import { getHabits, getHabitsByUser } from '../db/queries/getHabits';
+import { getHabits, getHabitsByUser, getHabitsInRange } from '../db/queries/getHabits';
 import { getUsers } from '../db/queries/getUsers';
 import { insertHabit } from '../db/queries/insertHabit';
 import { insertUser } from '../db/queries/insertUser';
@@ -41,6 +42,13 @@ dbRouter.get('/habits', async (req, res) => {
         res.status(401).send('Error fetching habits from database')        
     }
 });
+
+dbRouter.get('/habits/range', async (req, res) => {
+    const dateRange = req.query as unknown as DateRange;
+    const response = await getHabitsInRange(dateRange as DateRange);
+
+    res.send(response);
+})
 
 dbRouter.get('/habits/u/:username', async (req, res) => {
     try {
