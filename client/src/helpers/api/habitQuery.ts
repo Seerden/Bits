@@ -12,7 +12,7 @@ async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[]) {
         }
     });
     return data;
-}
+};
 
 const defaultDateRange = {
     from: dayjs(new Date()).add(-7, 'day').toDate(),

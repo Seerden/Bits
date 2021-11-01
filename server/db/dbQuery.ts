@@ -2,7 +2,7 @@ import { QueryResult } from "pg";
 import { withCamelCaseKeys } from "../lib/toCamelCase";
 import pool from "./pool";
 
-type QueryArgs = {
+export type QueryArgs = {
     name?: string,
     values?: any[],
     text: string

@@ -2,7 +2,7 @@ import { Completion } from '@shared/types/Completion';
 import { DateRange } from '@shared/types/Date';
 import { Habit, NewHabit } from '@shared/types/Habit';
 import express from 'express';
-import { getHabits, getHabitsByUser, getHabitsWithCompletion } from '../db/queries/getHabits';
+import { getHabits, getHabitsByUser, getHabitsWithCompletion, HabitQuery } from '../db/queries/getHabits';
 import { insertHabit } from '../db/queries/insertHabit';
 import completionRouter from './completionRouter';
 
@@ -20,12 +20,21 @@ habitRouter.get('/', async (req, res) => {
 
 habitRouter.get('/range/ids', async (req, res) => {
     const { from, to } = req.query as unknown as DateRange;
+    const dateRange = { from, to };
     const { habitIds }: { habitIds: string[]} = req.query as any; 
+    const { username }: { username: string } = req.query as any;
 
-    const [habits, completions] = await getHabitsWithCompletion({ from, to }, habitIds) // as [Habit[], Completion[]];
+    let habits: Habit[], completions: Completion[];
+
+    if ('habitIds' in req.query) {
+        [habits, completions] = await getHabitsWithCompletion({ dateRange, habitIds });
+    } else {
+        [habits, completions] = await getHabitsWithCompletion({ dateRange, username });
+    }
+
 
     const response = habits.map(habit => {
-        const completionsForHabit = completions.filter(completion => completion.habit_id === habit.habit_id);
+        const completionsForHabit = completions.filter(completion => completion.habitId === habit.habitId);
 
         return {
             habitInfo: habit,
