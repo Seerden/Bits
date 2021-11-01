@@ -16,7 +16,7 @@ export async function insertCompletion(newCompletionEntry: NewCompletion) {
         rangeValue = newCompletionEntry.rangeValue
     }
 
-    const { rows } = await makePooledQuery({
+    const  rows = await makePooledQuery({
         name: 'insert completion',
         text: `
             insert into habithistories (habit_id, habit_entry_date, entry_index, completed, range_value)

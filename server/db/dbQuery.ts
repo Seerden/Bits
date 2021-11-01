@@ -1,4 +1,5 @@
 import { QueryResult } from "pg";
+import { withCamelCaseKeys } from "../lib/toCamelCase";
 import pool from "./pool";
 
 type QueryArgs = {
@@ -15,8 +16,8 @@ export async function makePooledQuery(queryOptions: QueryArgs){
     const client = await pool.connect();
 
     try {
-        const response = await client.query({ ...queryOptions })
-        return response;
+        const { rows } = await client.query({ ...queryOptions })
+        return withCamelCaseKeys(rows);
     } catch (e) {
         throw(e);
     } finally {
@@ -31,17 +32,17 @@ export async function makePooledQuery(queryOptions: QueryArgs){
 export async function makePooledQueries(queries: QueryArgs[]) {
     const client = await pool.connect();
 
-    let responses: QueryResult<any>[] = [];
-
+    
     try {
+        let responses: any[] = [];
         for (const query of queries) {
-            let response = await client.query({ ...query });
-            responses.push(response);
-        }
+            let { rows } = await client.query({ ...query });
+            responses.push(withCamelCaseKeys(rows));
+        };
+        return responses;
     } catch (e) {
         throw(e);
     } finally {
         client.release();
-        return responses;
     }
 }

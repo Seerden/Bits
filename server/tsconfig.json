@@ -12,11 +12,7 @@
         "skipLibCheck": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "types": ["node"],
-        "typeRoots": [
-            "./node_modules/@types",
-            "../../shared/types"
-        ],
+        "types": ["jest", "node"],
         "paths": {
             "@shared/*": ["../shared/*"]
         }

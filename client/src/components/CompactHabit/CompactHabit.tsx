@@ -1,26 +1,20 @@
 import HabitEntry from "components/HabitEntry/HabitEntry";
+import { Habit } from "../../../../shared/types/Habit";
+import { Completion } from "../../../../shared/types/Completion";
 import './CompactHabit.scss';
 
-type HabitProps = {  // @todo: implement actual type
-    name: string,
-    description?: string,
-    completion: any[]
+type CompactHabitProps = {
+    habitData: Habit,
+    completionData: Completion[]
 }
 
 
-const CompactHabit = ({ name, completion }: HabitProps) => {
+const CompactHabit = ({ habitData, completionData }: CompactHabitProps) => {
     const base = "CompactHabit";
     
-    const completionEntries = completion.map(entry => <HabitEntry data={entry} />)
-
     return (
         <div className={`${base}`}>
-            <span className={`${base}__name`}>
-                { name }
-            </span>
-            <span className={`${base}__completion`}>
-                { completionEntries }
-            </span>
+            
         </div>
     )
 }

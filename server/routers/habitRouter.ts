@@ -1,7 +1,8 @@
+import { Completion } from '@shared/types/Completion';
 import { DateRange } from '@shared/types/Date';
-import { NewHabit } from '@shared/types/Habit';
+import { Habit, NewHabit } from '@shared/types/Habit';
 import express from 'express';
-import { getHabits, getHabitsByUser, getHabitsInRange } from '../db/queries/getHabits';
+import { getHabits, getHabitsByUser, getHabitsWithCompletion } from '../db/queries/getHabits';
 import { insertHabit } from '../db/queries/insertHabit';
 import completionRouter from './completionRouter';
 
@@ -17,12 +18,23 @@ habitRouter.get('/', async (req, res) => {
     }
 });
 
-habitRouter.get('/range', async (req, res) => {
-    const dateRange = req.query as unknown as DateRange;
-    const response = await getHabitsInRange(dateRange as DateRange);
+habitRouter.get('/range/ids', async (req, res) => {
+    const { from, to } = req.query as unknown as DateRange;
+    const { habitIds }: { habitIds: string[]} = req.query as any; 
 
+    const [habits, completions] = await getHabitsWithCompletion({ from, to }, habitIds) // as [Habit[], Completion[]];
+
+    const response = habits.map(habit => {
+        const completionsForHabit = completions.filter(completion => completion.habit_id === habit.habit_id);
+
+        return {
+            habitInfo: habit,
+            completionInfo: completionsForHabit
+        }
+    })
+    
     res.send(response);
-});
+})
 
 habitRouter.get('/u/:username', async (req, res) => {
     try {

@@ -1,3 +1,5 @@
+import { Completion } from "./Completion";
+
 export type NewHabitHistory = {
     habitEntryDate: Date,
     entryIndex: number,
@@ -25,3 +27,8 @@ export type NewHabit = {
 export interface Habit extends NewHabit {
     habitId: string,
 };
+
+export type HabitResponse = { 
+    habitData: Habit,
+    completionData:Completion[]
+}

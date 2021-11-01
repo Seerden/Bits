@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import type { DateRange } from '../../../../shared/types/Date';
 
-async function fetchHabitsInRange(dateRange: DateRange) {
-    const { data } = await axios.get('/api/db/habits/range', { params: dateRange });
+async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[]) {
+    const { data } = await axios.get('/api/db/habits/range/ids', {
+        params: {
+            ...dateRange,
+            habitIds
+        }
+    });
     return data;
 }
 

@@ -21,7 +21,7 @@ export async function insertHabit(newHabit: NewHabit) {
     } = newHabit;
 
     try {
-        const result = await makePooledQuery({
+        const rows = await makePooledQuery({
             text:
                 `insert into habits (user_id, habit_name, description, completion_type, completion_timescale, completion_frequency, completion_interval, start_date, end_date) values($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *`,
             values: [
@@ -36,7 +36,7 @@ export async function insertHabit(newHabit: NewHabit) {
                 endDate]
         })
         
-        return result.rows[0]
+        return rows[0]
         
     } catch (error) {
         throw new Error(error);
