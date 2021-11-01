@@ -52,10 +52,13 @@ app.get('/logout', (req, res) => {
     });
 });
 app.get('/me', (req, res) => {
-    console.log('hi');
     if (req.isAuthenticated && req.user) {
         // @ts-ignore: @todo: expand Express.User type to include username and user_id definitions
-        res.send(req.user.username);
+        const { username, userId } = req.user;
+        res.send({
+            username,
+            userId
+        });
     } else {
         res.send({ error: 'Not logged in' })
     }

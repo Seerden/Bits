@@ -4,10 +4,5 @@ import { useEffect } from "react";
 export function useHabits() {
     const { data, setDateRange } = useFetchHabits();
 
-    useEffect(() => {
-        data && console.log(data);
-    }, [data])
-
     return data;
-
 }

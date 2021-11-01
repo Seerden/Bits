@@ -6,7 +6,6 @@ import { Credentials } from "types/credentials";
 
 export function useAuth() {
     const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
-    
     const { data, mutate, isSuccess } = useLoginMutation();
 
     useEffect(() => {

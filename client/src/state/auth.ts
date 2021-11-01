@@ -1,7 +1,11 @@
-import { defaultUser } from "helpers/defaults/defaultUser";
 import { atom } from "recoil";
 
-export const currentUserAtom = atom({
+type User = {
+    username: string,
+    userId: string
+}
+
+export const currentUserAtom = atom<User>({
     key: 'currentUser',
-    default: defaultUser // @dev: temporary, until authentication fully implemented
+    default: null // @dev: temporary, until authentication fully implemented
 });

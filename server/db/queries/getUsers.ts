@@ -5,7 +5,6 @@ export async function getUsers() {
         name: 'get all users',
         text: 'select * from users'
     });
-
     return rows;
 }
 
