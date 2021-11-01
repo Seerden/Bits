@@ -10,27 +10,6 @@ export async function getHabits(options?: any) {
     return rows;
 };
 
-// export async function getHabitsInRange(dateRange: DateRange, habitIds?: string[]) {
-//     const { from, to } = dateRange;
-
-//     try {
-//         const { rows } = await makePooledQuery({
-//             name: 'get habits from user in date range',
-//             text: `
-//                 select * from habithistories c
-//                 right join habits h
-//                 on c.habit_id = h.habit_id
-//                 and c.habit_entry_date between $1 and $2
-//                 ${habitIds ? 'and h.habit_id = any($3)': ''}
-//             `,
-//             values: habitIds ? [from, to, habitIds] : [from, to]
-//         });
-//         return rows;
-//     } catch (error) {
-//         console.error(error)        
-//     }
-// };
-
 export async function getHabitsByUser(username: string) {
     try {
         const rows = await makePooledQuery({
