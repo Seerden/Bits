@@ -1,6 +1,10 @@
 import { makePooledQueries, makePooledQuery } from "../dbQuery";
 import type { DateRange } from '@shared/types/Date';
 
+/**
+ * Fetch all habits from the database.
+ * @dev
+ */
 export async function getHabits(options?: any) {
     const rows = await makePooledQuery({
         name: 'get all habits',
@@ -10,6 +14,9 @@ export async function getHabits(options?: any) {
     return rows;
 };
 
+/**
+ * Fetch all habits belonging to the given `username`
+ */
 export async function getHabitsByUser(username: string) {
     try {
         const rows = await makePooledQuery({
@@ -28,6 +35,9 @@ export async function getHabitsByUser(username: string) {
     }
 };
 
+/**
+ * Fetch a list of habits by their `habitId`s and their completion entries in the given `dateRange`
+ */
 export async function getHabitsWithCompletion(dateRange: DateRange, habitIds: string[]) {
     const { from, to } = dateRange;
 
