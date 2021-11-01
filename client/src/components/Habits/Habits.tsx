@@ -1,6 +1,6 @@
 import CompactHabit from "components/CompactHabit/CompactHabit";
 import Timescale from "components/Timescale/Timescale";
-import { getDatesForLabels, getTimestepIndex, timesteps } from "helpers/time/dateList";
+import { getDatesForLabels, getTimestepIndex, listDatesBetween, timesteps } from "helpers/time/dateList";
 import { timescaleFormatters } from "helpers/time/format";
 import { useCallback, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -19,18 +19,19 @@ const Habits = () => {
         setTimestep(timesteps[(currentIndex + 1) % timesteps.length])
     }, [timestep]);
 
-    const { dates, labels } = useMemo(() => {
-        const dates = getDatesForLabels(timestep, length)
+    const [labelDates, labels, datesInRange] = useMemo(() => {
+        const labelDates = getDatesForLabels(timestep, length)
 
-        return {
-            dates,
-            labels: dates.map(entry => formatter(entry))
-        }
+        return [
+            labelDates,
+            labelDates.map(entry => formatter(entry)),
+            listDatesBetween(labelDates[0], labelDates[labelDates.length-1])
+        ]
     }, [timestep]);
 
     return (
         <div className={`${base}`}>
-            <Timescale {...{labels, cycleTimestep, timestep, setTimestep}} />
+            <Timescale {...{ labels, cycleTimestep, timestep, setTimestep }} />
         </div>
     )
 }

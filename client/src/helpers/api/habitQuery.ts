@@ -18,7 +18,7 @@ export function useFetchHabits() {
     const [dateRange, setDateRange] = useState<DateRange>(defaultDateRange);
     const { data, refetch } = useQuery(['fetchHabits', dateRange], () => fetchHabitsInRange(dateRange), { enabled: false, retry: false });
 
-    useEffect(() => {
+    useEffect(() => {  // @todo: move this to useHabits?
         refetch();
     }, [dateRange, refetch]);
 

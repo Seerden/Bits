@@ -10,27 +10,23 @@ dayjs.extend(weekOfYear);
  */
 export function listDatesBetween(start: dayjs.Dayjs, end: dayjs.Dayjs) {
     if (end.valueOf() < start.valueOf()) {
-        throw('End date must be after start date')
-    }
+        return [];
+    };
 
     if (start == end) {
         return [end]
-    }
+    };
 
-    try {
-        const dateList: dayjs.Dayjs[] = [];
-        let latest = start;
-    
-        while (latest <= end) {
-            dateList.push(latest);
-            latest = latest.add(1, 'day');
-        }
-    
-        return dateList;
-    } catch(e) {
-        console.error('e')
-    }
-}
+    const dateList: dayjs.Dayjs[] = [];
+    let latest = start;
+
+    while (latest <= end) {
+        dateList.push(latest);
+        latest = latest.add(1, 'day');
+    };
+
+    return dateList;
+};
 
 /**
  * Returns dates, with time set to midnight, in the inclusive range [today - n*timescale, today]
@@ -56,7 +52,7 @@ export function getPastNDates(n: number, timescale: TimescaleType['timescale']):
 export function getDatesForLabels(timestep: Timestep, stepsBack: number) {
     const now = dayjs(Date.now()).startOf(timestep);
 
-    const labels: Dayjs[] = [...Array(stepsBack+1).keys()]
+    const labels: Dayjs[] = [...Array(stepsBack + 1).keys()]
         .map((entry, index) => now.add(-index, timestep))
         .reverse();
 
