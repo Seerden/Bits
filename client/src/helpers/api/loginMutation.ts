@@ -7,8 +7,8 @@ type Credentials = {
 }
 
 async function login(credentials: Credentials) {
-    const response = await axios.post('/api/login', credentials);
-    return response.data;
+    const { data } = await axios.post('/api/login', credentials);
+    return data;
 }
 
 export function useLoginMutation() {

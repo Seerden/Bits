@@ -10,16 +10,16 @@ export function useAuth() {
 
     useEffect(() => {
         if (data && isSuccess) {
-            setCurrentUser(c => ({ 
+            setCurrentUser(c => ({
                 username: data.username,
                 userId: data.userId
-             }));
-            updateLocalStorageUser({ 
-                action: 'set', 
-                username: data.username 
+            }));
+            updateLocalStorageUser({
+                action: 'set',
+                user: data
             })
         }
-    }, [data, isSuccess])
+    }, [data, isSuccess]);
 
     const login = useCallback((credentials: Credentials) => {
         mutate(credentials);
@@ -43,12 +43,12 @@ export function useAuth() {
 
 type UpdateProps = {
     action: 'set' | 'remove',
-    username?: string,
+    user?: any,
 }
 
-function updateLocalStorageUser({ action, username }: UpdateProps) {
+function updateLocalStorageUser({ action, user }: UpdateProps) {
     if (action === 'set') {
-        localStorage.setItem('currentUser', username);
+        localStorage.setItem('currentUser', JSON.stringify(user));
     } else {
         localStorage.removeItem('currentUser');
     }

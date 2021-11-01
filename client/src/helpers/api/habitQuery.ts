@@ -1,14 +1,16 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { useAuth } from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import type { DateRange } from '../../../../shared/types/Date';
 
-async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[]) {
+async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[], username?: string) {
     const { data } = await axios.get('/api/db/habits/range/ids', {
         params: {
             ...dateRange,
-            habitIds
+            habitIds,
+            username
         }
     });
     return data;
@@ -21,7 +23,12 @@ const defaultDateRange = {
 
 export function useFetchHabits() {
     const [dateRange, setDateRange] = useState<DateRange>(defaultDateRange);
-    const { data, refetch } = useQuery(['fetchHabits', dateRange], () => fetchHabitsInRange(dateRange), { enabled: false, retry: false });
+    const { username } = useAuth().currentUser;
+    const { data, refetch } = useQuery(['fetchHabits', dateRange, username], () =>
+        // @todo: the 'null' in the next line refers to the habitIds to fetch
+        // include a piece of state for habitIds once we find a usecase for fetching only a subset of a user's habits
+        fetchHabitsInRange(dateRange, null, username), { enabled: false, retry: false }
+    );
 
     useEffect(() => {  // @todo: move this to useHabits?
         refetch();

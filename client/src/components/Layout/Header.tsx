@@ -1,10 +1,9 @@
 import { useAuth } from "hooks/useAuth";
-import { useEffect } from "react";
 import './Header.scss'
 
 const Header = (props) => {
     const base = "Header";
-    const { currentUser, logout } = useAuth();
+    const { currentUser, login, logout } = useAuth();
 
     return (
         <div className={`${base}`}>

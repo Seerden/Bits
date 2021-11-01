@@ -8,6 +8,4 @@ server/**/*.env
 server/**/*.pgsql
 server/**/*.rest
 
-/**/_test
-
 server/fullstack.md
