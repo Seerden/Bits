@@ -1,25 +1,12 @@
 import { useToggle } from 'hooks/useToggle';
 import { RiCheckboxCircleFill, RiCheckboxBlankCircleFill } from 'react-icons/ri';
+import { Completion } from '../../../../shared/types/Completion';
 
 import './HabitToggleInstance.scss';
 
-type HabitInstanceProps = {
-    date: Date,
-    index: number,
-    habitId: string
-}
-
-interface HabitToggleInstanceProps extends HabitInstanceProps {
-    startsChecked: boolean    
-}
-
-interface HabitRangeInstanceProps extends HabitInstanceProps {
-    rangeValue: number
-}
-
-const HabitToggleInstance = ({ startsChecked, date, index, habitId }: HabitToggleInstanceProps) => {
+const HabitToggleInstance = (props: Partial<Completion>) => {
     const base = "HabitToggleInstance";
-    const [checked, toggleChecked] = useToggle({ initial: startsChecked });
+    const [checked, toggleChecked] = useToggle({ initial: props.completed });
 
     const checkboxProps = {
         onClick: () => toggleChecked(),

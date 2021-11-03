@@ -16,7 +16,8 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
     const {
         completionType,
         completionFrequency,
-        completionTimescale
+        completionTimescale,
+        completionInterval
     } = habitData;
 
     const partitionsAsTimes = partitions.map(partition => partition.map(date => date.getTime()));
@@ -58,7 +59,7 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                             key={`${partitionIndex}-${entryIndex}`}
                             habitId={habitData.habitId}
                             habitEntryDate={date}
-                            {...{ entryIndex, completionType, completed, rangeValue }}
+                            {...{ completionInterval, entryIndex, completionType, completed, rangeValue }}
                         />
                     })
             }

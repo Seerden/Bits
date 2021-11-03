@@ -1,15 +1,11 @@
 import './HabitRangeInstance.scss';
 import { useState } from 'react';
+import { CompletionInstanceProps } from 'types/CompletionInstance';
 
-type HabitRange = {
-    value?: number,
-    intervalMax: number,
-}
-
-const HabitRangeInstance = ({ value = 0, intervalMax }: HabitRange) => {
+const HabitRangeInstance = (props: CompletionInstanceProps) => {
     const base = "HabitRangeInstance";
     
-    const [sliderValue, setSliderValue] = useState<number>(value);
+    const [sliderValue, setSliderValue] = useState<number>(props.rangeValue);
 
     function handleInputChangeOrBlur(e) {
         const { value } = e.target;
@@ -26,7 +22,7 @@ const HabitRangeInstance = ({ value = 0, intervalMax }: HabitRange) => {
                 value={sliderValue}    
                 onChange={handleInputChangeOrBlur}
                 onBlur={handleInputChangeOrBlur}
-                max={intervalMax}
+                max={props.completionInterval}
             />
             <input 
                 className={`${base}__slider--input`}
