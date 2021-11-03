@@ -4,12 +4,7 @@ $width: 4rem;
     width: $width;
     min-width: max-content;
     display: flex;
-    outline: 1px solid orangered;
+    outline: 1px solid deepskyblue;
     justify-content: space-evenly;
     padding: 0.8rem 0;
-    &__instances {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-    }
 }

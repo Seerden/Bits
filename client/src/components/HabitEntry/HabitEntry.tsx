@@ -30,7 +30,9 @@ const HabitEntry = ({ completionEntries }: EntryProps) => {
     const EntryComponent = mapTimescaleToEntryComponent(timescale);
 
     return (
-        <EntryComponent completionEntries={completionEntries} />
+        <span className={`${base}`}>
+            <EntryComponent completionEntries={completionEntries} />
+        </span>
     )
 }
 

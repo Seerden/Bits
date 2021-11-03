@@ -1,5 +1,6 @@
 import CompletionInstance from "components/HabitInstance/CompletionInstance";
 import { EntryProps } from "types/HabitEntry";
+import './DailyEntry.scss';
 
 const DailyEntry = ({ completionEntries }: EntryProps) => {
     const base = "DailyEntry";
