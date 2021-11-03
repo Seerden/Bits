@@ -13,7 +13,7 @@ import { useHabits } from "./useHabits";
 const Habits = () => {
     const base = "Habits";
     const [timestep, setTimestep] = useRecoilState(timescaleAtom);
-    const [length, setLength] = useState<number>(0);
+    const [length, setLength] = useState<number>(6);
     const formatter = timescaleFormatters[timestep];
     const habits: HabitResponse[] = useHabits();
 

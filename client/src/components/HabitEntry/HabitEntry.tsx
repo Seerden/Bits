@@ -1,6 +1,7 @@
+import { mapTimescaleToEntryComponent } from 'helpers/entryComponentMap';
 import { useRecoilValue } from 'recoil';
 import { timescaleAtom } from 'state/timescale';
-import { CompletionInstanceProps } from 'types/CompletionInstance';
+import { EntryProps } from 'types/HabitEntry';
 import './HabitEntry.scss';
 
 /**
@@ -23,16 +24,15 @@ import './HabitEntry.scss';
  *      indicating that the habit was succesfully completed 165 days in a given year
  */
 
-const HabitEntry = (props: Array<CompletionInstanceProps & { _key: string }>) => {
+const HabitEntry = ({ completionEntries }: EntryProps) => {
     const base = "HabitEntry";
 
     const timescale = useRecoilValue(timescaleAtom) 
+    const EntryComponent = mapTimescaleToEntryComponent(timescale);
     
 
     return (
-        <div className={`${base}`}>
-            
-        </div>
+        <EntryComponent completionEntries={completionEntries} />
     )
 }
 

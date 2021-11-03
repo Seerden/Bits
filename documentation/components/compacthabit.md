@@ -23,3 +23,17 @@ Which component controls the rendering of which subcomponents?
 - CompactHabit: for one specific habit, this component builds completionData to pass to HabitEntry[].
     - CompletionEntry/HabitEntry: given completionData (by CompactHabit), build an entry
         - Shape of entry depends on timescale. There's no point to render actual HabitInstances if `timescale == 'year'`
+
+
+#### Passing habitEntries down:
+- CompactHabit:
+    ```js
+    habitEntries.map(partition => <HabitEntry entries={partition} />)
+    ```
+
+- HabitEntry:
+    ```js
+    <EntryComponent entries={entries} />
+    ```
+
+Note that HabitEntry doesn't map anything, it just passes the entries to the correct component. Means we could probably include the logic in CompactHabit instead of creating an entire component...

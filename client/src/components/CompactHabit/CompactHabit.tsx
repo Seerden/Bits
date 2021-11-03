@@ -38,7 +38,7 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                 return {
                     // @todo: modify key to include habit-specific property,
                     // so that entries for different habits don't end up with same key accidentally
-                    _key: `${timestamp}-${entryIndex}`,  
+                    _key: `${timestamp}-${entryIndex}`,
                     habitEntryDate: new Date(timestamp),
                     completed,
                     rangeValue,
@@ -49,14 +49,23 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                 }
             })
         })
-    )
+    );
 
     return (
         <li className={`${base}`}>
             <span className={`${base}__name`}>
                 {habitData.habitName}
             </span>
-            {habitEntries.map(partition => partition.map(entry => <HabitEntry {...entry} />))}
+            <ul>
+                {
+                    habitEntries.map((partition, idx) =>
+                        <HabitEntry
+                            key={idx}
+                            completionEntries={partition}
+                        />
+                    )
+                }
+            </ul>
         </li>
     )
 }

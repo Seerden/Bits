@@ -2,7 +2,7 @@ import { Completion } from '@shared/types/Completion';
 import { DateRange } from '@shared/types/Date';
 import { Habit, NewHabit } from '@shared/types/Habit';
 import express from 'express';
-import { getHabits, getHabitsByUser, getHabitsWithCompletion, HabitQuery } from '../db/queries/getHabits';
+import { getHabits, getHabitsByUser, getHabitsWithCompletion } from '../db/queries/getHabits';
 import { insertHabit } from '../db/queries/insertHabit';
 import completionRouter from './completionRouter';
 

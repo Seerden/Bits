@@ -1,17 +1,16 @@
-import { useEffect } from "react";
-import type { CompletionInstanceProps } from "types/CompletionInstance";
+import { Entry } from "types/HabitEntry";
 import HabitRangeInstance from "./HabitRangeInstance";
 import HabitToggleInstance from "./HabitToggleInstance";
 
-const CompletionInstance = (props: CompletionInstanceProps) => {
+const CompletionInstance = ({ entry }: { entry: Entry[]}) => {
     const base = "CompletionInstance";
 
     // render a ToggleInstance or RangeInstance depending on the Habit's completionType
-    const InstanceComponent = props.completionType === 'toggle' ? HabitToggleInstance : HabitRangeInstance;
+    const InstanceComponent = entry[0].completionType === 'toggle' ? HabitToggleInstance : HabitRangeInstance;
 
     return (
         <>
-            <InstanceComponent {...props} />
+            {entry.map((entry, idx) => <InstanceComponent key={idx} {...entry} />)}
         </>
     )
 }
