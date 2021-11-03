@@ -17,4 +17,9 @@ A `CompactHabit` instance displays the habit's name, completion matching the dis
 - To display a habit (either as a modal or in a compact form), we need access to pretty much every one of its database fields.
     - Habits and completion entries are fetched in a hook and passed by Habits.tsx to each CompactHabit
     - Each CompactHabit then takes the partitioned dates and renders a HabitEntry for each partition, each containing all completion entries for that partition.
-        - Existing completion entries (passed to CompactHabit as the `completionData` prop) have to be inserted in the correct spot. All the other completion entries we render should start in the default state (unchecked in case of toggleable habit, value 0 in case of range habit)
+        - Existing completion entries (passed to CompactHabit as the `completionData` prop) have to be inserted in the correct spot. All the other completion entries we render should start in the default state (unchecked in case of toggleable habit, value 0 in case of range habit).
+
+Which component controls the rendering of which subcomponents?
+- CompactHabit: for one specific habit, this component builds completionData to pass to HabitEntry[].
+    - CompletionEntry/HabitEntry: given completionData (by CompactHabit), build an entry
+        - Shape of entry depends on timescale. There's no point to render actual HabitInstances if `timescale == 'year'`

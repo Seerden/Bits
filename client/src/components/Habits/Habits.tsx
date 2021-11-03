@@ -6,13 +6,13 @@ import { timescaleFormatters } from "helpers/time/format";
 import { partitionDates } from "helpers/time/partitionDates";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
-import { timescaleState } from "state/timescale";
+import { timescaleAtom } from "state/timescale";
 import { HabitResponse } from "../../../../shared/types/Habit";
 import { useHabits } from "./useHabits";
 
 const Habits = () => {
     const base = "Habits";
-    const [timestep, setTimestep] = useRecoilState(timescaleState);
+    const [timestep, setTimestep] = useRecoilState(timescaleAtom);
     const [length, setLength] = useState<number>(0);
     const formatter = timescaleFormatters[timestep];
     const habits: HabitResponse[] = useHabits();

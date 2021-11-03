@@ -1,9 +1,7 @@
 import { Habit } from "../../../../shared/types/Habit";
 import { Completion } from "../../../../shared/types/Completion";
 import './CompactHabit.scss';
-import CompletionInstance from "components/HabitInstance/CompletionInstance";
-import { useEffect } from "react";
-import { asDates, asTimes } from "helpers/time/asDates";
+import HabitEntry from "components/HabitEntry/HabitEntry";
 
 type CompactHabitProps = {
     habitData: Habit,
@@ -35,30 +33,30 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                 const foundEntryAtIndex = foundEntry.filter(entry => entry.entryIndex === entryIndex)[0];
                 const [completed, rangeValue] = foundEntryAtIndex
                     ? [foundEntryAtIndex.completed, foundEntryAtIndex.rangeValue]
-                    : [false, 0]
+                    : [false, 0];
 
-                return <CompletionInstance
-                    key={`${timestamp}-${entryIndex}`}
-                    habitEntryDate={new Date(timestamp)}
-                    {...{
-                        completed,
-                        rangeValue,
-                        completionType,
-                        completionFrequency,
-                        completionInterval,
-                        completionTimescale
-                    }}
-                />
+                return {
+                    // @todo: modify key to include habit-specific property,
+                    // so that entries for different habits don't end up with same key accidentally
+                    _key: `${timestamp}-${entryIndex}`,  
+                    habitEntryDate: new Date(timestamp),
+                    completed,
+                    rangeValue,
+                    completionType,
+                    completionFrequency,
+                    completionInterval,
+                    completionTimescale
+                }
             })
         })
     )
 
     return (
         <li className={`${base}`}>
-            <span>
+            <span className={`${base}__name`}>
                 {habitData.habitName}
             </span>
-            {habitEntries}
+            {habitEntries.map(partition => partition.map(entry => <HabitEntry {...entry} />))}
         </li>
     )
 }
