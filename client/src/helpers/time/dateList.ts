@@ -52,7 +52,7 @@ export function getPastNDates(n: number, timescale: TimescaleType['timescale']):
 export function getDatesForLabels(timestep: Timestep, stepsBack: number) {
     const now = dayjs(Date.now()).startOf(timestep);
 
-    const labels: Dayjs[] = [...Array(stepsBack + 1).keys()]
+    const labels: Dayjs[] = [...Array(stepsBack + 2).keys()]
         .map((entry, index) => now.add(-index, timestep))
         .reverse();
 

@@ -1,22 +1,15 @@
 import HabitToggleInstance from "components/HabitInstance/HabitToggleInstance";
+import { Completion } from "../../../../shared/types/Completion";
 import './HabitEntry.scss';
 
 type HabitEntryProps = {
-    data: boolean[]  // @todo: to-be-implemented once shape of API return is decided
+    dateOrDates: Date | Date[],
+    completionEntries: Completion | Completion[]
 }
 
-const HabitEntry = ({ data }: HabitEntryProps) => {
+const HabitEntry = ({ dateOrDates, completionEntries }: HabitEntryProps) => {
     const base = "HabitEntry";
-    
-    // const completionInstances = data.map(entry => 
-    //     <HabitToggleInstance 
-    //         startsChecked={entry} 
-    //         date={new Date()}
-    //         index={0}
-    //         habitId={'1'}
-    //     />
-    // )
-    const a = 1;
+
     return (
         <div className={`${base}`}>
             {/* {completionInstances} */}

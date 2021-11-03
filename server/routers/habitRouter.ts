@@ -30,19 +30,18 @@ habitRouter.get('/range/ids', async (req, res) => {
         [habits, completions] = await getHabitsWithCompletion({ dateRange, habitIds });
     } else {
         [habits, completions] = await getHabitsWithCompletion({ dateRange, username });
-    }
-
+    };
 
     const response = habits.map(habit => {
         const completionsForHabit = completions.filter(completion => completion.habitId === habit.habitId);
 
         return {
-            habitInfo: habit,
-            completionInfo: completionsForHabit
+            habitData: habit,
+            completionData: completionsForHabit
         }
     })
     
-    res.send(response);
+    res.json(response);
 })
 
 habitRouter.get('/u/:username', async (req, res) => {

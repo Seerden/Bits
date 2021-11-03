@@ -1,8 +1,6 @@
 import './Timescale.scss';
-import { getDatesForLabels, getTimestepIndex, timestepDisplayStringMap, timesteps } from 'helpers/time/dateList';
-import { timescaleFormatters } from 'helpers/time/format';
-import { useCallback, useMemo } from 'react';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { timestepDisplayStringMap } from 'helpers/time/dateList';
+import { SetterOrUpdater } from 'recoil';
 import { Timestep } from 'types/time';
 
 interface TimescaleProps {

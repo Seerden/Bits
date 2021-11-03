@@ -1,20 +1,8 @@
 .CompactHabit {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    outline: 2px solid deepskyblue;
-    padding: 0.5rem 1rem;
-
-    span {
-        display: inline-flex;
-    }
-
-    &__name {
-        width: 10rem;
-        justify-content: flex-start;
-    }
-
-    &__completion {
-        gap: 1rem;
-    }
+    padding: 1rem;
+    box-shadow: 0.2rem 0.2rem 1rem 0 black;
+    margin: 0.8rem 1rem;
+    border: 1px solid #333;
+    border-radius: 10px 0;
 }

@@ -6,6 +6,7 @@ import session from 'express-session';
 import { config } from 'dotenv';
 import { getUser } from './db/queries/getUsers';
 import { sessionConfig } from './auth/sessionConfig';
+import { logRequests } from './lib/middleware';
 
 config();
 
@@ -32,6 +33,8 @@ passport.deserializeUser(async (username: any, done) => {
         done(e);
     }
 });
+
+app.use(logRequests);
 
 app.use('/db', dbRouter);
 

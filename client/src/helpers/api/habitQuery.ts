@@ -16,9 +16,13 @@ async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[], use
     return data;
 };
 
+const today = dayjs(new Date()).startOf('day')
 const defaultDateRange = {
-    from: dayjs(new Date()).add(-7, 'day').toDate(),
-    to: new Date(),
+    from: today.add(-7, 'day').toDate(),
+    to: today.endOf('day').toDate(),  
+    // @todo: make sure that wherever we use setDateRange, 
+    // we make sure the 'to', i.e. the end of the range, is set with .endOf('day"), 
+    // otherwise we won't get all the values from the database
 };
 
 export function useFetchHabits() {
