@@ -17,4 +17,12 @@
         font-size: 1.1rem;
         padding: 0 1rem;
     }
+
+    &__list {
+        outline: 1px solid forestgreen;
+        padding: 1rem;
+
+        display: flex;
+        flex-direction: row;
+    }
 }
