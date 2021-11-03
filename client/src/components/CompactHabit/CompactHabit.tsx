@@ -56,7 +56,7 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
             <span className={`${base}__name`}>
                 {habitData.habitName}
             </span>
-            <ul>
+            <ul className={`${base}__list`}>
                 {
                     habitEntries.map((partition, idx) =>
                         <HabitEntry

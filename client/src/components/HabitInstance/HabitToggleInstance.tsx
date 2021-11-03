@@ -15,13 +15,15 @@ const HabitToggleInstance = (props: Partial<Completion>) => {
         }
     }
     return (
-        <div className={`${base}`}>
+        <li
+            className={`${base}`}
+        >
             {
-                checked 
-                ? <RiCheckboxCircleFill { ...checkboxProps }/> 
-                : <RiCheckboxBlankCircleFill { ...checkboxProps }/>
+                checked
+                    ? <RiCheckboxCircleFill {...checkboxProps} />
+                    : <RiCheckboxBlankCircleFill {...checkboxProps} />
             }
-        </div>
+        </li>
     )
 }
 

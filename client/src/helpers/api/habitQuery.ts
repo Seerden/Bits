@@ -4,6 +4,7 @@ import { useAuth } from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import type { DateRange } from '../../../../shared/types/Date';
+import { HabitResponse } from '../../../../shared/types/Habit';
 
 async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[], username?: string) {
     const { data } = await axios.get('/api/db/habits/range/ids', {
@@ -13,7 +14,7 @@ async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[], use
             username
         }
     });
-    return data;
+    return data as HabitResponse[];
 };
 
 const today = dayjs(new Date()).startOf('day')

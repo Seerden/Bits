@@ -26,10 +26,8 @@ import './HabitEntry.scss';
 
 const HabitEntry = ({ completionEntries }: EntryProps) => {
     const base = "HabitEntry";
-
     const timescale = useRecoilValue(timescaleAtom) 
     const EntryComponent = mapTimescaleToEntryComponent(timescale);
-    
 
     return (
         <EntryComponent completionEntries={completionEntries} />
