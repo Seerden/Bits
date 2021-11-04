@@ -6,7 +6,14 @@ $width: 4rem;
     width: shared.$width;
     margin: shared.$timeline-entry-margin;
     display: flex;
-    outline: 1px solid deepskyblue;
+    background-color: #1a1a1a;
     justify-content: space-evenly;
     padding: 0.8rem 0;
+}
+
+.__weekly {
+    $color-main: #444;
+    $color-secondary: #555;
+    box-shadow: 0.5rem 0.5rem 0 -0.4rem $color-main, -0.5rem -0.5rem 0 -0.4rem $color-secondary, 0 0 0.5rem black;
+    border-radius: 0;
 }

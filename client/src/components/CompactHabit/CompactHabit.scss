@@ -1,7 +1,8 @@
 @use '../../style/shared/shared';
 
 .CompactHabit {
-    outline: 1px solid yellow;
+    outline: 1px solid #222;
+    width: max-content;
 
     display: flex;
     padding: 1rem;
@@ -20,8 +21,6 @@
     }
 
     &__list {
-        outline: 1px solid forestgreen;
-
         display: flex;
         flex-direction: row;
     }

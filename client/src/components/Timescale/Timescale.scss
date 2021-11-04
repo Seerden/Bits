@@ -4,11 +4,11 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    outline: 1px solid orangered;
 
     @media screen and (min-width: 1280px) {
         color: azure;
-        padding: 1.5rem 2rem;
+        padding: 0 2rem;
+        margin-top: 1rem;
     }
 
     &__list {

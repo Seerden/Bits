@@ -30,7 +30,7 @@ const HabitEntry = ({ completionEntries }: EntryProps) => {
     const EntryComponent = mapTimescaleToEntryComponent(timescale);
 
     return (
-        <span className={`${base}`}>
+        <span className={`${base} ${timescale === 'week' ? '__weekly' : ''}`}>
             <EntryComponent completionEntries={completionEntries} />
         </span>
     )
