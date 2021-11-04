@@ -15,13 +15,12 @@
     &__name {
         font-weight: 500;
         font-size: 1.1rem;
-        padding: 0 1rem;
-        width: 3rem;
+        padding: 0rem;
+        width: 5rem;  // match shared.$width - shared.$timeline-entry-margin (horizontal part)
     }
 
     &__list {
         outline: 1px solid forestgreen;
-        padding: 1rem;
 
         display: flex;
         flex-direction: row;

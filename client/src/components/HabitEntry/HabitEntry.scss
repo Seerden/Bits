@@ -1,7 +1,10 @@
+@use '../../style/shared/shared';
+
 $width: 4rem;
 
 .HabitEntry {
-    width: max-content;
+    width: shared.$width;
+    margin: shared.$timeline-entry-margin;
     display: flex;
     outline: 1px solid deepskyblue;
     justify-content: space-evenly;
