@@ -6,15 +6,9 @@ export async function insertCompletion(newCompletionEntry: NewCompletion) {
         habitId, 
         habitEntryDate,
         entryIndex,
+        completed,
+        rangeValue
     } = newCompletionEntry;
-
-    let completed, rangeValue;
-
-    if ("completed" in newCompletionEntry) {
-        completed = newCompletionEntry.completed;
-    } else {
-        rangeValue = newCompletionEntry.rangeValue
-    }
 
     const  rows = await makePooledQuery({
         name: 'insert completion',

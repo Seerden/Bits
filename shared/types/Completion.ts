@@ -19,5 +19,5 @@ type CompletionId = { completionId: number };
 
 export type ToggleCompletion = NewToggleCompletion & CompletionId;
 export type RangeCompletion = NewRangeCompletion & CompletionId;
-export type NewCompletion = NewRangeCompletion | NewToggleCompletion;
+export type NewCompletion = NewRangeCompletion & NewToggleCompletion;
 export type Completion = ToggleCompletion & RangeCompletion;

@@ -7,6 +7,7 @@ import { insertHabit } from '../db/queries/insertHabit';
 import completionRouter from './completionRouter';
 
 const habitRouter = express.Router({ mergeParams: true });
+
 habitRouter.use('/completion', completionRouter);
 
 habitRouter.get('/', async (req, res) => {

@@ -24,7 +24,7 @@ async function putCompletion({ entryIndex, habitEntryDate, completed, rangeValue
  */
 async function postCompletion(fields: Partial<Completion>) {
     try {
-        const response = await axios.post('/api/db/completion', {});
+        const response = await axios.post('/api/db/habits/completion', {});
         return response.data;
     } catch (error) {
         console.error

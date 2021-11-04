@@ -15,6 +15,7 @@ const WeeklyEntry = ({ completionEntries }: EntryProps) => {
             {completionEntries.map((dailyEntry, index) =>
                 dailyEntry.map((instance, entryIndex) =>
                     <circle
+                        key={entryIndex}
                         r={size/2}
                         width={size}
                         height={size}
