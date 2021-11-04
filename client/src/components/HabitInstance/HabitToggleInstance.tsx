@@ -24,7 +24,10 @@ const HabitToggleInstance = (props: Partial<Completion>) => {
     }, [checked])
 
         const checkboxProps = {
-        onClick: toggleChecked,
+        onClick: () => {
+            toggleChecked(),
+            handleClick()
+        },
         style: {
             fill: checked ? 'green' : 'grey'
         }
@@ -32,7 +35,6 @@ const HabitToggleInstance = (props: Partial<Completion>) => {
     return (
         <button
             className={`${base}`}
-            onClick={handleClick}
         >
             {
                 checked

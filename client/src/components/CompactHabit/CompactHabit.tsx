@@ -35,6 +35,7 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                 const existingEntryAtIndex = existingEntry.filter(entry => entry.entryIndex === entryIndex)[0];
                 const completed = existingEntryAtIndex?.completed || false;
                 const rangeValue = existingEntryAtIndex?.rangeValue || 0;
+                const completionId = existingEntryAtIndex?.completionId
 
                 return {
                     _key: `${timestamp}-${entryIndex}`,
@@ -44,7 +45,8 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                     rangeValue,
                     completionType,
                     completionInterval,
-                    entryIndex
+                    entryIndex,
+                    completionId
                 }
             })
         })
