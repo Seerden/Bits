@@ -22,9 +22,9 @@ async function putCompletion({ entryIndex, habitEntryDate, completed, rangeValue
 /**
  * Make a POST request to send a new completion entry to the database
  */
-async function postCompletion(fields: Partial<Completion>) {
+async function postCompletion(newCompletion: Partial<Completion>) {
     try {
-        const response = await axios.post('/api/db/habits/completion', {});
+        const response = await axios.post('/api/db/habits/completion', newCompletion);
         return response.data;
     } catch (error) {
         console.error

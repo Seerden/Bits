@@ -1,6 +1,6 @@
 import { useMutateCompletion } from 'helpers/api/mutateCompletion';
 import { useToggle } from 'hooks/useToggle';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { RiCheckboxCircleFill, RiCheckboxBlankCircleFill } from 'react-icons/ri';
 import { Completion } from '../../../../shared/types/Completion';
 
@@ -11,16 +11,16 @@ const HabitToggleInstance = (props: Partial<Completion>) => {
     const [checked, toggleChecked] = useToggle({ initial: props.completed });
     const { mutate } = useMutateCompletion();
 
-    // whenever the user toggles the checkbox, POST/PUT the updated completion entry
-    useEffect(() => {
-        const { completionId, habitId, habitEntryDate } = props;
-
-        // mutate({
-        //     completionId,
-        //     completed: checked,
-        //     habitId,
-        //     habitEntryDate
-        // });
+    const handleClick = useCallback(() => {
+        const { completionId, habitId, habitEntryDate, entryIndex } = props;
+    
+        mutate({
+            completionId,
+            completed: !checked,  // happens in same render cycle as update, so `checked` will be one step behind
+            habitId,
+            habitEntryDate,
+            entryIndex
+        });
     }, [checked])
 
         const checkboxProps = {
@@ -32,6 +32,7 @@ const HabitToggleInstance = (props: Partial<Completion>) => {
     return (
         <button
             className={`${base}`}
+            onClick={handleClick}
         >
             {
                 checked
