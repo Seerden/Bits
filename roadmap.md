@@ -6,21 +6,6 @@
 - Deploy from a Docker image, on a DigitalOcean droplet
 - Try to implement OAuth for authentication, or try an e-mail verification strategy if it seems too messy for DX for some reason.
 
-# Components
-## NewHabit
-### Description:
-`NewHabit` form. Allows users to specify a new habit they wish to track.
-
-## TODO:
-- Create minimum viable version of the form;
-    - [x] Implement reducer in useNewHabit to update newHabit state based on user input.
-    - [x] Implement onChange handlers that call the reducer, for each field in NewHabit.
-    - [x] Set up database skeleton on the backend.
-    - [] Implement REST route on front- and backend to (GET, PUT and) POST Habits.
-
-- Create Habit completion timeline;
-    - [] Start conceptualizing the task timeline layout and functionality. 
-
 # Learning objectives and overview
 - [] Testing React reducers
 - [] Add an animation library to my frontend skillset:
@@ -32,3 +17,29 @@
 - [] Learn Docker:
     - [] Deploy project as image on Docker
         - [] Host project on DO droplet, launch from containers
+        - [] Build and launch the database, including tables, from scratch using Docker
+
+# Todo
+## General
+- Implement dark/solarized styles
+- Generalize styling more, import bits and pieces as needed instead of creating each class from scratch
+## Habits
+- change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
+- figure out a more elegant way to switch between timescales than the button we currently use
+- add date tooltips?
+## CompactHabit
+- Click to expand to ExpandedHabit modal
+    - Implement ExpandedHabit modal
+- Click name to swap to editable input
+    - Add functionality to update habit names and descriptions
+- Only display entries starting from the habit's `startDate` || `creationDate`
+    - add `habit.creationDate` field
+## HabitRangeInstance
+- fix uncontrolled <-> controlled input warning
+- fix styling to fit into HabitEntry list entries
+- add tooltip with `habitEntryDate`
+## HabitToggleInstance
+- add tooltip with `habitEntryDate`
+- improve styling
+    - add hover styles
+    - play around with default style
