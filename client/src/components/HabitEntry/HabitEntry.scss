@@ -1,7 +1,7 @@
 $width: 4rem;
 
 .HabitEntry {
-    width: $width;
+    width: max-content;
     display: flex;
     outline: 1px solid deepskyblue;
     justify-content: space-evenly;

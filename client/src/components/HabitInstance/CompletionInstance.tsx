@@ -10,7 +10,7 @@ const CompletionInstance = ({ entry }: { entry: Entry[]}) => {
 
     return (
         <>
-            {entry.map((entry, idx) => <InstanceComponent key={idx} {...entry} />)}
+            {entry.map((instance, idx) => <InstanceComponent key={idx} {...instance} />)}
         </>
     )
 }
