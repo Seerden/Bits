@@ -1,14 +1,17 @@
 import axios from 'axios';
+import { useAuth } from 'hooks/useAuth';
 import { useMutation } from 'react-query';
 import { Habit, NewHabit } from "../../../../shared/types/Habit";
 
 // POST HABIT
-async function postNewHabit(newHabit: NewHabit) {
-    return await axios.post('/api/db/habits', newHabit);
+async function postNewHabit(newHabit: NewHabit, username: string) {
+    return await axios.post('/api/db/habits', newHabit, { params: { username } });
 };
 
 export function usePostNewHabit() {
-    const response = useMutation('postNewHabit', postNewHabit);
+    const { username } = useAuth().currentUser
+
+    const response = useMutation<any, any, NewHabit>('postNewHabit', (newHabit) => postNewHabit(newHabit, username));
     return response;
 };
 
@@ -18,11 +21,13 @@ type PutHabit = {
     habitToUpdate: Partial<Habit>
 };
 
-async function putHabit({ field, habitToUpdate }: PutHabit) {
-    return await axios.put('/api/db/habits', { field, habitToUpdate });
+async function putHabit({ field, habitToUpdate }: PutHabit, username: string) {
+    return await axios.put('/api/db/habits', { field, habitToUpdate }, { params: { username } });
 };
 
 export function usePutHabit() {
-    const response = useMutation('putHabit', putHabit);
+    const { username } = useAuth().currentUser;
+
+    const response = useMutation<any, any, PutHabit>('putHabit', (habit) => putHabit(habit, username));
     return response;
 };
