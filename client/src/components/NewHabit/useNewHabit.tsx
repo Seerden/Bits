@@ -1,4 +1,4 @@
-import { usePostNewHabit } from "helpers/api/habitMutation";
+import { usePostNewHabit } from "helpers/api/mutateHabits";
 import { useAuth } from "hooks/useAuth";
 import { useCallback, useEffect, useReducer } from "react";
 import type { NewHabit } from '../../../../shared/types/Habit';

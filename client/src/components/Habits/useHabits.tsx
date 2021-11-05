@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
-import { useFetchHabits } from "helpers/api/habitQuery";
+import { useFetchHabits } from "helpers/api/queryHabits";
 import { asDates } from "helpers/time/asDates";
 import { getDatesForLabels, getTimestepIndex, listDatesBetween, timesteps } from "helpers/time/dateList";
 import { timescaleFormatters } from "helpers/time/format";
 import { partitionDates } from "helpers/time/partitionDates";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import { timescaleAtom } from "state/timescale";
 
@@ -44,4 +44,4 @@ export function useHabits() {
         cycleTimestep,
         partitions
     } as const;
-}
+};
