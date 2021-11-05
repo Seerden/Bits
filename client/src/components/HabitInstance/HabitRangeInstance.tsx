@@ -1,5 +1,5 @@
 import './HabitRangeInstance.scss';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { CompletionInstanceProps } from 'types/CompletionInstance';
 import { useMutateCompletion } from 'helpers/api/mutateCompletion';
 
@@ -8,9 +8,15 @@ const HabitRangeInstance = ({ habitId, rangeValue, completionInterval, habitEntr
     const [sliderValue, setSliderValue] = useState<number>(rangeValue);
     const { mutate } = useMutateCompletion();
 
-    const progress = sliderValue >= completionInterval ? 'completed' : sliderValue >= completionInterval/2 ? 'underway' : 'incomplete'
+    const progress = useMemo(() => {
+        return sliderValue >= completionInterval
+            ? 'completed'
+            : sliderValue >= completionInterval / 2
+                ? 'underway'
+                : 'incomplete'
+    }, [sliderValue])
 
-    function handleInputBlur (e) {
+    function handleInputBlur(e) {
         const { value } = e.target;
         const newValue = value > 0 ? value : 0;
 
@@ -33,17 +39,17 @@ const HabitRangeInstance = ({ habitId, rangeValue, completionInterval, habitEntr
 
     return (
         <div className={`${base}`}>
-            <input 
+            <input
                 className={`${base}__slider ${progress}`}
-                type="range" 
-                value={sliderValue}    
+                type="range"
+                value={sliderValue}
                 onChange={handleInputChange}
                 onMouseUp={handleInputBlur}
                 max={completionInterval}
             />
-            <input 
+            <input
                 className={`${base}__slider--input`}
-                type="number" 
+                type="number"
                 value={sliderValue}
                 onChange={handleInputChange}
                 onBlur={handleInputBlur}
