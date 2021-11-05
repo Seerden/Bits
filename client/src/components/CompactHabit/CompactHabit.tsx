@@ -3,6 +3,8 @@ import { Completion } from "../../../../shared/types/Completion";
 import './CompactHabit.scss';
 import HabitEntry from "components/HabitEntry/HabitEntry";
 import { asTimes } from "helpers/time/asDates";
+import { useState } from "react";
+import { usePutHabit } from "helpers/api/mutateHabits";
 
 type CompactHabitProps = {
     habitData: Habit,
@@ -12,6 +14,9 @@ type CompactHabitProps = {
 
 const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitProps) => {
     const base = "CompactHabit";
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [habitName, setHabitName] = useState<string>(habitData.habitName);
+    const { mutate } = usePutHabit();
 
     const {
         completionType,
@@ -52,10 +57,40 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
         })
     );
 
+    function handleBlur(e) {
+        const newName = e.target.value;
+        setHabitName(newName);
+
+        mutate({
+            field: 'habitName',
+            habitToUpdate: {
+                habitName: newName,
+                habitId
+            }
+        });
+
+        setIsEditing(cur => !cur);
+    };
+
     return (
         <li className={`${base}`}>
-            <span className={`${base}__name`}>
-                {habitData.habitName}
+            <span>
+                { !isEditing
+                    ?   <span 
+                        className={`${base}__name`}
+                        onClick={() => setIsEditing(cur => !cur)}
+                    >
+                            {habitName}
+                        </span>
+                    :   <input 
+                            className={`${base}__name--input`}
+                            type='text' 
+                            defaultValue={habitName}
+                            onBlur={handleBlur}
+                        />
+                    
+                
+                }
             </span>
             <ul className={`${base}__list`}>
                 {

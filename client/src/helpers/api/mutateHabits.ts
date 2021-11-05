@@ -4,7 +4,7 @@ import { Habit, NewHabit } from "../../../../shared/types/Habit";
 
 // POST HABIT
 async function postNewHabit(newHabit: NewHabit) {
-    return await axios.post('/api/db/habit', newHabit);
+    return await axios.post('/api/db/habits', newHabit);
 };
 
 export function usePostNewHabit() {
@@ -19,7 +19,7 @@ type PutHabit = {
 };
 
 async function putHabit({ field, habitToUpdate }: PutHabit) {
-    return await axios.put('/api/db/habit', { field, habitToUpdate });
+    return await axios.put('/api/db/habits', { field, habitToUpdate });
 };
 
 export function usePutHabit() {
