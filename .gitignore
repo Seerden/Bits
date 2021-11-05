@@ -9,3 +9,5 @@ server/**/*.pgsql
 server/**/*.rest
 
 server/fullstack.md
+
+used_resources.md

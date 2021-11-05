@@ -4,6 +4,7 @@ import { Habit, NewHabit } from '@shared/types/Habit';
 import express from 'express';
 import { getHabits, getHabitsByUser, getHabitsWithCompletion } from '../db/queries/getHabits';
 import { insertHabit } from '../db/queries/insertHabit';
+import { updateHabit } from '../db/queries/updateHabit';
 import completionRouter from './completionRouter';
 
 const habitRouter = express.Router({ mergeParams: true });
@@ -66,6 +67,19 @@ habitRouter.post('/', async (req, res) => {
             message: 'Error inserting habit into database',
             error
         })
+    }
+});
+
+habitRouter.put('/', async (req, res) => {
+    const habitToUpdate = req.body.habitToUpdate as Partial<Habit>;
+    const field = req.body.field as keyof Habit;
+
+    try {
+        res.json(await updateHabit(field, habitToUpdate))
+    } catch (error) {
+        console.error;
+
+        res.status(401).json({ message: JSON.stringify(error) })
     }
 });
 

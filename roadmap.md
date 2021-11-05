@@ -29,11 +29,13 @@
 - Add routing (`react-router v6`)
 - Implement dark/solarized styles
 - Generalize styling more, import bits and pieces as needed instead of creating each class from scratch
-- Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent_.
+- Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent with usage_
+- (client) add symlink to top-level /shared folder so imports from it aren't prepended by '../../../../'
 ## Habits
 - change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
 - figure out a more elegant way to switch between timescales than the button we currently use
 - add date tooltips?
+- add button that toggles (inline?) NewHabitEntry form on click
 ## CompactHabit
 - Click to expand to ExpandedHabit modal
     - Implement ExpandedHabit modal
