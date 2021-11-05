@@ -28,7 +28,7 @@ const NewHabit = () => {
 
             <p className={`${base}__field`}>
                 <label htmlFor="description">
-                    Description
+                    Describe your habit
                 </label>
                 <section className="field__group">
                     <input
@@ -41,7 +41,7 @@ const NewHabit = () => {
             </p>
 
             <p className={`${base}__field--frequency`}>
-                <label htmlFor="">Frequency</label>
+                <label htmlFor="">Complete...</label>
                 <section>
                     <input
                         type="number"
@@ -61,8 +61,10 @@ const NewHabit = () => {
             </p>
 
             <p className={`${base}__field`}>
-                <label htmlFor="type">
-                    Type
+                <label 
+                    htmlFor="type"
+                >
+                    What type of habit?
                 </label>
                 <section className="field__group">
                     <select

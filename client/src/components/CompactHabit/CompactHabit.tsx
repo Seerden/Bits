@@ -74,12 +74,11 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
 
     return (
         <li className={`${base}`}>
-            <span>
+            <span className={`${base}__name`}>
                 { !isEditing
                     ?   <span 
-                        className={`${base}__name`}
-                        onClick={() => setIsEditing(cur => !cur)}
-                    >
+                            onClick={() => setIsEditing(cur => !cur)}
+                        >
                             {habitName}
                         </span>
                     :   <input 
@@ -88,8 +87,6 @@ const CompactHabit = ({ habitData, completionData, partitions }: CompactHabitPro
                             defaultValue={habitName}
                             onBlur={handleBlur}
                         />
-                    
-                
                 }
             </span>
             <ul className={`${base}__list`}>

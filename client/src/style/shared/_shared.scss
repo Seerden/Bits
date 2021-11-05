@@ -1,3 +1,12 @@
 $width: 6rem;
 
 $timeline-entry-margin: 0 1rem;
+
+%default-button {
+    border: none;
+    outline: none;
+    padding: none;
+    margin: none;
+    background: none;
+    color: azure;
+}
