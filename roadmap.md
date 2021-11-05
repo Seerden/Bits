@@ -61,9 +61,10 @@
 - Figure out how to efficiently update habitEntries after a PUT request, so that switching to another timescale displays the newly updated completion entry
 
 ## HabitRangeInstance
-- fix uncontrolled <-> controlled input warning
-- fix styling to fit into HabitEntry list entries
+- [x] fix uncontrolled <-> controlled input warning
+- [x] fix styling to fit into HabitEntry list entries
 - add tooltip with `habitEntryDate`
+- style input field
 
 ## HabitToggleInstance
 - add tooltip with `habitEntryDate`
