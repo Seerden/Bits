@@ -38,7 +38,7 @@ const HabitRangeInstance = ({ habitId, rangeValue, completionInterval, habitEntr
                 type="range" 
                 value={sliderValue}    
                 onChange={handleInputChange}
-                onBlur={handleInputBlur}
+                onMouseUp={handleInputBlur}
                 max={completionInterval}
             />
             <input 
