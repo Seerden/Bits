@@ -5,6 +5,7 @@ import express from 'express';
 import { getHabits, getHabitsByUser, getHabitsWithCompletion } from '../db/queries/getHabits';
 import { insertHabit } from '../db/queries/insertHabit';
 import { updateHabit } from '../db/queries/updateHabit';
+import { isPermitted } from '../lib/middleware';
 import completionRouter from './completionRouter';
 
 const habitRouter = express.Router({ mergeParams: true });
@@ -20,7 +21,7 @@ habitRouter.get('/', async (req, res) => {
     }
 });
 
-habitRouter.get('/range/ids', async (req, res) => {
+habitRouter.get('/range/ids', isPermitted, async (req, res) => {
     const { from, to } = req.query as unknown as DateRange;
     const dateRange = { from, to };
     const { habitIds }: { habitIds: string[]} = req.query as any; 
@@ -46,7 +47,7 @@ habitRouter.get('/range/ids', async (req, res) => {
     res.json(response);
 })
 
-habitRouter.get('/u/:username', async (req, res) => {
+habitRouter.get('/u/:username', isPermitted, async (req, res) => {
     try {
         const habits = await getHabitsByUser(req.params.username);
         res.send(habits)
@@ -55,7 +56,7 @@ habitRouter.get('/u/:username', async (req, res) => {
     }
 });
 
-habitRouter.post('/', async (req, res) => {
+habitRouter.post('/', isPermitted, async (req, res) => {
     const newHabit: NewHabit = req.body;
 
     try {
@@ -70,7 +71,7 @@ habitRouter.post('/', async (req, res) => {
     }
 });
 
-habitRouter.put('/', async (req, res) => {
+habitRouter.put('/', isPermitted, async (req, res) => {
     const habitToUpdate = req.body.habitToUpdate as Partial<Habit>;
     const field = req.body.field as keyof Habit;
 

@@ -21,9 +21,14 @@
         - User attempts to access resources that are not accessible by them.
     - Private routes will exist on the client, so that if the user is no longer logged in, we can simply direct them to a Login component.
 - Because we almost always want access to the credentials (username, id, role, or a combination of these), consider adding these credentials to every request that is made from the client to the server.
-    - With axios:
-        - Create an axios instance
-        - Add a default query parameter to the instance (e.g. 'fromUser', 'user', 'userMakingRequest', etc.)
-            - Do this by adding a request interceptor: https://stackoverflow.com/a/59050108/12820947
+    1. Use a default axios parameter:
+        - With axios:
+            - Create an axios instance
+            - Add a default query parameter to the instance (e.g. 'fromUser', 'user', 'userMakingRequest', etc.)
+                - Do this by adding a request interceptor: https://stackoverflow.com/a/59050108/12820947
 
-        - Call this axios instance in our API handlers, so, for example,instead of `axios`.get(), use `myAxiosInstance`.get()
+            - Call this axios instance in our API handlers, so, for example,instead of `axios`.get(), use `myAxiosInstance`.get()
+    2. Insert a username parameter into every request that needs to be authenticated
+        - Add username argument to functions that make axios requests
+        - Get currentUser's username by destructuring calling useAuth().currentUser in each useQuery or useMutation hook
+            - Pass this as an argument to the query/mutation function
