@@ -27,8 +27,11 @@ passport.serializeUser((user: any, done) => done(null, user.username));
 passport.deserializeUser(async (username: any, done) => {
     try {
         const [user] = await getUser(username);
-
-        user ? done(null, user) : done('User not found');
+        if (user) {
+            done(null, user)
+        } else {
+            done('User not found')
+        };
     } catch (e) {
         done(e);
     }
