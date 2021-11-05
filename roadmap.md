@@ -21,6 +21,12 @@
 
 # Todo
 ## General
+- Implement authentication on the frontend
+    - Think about whether or not we need protected components eventually
+    - include login, logout, register buttons to `Header`
+    - include current user in the body any database requests
+- Add authentication middleware that checks whether user making a request is allowed to make that request
+- Add routing (`react-router v6`)
 - Implement dark/solarized styles
 - Generalize styling more, import bits and pieces as needed instead of creating each class from scratch
 - Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent_.
@@ -44,3 +50,16 @@
 - improve styling
     - add hover styles
     - play around with default style
+## WeeklyEntry
+- rename to something that reflects the fact it's actually a list of partitions, with each partition belonging to a single 'entry'
+- think about styling in the following cases:
+    - multiple entries per day (i.e. `habit.completionFrequency` > 1)
+    - `habit.completionType = 'interval'`
+    - a combination of the above
+- add on-hover tooltip displaying an entry's date
+- add on-click functionality to expand to daily view (as a modal? as `ExpandedHabit`?)
+## MonthlyEntry
+- like WeeklyEntry, rename to be more semantically correct
+- implement functionality
+    - note that functionailty is mostly similar to WeeklyEntry, except we want to structure this like a calendar entry, where each row represents a week
+        - think of structuring cells differently depending on whether start-of-week is Sunday/Monday or some other day
