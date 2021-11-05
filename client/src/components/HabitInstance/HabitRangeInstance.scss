@@ -22,10 +22,22 @@
         }
 
         &--input {
-            width: 3rem;
+            width: 3.5rem;
+            font-size: 0.7rem;
             outline: none;
             border: none;
-            border-bottom: 1px solid skyblue;
+            background-color: #222;
+            color: azure;
+            padding: 0.3rem;
+            border-radius: 10px;
+            text-align: center;
+            -moz-appearance: textfield;
+            appearance: textfield;
+            
+            &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                opacity: 0;
+            }
         }
     }
 };
