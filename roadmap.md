@@ -32,7 +32,25 @@
 - Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent with usage_
 - (client) add symlink to top-level /shared folder so imports from it aren't prepended by '../../../../'
 
-## Habits
+## Authentication
+## Client-side
+- [x] install `react-router-dom`
+- [x] implement top-level routes for each of our views
+    - [x] login
+    - [] register
+    - [x] habits
+- [x] add PrivateRoute route wrapper
+    - [x] wrap habits with this wrapper
+## Server-side
+- add hasAccess middleware to all REST routes that need to be protected
+    - think of options on including user credentials in requests coming from the client side
+        - if we add credentials to req.body, we need to change all of our req.body destructing on every endpoint to account for this
+
+## Per component
+### Register
+- implement component and functionality
+
+### Habits
 - change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
 - figure out a more elegant way to switch between timescales than the button we currently use
 - add date tooltips?
@@ -40,7 +58,7 @@
     - Style button
     - Add another button that hides the form on click or successful NewHabit POST
 
-## NewHabit
+### NewHabit
 - split up into components
 - make note that start and end dates are optional
     - default start date to 'today'
@@ -50,7 +68,7 @@
 - add functionality to handle successful PUT/POST
     - add newly created habit to `habits` in state, so that a new CompactHabit is added to the list
 
-## CompactHabit
+### CompactHabit
 - Click to expand to ExpandedHabit modal
     - Implement ExpandedHabit modal
 - [x] Click name to swap to editable input
@@ -60,19 +78,19 @@
     - add `habit.creationDate` field
 - Figure out how to efficiently update habitEntries after a PUT request, so that switching to another timescale displays the newly updated completion entry
 
-## HabitRangeInstance
+### HabitRangeInstance
 - [x] fix uncontrolled <-> controlled input warning
 - [x] fix styling to fit into HabitEntry list entries
 - add tooltip with `habitEntryDate`
 - style input field
 
-## HabitToggleInstance
+### HabitToggleInstance
 - add tooltip with `habitEntryDate`
 - improve styling
     - add hover styles
     - play around with default style
 
-## WeeklyEntry
+### WeeklyEntry
 - rename to something that reflects the fact it's actually a list of partitions, with each partition belonging to a single 'entry'
 - think about styling in the following cases:
     - multiple entries per day (i.e. `habit.completionFrequency` > 1)
@@ -81,7 +99,7 @@
 - add on-hover tooltip displaying an entry's date
 - add on-click functionality to expand to daily view (as a modal? as `ExpandedHabit`?)
 
-## MonthlyEntry
+### MonthlyEntry
 - like WeeklyEntry, rename to be more semantically correct
 - implement functionality
     - note that functionailty is mostly similar to WeeklyEntry, except we want to structure this like a calendar entry, where each row represents a week
