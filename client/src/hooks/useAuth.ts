@@ -3,9 +3,11 @@ import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { currentUserAtom } from "state/auth";
 import { Credentials } from "types/credentials";
+import type { Maybe } from '../../../shared/types/Maybe';
+import type { User } from '../../../shared/types/User';
 
 export function useAuth() {
-    const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
+    const [currentUser, setCurrentUser] = useRecoilState<Maybe<Partial<User>>>(currentUserAtom);
     const { data, mutate, isSuccess } = useLoginMutation();
 
     useEffect(() => {
@@ -27,10 +29,7 @@ export function useAuth() {
 
     const logout = () => {
         updateLocalStorageUser({ action: 'remove' });
-        setCurrentUser({
-            username: null,
-            userId: null
-        })
+        setCurrentUser(null)
     };
 
     return {
