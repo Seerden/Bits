@@ -1,6 +1,6 @@
 import { NewCompletion } from '@shared/types/Completion';
 import express from 'express';
-import { insertOrUpdateCompletion } from '../db/queries/updateCompletion';
+import { insertOrUpdateCompletion } from '../db/queries/insertOrUpdateCompletion';
 
 const completionRouter = express.Router({ mergeParams: true });
 

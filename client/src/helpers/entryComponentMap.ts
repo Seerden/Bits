@@ -13,4 +13,4 @@ const timescaleToEntryComponentMap = {
 
 export function mapTimescaleToEntryComponent(timescale: Timestep) {
     return timescaleToEntryComponentMap[timescale];
-}
+};
