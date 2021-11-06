@@ -1,5 +1,6 @@
 import Login from "components/Auth/Login";
 import Private from "components/Auth/Private";
+import Register from "components/Auth/Register";
 import Habits from "components/Habits/Habits";
 import Header from "components/Layout/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -12,6 +13,7 @@ const App = (props) => {
                 <Header />
                 <Routes>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/habits" element={
                         <Private>
                             <Habits />

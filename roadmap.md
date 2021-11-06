@@ -21,9 +21,9 @@
 
 # Todo
 ## General
-- Implement authentication on the frontend
-    - Think about whether or not we need protected components eventually
-    - include login, logout, register buttons to `Header`
+- [x] Implement authentication on the frontend
+    - [x] Think about whether or not we need protected components eventually
+    - [x] include login, logout, register buttons to `Header`
     - [x] include current user query param in requests from client
 - [x] Add authentication middleware that checks whether user making a request is allowed to make that request
 - [x] Add routing (`react-router v6`)
@@ -37,7 +37,7 @@
 - [x] install `react-router-dom`
 - [x] implement top-level routes for each of our views
     - [x] login
-    - [] register
+    - [x] register
     - [x] habits
 - [x] add PrivateRoute route wrapper
     - [x] wrap habits with this wrapper
@@ -48,7 +48,9 @@
 
 ## Per component
 ### Register
-- implement component and functionality
+- [x] implement component and functionality
+    - [] Automatically log in on succesful registration
+    - [] Implement meaningful feedback messages ("passwords don't match", "username already exists", etc.)
 
 ### Habits
 - change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
@@ -62,6 +64,7 @@
 - split up into components
 - make note that start and end dates are optional
     - default start date to 'today'
+    - fix: end date is currently showing as a 'text' input
 - style inputs
 - style form to match CompactHabit, at least in width
 - style submission button

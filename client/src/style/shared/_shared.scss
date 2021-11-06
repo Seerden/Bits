@@ -7,6 +7,18 @@ $timeline-entry-margin: 0 1rem;
     outline: none;
     padding: none;
     margin: none;
-    background: none;
     color: azure;
+    background: none;
+}
+
+%shared-input {
+    outline: none;
+    border: none;
+
+    background-color: #282828;
+    padding: 0.4rem;
+    color: azure;
+    border-radius: 5px;
+    border: 2px solid #444;
+
 }
