@@ -24,9 +24,9 @@
 - Implement authentication on the frontend
     - Think about whether or not we need protected components eventually
     - include login, logout, register buttons to `Header`
-    - include current user in the body any database requests
-- Add authentication middleware that checks whether user making a request is allowed to make that request
-- Add routing (`react-router v6`)
+    - [x] include current user query param in requests from client
+- [x] Add authentication middleware that checks whether user making a request is allowed to make that request
+- [x] Add routing (`react-router v6`)
 - Implement dark/solarized styles
 - Generalize styling more, import bits and pieces as needed instead of creating each class from scratch
 - Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent with usage_
@@ -42,9 +42,9 @@
 - [x] add PrivateRoute route wrapper
     - [x] wrap habits with this wrapper
 ## Server-side
-- add hasAccess middleware to all REST routes that need to be protected
-    - think of options on including user credentials in requests coming from the client side
-        - if we add credentials to req.body, we need to change all of our req.body destructing on every endpoint to account for this
+- [x] add isPermitted middleware to all REST routes that need to be protected
+    - [x] think of options on including user credentials in requests coming from the client side
+        - [x] if we add credentials to req.body, we need to change all of our req.body destructing on every endpoint to account for this
 
 ## Per component
 ### Register
