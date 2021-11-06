@@ -1,56 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import cs from './register.module.scss';
-import { FiEye, FiEyeOff } from 'react-icons/fi'
-import { useToggle } from 'hooks/useToggle';
-import { Maybe } from '../../../../shared/types/Maybe';
 import { usePostUser } from 'helpers/api/mutateUser';
-
-type PasswordFieldProps = {
-    text: string,
-    htmlFor: string,
-    handleChange: (e: any) => void;  // @todo: use react setter type
-    style?: React.CSSProperties
-}
-
-function PasswordField({ text, htmlFor, handleChange, style }: PasswordFieldProps) {
-    const [hidden, toggleHidden] = useToggle({ initial: true })
-
-    const type = useMemo(() => {
-        return hidden ? 'password' : 'text'
-    }, [hidden])
-
-    return (
-        <div>
-            <label htmlFor={htmlFor}>
-                {text}
-            </label>
-            <p
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem'
-                }}
-            >
-                <input
-                    type={type}
-                    name={htmlFor}
-                    onChange={handleChange}
-                    style={style}
-                />
-                <span
-                    className={cs.Register__eye}
-                    onClick={toggleHidden}
-                >
-                    {
-                        hidden
-                            ? <FiEyeOff fill="#111" />
-                            : <FiEye fill="#333" />
-                    }
-                </span>
-            </p>
-        </div>
-    )
-}
+import PasswordField from './PasswordField';
 
 type NewUser = {
     username?: string,
@@ -75,13 +26,7 @@ const Register = (props) => {
 
     const match = useMemo(() => {
         const { password, repeatPassword } = formValue;
-
-        if (password && repeatPassword) {
-            return password === repeatPassword;
-        };
-
-        return false;
-
+        return (password && repeatPassword) && (password === repeatPassword)
     }, [formValue])
 
     function handleChange(e) {
@@ -91,7 +36,7 @@ const Register = (props) => {
             ...current,
             [name]: value
         }));
-    }
+    };
 
     return (
         <form 

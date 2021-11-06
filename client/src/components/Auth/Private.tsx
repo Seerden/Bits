@@ -12,7 +12,10 @@ const Private = (props: PrivateProps) => {
         <>
             { currentUser 
                 ? props.children
-                : <Login />
+                : 
+                <>
+                    <Login message={"You need to be logged in to view this page"} />
+                </>
             }
         </>
     )

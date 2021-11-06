@@ -72,4 +72,16 @@
             background-color: #292929;
         }
     }
+
+    &__message {
+        padding: 2rem 1rem;
+        width: max-content;
+        background-color: deepskyblue;
+        color: #282828;
+        font-weight: 500;
+        border-radius: 5px;
+        margin: 0 auto;
+        margin-top: 2rem;
+        transform: translateX((-5%));
+    }
 }

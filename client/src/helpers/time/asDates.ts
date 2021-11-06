@@ -1,7 +1,5 @@
 import { Dayjs } from "dayjs";
 
-// @todo: add tests
-
 /**
  * Convert array `dates` from Dayjs[] to Date[]
  */

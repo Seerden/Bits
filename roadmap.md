@@ -47,6 +47,12 @@
         - [x] if we add credentials to req.body, we need to change all of our req.body destructing on every endpoint to account for this
 
 ## Per component
+### Header
+- Only show relevant authentication buttons (if logged in, hide Register. If not logged in, don't show Habits, etc.)
+
+### Login
+- [x] Add styling
+
 ### Register
 - [x] implement component and functionality
     - [] Automatically log in on succesful registration

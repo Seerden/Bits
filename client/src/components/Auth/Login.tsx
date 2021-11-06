@@ -1,42 +1,55 @@
-import { useToggle } from "hooks/useToggle";
 import { useLoginForm } from "./useLoginForm";
+import cs from './register.module.scss';
+import PasswordField from "./PasswordField";
 
-const Login = () => {
-    const base = "Login";    
-    const [showPassword, toggleShowPassword] = useToggle({ initial: false });
+type LoginProps = {
+    message?: string
+}
+
+const Login = ({ message }: LoginProps) => {
     const { handleSubmit, handleInputChangeOrBlur } = useLoginForm();
 
     return (
-        <form 
-            className={`${base}`}
-            onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit();
-            }}
-        >
-            <input 
-                type="text" 
-                name="username"
-                onChange={e => handleInputChangeOrBlur(e, 'username')}
-            />
-
-            <input 
-                type={showPassword ? 'text' : 'password'} 
-                name="password" 
-                onChange={e => handleInputChangeOrBlur(e, 'password')}
-            />
-
-            <input 
-                type="button" 
-                value={`${showPassword ? 'Hide' : 'Show'} password`} 
-                onClick={toggleShowPassword}
-            />
+        <>
+            {message &&
+                <div className={cs.Register__message}>
+                    {message}
+                </div>
+            }
             
-            <input 
-                type="submit" 
-                value="Login"
-            />
-        </form>
+            <form
+                className={`${cs.Register} ${cs.Form}`}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                }}
+            >
+                <section
+                    className={cs.Register__field}
+                >
+                    <p style={{ marginBottom: '1rem' }}>
+                        <label htmlFor="username">Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            onChange={e => handleInputChangeOrBlur(e, 'username')}
+                        />
+                    </p>
+                    <PasswordField
+                        htmlFor="password"
+                        text="Password"
+                        handleChange={e => handleInputChangeOrBlur(e, 'password')}
+                    />
+                </section>
+
+                <input
+                    className={cs.Register__submit}
+                    type="submit"
+                    value="Login"
+                />
+
+            </form>
+        </>
     )
 }
 
