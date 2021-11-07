@@ -32,29 +32,9 @@
 - Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent with usage_
 - (client) add symlink to top-level /shared folder so imports from it aren't prepended by '../../../../'
 
-## Authentication
-## Client-side
-- [x] install `react-router-dom`
-- [x] implement top-level routes for each of our views
-    - [x] login
-    - [x] register
-    - [x] habits
-- [x] add PrivateRoute route wrapper
-    - [x] wrap habits with this wrapper
-## Server-side
-- [x] add isPermitted middleware to all REST routes that need to be protected
-    - [x] think of options on including user credentials in requests coming from the client side
-        - [x] if we add credentials to req.body, we need to change all of our req.body destructing on every endpoint to account for this
-
 ## Per component
-### Header
-- Only show relevant authentication buttons (if logged in, hide Register. If not logged in, don't show Habits, etc.)
-
-### Login
-- [x] Add styling
-
 ### Register
-- [x] implement component and functionality
+- [] implement component and functionality
     - [] Automatically log in on succesful registration
     - [] Implement meaningful feedback messages ("passwords don't match", "username already exists", etc.)
 
@@ -80,18 +60,14 @@
 ### CompactHabit
 - Click to expand to ExpandedHabit modal
     - Implement ExpandedHabit modal
-- [x] Click name to swap to editable input
-    - [x] Add functionality to update habit names and descriptions
-    - Add key handlers for escape (to discard changes) and enter (to trigger blur)
+- Click name to swap to editable input
+    - [] Add key handlers for escape (to discard changes) and enter (to trigger blur)
 - Only display entries starting from the habit's `startDate` || `creationDate`
     - add `habit.creationDate` field
 - Figure out how to efficiently update habitEntries after a PUT request, so that switching to another timescale displays the newly updated completion entry
 
 ### HabitRangeInstance
-- [x] fix uncontrolled <-> controlled input warning
-- [x] fix styling to fit into HabitEntry list entries
 - add tooltip with `habitEntryDate`
-- style input field
 
 ### HabitToggleInstance
 - add tooltip with `habitEntryDate`

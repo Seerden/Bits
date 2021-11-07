@@ -3,23 +3,23 @@ import type { Credentials } from "types/credentials";
 import { useAuth } from "hooks/useAuth";
 
 const defaultCredentials = {
-    username: '',
-    password: ''
-}
+	username: "",
+	password: "",
+};
 
 export function useLoginForm() {
-    const [credentials, setCredentials] = useState<Credentials>(defaultCredentials);
-    const { login } = useAuth();
-    
-    const handleSubmit = () => {
-    // @todo: handle successful/failed login requests
-        login(credentials);
-    };
+	const [credentials, setCredentials] = useState<Credentials>(defaultCredentials);
+	const { login } = useAuth();
 
-    function handleInputChangeOrBlur(e: React.ChangeEvent<HTMLInputElement>, field: keyof Credentials) {
-        const { value } = e.target;
-        setCredentials(cur => ({ ...cur, [field]: value}))
-    }
+	const handleSubmit = () => {
+		// @todo: handle successful/failed login requests
+		login(credentials);
+	};
 
-    return { handleSubmit, handleInputChangeOrBlur }
+	function handleInputChangeOrBlur(e: React.ChangeEvent<HTMLInputElement>, field: keyof Credentials) {
+		const { value } = e.target;
+		setCredentials((cur) => ({ ...cur, [field]: value }));
+	}
+
+	return { handleSubmit, handleInputChangeOrBlur };
 }

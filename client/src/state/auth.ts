@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
 type User = {
-    username: string,
-    userId: string
-}
+	username: string;
+	userId: string;
+};
 
 export const currentUserAtom = atom<User>({
-    key: 'currentUser',
-    default: JSON.parse(localStorage.getItem('currentUser')) // @dev: temporary, until authentication fully implemented
+	key: "currentUser",
+	default: JSON.parse(localStorage.getItem("currentUser")), // @dev: temporary, until authentication fully implemented
 });
