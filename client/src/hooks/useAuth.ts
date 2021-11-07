@@ -1,5 +1,6 @@
 import { useLoginMutation } from "helpers/api/mutateLogin";
 import { useCallback, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
 import { currentUserAtom } from "state/auth";
 import { Credentials } from "types/credentials";
@@ -7,8 +8,14 @@ import type { Maybe } from "../../../shared/types/Maybe";
 import type { User } from "../../../shared/types/User";
 
 export function useAuth() {
-	const [currentUser, setCurrentUser] = useRecoilState<Maybe<Partial<User>>>(currentUserAtom);
+	const [currentUser, setCurrentUser] =
+		useRecoilState<Maybe<Partial<User>>>(currentUserAtom);
 	const { data, mutate, isSuccess } = useLoginMutation();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		data && console.log(data);
+	}, [data]);
 
 	useEffect(() => {
 		if (data && isSuccess) {
@@ -20,6 +27,7 @@ export function useAuth() {
 				action: "set",
 				user: data,
 			});
+			navigate("/habits");
 		}
 	}, [data, isSuccess]);
 
@@ -40,7 +48,7 @@ export function useAuth() {
 		login,
 		logout,
 	} as const;
-}
+};
 
 type UpdateProps = {
 	action: "set" | "remove";
@@ -53,4 +61,4 @@ function updateLocalStorageUser({ action, user }: UpdateProps) {
 	} else {
 		localStorage.removeItem("currentUser");
 	}
-}
+};

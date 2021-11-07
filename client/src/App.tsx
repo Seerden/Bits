@@ -12,9 +12,9 @@ const App = (props) => {
             <BrowserRouter>
                 <Header />
                 <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/habits" element={
+                    <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="habits" element={
                         <Private>
                             <Habits />
                         </Private>

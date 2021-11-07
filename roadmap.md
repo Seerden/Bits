@@ -34,9 +34,8 @@
 
 ## Per component
 ### Register
-- [] implement component and functionality
-    - [] Automatically log in on succesful registration
-    - [] Implement meaningful feedback messages ("passwords don't match", "username already exists", etc.)
+- [x] Automatically log in on succesful registration
+- [] Implement meaningful feedback messages ("passwords don't match", "username already exists", etc.)
 
 ### Habits
 - change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
