@@ -36,6 +36,7 @@
 ### Register
 - [x] Automatically log in on succesful registration
 - [] Implement meaningful feedback messages ("passwords don't match", "username already exists", etc.)
+- [] highlight non-matching passwords
 
 ### Habits
 - change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
