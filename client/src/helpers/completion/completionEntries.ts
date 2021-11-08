@@ -1,7 +1,6 @@
 import { partitionsAsTimestamps } from "helpers/time/partitionDates";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
-import { Maybe } from "../../../../shared/types/Maybe";
 
 type Args = {
 	partitionsAsTimes: ReturnType<typeof partitionsAsTimestamps>;
@@ -9,7 +8,7 @@ type Args = {
 	entriesPerDay: number;
 	habitId: Habit["habitId"];
 	completionType: Habit["completionType"];
-	completionInterval?: Habit["completionInterval"];
+	completionInterval: Habit["completionInterval"];
 };
 
 /**
@@ -29,6 +28,7 @@ export function makeCompletionEntries({
 	entriesPerDay,
 	habitId,
 	completionType,
+    completionInterval
 }: Args) {
 	const entryIndices = [...Array(entriesPerDay).keys()];
 
@@ -57,6 +57,7 @@ export function makeCompletionEntries({
 					habitEntryDate: new Date(timestamp),
 					habitId,
 					completionType,
+                    completionInterval,
 					...entryProps,
 				};
 			});

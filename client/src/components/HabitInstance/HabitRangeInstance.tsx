@@ -1,61 +1,67 @@
-import './HabitRangeInstance.scss';
-import { useMemo, useState } from 'react';
-import { CompletionInstanceProps } from 'types/CompletionInstance';
-import { useMutateCompletion } from 'helpers/api/mutateCompletion';
+import "./HabitRangeInstance.scss";
+import { useMemo, useState } from "react";
+import { CompletionInstanceProps } from "types/CompletionInstance";
+import { useMutateCompletion } from "helpers/api/mutateCompletion";
 
-const HabitRangeInstance = ({ habitId, rangeValue, completionInterval, habitEntryDate, entryIndex }: CompletionInstanceProps) => {
-    const base = "HabitRangeInstance";
-    const [sliderValue, setSliderValue] = useState<number>(rangeValue);
-    const { mutate } = useMutateCompletion();
+const HabitRangeInstance = ({
+	habitId,
+	rangeValue,
+	completionInterval,
+	habitEntryDate,
+	entryIndex,
+}: CompletionInstanceProps) => {
+	const base = "HabitRangeInstance";
+	const [sliderValue, setSliderValue] = useState<number>(rangeValue);
+	const { mutate } = useMutateCompletion();
 
-    const progress = useMemo(() => {
-        return sliderValue >= completionInterval
-            ? 'completed'
-            : sliderValue >= completionInterval / 2
-                ? 'underway'
-                : 'incomplete'
-    }, [sliderValue])
+	const progress = useMemo(() => {
+		return sliderValue >= completionInterval
+			? "completed"
+			: sliderValue >= completionInterval / 2
+			? "underway"
+			: "incomplete";
+	}, [sliderValue]);
 
-    function handleInputBlur(e) {
-        const { value } = e.target;
-        const newValue = value > 0 ? value : 0;
+	function handleInputBlur(e) {
+		const { value } = e.target;
+		const newValue = value > 0 ? value : 0;
 
-        setSliderValue(+newValue);
+		setSliderValue(+newValue);
 
-        mutate({
-            habitId,
-            rangeValue: +newValue,
-            habitEntryDate,
-            entryIndex
-        });
-    }
+		mutate({
+			habitId,
+			rangeValue: +newValue,
+			habitEntryDate,
+			entryIndex,
+		});
+	}
 
-    function handleInputChange(e) {
-        const { value } = e.target;
-        const newValue = value > 0 ? value : 0;
+	function handleInputChange(e) {
+		const { value } = e.target;
+		const newValue = value > 0 ? value : 0;
 
-        setSliderValue(+newValue);
-    }
+		setSliderValue(+newValue);
+	}
 
-    return (
-        <div className={`${base}`}>
-            <input
-                className={`${base}__slider ${progress}`}
-                type="range"
-                value={sliderValue}
-                onChange={handleInputChange}
-                onMouseUp={handleInputBlur}
-                max={completionInterval}
-            />
-            <input
-                className={`${base}__slider--input`}
-                type="number"
-                value={sliderValue}
-                onChange={handleInputChange}
-                onBlur={handleInputBlur}
-            />
-        </div>
-    )
-}
+	return (
+		<div className={`${base}`}>
+			<input
+				className={`${base}__slider ${progress}`}
+				type="range"
+				value={sliderValue}
+				onChange={handleInputChange}
+				onMouseUp={handleInputBlur}
+				max={completionInterval}
+			/>
+			<input
+				className={`${base}__slider--input`}
+				type="number"
+				value={sliderValue}
+				onChange={handleInputChange}
+				onBlur={handleInputBlur}
+			/>
+		</div>
+	);
+};
 
-export default HabitRangeInstance
+export default HabitRangeInstance;
