@@ -8,7 +8,10 @@ import {
 	timesteps,
 } from "helpers/time/dateList";
 import { timescaleFormatters } from "helpers/time/format";
-import { partitionDates } from "helpers/time/partitionDates";
+import {
+	partitionDates,
+	partitionsAsTimestamps,
+} from "helpers/time/partitionDates";
 import { useCallback, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import { timescaleAtom } from "state/timescale";
@@ -19,18 +22,20 @@ export function useHabits() {
 	const [timestep, setTimestep] = useRecoilState(timescaleAtom);
 	const formatter = timescaleFormatters[timestep];
 
-	const [labels, partitions] = useMemo(() => {
+	const [labels, partitionsAsTimes] = useMemo(() => {
 		const endOfRange = dayjs(new Date()).startOf(timestep).add(1, timestep);
 		const labelDates = getDatesForLabels(timestep, length - 1);
 		const labels = labelDates.map((date) => formatter(date));
 		const datesInRange = listDatesBetween(labelDates[0], endOfRange);
+
 		const partitions = partitionDates(
 			asDates(datesInRange),
 			asDates(labelDates),
 			timestep
 		);
+		const partitionsAsTimes = partitionsAsTimestamps(partitions);
 
-		return [labels, partitions];
+		return [labels, partitionsAsTimes];
 	}, [timestep, length]);
 
 	const cycleTimestep = useCallback(() => {
@@ -44,6 +49,6 @@ export function useHabits() {
 		setTimestep,
 		labels,
 		cycleTimestep,
-		partitions,
+		partitionsAsTimes,
 	} as const;
 }

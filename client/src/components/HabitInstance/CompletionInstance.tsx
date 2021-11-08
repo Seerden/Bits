@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { Entry } from "types/HabitEntry";
 import HabitRangeInstance from "./HabitRangeInstance";
 import HabitToggleInstance from "./HabitToggleInstance";
 
-const CompletionInstance = ({ entry }: { entry: Entry[]}) => {
+const CompletionInstance = memo(({ entry }: { entry: Entry[]}) => {
     const base = "CompletionInstance";
 
     // render a ToggleInstance or RangeInstance depending on the Habit's completionType
@@ -13,6 +14,6 @@ const CompletionInstance = ({ entry }: { entry: Entry[]}) => {
             {entry.map((instance, idx) => <InstanceComponent key={idx} {...instance} />)}
         </>
     )
-}
+})
 
 export default CompletionInstance

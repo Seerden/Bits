@@ -14,7 +14,7 @@ const Habits = () => {
 		setTimestep,
 		cycleTimestep,
 		labels,
-		partitions,
+		partitionsAsTimes,
 	} = useHabits();
 
 	const [showNewHabit, setShowNewHabit] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const Habits = () => {
 						const compactHabitProps = {
 							completionData,
 							habitData,
-							partitions,
+							partitionsAsTimes,
 						};
 						return (
 							<CompactHabit key={index} {...compactHabitProps} />
