@@ -1,0 +1,84 @@
+$field-width: 15rem;
+
+.Label {
+    margin-bottom: 0.2rem;
+}
+
+.NewHabit {
+	color: azure;
+
+	box-shadow: 0 0 1rem -0.2rem black;
+	width: max-content;
+	padding: 0;
+	margin: 0;
+	height: max-content;
+
+	display: inline-flex;
+	gap: 0.5rem;
+
+	&__field,
+	&__field--frequency,
+	&__field--date {
+        justify-self: center;
+        outline: 3px solid greenyellow;
+		background-color: #222;
+		display: inline-flex;
+		flex-direction: column;
+        height: 7rem;
+
+		margin: 0;
+
+		box-shadow: 0.5rem 0.5rem 1rem -0.7rem black;
+		padding: 0.25rem 0.75rem;
+	}
+
+	&__field {
+		&--group {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			outline: 2px solid red;
+		}
+		&--frequency {
+			input {
+				width: 2.5rem;
+			}
+
+			select {
+				width: 4rem;
+			}
+
+			span {
+				margin: 0 0.3rem;
+			}
+
+			section {
+				height: 100%;
+				align-items: center;
+				display: inline-flex;
+			}
+		}
+
+		&--date {
+			section {
+				display: flex;
+				label {
+					border: none;
+					width: 2.5rem;
+				}
+				input[type="date"] {
+					width: 8.5rem;
+				}
+			}
+		}
+
+		select {
+			width: 10rem;
+		}
+
+		input {
+			width: 12rem;
+		}
+	}
+}

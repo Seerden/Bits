@@ -50,7 +50,7 @@
 - split up into components
 - make note that start and end dates are optional
     - default start date to 'today'
-    - fix: end date is currently showing as a 'text' input
+    - [x] fix: end date is currently showing as a 'text' input
 - style inputs
 - style form to match CompactHabit, at least in width
 - style submission button

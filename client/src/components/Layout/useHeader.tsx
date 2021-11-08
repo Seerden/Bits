@@ -22,6 +22,7 @@ export const useHeaderLinks = () => {
 
 		return links.map((view) => (
 			<NavLink
+                key={Math.random()}
 				end
 				className={`${sc.Buttons__button}`}
 				style={{
@@ -40,7 +41,7 @@ export const useHeaderLinks = () => {
 				{view[0].toUpperCase() + view.slice(1)}
 			</NavLink>
 		));
-	}, [currentUser]);
+	}, [currentUser, location]);
 
 	console.log(location.pathname);
 

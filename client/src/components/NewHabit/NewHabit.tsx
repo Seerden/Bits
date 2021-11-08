@@ -1,21 +1,31 @@
-import "./NewHabit.scss";
+import c from "./NewHabit.module.scss";
 import { useNewHabit } from "./useNewHabit";
 
 // @todo: implement field validators in the form, instead of checking for validity in the submission handlers
 // not required for MVP, so leave it as is for the time being
+
+function Label({ htmlFor, children }) {
+	return (
+		<label htmlFor={htmlFor} className={c.Label}>
+			{children}
+		</label>
+	);
+}
 
 const NewHabit = () => {
 	const base = "NewHabit";
 	const [newHabit, dispatchNewHabit, handleSubmitNewHabit] = useNewHabit();
 
 	return (
-		<form className={`${base}`} onSubmit={handleSubmitNewHabit}>
-			<section className={`${base}__field`}>
-				<label htmlFor="name">Name</label>
-				<section className="field__group">
+		<form className={`${c[base]}`} onSubmit={handleSubmitNewHabit}>
+			{/* SECTION / NAME */}
+			<section className={`${c.NewHabit__field}`}>
+				<Label htmlFor="name">Name</Label>
+				<div className={`${c["NewHabit__field--group"]}`}>
 					<input
 						type="text"
 						name="name"
+						placeholder="Walk the dog"
 						onBlur={(e) =>
 							dispatchNewHabit({
 								formField: "habitName",
@@ -23,42 +33,47 @@ const NewHabit = () => {
 							})
 						}
 					/>
-				</section>
+				</div>
 			</section>
 
-			<section className={`${base}__field`}>
+			{/* SECTION / DESCRIPTION */}
+			<section className={`${c["NewHabit__field"]}`}>
 				<label htmlFor="description">Describe your habit</label>
-                <section className={`field__group`}>
-                    <input
-                        type="text"
-                        name="description"
-                        placeholder="Optional"
-                        onBlur={(e) =>
-                            dispatchNewHabit({
-                                formField: "description",
-                                value: e.target.value,
-                            })
-                        }
-                    />
-                </section>
+				<div className={`${c["NewHabit__field--group"]}`}>
+					<input
+						type="text"
+						name="description"
+						placeholder="Optional"
+						onBlur={(e) =>
+							dispatchNewHabit({
+								formField: "description",
+								value: e.target.value,
+							})
+						}
+					/>
+				</div>
 			</section>
 
-			<section className={`${base}__field--frequency`}>
+			{/* SECTION / FREQUENCY */}
+			<section className={`${c["NewHabit__field--frequency"]}`}>
 				<label htmlFor="">Complete...</label>
-				<section>
+				<div className={`${c["NewHabit__field--group"]}`}>
 					<input type="number" name="frequency" />
 					<span>times per</span>
 					<select>
-						{["day", "week", "month", "year"].map((t) => (
-							<option value={t}>{t}</option>
+						{["day", "week", "month", "year"].map((t, index) => (
+							<option key={index} value={t}>
+								{t}
+							</option>
 						))}
 					</select>
-				</section>
+				</div>
 			</section>
 
-			<section className={`${base}__field`}>
+			{/* SECTION / TYPE + FREQUENCY */}
+			<section className={`${c["NewHabit__field"]}`}>
 				<label htmlFor="type">What type of habit?</label>
-				<section className="field__group">
+				<div className={`${c["NewHabit__field--group"]}`}>
 					<select
 						name="type"
 						onChange={(e) =>
@@ -72,7 +87,7 @@ const NewHabit = () => {
 						<option value="interval">Range</option>
 					</select>
 					{newHabit.completionType === "interval" && (
-						<section>
+						<div>
 							<label htmlFor="completionInterval">Target</label>
 							<input
 								style={{ width: "3.5rem" }}
@@ -85,15 +100,16 @@ const NewHabit = () => {
 									})
 								}
 							/>
-						</section>
+						</div>
 					)}
-				</section>
+				</div>
 			</section>
 
-			<section className={`${base}__field--date`}>
+			{/* SECTION / DATE RANGE */}
+			<section className={`${c["NewHabit__field--date"]}`}>
 				<label htmlFor="">Track from/until</label>
-				<section className="field__group">
-					<section>
+				<div className={`${c["NewHabit__field--group"]}`}>
+					<div>
 						<label htmlFor="startDate">Start</label>
 						<input
 							type="date"
@@ -105,8 +121,8 @@ const NewHabit = () => {
 								})
 							}
 						/>
-					</section>
-					<section>
+					</div>
+					<div>
 						<label htmlFor="endDate">End</label>
 						<input
 							type="date"
@@ -118,8 +134,8 @@ const NewHabit = () => {
 								})
 							}
 						/>
-					</section>
-				</section>
+					</div>
+				</div>
 			</section>
 
 			<input type="submit" value="Save habit" />
