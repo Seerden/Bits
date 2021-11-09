@@ -4,7 +4,7 @@ import "./CompactHabit.scss";
 import HabitEntry from "components/HabitEntry/HabitEntry";
 import { useState } from "react";
 import { usePutHabit } from "helpers/api/mutateHabits";
-import { BiExpandAlt } from "react-icons/bi";
+import { BiExpandAlt, BiX } from "react-icons/bi";
 import cs from "./CompactHabit.module.scss";
 import { useToggle } from "hooks/useToggle";
 import HabitDetails from "components/HabitDetails/HabitDetails";
@@ -78,10 +78,14 @@ const CompactHabit = ({
 					))}
 				</ul>
 				<button onClick={toggleDetails} className={cs.Button}>
-					<BiExpandAlt className={cs.Expand} />
+					{!showDetails ? (
+						<BiExpandAlt className={cs.Expand} />
+					) : (
+						<BiX className={cs.Close} />
+					)}
 				</button>
 			</div>
-			{!showDetails && <HabitDetails {...habitData} {...completionData} />}
+			{showDetails && <HabitDetails {...habitData} {...completionData} />}
 		</li>
 	);
 };
