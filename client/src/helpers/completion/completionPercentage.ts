@@ -14,9 +14,9 @@ import { Timestep } from "types/time";
 import { Completion } from "../../../../shared/types/Completion";
 
 function percentageCompleted(
-	targetFrequency: number,
-	targetTimescale: Timestep,
+	completionFrequency: number,
+	completionTimescale: Timestep,
 	completionData: Completion[]
 ) {
     
-}
+};

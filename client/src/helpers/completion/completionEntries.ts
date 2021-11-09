@@ -68,6 +68,6 @@ export function makeCompletionEntries({
 /**
  * Given a `Completion` instance, check whether its entryIndex value matches `index`
  */
-function indexMatches(entry: Completion, index: number) {
+export function indexMatches(entry: Completion, index: number) {
 	return entry.entryIndex === index;
 }

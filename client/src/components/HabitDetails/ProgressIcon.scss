@@ -1,0 +1,11 @@
+.ProgressIcon {
+    &__circle {
+        filter: drop-shadow(0 0 2px #111);
+    }
+    &__text {
+        fill: #ddd;
+        transform-origin: 50% 50%;
+        transform: rotate(90deg);
+        font-size: 0.79rem;
+    }
+}

@@ -81,7 +81,7 @@ const CompactHabit = ({
 					<BiExpandAlt className={cs.Expand} />
 				</button>
 			</div>
-			{showDetails && <HabitDetails {...habitData} {...completionData} />}
+			{!showDetails && <HabitDetails {...habitData} {...completionData} />}
 		</li>
 	);
 };
