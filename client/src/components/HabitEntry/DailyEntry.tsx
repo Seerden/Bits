@@ -1,17 +1,17 @@
 import CompletionInstance from "components/HabitInstance/CompletionInstance";
 import { EntryProps } from "types/HabitEntry";
-import './DailyEntry.scss';
+import "./DailyEntry.scss";
 
 const DailyEntry = ({ completionEntries }: EntryProps) => {
-    const base = "DailyEntry";
-    
-    return (
-        <ul className={`${base}`}>
-            {
-                completionEntries.map((entry, idx) => <CompletionInstance key={idx} entry={entry} />)
-            }
-        </ul>
-    )
-}
+	const base = "DailyEntry";
 
-export default DailyEntry
+	return (
+		<ul className={`${base}`}>
+			{completionEntries.map((entry, idx) => (
+				<CompletionInstance key={idx} entry={entry} />
+			))}
+		</ul>
+	);
+};
+
+export default DailyEntry;
