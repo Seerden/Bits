@@ -8,7 +8,7 @@
             - best streak
 */
 
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { asDates } from "helpers/time/asDates";
 import { listDatesBetween } from "helpers/time/dateList";
 import {
@@ -94,6 +94,13 @@ export function getCompletionSuccess(
  * - The user wishes to complete a habit completionFrequency times per completionTimescale,
  *  so the fact that a single completionEntry instance is successful
  *  doesn't necessarily mean the user's actual goal has been reached
+ * 
+ * @todo we create partitions for the date range for which there are successfulEntries,
+ * but we create this function to be used in HabitDetails, 
+ * which might already contain partitions for which there are no successfulEntries (yet)
+ *      is it, then, not a better idea to use the partition labels that we used for the partitions in CompactHabit to begin with?
+ *      if we do that, the reult we get from this function has an entry for each displayed partition, 
+ *      so we can could directly display this result in the UI somehow, if we wanted to
  */
 export function getCompletionSuccessPerPartition(
 	successfulEntries: ReturnType<typeof getCompletionSuccess>,
@@ -105,50 +112,50 @@ export function getCompletionSuccessPerPartition(
 	        1. get the date extent of successfulEntries */
 	const n = successfulEntries.length;
 
-	if (n > 0) {
-		const sortedSuccessfulEntries = successfulEntries.sort((a, b) =>
-			sortByHabitEntryDate(a, b)
-		);
-		const [start, end] = [
-			dayjs(sortedSuccessfulEntries[0].habitEntryDate),
-			dayjs(sortedSuccessfulEntries[n - 1].habitEntryDate),
-		];
+	if (n == 0) return [];
 
-		const datesInRange = listDatesBetween(start, end);
+    /* create partitions
+        as noted above, this entire step might be unnecessary,
+        since we could just pass the partitionLabels from the parent CompactHabit component
+    */
 
-		// create partitions
-		// truncate datesInRange
-		const truncate = dateTruncateMap[timestep];
+    // compute a list of dates in range, to be used to create partitions of objects
+    // 1. sort successfulEntries by date
+	const sortedSuccessfulEntries = successfulEntries.sort((a, b) =>
+		sortByHabitEntryDate(a, b)
+	);
+    // 2. get date range of successfulEntries
+	const [start, end] = [
+		dayjs(sortedSuccessfulEntries[0].habitEntryDate),
+		dayjs(sortedSuccessfulEntries[n - 1].habitEntryDate),
+	];
+    // 3. create a list of dates in the date range for which there are successfulEntries
+	const datesInRange = listDatesBetween(start, end);
 
-		// create list of truncated dates
-		// e.g. if timestep == 'day', truncated = datesInRange.map(d => d.week())
-		const truncated = [];
-
-		// loop through datesInRange: if the date already exists in truncated, skip
-		// if it doesn't exist yet, we can use this date as a partition label, so add the index to indices
-		let indicesForLabels = [];
-		for (let i = 0; i < datesInRange.length; i++) {
-			let truncatedDate = truncate(datesInRange[i]);
-			if (!truncated.includes(truncatedDate)) {
-				indicesForLabels.push(i);
-				truncated.push(truncatedDate);
-			}
+	// create the actual partitions
+	// 1. truncate datesInRange
+	const truncate = dateTruncateMap[timestep];
+    // 2. create partitionLabels, 
+	/* loop through datesInRange: if the date already exists in truncated (i.e. we already found a date to use as label for the partition), continue
+        if it doesn't exist in truncated yet, we can use this date as a partition label, so add it to partitionLabels 
+        and then add the truncated version of the date to truncated
+    */
+	const [truncated, partitionLabels] = [[], []] as [number[], Dayjs[]];
+	for (let i = 0; i < datesInRange.length; i++) {
+		let truncatedDate = truncate(datesInRange[i]);
+		if (!truncated.includes(truncatedDate)) {
+			partitionLabels.push(datesInRange[i]);
+			truncated.push(truncatedDate);
 		}
-
-		// then, get a list of the dates belonging to the indices we computed
-		const partitionLabels = asDates(
-			datesInRange.filter((date, index) => indicesForLabels.includes(index))
-		);
-
-		const partitionedObjects = partitionObjectsByDate(
-			sortedSuccessfulEntries,
-			"habitEntryDate",
-			partitionLabels,
-			timestep
-		);
-		return partitionedObjects;
-	}
-	return [];
+	};
+    // 3. finally, we can create the actual partitioned objects
+	const partitionedObjects = partitionObjectsByDate(
+		sortedSuccessfulEntries,
+		"habitEntryDate",
+		asDates(partitionLabels),
+		timestep
+	);
+	return partitionedObjects;
 }
 
 function getCompletionSuccessPercentage(

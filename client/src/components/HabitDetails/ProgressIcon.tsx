@@ -57,7 +57,7 @@ const ProgressIcon = ({ size = 30, percentage }: Props) => {
 				cy={size / 2}
 				r={0.4 * size}
 				stroke={colorByQuarter[String(Math.floor(percentage / 25))]}
-				stroke-width="6"
+				strokeWidth={2}
 				fill="#333"
 			/>
 			{size > 40 && (

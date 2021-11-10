@@ -98,7 +98,7 @@ type DateAndIndex = {
  * @param objects objects to partition
  * @param dateProperty the property of each object[i] that denotes the date to use for partitioning
  * @param dates list of dates derived from objects. for this function to work properly,
- * @param partitionDateLabels list of dates to use as partition labels. ideally, each label corresponds to one partition
+ * @param partitionDateLabels list of dates to use as partition labels. ideally, each label corresponds to one partition // @todo: use Array.from(new Set(partitionDateLabels)) to ensure uniqueness
  * @param timescale width of each partition
  */
 export function partitionObjectsByDate(
@@ -107,10 +107,10 @@ export function partitionObjectsByDate(
 	partitionDateLabels: Date[],
 	timescale: Timestep
 ) {
-	// first, map each object to its date (e.g. its habitEntryDate in case of a `Completion` instance)
+	// 1. map each object to its date (e.g. its habitEntryDate in case of a `Completion` instance)
 	const dates = objects.map((entry) => entry[dateProperty]);
 
-	// then, create partitions of dates with indices
+	// 2. create partitions of dates with indices
 	const datePartitions = partitionDates(
 		dates,
 		partitionDateLabels,
@@ -118,9 +118,7 @@ export function partitionObjectsByDate(
 		true
 	);
 
-    console.log({partitionDateLabels});
-
-	// finally, map each entry in each partition to the correct object using the index from each partition entry
+	// 3. map each entry in each partition to the correct object using the index from each partition entry
 	// @note: this only works when dates[i] === objects[i][dateProperty]
 	const partitionedObjects = datePartitions.map((partition: DateAndIndex[]) =>
 		partition.map(({ date, index }) => objects[index])
