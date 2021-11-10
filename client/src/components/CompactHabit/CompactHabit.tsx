@@ -85,7 +85,7 @@ const CompactHabit = ({
 					)}
 				</button>
 			</div>
-			{showDetails && <HabitDetails {...habitData} {...completionData} />}
+			{showDetails && <HabitDetails habitData={habitData} completionData={completionData} />}
 		</li>
 	);
 };

@@ -35,6 +35,12 @@ export function isSameYear(date1: Dayjs, date2: Dayjs) {
  * e.g. dates of January 1, 2021 and January 10, 2021,
  *      combined with a timescale of 'year':
  *      both dates are mapped to the year '2021'
+ * @todo: consider renaming the `partitions` argument to `partitionLabels`,
+ *      since the dates we use in partitions aren't actually partitions,
+ *      they're just dates we use in conjunction with `timescale`
+ *      to derive the actual date range belonging to each final partition
+ * @todo consider renaming this function `mapDatesToPartitions` or something similar
+ *      to more accurately reflect functionality
  *
  * @example
  * Example input:
@@ -43,30 +49,82 @@ export function isSameYear(date1: Dayjs, date2: Dayjs) {
  * - timescale = 'week'
  *
  * Example return: [[Jan 1, Jan 2, Jan 3], [Jan 11]]
+ *
+ * @param returnIndices if true, each partition is not Date[], but { date: Date, index: number }[]
+ * where date === dates[index]. This way, if we wish to place objects in partitions instead of just dates,
+ * we can use each index as a handle to place each object where we want it
  */
 export function partitionDates(
 	dates: Date[],
 	partitions: Date[],
-	timescale: Timestep
+	timescale: Timestep,
+	returnIndices: boolean = false
 ) {
 	const truncateFn = dateTruncateMap[timescale];
 	const partitionedDates = partitions.map((partitionLabelDate) => {
 		const truncatedLabel = truncateFn(dayjs(partitionLabelDate));
-
-		const filtered = dates.filter(
+		const datesForPartition = dates.filter(
 			(date) =>
 				isSameYear(dayjs(partitionLabelDate), dayjs(date)) &&
 				truncateFn(dayjs(date)) === truncatedLabel
 		);
-
-		return filtered.length > 0 ? filtered : [];
+		return datesForPartition.length > 0
+			? returnIndices
+				? datesForPartition.map((date) => ({
+						date,
+						index: dates.findIndex((d) => d === date),
+				  }))
+				: datesForPartition
+			: [];
 	});
 
 	return partitionedDates;
 }
 
 export function partitionsAsTimestamps(
-	partitions: ReturnType<typeof partitionDates>
+	partitions: Date[][] // ReturnType<typeof partitionDates>
 ) {
 	return partitions.map(asTimes);
+}
+
+type DateAndIndex = {
+	date: Date;
+	index: number;
+};
+
+/**
+ * Returns a list of objects in partitions, where each partition
+ * is a list of objects whose dateProperty matches the date of the partition
+ * @param objects objects to partition
+ * @param dateProperty the property of each object[i] that denotes the date to use for partitioning
+ * @param dates list of dates derived from objects. for this function to work properly,
+ * @param partitionDateLabels list of dates to use as partition labels. ideally, each label corresponds to one partition
+ * @param timescale width of each partition
+ */
+export function partitionObjectsByDate(
+	objects: any[],
+	dateProperty: string, // denotes whichever property of objects[i] corresponds to a date
+	partitionDateLabels: Date[],
+	timescale: Timestep
+) {
+	// first, map each object to its date (e.g. its habitEntryDate in case of a `Completion` instance)
+	const dates = objects.map((entry) => entry[dateProperty]);
+
+	// then, create partitions of dates with indices
+	const datePartitions = partitionDates(
+		dates,
+		partitionDateLabels,
+		timescale,
+		true
+	);
+
+    console.log({partitionDateLabels});
+
+	// finally, map each entry in each partition to the correct object using the index from each partition entry
+	// @note: this only works when dates[i] === objects[i][dateProperty]
+	const partitionedObjects = datePartitions.map((partition: DateAndIndex[]) =>
+		partition.map(({ date, index }) => objects[index])
+	);
+
+	return partitionedObjects;
 }

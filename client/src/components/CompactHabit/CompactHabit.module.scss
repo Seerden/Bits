@@ -2,7 +2,6 @@
 
 .Button {
     @extend %default-button;
-    // width: 1.2rem;
     height: 100%;
     margin: 0 0.8rem;
     display: flex;
@@ -11,10 +10,13 @@
     border-radius: 50%;
 
     transition: all 80ms linear;
+    box-shadow: 0 0 0 0.15rem #333;
+    // box-shadow: 0.2rem 0.2rem 0 0.1rem slateblue, -0.2rem -0.2rem 0 0.1rem deepskyblue;
 
     &:hover {
         background-color: #333;
         border-radius: 5px;
+        // box-shadow: -0.2rem 0.2rem 0 0.1rem slateblue, 0.2rem -0.2rem 0 0.1rem deepskyblue;
     }
 }
 
@@ -32,7 +34,7 @@
     transform: rotate(45deg);
 
     &:hover {
-        transform: scale(1.3) rotate(-45deg);
+        transform: rotate(-45deg);
     }
 }
 

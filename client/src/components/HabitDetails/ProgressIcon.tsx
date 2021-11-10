@@ -1,12 +1,13 @@
 import "./ProgressIcon.scss";
-import styled, { keyframes } from "styled-components";
+import styled, { Keyframes, keyframes } from "styled-components";
+import {} from "styled-components/cssprop";
 
 const colorByQuarter = {
-    0: 'orangered',
-    1: 'orange',
-    2: 'greenyellow',
-    3: 'green'
-}
+	0: "orangered",
+	1: "orange",
+	2: "greenyellow",
+	3: "green",
+};
 
 type Props = {
 	size?: number;
@@ -14,6 +15,17 @@ type Props = {
 };
 
 // see https://stackoverflow.com/a/53346109/12820947 for circular progress bar
+
+const SVG = styled.svg<{
+	dashes: number;
+	dashOffset: number;
+	buildOffset: Keyframes;
+}>`
+	stroke-dasharray: ${(props) => props.dashes};
+	stroke-dashoffset: ${(props) => props.dashOffset};
+	animation: 750ms ${(props) => props.buildOffset} ease-out;
+	transform: rotate(-90deg);
+`;
 
 const ProgressIcon = ({ size = 30, percentage }: Props) => {
 	const base = "ProgressIcon";
@@ -28,35 +40,37 @@ const ProgressIcon = ({ size = 30, percentage }: Props) => {
     }
     `;
 
-	const SVG = styled.svg`
-		stroke-dasharray: ${dashes};
-		stroke-dashoffset: ${dashOffset};
-		animation: 750ms ${buildOffset} ease-out;
-		transform: rotate(-90deg);
-	`;
-
 	return (
-		<SVG className={base} height={size} width={size}>
+		<SVG
+			className={base}
+			height={size}
+			width={size}
+			{...{
+				dashes,
+				dashOffset,
+				buildOffset,
+			}}
+		>
 			<circle
 				className={`${base}__circle`}
 				cx={size / 2}
 				cy={size / 2}
 				r={0.4 * size}
-				stroke={colorByQuarter[String(Math.floor(percentage/25))]}
+				stroke={colorByQuarter[String(Math.floor(percentage / 25))]}
 				stroke-width="6"
 				fill="#333"
 			/>
-			{ size > 40 &&
-                <text
-                    className={`${base}__text`}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    x={size / 2}
-                    y={size / 2}
-                >
-                    {percentage}%
-                </text>
-            }
+			{size > 40 && (
+				<text
+					className={`${base}__text`}
+					textAnchor="middle"
+					dominantBaseline="middle"
+					x={size / 2}
+					y={size / 2}
+				>
+					{percentage}%
+				</text>
+			)}
 		</SVG>
 	);
 };

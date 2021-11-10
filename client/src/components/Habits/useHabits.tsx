@@ -31,9 +31,9 @@ export function useHabits() {
 		const partitions = partitionDates(
 			asDates(datesInRange),
 			asDates(labelDates),
-			timestep
+			timestep,
 		);
-		const partitionsAsTimes = partitionsAsTimestamps(partitions);
+		const partitionsAsTimes = partitionsAsTimestamps(partitions as Date[][]);
 
 		return [labels, partitionsAsTimes];
 	}, [timestep, length]);

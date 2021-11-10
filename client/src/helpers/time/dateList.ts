@@ -8,7 +8,7 @@ dayjs.extend(weekOfYear);
 /**
  * Returns a list of all dates in the inclusive specified range [start, end]
  */
-export function listDatesBetween(start: dayjs.Dayjs, end: dayjs.Dayjs) {
+export function listDatesBetween(start: Dayjs, end: Dayjs) {
     if (end.valueOf() < start.valueOf()) {
         return [];
     };
