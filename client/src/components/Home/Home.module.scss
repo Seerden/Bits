@@ -1,0 +1,24 @@
+.Home {
+	max-width: 40rem;
+	border-radius: 20px;
+	padding: 2rem;
+}
+
+.Paragraph {
+	background-color: #151515;
+	padding: 1.5rem 2rem;
+	margin: 1rem 0;
+	box-shadow: 0 0 0.2rem 0 black, 1.5rem 1.5rem 0 -1.3rem deepskyblue;
+    font-size: 0.92rem;
+}
+
+.Header {
+    font-weight: 500;
+    font-size: 1rem;
+    transform: translateX(-1rem);
+    width: max-content;
+    padding: 0.3rem 2rem;
+    background-color: deepskyblue;
+    color: #111;
+    margin-bottom: 0.5rem;
+}

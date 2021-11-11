@@ -2,6 +2,7 @@ import Login from "components/Auth/Login";
 import Private from "components/Auth/Private";
 import Register from "components/Auth/Register";
 import Habits from "components/Habits/Habits";
+import Home from "components/Home/Home";
 import Header from "components/Layout/Header";
 import NewHabit from "components/NewHabit/NewHabit";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -13,12 +14,13 @@ const App = (props) => {
 			<BrowserRouter>
 				<Header />
 				<Routes>
+					<Route path="/" element={<Home />} />
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
 					<Route
 						path="newhabit"
 						element={
-							<div style={{margin: '5rem'}}>
+							<div style={{ margin: "5rem" }}>
 								<NewHabit />
 							</div>
 						}

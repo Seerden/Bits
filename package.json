@@ -14,5 +14,8 @@
         "@types/jest": "^26.0.23",
         "concurrently": "^6.3.0",
         "jest": "^27.0.1"
+    },
+    "dependencies": {
+        "typescript": "^4.4.4"
     }
 }
