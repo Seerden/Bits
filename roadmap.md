@@ -59,10 +59,11 @@
 - implement functionality from old form in new form
 
 ### CompactHabit
-- Click to expand to ExpandedHabit modal
-    - Implement ExpandedHabit modal
+- [x] Click to expand to ExpandedHabit modal
+    - [wip] Implement ExpandedHabit modal
 - Click name to swap to editable input
     - [] Add key handlers for escape (to discard changes) and enter (to trigger blur)
+    - [x] Add clickOutside handler
 - Only display entries starting from the habit's `startDate` || `creationDate`
     - add `habit.creationDate` field
 - Figure out how to efficiently update habitEntries after a PUT request, so that switching to another timescale displays the newly updated completion entry
