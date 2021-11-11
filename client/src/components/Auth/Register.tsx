@@ -4,13 +4,8 @@ import PasswordField from "./PasswordField";
 import { useRegister } from "./useRegister";
 
 const Register = (props) => {
-	const { match, handleChange, handleSubmit } = useRegister();
+	const { match, handleChange, handleSubmit, borderColor } = useRegister();
 
-	const borderColor = useMemo(() => {
-		return match ? "forestgreen" : "";
-	}, [match]);
-
-	
 	return (
 		<form className={cs.Register} onSubmit={handleSubmit}>
 			<section className={cs.Register__field}>

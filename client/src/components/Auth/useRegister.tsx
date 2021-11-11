@@ -20,6 +20,20 @@ export function useRegister() {
 		return password && repeatPassword && password === repeatPassword;
 	}, [formValue]);
 
+    const borderColor = useMemo(() => {
+        const { password, repeatPassword } = formValue;
+
+        if (match) { 
+            return 'forestgreen';
+        }
+
+        if (password?.length && repeatPassword?.length && !match) {
+            return 'orangered'
+        }
+
+        return '';
+    }, [match, formValue])
+
 	function handleChange(e) {
 		const { value, name } = e.target;
 
@@ -46,6 +60,7 @@ export function useRegister() {
 
 	return {
 		match,
+        borderColor,
 		handleChange,
 		handleSubmit,
 	} as const;
