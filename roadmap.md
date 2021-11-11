@@ -47,15 +47,16 @@
     - Add another button that hides the form on click or successful NewHabit POST
 
 ### NewHabit
-- split up into components
+- [wip] split up into components
 - make note that start and end dates are optional
     - default start date to 'today'
     - [x] fix: end date is currently showing as a 'text' input
-- style inputs
-- style form to match CompactHabit, at least in width
+- [x] style inputs
+- [wip] style form to match CompactHabit, at least in width
 - style submission button
 - add functionality to handle successful PUT/POST
     - add newly created habit to `habits` in state, so that a new CompactHabit is added to the list
+- implement functionality from old form in new form
 
 ### CompactHabit
 - Click to expand to ExpandedHabit modal
