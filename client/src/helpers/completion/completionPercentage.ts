@@ -1,7 +1,5 @@
 import { Dayjs } from "dayjs";
-import {
-	partitionObjectsByDate,
-} from "helpers/time/partitionDates";
+import { partitionObjectsByDate } from "helpers/time/partitionDates";
 import { Timestep } from "types/time";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
@@ -9,7 +7,7 @@ import { Habit } from "../../../../shared/types/Habit";
 /**
  * Takes a completionEntry and determines based on the habit's properties
  *  whether the entry can be considered as a successful one
- * 
+ *
  * @param number threshold: fraction (e.g. 50% -> 0.5) of completionInterval
  * at which a range entry can be considered successful
  */
@@ -46,8 +44,7 @@ function sortByHabitEntryDate(a: ContainsEntryDate, b: ContainsEntryDate) {
 /**
  * Given a list of completionEntries (corresponding to a given date range)
  *  and the completion properties belonging to a specific habit,
- *  return a list of { isSuccessful, habitEntryDate, entryIndex } for all the
- *
+ *  map each completionEntry to { isSuccessful, habitEntryDate, entryIndex }
  */
 export function getCompletionSuccess(
 	// completionTimescale: Habit["completionTimescale"],
@@ -93,7 +90,7 @@ export function getCompletionSuccess(
 export function getCompletionSuccessPerPartition(
 	successfulEntries: ReturnType<typeof getCompletionSuccess>,
 	timestep: Timestep,
-    labelDates: Dayjs[]
+	labelDates: Dayjs[]
 ) {
 	const n = successfulEntries.length;
 
@@ -103,7 +100,7 @@ export function getCompletionSuccessPerPartition(
 		successfulEntries,
 		"habitEntryDate",
 		timestep,
-		labelDates,
+		labelDates
 	);
 	return partitionedObjects;
 }
@@ -114,10 +111,3 @@ function getCompletionSuccessPercentage(
 ) {
 	return Math.floor((100 * successCount) / totalCount);
 }
-
-/*  - Each habit has a completionFrequency and completionTimescale property
-    - Given a list of completion entries for that habit, 
-        it's straightforward to compute various completion statistics
-            - percentage of 'partitions' successully completed
-            - current streak
-            - best streak  */
