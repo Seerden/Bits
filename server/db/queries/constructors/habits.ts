@@ -2,7 +2,7 @@ import { QueryArgs } from "../../dbQuery";
 
 export const constructHabitsByUserQuery = (username: string): QueryArgs => ({
     text: `
-        select * from habits h
+        select h.* from habits h
         join users u
         on h.user_id = u.user_id
         and u.username = $1
