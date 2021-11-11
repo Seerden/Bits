@@ -9,6 +9,7 @@ type Args = {
 	habitId: Habit["habitId"];
 	completionType: Habit["completionType"];
 	completionInterval: Habit["completionInterval"];
+    created: Habit["created"]
 };
 
 /**
@@ -28,7 +29,8 @@ export function makeCompletionEntries({
 	entriesPerDay,
 	habitId,
 	completionType,
-    completionInterval
+    completionInterval,
+    created
 }: Args) {
 	const entryIndices = [...Array(entriesPerDay).keys()];
 
@@ -50,6 +52,7 @@ export function makeCompletionEntries({
 					rangeValue: existingEntryAtIndex?.rangeValue || 0,
 					completionId: existingEntryAtIndex?.completionId || null,
 					entryIndex,
+                    created
 				};
 
 				return {

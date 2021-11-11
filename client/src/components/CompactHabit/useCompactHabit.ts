@@ -1,7 +1,7 @@
 import { usePutHabit } from "helpers/api/mutateHabits";
 import { useClickOutside } from "hooks/useClickOutside";
 import { useToggle } from "hooks/useToggle";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Habit } from "../../../../shared/types/Habit";
 
 export function useCompactHabit(habitData: Habit) {
@@ -12,7 +12,7 @@ export function useCompactHabit(habitData: Habit) {
 	const [showDetails, toggleDetails] = useToggle({ initial: false });
 
 	function handleBlur(e) {
-		const newName = e.target ? e.target.value : e.value;
+		const newName = e.target ? e.target.value : e.value;  // e is either an event or inputRef.current
 		setHabitName(newName);
 		mutate({
 			field: "habitName",

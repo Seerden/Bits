@@ -1,7 +1,7 @@
 import CompactHabit from "components/CompactHabit/CompactHabit";
 import NewHabit from "components/NewHabit/NewHabit";
 import Timescale from "components/Timescale/Timescale";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NewHabitButton from "./NewHabitButton/NewHabitButton";
 import { useHabits } from "./useHabits";
 import "./Habits.scss";
@@ -17,10 +17,6 @@ const Habits = () => {
 		labelDates,
 		partitionsAsTimes,
 	} = useHabits();
-
-    useEffect(() => {
-        habits && console.log(habits)
-    }, [habits])
 
 	const [showNewHabit, setShowNewHabit] = useState<boolean>(false);
 

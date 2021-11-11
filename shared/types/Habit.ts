@@ -25,6 +25,7 @@ export type NewHabit = {
 };
 
 export interface Habit extends NewHabit {
+    created: Date | string,
     habitId: string,
 };
 
