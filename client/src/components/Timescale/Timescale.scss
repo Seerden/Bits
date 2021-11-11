@@ -42,8 +42,8 @@
 	}
 
 	&__cycle {
-		font-size: 0.82rem;
-		width: 4.5rem;
+        font-size: 0.82rem;
+        width: shared.$compactHabitButtonWidth;
 		max-width: 4.5rem;
 		overflow: hidden;
 		height: 2.2rem;

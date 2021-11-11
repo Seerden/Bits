@@ -4,6 +4,8 @@
     outline: 1px solid #222;
     width: max-content;
 
+    width: max-content;
+
     display: flex;
     padding: 1rem;
     box-shadow: 0.2rem 0.2rem 1rem 0 black;
@@ -15,9 +17,15 @@
 
     &__name {
         font-weight: 500;
+        display: block;
         font-size: 1rem;
         padding: 0rem;
         width: shared.$habitNameWidth;  // match shared.$width - shared.$timeline-entry-margin (horizontal part)
+
+        span {
+            display: inline-block;
+            width: shared.$habitNameWidth;
+        }
     }
 
     &__list {

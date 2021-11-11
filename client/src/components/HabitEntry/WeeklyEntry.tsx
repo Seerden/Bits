@@ -1,7 +1,7 @@
 import { EntryProps } from "types/HabitEntry";
 
 const WeeklyEntry = ({ completionEntries }: EntryProps) => {
-	const size = 12;
+	const size = 10;
 	const entriesPerDay = completionEntries[0].length;
 
 	return (
