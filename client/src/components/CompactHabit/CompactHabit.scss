@@ -15,9 +15,9 @@
 
     &__name {
         font-weight: 500;
-        font-size: 1.1rem;
+        font-size: 1rem;
         padding: 0rem;
-        width: 5rem;  // match shared.$width - shared.$timeline-entry-margin (horizontal part)
+        width: shared.$habitNameWidth;  // match shared.$width - shared.$timeline-entry-margin (horizontal part)
     }
 
     &__list {
