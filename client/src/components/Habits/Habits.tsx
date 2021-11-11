@@ -13,7 +13,7 @@ const Habits = () => {
 		timestep,
 		setTimestep,
 		cycleTimestep,
-        labels,
+		labels,
 		labelDates,
 		partitionsAsTimes,
 	} = useHabits();
@@ -32,7 +32,7 @@ const Habits = () => {
 							completionData,
 							habitData,
 							partitionsAsTimes,
-                            labelDates
+							labelDates,
 						};
 						return <CompactHabit key={index} {...compactHabitProps} />;
 					})}
@@ -40,7 +40,12 @@ const Habits = () => {
 			)}
 
 			{showNewHabit ? (
-				<NewHabit />
+				<>
+					<button style={{ width: "10rem" }} onClick={() => setShowNewHabit(false)}>
+						Stop creating new habit
+					</button>
+					<NewHabit />
+				</>
 			) : (
 				<NewHabitButton onClick={() => setShowNewHabit(true)} />
 			)}

@@ -1,9 +1,12 @@
 @use "../../style/shared/shared";
+@use '../../style/shared/color';
 
 .Timescale {
 	display: flex;
 	width: max-content;
 	flex-direction: row;
+
+    background-color: color.$dark;
 
 	color: azure;
 	padding: 0 2rem;
@@ -24,15 +27,22 @@
 				margin-left: 0;
 			}
 
+            display: inline-flex;
 			width: shared.$habitEntryWidth;
 			overflow: hidden;
 			text-align: center;
 			font-size: 1.1rem;
+            line-height: 120%;
+            height: 120%;
+            align-self: center;
 			padding: 0.5rem 0;
+            justify-content: center;
+            place-items: center;
 			background-color: #292929;
+            border-radius: 5px;
 			user-select: none;
 			border: 1px solid #333;
-			box-shadow: 0 0.2rem 0.5rem -0.3rem #111, 0 -0.2rem 0.5rem -0.3rem #111;
+			box-shadow: 0 0.2rem 0.5rem -0.3rem color.$dark, 0 -0.2rem 0.5rem -0.3rem color.$dark-tint;
 
 			@media screen and (min-width: 1280px) {
 				margin: 0 shared.$timelineEntryMarginX;
