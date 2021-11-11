@@ -22,7 +22,7 @@ export function useHabits() {
 	const [timestep, setTimestep] = useRecoilState(timescaleAtom);
 	const formatter = timescaleFormatters[timestep];
 
-	const [labels, partitionsAsTimes] = useMemo(() => {
+	const [labels, partitionsAsTimes, labelDates] = useMemo(() => {
 		const endOfRange = dayjs(new Date()).startOf(timestep).add(1, timestep);
 		const labelDates = getDatesForLabels(timestep, length - 1);
 		const labels = labelDates.map((date) => formatter(date));
@@ -35,7 +35,7 @@ export function useHabits() {
 		);
 		const partitionsAsTimes = partitionsAsTimestamps(partitions as Date[][]);
 
-		return [labels, partitionsAsTimes];
+		return [labels, partitionsAsTimes, labelDates];
 	}, [timestep, length]);
 
 	const cycleTimestep = useCallback(() => {
@@ -50,5 +50,6 @@ export function useHabits() {
 		labels,
 		cycleTimestep,
 		partitionsAsTimes,
+        labelDates
 	} as const;
 }

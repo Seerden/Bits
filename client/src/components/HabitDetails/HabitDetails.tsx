@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import {
 	getCompletionSuccess,
 	getCompletionSuccessPerPartition,
@@ -13,22 +14,28 @@ import ProgressIcon from "./ProgressIcon";
 const HabitDetails = ({
 	habitData,
 	completionData,
+	labelDates,
 }: {
 	habitData: Habit;
 	completionData: Completion[];
+	labelDates: Dayjs[];
 }) => {
-	// const timestep = useRecoilValue(timescaleAtom);
+	const timestep = useRecoilValue(timescaleAtom);
+	const completionSuccess = getCompletionSuccess(
+		habitData.completionType,
+		habitData.completionInterval,
+		completionData
+	);
 
-	// useEffect(() => {
-	// 	getCompletionSuccessPerPartition(
-	// 		getCompletionSuccess(
-	// 			habitData.completionType,
-	// 			habitData.completionInterval,
-	// 			completionData
-	// 		),
-	// 		timestep
-	// 	);
-	// }, [timestep]);
+	useEffect(() => {
+		const successPerPartition = getCompletionSuccessPerPartition(
+			completionSuccess,
+			timestep,
+			labelDates
+		);
+
+		console.log(successPerPartition);
+	}, [timestep]);
 
 	return (
 		<div className={cs.HabitDetails}>

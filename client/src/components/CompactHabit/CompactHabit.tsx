@@ -9,17 +9,20 @@ import cs from "./CompactHabit.module.scss";
 import { useToggle } from "hooks/useToggle";
 import HabitDetails from "components/HabitDetails/HabitDetails";
 import { makeCompletionEntries } from "helpers/completion/completionEntries";
+import { Dayjs } from "dayjs";
 
 type CompactHabitProps = {
 	habitData: Habit;
 	completionData: Completion[];
 	partitionsAsTimes: number[][];
+	labelDates: Dayjs[];
 };
 
 const CompactHabit = ({
 	habitData,
 	completionData,
 	partitionsAsTimes,
+	labelDates,
 }: CompactHabitProps) => {
 	const base = "CompactHabit";
 	const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -85,7 +88,13 @@ const CompactHabit = ({
 					)}
 				</button>
 			</div>
-			{showDetails && <HabitDetails habitData={habitData} completionData={completionData} />}
+			{showDetails && (
+				<HabitDetails
+					habitData={habitData}
+					completionData={completionData}
+					labelDates={labelDates}
+				/>
+			)}
 		</li>
 	);
 };

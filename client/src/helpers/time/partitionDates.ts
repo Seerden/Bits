@@ -2,7 +2,7 @@ import { Timestep } from "types/time";
 import dayjs, { Dayjs } from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import dayOfYear from "dayjs/plugin/dayOfYear";
-import { asTimes } from "./asDates";
+import { asDates, asTimes } from "./asDates";
 dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
 
@@ -104,8 +104,8 @@ type DateAndIndex = {
 export function partitionObjectsByDate(
 	objects: any[],
 	dateProperty: string, // denotes whichever property of objects[i] corresponds to a date
-	partitionDateLabels: Date[],
-	timescale: Timestep
+	timescale: Timestep,
+	partitionDateLabels: Dayjs[],
 ) {
 	// 1. map each object to its date (e.g. its habitEntryDate in case of a `Completion` instance)
 	const dates = objects.map((entry) => entry[dateProperty]);
@@ -113,7 +113,7 @@ export function partitionObjectsByDate(
 	// 2. create partitions of dates with indices
 	const datePartitions = partitionDates(
 		dates,
-		partitionDateLabels,
+		asDates(partitionDateLabels),
 		timescale,
 		true
 	);

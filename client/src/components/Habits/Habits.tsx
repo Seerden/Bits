@@ -13,7 +13,8 @@ const Habits = () => {
 		timestep,
 		setTimestep,
 		cycleTimestep,
-		labels,
+        labels,
+		labelDates,
 		partitionsAsTimes,
 	} = useHabits();
 
@@ -31,10 +32,9 @@ const Habits = () => {
 							completionData,
 							habitData,
 							partitionsAsTimes,
+                            labelDates
 						};
-						return (
-							<CompactHabit key={index} {...compactHabitProps} />
-						);
+						return <CompactHabit key={index} {...compactHabitProps} />;
 					})}
 				</ul>
 			)}
