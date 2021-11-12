@@ -22,7 +22,7 @@ function Form(props) {
 	return <form className={c.Form}>{props.children}</form>;
 }
 
-const NewHabit = () => {
+const NewHabit = (props) => {
 	const base = "NewHabit";
 	const [newHabit, dispatchNewHabit, handleSubmitNewHabit] = useNewHabit();
 

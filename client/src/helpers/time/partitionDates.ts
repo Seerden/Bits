@@ -68,14 +68,14 @@ export function partitionDates(
 				isSameYear(dayjs(partitionLabelDate), dayjs(date)) &&
 				truncateFn(dayjs(date)) === truncatedLabel
 		);
-		return datesForPartition.length > 0
-			? returnIndices
-				? datesForPartition.map((date) => ({
-						date,
-						index: dates.findIndex((d) => d === date),
-				  }))
-				: datesForPartition
-			: [];
+
+		if (!datesForPartition.length) return [];
+		if (!returnIndices) return datesForPartition;
+
+		return datesForPartition.map((date) => ({
+			date,
+			index: dates.findIndex((d) => d === date),
+		}));
 	});
 
 	return partitionedDates;
@@ -105,7 +105,7 @@ export function partitionObjectsByDate(
 	objects: any[],
 	dateProperty: string, // denotes whichever property of objects[i] corresponds to a date
 	timescale: Timestep,
-	partitionDateLabels: Dayjs[],
+	partitionDateLabels: Dayjs[]
 ) {
 	// 1. map each object to its date (e.g. its habitEntryDate in case of a `Completion` instance)
 	const dates = objects.map((entry) => entry[dateProperty]);

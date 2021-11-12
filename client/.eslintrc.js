@@ -32,11 +32,10 @@ module.exports = {
         }
     }
     "rules": {
-        "max-len": ["error", {"code": 120}],
+        "max-len": ["error", {"code": 80}],
         "react/react-in-jsx-scope": "off",
         'react/jsx-first-prop-new-line': [1, 'multiline'],
         'react/jsx-max-props-per-line': [
-            1,
             { maximum: 1, when: 'always' },
         ],
         'react/jsx-indent-props': [2, 2],

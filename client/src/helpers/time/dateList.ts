@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
-import weekOfYear from 'dayjs/plugin/weekOfYear'
+import weekOfYear from "dayjs/plugin/weekOfYear";
 import { Timestep } from "types/time";
 import { TimescaleType } from "../../../../shared/types/Timescale";
 
@@ -9,38 +9,41 @@ dayjs.extend(weekOfYear);
  * Returns a list of all dates in the inclusive specified range [start, end]
  */
 export function listDatesBetween(start: Dayjs, end: Dayjs) {
-    if (end.valueOf() < start.valueOf()) {
-        return [];
-    };
+	if (end.valueOf() < start.valueOf()) {
+		return [];
+	}
 
-    if (start == end) {
-        return [end]
-    };
+	if (start == end) {
+		return [end];
+	}
 
-    const dateList: dayjs.Dayjs[] = [];
-    let latest = start;
+	const dateList: dayjs.Dayjs[] = [];
+	let latest = start;
 
-    while (latest <= end) {
-        dateList.push(latest);
-        latest = latest.add(1, 'day');
-    };
+	while (latest <= end) {
+		dateList.push(latest);
+		latest = latest.add(1, "day");
+	}
 
-    return dateList;
-};
+	return dateList;
+}
 
 /**
  * Returns dates, with time set to midnight, in the inclusive range [today - n*timescale, today]
- * @param n number of dates to go back. 
+ * @param n number of dates to go back.
  *      n > 1 returns list of n days in the past, until (and including) today
  *      n < 0 returns list of n days into the future, starting today
  * @param {TimescaleType} timescale timescale
  */
-export function getPastNDates(n: number, timescale: TimescaleType['timescale']): dayjs.Dayjs[] {
-    const today = dayjs(Date.now()).startOf('day');
+export function getPastNDates(
+	n: number,
+	timescale: TimescaleType["timescale"]
+): dayjs.Dayjs[] {
+	const today = dayjs(Date.now()).startOf("day");
 
-    const startOfRange = today.add(-n, timescale);
+	const startOfRange = today.add(-n, timescale);
 
-    return listDatesBetween(startOfRange, today);
+	return listDatesBetween(startOfRange, today);
 }
 
 /**
@@ -50,14 +53,13 @@ export function getPastNDates(n: number, timescale: TimescaleType['timescale']):
  * @returns list of dayjs date objects
  */
 export function getDatesForLabels(timestep: Timestep, stepsBack: number) {
-    const now = dayjs(Date.now()).startOf(timestep);
+	const now = dayjs(Date.now()).startOf(timestep);
 
-    const labels: Dayjs[] = [...Array(stepsBack + 2).keys()]
-        .map((entry, index) => now.add(-index, timestep))
-        .reverse();
+	const labels: Dayjs[] = [...Array(stepsBack + 2).keys()]
+		.map((entry, index) => now.add(-index, timestep))
+		.reverse();
 
-    return labels;
-
+	return labels;
 }
 
 /**
@@ -65,20 +67,5 @@ export function getDatesForLabels(timestep: Timestep, stepsBack: number) {
  * @returns List of dates formatted following `format`
  */
 export function formatDates(dates: Dayjs[], format: string) {
-    return dates.map(date => date.format(format));
+	return dates.map((date) => date.format(format));
 }
-
-type TimestepStringMap = {
-    [k in Timestep]: string
-}
-
-export const timestepDisplayStringMap: TimestepStringMap = {
-    day: 'daily',
-    week: 'weekly',
-    month: 'monthly',
-    year: 'yearly'
-}
-
-export const timesteps: Timestep[] = Array.from(Object.keys(timestepDisplayStringMap)) as Timestep[];
-
-export const getTimestepIndex = (timestep: Timestep) => timesteps.findIndex(val => val === timestep);
