@@ -1,4 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
+import { useFetchCompletionsById } from "helpers/api/queryCompletions";
 import {
 	getCompletionSuccess,
 	getCompletionSuccessPerPartition,
@@ -20,14 +21,25 @@ const HabitDetails = ({
 	completionData: Completion[];
 	labelDates: Dayjs[];
 }) => {
-	const timestep = useRecoilValue(timescaleAtom);
-	const completionSuccess = getCompletionSuccess(
-		habitData.completionType,
-		habitData.completionInterval,
-		completionData
-	);
+	// const timestep = useRecoilValue(timescaleAtom);
+	// const completionSuccess = getCompletionSuccess(
+	// 	habitData.completionType,
+	// 	habitData.completionInterval,
+	// 	completionData
+	// );
+	const { data, refetch } = useFetchCompletionsById(habitData.habitId);
 
-    const trackingSince = dayjs(habitData.startDate || habitData.created).format('MMM DD YYYY')
+	useEffect(() => {
+		refetch();
+	}, []);
+
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
+
+	const trackingSince = dayjs(habitData.startDate || habitData.created).format(
+		"MMM DD YYYY"
+	);
 
 	return (
 		<div className={cs.HabitDetails}>
@@ -35,10 +47,8 @@ const HabitDetails = ({
 				<ProgressIcon key={index} percentage={Math.floor(Math.random() * 100)} />
 			))} */}
 			<section>
-                <span>
-                    Tracking since {trackingSince}
-                </span>
-            </section>
+				<span>Tracking since {trackingSince}</span>
+			</section>
 		</div>
 	);
 };
