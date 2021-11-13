@@ -7,5 +7,5 @@ type User = {
 
 export const currentUserAtom = atom<User>({
 	key: "currentUser",
-	default: JSON.parse(localStorage.getItem("currentUser")), // @dev: temporary, until authentication fully implemented
+	default: JSON.parse(localStorage.getItem("currentUser")),
 });
