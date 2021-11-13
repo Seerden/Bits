@@ -30,7 +30,7 @@ const CompactHabit = ({
 		showDetails,
 		toggleDetails,
 		handleBlur,
-        inputRef
+		inputRef,
 	} = useCompactHabit(habitData);
 	const { completionFrequency, completionTimescale } = habitData;
 	const entriesPerDay = completionTimescale === "day" ? completionFrequency : 1;
@@ -52,10 +52,10 @@ const CompactHabit = ({
 			<div className={`${base}`}>
 				<span className={`${base}__name`}>
 					{!isEditing ? (
-						<span onClick={() => setIsEditing(cur => !cur)}>{habitName}</span>
+						<span onClick={() => setIsEditing((cur) => !cur)}>{habitName}</span>
 					) : (
 						<input
-                            ref={inputRef}
+							ref={inputRef}
 							className={`${base}__name--input`}
 							type="text"
 							defaultValue={habitName}
@@ -69,11 +69,7 @@ const CompactHabit = ({
 					))}
 				</ul>
 				<button onClick={toggleDetails} className={cs.Button}>
-					{!showDetails ? (
-						<BiExpandAlt className={cs.Expand} />
-					) : (
-						<BiX className={cs.Close} />
-					)}
+					{!showDetails ? <BiExpandAlt className={cs.Expand} /> : <BiX className={cs.Close} />}
 				</button>
 			</div>
 			{showDetails && (

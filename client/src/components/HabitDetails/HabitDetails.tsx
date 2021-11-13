@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import {
 	getCompletionSuccess,
 	getCompletionSuccessPerPartition,
@@ -27,24 +27,18 @@ const HabitDetails = ({
 		completionData
 	);
 
-	useEffect(() => {
-		const successPerPartition = getCompletionSuccessPerPartition(
-			completionSuccess,
-			timestep,
-			labelDates
-		);
-
-		console.log(successPerPartition);
-	}, [timestep]);
+    const trackingSince = dayjs(habitData.startDate || habitData.created).format('MMM DD YYYY')
 
 	return (
 		<div className={cs.HabitDetails}>
-			{[...Array(10).keys()].map((entry, index) => (
-				<ProgressIcon
-					key={index}
-					percentage={Math.floor(Math.random() * 100)}
-				/>
-			))}
+			{/* {[...Array(10).keys()].map((entry, index) => (
+				<ProgressIcon key={index} percentage={Math.floor(Math.random() * 100)} />
+			))} */}
+			<section>
+                <span>
+                    Tracking since {trackingSince}
+                </span>
+            </section>
 		</div>
 	);
 };

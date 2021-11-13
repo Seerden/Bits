@@ -45,7 +45,7 @@ habitRouter.get('/range/ids', isPermitted, async (req, res) => {
     })
     
     res.json(response);
-})
+});
 
 habitRouter.get('/u/:username', isPermitted, async (req, res) => {
     try {

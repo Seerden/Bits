@@ -45,9 +45,5 @@ module.exports = {
       types: path.resolve(__dirname, "src", "types/"),
     },
   },
-  plugins: [
-      new miniCss()
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin()
-    ],
+  plugins: [new miniCss()],
 };
