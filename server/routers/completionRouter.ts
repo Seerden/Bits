@@ -1,5 +1,6 @@
 import { NewCompletion } from '@shared/types/Completion';
 import express from 'express';
+import { getCompletionsByHabitId } from '../db/queries/getCompletion';
 import { insertOrUpdateCompletion } from '../db/queries/insertOrUpdateCompletion';
 import { isPermitted } from '../lib/middleware';
 
@@ -11,4 +12,13 @@ completionRouter.put('/', isPermitted, async (req, res) => {
     res.send(rows);
 });
 
+completionRouter.get('/id', isPermitted, async (req, res) => {
+    const { habitId } = req.query;
+    try {
+        res.json(await getCompletionsByHabitId(habitId as string));
+    } catch (error) {
+        console.error(error);        
+        res.status(500).send({ message: 'Error fetching from API' });
+    }
+})
 export default completionRouter;

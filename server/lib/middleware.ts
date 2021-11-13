@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 export function logRequests(req: Request, res: Response, next) {
-    console.log(req.method, req.originalUrl, req.body);
+    console.log(req.method, req.url, req.body, req.query);
 
     next();
 };
