@@ -20,9 +20,9 @@ describe('isSameYear', () => {
 describe('truncateMap', () => {
     describe('truncateFn(day)', () => {
         test.each([
-            [dateTruncateMap['day'], jan1, 1],
-            [dateTruncateMap['week'], jan1, 1],
-            [dateTruncateMap['month'], jan1, 0],
+            [dateTruncateMap['day'], jan1, '2021-1'],
+            [dateTruncateMap['week'], jan1, '2021-1'],
+            [dateTruncateMap['month'], jan1, '2021-0'],
             [dateTruncateMap['year'], jan1, 2021]
         ])('%i %i', (truncateFn, date, expected) => {
             expect(truncateFn(date)).toBe(expected)

@@ -1,10 +1,11 @@
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
+import { DateOrDayjs } from "types/time";
 
 /**
  * Convert array `dates` from Dayjs[] to Date[]
  */
-export function asDates(dates: Dayjs[]) {
-    return dates.map(date => date.toDate());
+export function asDates(dates: Array<DateOrDayjs>) {
+    return dates.map(date => dayjs(date).toDate());
 };
 
 /**

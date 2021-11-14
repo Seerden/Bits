@@ -7,16 +7,16 @@ dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
 
 type TruncateFn = {
-	[K in Timestep]: (d: Dayjs) => number;
+	[K in Timestep]: (d: Dayjs) => number | string;
 };
 
 // @todo: What happens if the displayed date range spans multiple years?
 //  In that case, d.month() for two dates a year apart will be equal,
 //      though they shouldn't be in the same partition
 export const dateTruncateMap: TruncateFn = {
-	day: (d) => d.dayOfYear(),
-	week: (d) => d.week(),
-	month: (d) => d.month(),
+	day: (d) => `${d.year()}-${d.dayOfYear()}`,
+	week: (d) => `${d.year()}-${d.week()}`,
+	month: (d) => `${d.year()}-${d.month()}`,
 	year: (d) => d.year(),
 };
 

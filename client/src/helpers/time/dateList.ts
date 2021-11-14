@@ -2,29 +2,22 @@ import dayjs, { Dayjs } from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import { Timestep } from "types/time";
 import { TimescaleType } from "../../../../shared/types/Timescale";
-
 dayjs.extend(weekOfYear);
 
 /**
- * Returns a list of all dates in the inclusive specified range [start, end]
+ * Returns a list of all dates in the inclusive specified range [start, end],
+ * with steps of `timescale` between each entry
  */
-export function listDatesBetween(start: Dayjs, end: Dayjs) {
-	if (end.valueOf() < start.valueOf()) {
-		return [];
-	}
-
-	if (start == end) {
-		return [end];
-	}
+export function listDatesBetween(start: Dayjs, end: Dayjs, timescale: Timestep = "day") {
+	if (end.valueOf() < start.valueOf()) return [];
+	if (start == end) return [end];
 
 	const dateList: dayjs.Dayjs[] = [];
 	let latest = start;
-
 	while (latest <= end) {
 		dateList.push(latest);
-		latest = latest.add(1, "day");
+		latest = latest.add(1, timescale);
 	}
-
 	return dateList;
 }
 

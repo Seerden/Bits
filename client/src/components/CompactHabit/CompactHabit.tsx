@@ -76,7 +76,6 @@ const CompactHabit = ({
 				<HabitDetails
 					habitData={habitData}
 					completionData={completionData}
-					labelDates={labelDates}
 				/>
 			)}
 		</li>
