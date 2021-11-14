@@ -7,7 +7,7 @@ export function useFetchCompletionsById(habitId: Habit["habitId"]) {
     const url = useAuthUrl("/api/db/habits/completion/id");
 
 	const response = useQuery(
-		"fetchCompletionsById",
+		["fetchCompletionsById", habitId],
 		async () => {
 			const { data } = await axios.get(url, {
 				params: { habitId },

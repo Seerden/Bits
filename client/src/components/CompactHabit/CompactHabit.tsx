@@ -8,6 +8,7 @@ import HabitDetails from "components/HabitDetails/HabitDetails";
 import { makeCompletionEntries } from "helpers/completion/completionEntries";
 import { Dayjs } from "dayjs";
 import { useCompactHabit } from "./useCompactHabit";
+import { memo } from "react";
 
 type CompactHabitProps = {
 	habitData: Habit;
@@ -16,7 +17,7 @@ type CompactHabitProps = {
 	labelDates: Dayjs[];
 };
 
-const CompactHabit = ({
+const CompactHabit = memo(({
 	habitData,
 	completionData,
 	partitionsAsTimes,
@@ -74,12 +75,13 @@ const CompactHabit = ({
 			</div>
 			{showDetails && (
 				<HabitDetails
+                    key={new Date().toISOString()}
 					habitData={habitData}
 					completionData={completionData}
 				/>
 			)}
 		</li>
 	);
-};
+});
 
 export default CompactHabit;
