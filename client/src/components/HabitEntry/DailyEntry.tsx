@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import CompletionInstance from "components/HabitInstance/CompletionInstance";
 import { EntryProps } from "types/HabitEntry";
 import "./DailyEntry.scss";
@@ -14,7 +15,7 @@ const DailyEntry = ({ completionEntries }: EntryProps) => {
 				return new Date(entry[0].habitEntryDate).valueOf() >= startDateValue ? (
 					<CompletionInstance key={idx} entry={entry} />
 				) : (
-					<></>
+					<Fragment key={idx}></Fragment>
 				);
 			})}
 		</ul>
