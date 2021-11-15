@@ -1,15 +1,13 @@
 import CompactHabit from "components/CompactHabit/CompactHabit";
-import NewHabit from "components/NewHabit/NewHabit";
 import Timescale from "components/Timescale/Timescale";
 import NewHabitButton from "./NewHabitButton/NewHabitButton";
 import { useHabits } from "./useHabits";
 import "./Habits.scss";
-import { useToggle } from "hooks/useToggle";
 import { useMemo } from "react";
+import { useNavigate } from "react-router";
 
 const Habits = () => {
 	const base = "Habits";
-	const [showNewHabit, toggleShowNewHabit] = useToggle({ initial: false });
 	const {
 		data: habits,
 		timestep,
@@ -19,6 +17,7 @@ const Habits = () => {
 		labelDates,
 		partitionsAsTimes,
 	} = useHabits();
+    const navigate = useNavigate();
 	const timescaleProps = { labels, cycleTimestep, timestep, setTimestep };
 
 	const compactHabits = useMemo(
@@ -41,16 +40,7 @@ const Habits = () => {
 			<Timescale {...timescaleProps} />
 			{habits?.length > 0 && <ul className={`${base}__list`}>{compactHabits}</ul>}
 
-			{showNewHabit ? (
-				<>
-					<button style={{ width: "10rem" }} onClick={toggleShowNewHabit}>
-						Stop creating new habit
-					</button>
-					<NewHabit />
-				</>
-			) : (
-				<NewHabitButton onClick={toggleShowNewHabit} />
-			)}
+            <NewHabitButton onClick={() => navigate('/newhabit')} />
 		</div>
 	);
 };

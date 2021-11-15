@@ -29,3 +29,13 @@ $habitEntryMarginSmall: 0.3rem;
     border: 2px solid #444;
 
 }
+
+%outline-active {
+    
+    &:hover,
+	&:active,
+	&:focus {
+        transition: border-color 60ms ease-out;
+		border-color: #bbb;
+	}
+}

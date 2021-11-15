@@ -1,26 +1,7 @@
-import HabitRangeInstance from "components/HabitInstance/HabitRangeInstance";
-import HabitToggleInstance from "components/HabitInstance/HabitToggleInstance";
+import dayjs from "dayjs";
 import c from "./NewHabit.module.scss";
+import { Description, Form, Label, Row, Section } from "./Primitives";
 import { useNewHabit } from "./useNewHabit";
-
-// @todo: implement field validators in the form, instead of checking for validity in the submission handlers
-// not required for MVP, so leave it as is for the time being
-
-function Section({ children }) {
-	return <section className={c.Section}>{children}</section>;
-}
-
-function Label(props) {
-	return (
-		<label htmlFor="" className={c.Label}>
-			{props.children}
-		</label>
-	);
-}
-
-function Form(props) {
-	return <form className={c.Form}>{props.children}</form>;
-}
 
 const NewHabit = (props) => {
 	const base = "NewHabit";
@@ -28,52 +9,167 @@ const NewHabit = (props) => {
 
 	return (
 		<Form>
-			<Section>
-				<Label>Name</Label>
-				<input type="text" className={c.Input} style={{ width: "8rem" }} />
-			</Section>
+			<h2>Create a new habit</h2>
 
-			<Section>
-				<Label>Description</Label>
-				<input className={c.Input} type="text" style={{ width: "10rem" }} />
-			</Section>
+			<Row label="Name and description">
+				<Section>
+					<Label>Name</Label>
+					<Description>Name your habit. You can always change this later.</Description>
+					<input
+                        defaultValue={newHabit.habitName || ''}
+						onBlur={(e) =>
+							dispatchNewHabit({ formField: "habitName", value: e.target.value })
+						}
+						type="text"
+						className={c.Input}
+						style={{ width: "8rem" }}
+					/>
+				</Section>
 
-			<Section>
-				<Label>Type</Label>
-				<select className={c.Select}>
-					<option className={c.Option} value="toggle">
-						Toggle
-					</option>
-					<option className={c.Option} value="interval">
-						Interval
-					</option>
-				</select>
-			</Section>
-			<Section>
-				<Label>Occurrence</Label>
-				<div className={c.Field}>
-					<input className={c.Input} type="number" style={{ width: "2rem" }} />
-					<span>time(s) per</span>
-					<select className={c.Select}>
-						<option className={c.Option} value="day">
-							day
-						</option>
-					</select>
-				</div>
-			</Section>
+				<Section>
+					<Label>Description</Label>
+					<Description>Optional</Description>
+					<input
+                        defaultValue={newHabit.description || ''}
+						onBlur={(e) =>
+							dispatchNewHabit({ formField: "description", value: e.target.value })
+						}
+						className={c.Input}
+						type="text"
+						style={{ width: "10rem" }}
+					/>
+				</Section>
+			</Row>
 
-			<Section>
-				<Label>Date range</Label>
-				<div className={c.Field}>
-					<label className={c.SubLabel}>Start</label>
-					<input type="date" className={c.Input} />
-				</div>
-				<div className={c.Field}>
-					<label className={c.SubLabel}>End</label>
-					<input type="date" className={c.Input} />
-				</div>
-			</Section>
-			<button className={c.Button}>Add new habit</button>
+			<Row label="Completion settings">
+				<Section>
+					<Label>Type</Label>
+					<Description>
+						A toggle means you either complete the task or not, but with an interval you
+						can specify a number (e.g. "5000 steps").
+					</Description>
+					<div
+						style={{ 
+                            display: "inline-flex", 
+                            flexDirection: "row", 
+                            gap: "2.5rem",
+                            alignItems: "center",
+                        }}
+					>
+						<select
+							defaultValue={newHabit.completionType}
+							onChange={(e) =>
+								dispatchNewHabit({
+									formField: "completionType",
+									value: e.target.value,
+								})
+							}
+							className={c.Select}
+						>
+							<option className={c.Option} value="toggle">
+								Toggle
+							</option>
+							<option className={c.Option} value="interval">
+								Interval
+							</option>
+						</select>
+						{newHabit.completionType === "interval" && (
+                            <div>
+                                <span>Target: </span>
+                                <input
+                                    className={c.Input}
+                                    type="number"
+                                    defaultValue={newHabit.completionInterval || 1}
+                                    style={{ 
+                                        display: "inline-flex",
+                                        width: "4rem" }}
+                                    onBlur={(e) =>
+                                        dispatchNewHabit({
+                                            formField: "completionInterval",
+                                            value: +e.target.value,
+                                        })
+                                    }
+                                />
+                            </div>
+						)}
+					</div>
+				</Section>
+
+				<Section>
+					<Label>Occurrence</Label>
+					<Description>Choose how often you want to perform this habit.</Description>
+					<div className={c.Field}>
+						<input
+							onChange={(e) =>
+								dispatchNewHabit({
+									formField: "completionFrequency",
+									value: +e.target.value,
+								})
+							}
+							className={c.Input}
+							type="number"
+							style={{ width: "2rem" }}
+							value={newHabit.completionFrequency || 1}
+							min={1}
+						/>
+						<span>time(s) per</span>
+						<select
+							className={c.Select}
+							onChange={(e) =>
+								dispatchNewHabit({
+									formField: "completionTimescale",
+									value: e.target.value,
+								})
+							}
+						>
+							{["day", "week", "month", "year"].map((value) => (
+								<option className={c.Option} value={value}>
+									{value}
+								</option>
+							))}
+						</select>
+					</div>
+				</Section>
+			</Row>
+
+			<Row label="Tracking period">
+				<Section>
+					<Label>Date range</Label>
+					<Description>
+						Specify how long you want to track the habit for. You don't have to fill in
+						the 'End' date if you want to keep tracking forever.
+					</Description>
+					{[
+						{ formField: "startDate", label: "Start" },
+						{ formField: "endDate", label: "End" },
+					].map(({ formField, label }) => (
+						<div className={c.Field}>
+							<label className={c.SubLabel}>{label}</label>
+							<input
+								onChange={(e) =>
+									dispatchNewHabit({
+										formField: formField as any,
+										value: e.target.valueAsDate,
+									})
+								}
+								type="date"
+								className={c.Input}
+								defaultValue={
+									formField === "startDate" &&
+									dayjs(newHabit.startDate).format("YYYY-MM-DD")
+								}
+							/>
+						</div>
+					))}
+				</Section>
+			</Row>
+
+			<input
+				type="submit"
+				onClick={handleSubmitNewHabit}
+				className={c.Button}
+				value="Create habit"
+			/>
 		</Form>
 	);
 };
