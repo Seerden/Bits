@@ -15,13 +15,20 @@ function DeleteButton({ habitId }: { habitId: string }) {
 
 	// useEffect(() => {
 	// 	/*  on successful deletion, either
-    //             1. update habitsState
-    //             2. refetch habits
-    //         to ensure the just-deleted habit is removed from view
-    //     */
+	//             1. update habitsState
+	//             2. refetch habits
+	//         to ensure the just-deleted habit is removed from view
+	//     */
 	// }, [data]);
 
-	return <input type="button" value="Delete habit" onClick={(e) => mutate(habitId)} />;
+	return (
+		<input
+			className={cs.Delete}
+			type="button"
+			value="Delete habit"
+			onClick={(e) => mutate(habitId)}
+		/>
+	);
 }
 
 const HabitDetails = memo(
@@ -43,32 +50,36 @@ const HabitDetails = memo(
 		);
 
 		return (
-			<div className={cs.HabitDetails}>
-				<section>
-					<div className={cs.Field}>
-						<span className={cs.Label}>Age</span>
-						Tracking since {trackingSince}
-					</div>
-					{typeof percentage === "number" && (
-						<div className={cs.Field}>
-							<span className={cs.Label}>Success</span>
-							You've been successful for <ProgressIcon
-								size={50}
-								percentage={percentage}
-							/> of {habitData.completionTimescale}s.
-						</div>
-					)}
-					<div className={cs.Field}>
-						<span className={cs.Label}>Current</span> Current streak:{" "}
-					</div>
-					<div className={cs.Field}>
-						<span className={cs.Label}>Best</span>
-						Best streak: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor eius
-						enim ipsum at dignissimos et perspiciatis reiciendis earum expedita praesentium.
-					</div>
-				</section>
-				<DeleteButton habitId={habitData.habitId} />
-			</div>
+            <div className={cs.Wrapper}>
+                <div className={cs.HabitDetails}>
+                    <header>
+                        <h2>Details for habit <span style={{color: "deepskyblue"}}>
+                        {habitData.habitName}</span></h2>
+                    </header>
+                    <section>
+                        <div className={cs.Field}>
+                            <span className={cs.Label}>Age</span>
+                            Tracking since {trackingSince}
+                        </div>
+                        {typeof percentage === "number" && (
+                            <div className={cs.Field}>
+                                <span className={cs.Label}>Success</span>
+                                You've been successful for{" "}
+                                <ProgressIcon size={45} percentage={percentage} /> of{" "}
+                                {habitData.completionTimescale}s.
+                            </div>
+                        )}
+                        <div className={cs.Field}>
+                            <span className={cs.Label}>Current</span> Current streak:
+                        </div>
+                        <div className={cs.Field}>
+                            <span className={cs.Label}>Best</span>
+                            Best streak:
+                        </div>
+                    </section>
+                    <DeleteButton habitId={habitData.habitId} />
+                </div>
+            </div>
 		);
 	}
 );

@@ -21,12 +21,6 @@
 
 # Todo
 ## General
-- [x] Implement authentication on the frontend
-    - [x] Think about whether or not we need protected components eventually
-    - [x] include login, logout, register buttons to `Header`
-    - [x] include current user query param in requests from client
-- [x] Add authentication middleware that checks whether user making a request is allowed to make that request
-- [x] Add routing (`react-router v6`)
 - Implement dark/solarized styles
 - Generalize styling more, import bits and pieces as needed instead of creating each class from scratch
 - Figure out whether we want to refer to Timescales as 'timescale', 'timestep' or something else entirely, and _be consistent with usage_
@@ -34,38 +28,16 @@
 
 ## Per component
 ### Register
-- [x] Automatically log in on succesful registration
 - [] Implement meaningful feedback messages ("passwords don't match", "username already exists", etc.)
-- [x] highlight non-matching passwords
 
 ### Habits
-- change styling so that `Timescale` and `CompactHabit`s are better aligned and more visually connected
-- figure out a more elegant way to switch between timescales than the button we currently use
-- add date tooltips?
-- [x] add button that toggles (inline?) NewHabitEntry form on click
-    - Style button
-    - Add another button that hides the form on click or successful NewHabit POST
+- [] figure out a more elegant way to switch between timescales than the button we currently use
+- [] add date tooltips?
 
 ### NewHabit
-- [wip] split up into components
-- make note that start and end dates are optional
-    - default start date to 'today'
-    - [x] fix: end date is currently showing as a 'text' input
-- [x] style inputs
-- [wip] style form to match CompactHabit, at least in width
-- style submission button
-- add functionality to handle successful PUT/POST
-    - add newly created habit to `habits` in state, so that a new CompactHabit is added to the list
-- implement functionality from old form in new form
+- Change route to /habits/new
 
 ### CompactHabit
-- [x] Click to expand to ExpandedHabit modal
-    - [wip] Implement ExpandedHabit modal
-- Click name to swap to editable input
-    - [] Add key handlers for escape (to discard changes) and enter (to trigger blur)
-    - [x] Add clickOutside handler
-- Only display entries starting from the habit's `startDate` || `creationDate`
-    - add `habit.creationDate` field
 - Figure out how to efficiently update habitEntries after a PUT request, so that switching to another timescale displays the newly updated completion entry
     - Put completionData in state, update this state with data returned from PUT (make sure the PUT entry is in the right spot), and pass this state to HabitDetails. Then, ProgressIcon also correctly rerenders on change.
 

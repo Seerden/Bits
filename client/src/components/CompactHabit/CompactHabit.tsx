@@ -8,7 +8,7 @@ import HabitDetails from "components/HabitDetails/HabitDetails";
 import { makeCompletionEntries } from "helpers/completion/completionEntries";
 import { Dayjs } from "dayjs";
 import { useCompactHabit } from "./useCompactHabit";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 
 type CompactHabitProps = {
 	habitData: Habit;
@@ -33,7 +33,7 @@ const CompactHabit = memo(
 		const entriesPerDay = completionTimescale === "day" ? completionFrequency : 1;
 		const completionEntries = makeCompletionEntries({
 			partitionsAsTimes,
-            habitData,
+			habitData,
 			completionData,
 			entriesPerDay,
 		});

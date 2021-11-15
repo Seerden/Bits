@@ -8,6 +8,9 @@ const Register = (props) => {
 
 	return (
 		<form className={cs.Register} onSubmit={handleSubmit}>
+            <header>
+                <h2>Register</h2>
+            </header>
 			<section className={cs.Register__field}>
 				<label htmlFor="username">Username</label>
 				<input type="text" name="username" onChange={handleChange} />

@@ -11,7 +11,7 @@ const defaultHabit: Omit<NewHabit, "userId"> = {
 	startDate: getCurrentTimestepStartOf("day").toDate(),
 	endDate: null,
 	completionFrequency: 1,
-	completionType: "interval",
+	completionType: "toggle",
 	completionInterval: null,
 	completionTimescale: "day",
 };
