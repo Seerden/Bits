@@ -7,6 +7,7 @@ import { timescaleAtom } from "state/timescale";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
 import cs from "./HabitDetails.module.scss";
+import ProgressIcon from "./ProgressIcon";
 
 const HabitDetails = memo(
 	({ habitData, completionData }: { habitData: Habit; completionData: Completion[] }) => {
@@ -28,12 +29,27 @@ const HabitDetails = memo(
 
 		return (
 			<div className={cs.HabitDetails}>
-				{/* {[...Array(10).keys()].map((entry, index) => (
-				<ProgressIcon key={index} percentage={Math.floor(Math.random() * 100)} />
-			))} */}
 				<section>
-					<div>Tracking since {trackingSince}</div>
-					{percentage && <div>{percentage}</div>}
+					<div className={cs.Field}>
+						<span className={cs.Label}>Age</span>
+						Tracking since {trackingSince}
+					</div>
+					{typeof percentage === 'number' && (
+						<div className={cs.Field}>
+							<span className={cs.Label}>Success</span>
+							You've been successful for <ProgressIcon
+								size={50}
+								percentage={percentage}
+							/> of {habitData.completionTimescale}s.
+						</div>
+					)}
+					<div className={cs.Field}>
+						<span className={cs.Label}>Current</span> Current streak:{" "}
+					</div>
+					<div className={cs.Field}>
+						<span className={cs.Label}>Best</span>
+						Best streak: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor eius enim ipsum at dignissimos et perspiciatis reiciendis earum expedita praesentium.
+					</div>
 				</section>
 			</div>
 		);

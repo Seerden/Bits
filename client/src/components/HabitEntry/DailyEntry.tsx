@@ -8,8 +8,14 @@ const DailyEntry = ({ completionEntries }: EntryProps) => {
 	return (
 		<ul className={`${base}`}>
 			{completionEntries.map((entry, idx) => {
-                const startDate = entry[0].startDate || new Date(entry[0].created);
-                return startDate > entry[0].habitEntryDate ? <></> : <CompletionInstance key={idx} entry={entry} />;
+				const startDate = entry[0].startDate || entry[0].created;
+				const startDateValue = new Date(startDate).valueOf();
+
+				return new Date(entry[0].habitEntryDate).valueOf() >= startDateValue ? (
+					<CompletionInstance key={idx} entry={entry} />
+				) : (
+					<></>
+				);
 			})}
 		</ul>
 	);

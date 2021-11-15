@@ -57,7 +57,11 @@ habitRouter.get('/u/:username', isPermitted, async (req, res) => {
 });
 
 habitRouter.post('/', isPermitted, async (req, res) => {
-    const newHabit: NewHabit = req.body;
+    let habit: NewHabit = req.body;
+    let newHabit: any = habit;
+    if (!newHabit.created) {
+        newHabit.created = new Date()
+    }
 
     try {
         const insertedHabit = await insertHabit(newHabit);

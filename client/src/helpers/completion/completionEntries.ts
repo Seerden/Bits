@@ -5,11 +5,8 @@ import { Habit } from "../../../../shared/types/Habit";
 type Args = {
 	partitionsAsTimes: ReturnType<typeof partitionsAsTimestamps>;
 	completionData: Completion[];
+    habitData: Partial<Habit>
 	entriesPerDay: number;
-	habitId: Habit["habitId"];
-	completionType: Habit["completionType"];
-	completionInterval: Habit["completionInterval"];
-    created: Habit["created"]
 };
 
 /**
@@ -27,12 +24,10 @@ export function makeCompletionEntries({
 	partitionsAsTimes,
 	completionData,
 	entriesPerDay,
-	habitId,
-	completionType,
-    completionInterval,
-    created
+    habitData
 }: Args) {
 	const entryIndices = [...Array(entriesPerDay).keys()];
+    const { created, habitId, completionType, completionInterval } = habitData
 
 	return partitionsAsTimes.map((partition) =>
 		partition.map((timestamp) => {

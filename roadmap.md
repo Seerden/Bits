@@ -67,6 +67,7 @@
 - Only display entries starting from the habit's `startDate` || `creationDate`
     - add `habit.creationDate` field
 - Figure out how to efficiently update habitEntries after a PUT request, so that switching to another timescale displays the newly updated completion entry
+    - Put completionData in state, update this state with data returned from PUT (make sure the PUT entry is in the right spot), and pass this state to HabitDetails. Then, ProgressIcon also correctly rerenders on change.
 
 ### HabitRangeInstance
 - add tooltip with `habitEntryDate`

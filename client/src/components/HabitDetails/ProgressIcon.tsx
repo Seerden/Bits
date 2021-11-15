@@ -7,6 +7,7 @@ const colorByQuarter = {
 	1: "orange",
 	2: "greenyellow",
 	3: "green",
+    4: "forestgreen"
 };
 
 type Props = {
@@ -57,10 +58,10 @@ const ProgressIcon = ({ size = 30, percentage }: Props) => {
 				cy={size / 2}
 				r={0.4 * size}
 				stroke={colorByQuarter[String(Math.floor(percentage / 25))]}
-				strokeWidth={2}
+				strokeWidth={4}
 				fill="#333"
 			/>
-			{size > 40 && (
+			{size >= 40 && (
 				<text
 					className={`${base}__text`}
 					textAnchor="middle"
