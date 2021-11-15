@@ -34,7 +34,8 @@ export function useHabits() {
 
 	const cycleTimestep = useCallback(() => {
 		const currentIndex = getTimestepIndex(timestep);
-		setTimestep(timesteps[(currentIndex + 1) % timesteps.length]);
+        const nextIndex = (currentIndex + 1) % timesteps.length;
+		setTimestep(timesteps[nextIndex]);
 	}, [timestep]);
 
 	return {

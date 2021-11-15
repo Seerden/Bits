@@ -24,14 +24,14 @@ const Habits = () => {
 	const compactHabits = useMemo(
 		() =>
 			habits?.length > 0 &&
-			habits.map(({ habitData, completionData }, index) => {
+			habits.map(({ habitData, completionData }) => {
 				const compactHabitProps = {
 					completionData,
 					habitData,
 					partitionsAsTimes,
 					labelDates,
 				};
-				return <CompactHabit key={index} {...compactHabitProps} />;
+				return <CompactHabit key={new Date().valueOf()} {...compactHabitProps} />;
 			}),
 		[habits, timestep]
 	);
