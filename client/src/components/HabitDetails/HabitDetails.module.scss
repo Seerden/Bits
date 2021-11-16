@@ -16,19 +16,23 @@
     width: 100%;
     z-index: 10;
     position: fixed;
-    
     top: 20vh;
     background-color: #212121;
     width: 40rem;
     right: calc(50% - 20rem);
-    // z-index: 100;
     box-shadow: 0 0 3rem -0.5rem black;
     padding: 1rem 2rem;
     padding-top: 0;
     padding-left: 0;
     border-radius: 0 0 5px 5px;
     font-size: 0.93rem;
+}
 
+.Header {
+    margin: 0.5rem 1rem;
+    margin-top: 1.5rem;
+    font-weight: 500;
+    font-size: 1.3rem;
 }
 
 .Field {
@@ -61,15 +65,56 @@
     margin-right: 1rem;
 }
 
-.Delete {
+$shadow: 0 0 0.5rem black;
+
+.Delete, .Delete__confirm, .Delete__keep {
     @extend %default-button;
     position: absolute;
-    display: inline-flex;
-    width: max-content;
     bottom: 1rem;
     right: 1rem;
-    padding: 0.8rem 1.4rem;
+    display: inline-flex;
+    width: max-content;
+    padding: 0.6rem 1.4rem;
     border: 2px solid orangered;
     margin-top: 1rem;
     border-radius: 2px;
+
+    font-weight: 600;
+    transition: background-color 50ms linear 30ms;
+
+    &:hover, &:active {
+        box-shadow: $shadow;
+    }
+
+}
+
+.Delete {
+    &:hover, &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 0.5rem 0 -0.4rem orangered, $shadow;
+    }
+
+    &__confirm, &__keep {
+        justify-content: center;
+        width: 5rem;
+        border-color: #111;
+        color: azure;
+    }
+
+    &__confirm {
+        transform: translateX(-5.5rem);
+        border-color: indianred;
+
+        &:hover {
+            outline: 2px solid indianred;
+        }
+    }
+
+    &__keep {
+        border-color: seagreen;
+
+        &:hover {
+            outline: 2px solid seagreen;
+        }
+    }
 }

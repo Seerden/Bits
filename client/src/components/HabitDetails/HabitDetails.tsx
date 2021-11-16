@@ -3,6 +3,7 @@ import { useDeleteHabit } from "helpers/api/mutateHabits";
 import { useFetchCompletionsById } from "helpers/api/queryCompletions";
 import { getCompletionSuccessPercentage } from "helpers/completion/completionPercentage";
 import { useClickOutside } from "hooks/useClickOutside";
+import { useToggle } from "hooks/useToggle";
 import { memo, useEffect, useMemo, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { timescaleAtom } from "state/timescale";
@@ -13,6 +14,7 @@ import ProgressIcon from "./ProgressIcon";
 
 function DeleteButton({ habitId }: { habitId: string }) {
 	const { mutate, data } = useDeleteHabit(habitId);
+	const [confirming, toggleConfirming] = useToggle({ initial: false });
 
 	// useEffect(() => {
 	// 	/*  on successful deletion, either
@@ -22,13 +24,47 @@ function DeleteButton({ habitId }: { habitId: string }) {
 	//     */
 	// }, [data]);
 
-	return (
+	function handleConfirm() {
+		mutate(habitId);
+	}
+
+	return !confirming ? (
 		<input
 			className={cs.Delete}
 			type="button"
 			value="Delete habit"
-			onClick={(e) => mutate(habitId)}
+			onClick={(e) => {
+				e.stopPropagation();
+				toggleConfirming();
+			}}
 		/>
+	) : (
+		<ConfirmDelete {...{ handleConfirm, toggleConfirming }} />
+	);
+}
+
+function ConfirmDelete({ handleConfirm, toggleConfirming }) {
+	return (
+		<>
+			<input
+				onClick={(e) => {
+					e.stopPropagation();
+					handleConfirm();
+				}}
+				className={cs.Delete__confirm}
+				type="button"
+				value="DELETE"
+			/>
+			<input
+				onClick={(e) => {
+					e.stopPropagation();
+					toggleConfirming();
+				}}
+				className={cs.Delete__keep}
+				type="button"
+				value="KEEP"
+			/>
+		</>
 	);
 }
 
@@ -46,10 +82,9 @@ const HabitDetails = memo(
 		const timescale = useRecoilValue(timescaleAtom);
 
 		const modalRef = useRef(null);
-		function handleClickOutside(e) {
+		function handleClickOutside() {
 			toggleDetails();
 		}
-
 		useClickOutside(modalRef, handleClickOutside, ["Escape"]);
 
 		useEffect(() => {
@@ -68,11 +103,9 @@ const HabitDetails = memo(
 		return (
 			<div className={cs.Wrapper}>
 				<div ref={modalRef} className={cs.HabitDetails}>
-					<header>
-						<h2>
-							Details for habit{" "}
-							<span style={{ color: "deepskyblue" }}>{habitData.habitName}</span>
-						</h2>
+					<header className={cs.Header}>
+						Details for habit{" "}
+						<span style={{ color: "deepskyblue" }}>{habitData.habitName}</span>
 					</header>
 					<section>
 						<div className={cs.Field}>
@@ -82,9 +115,17 @@ const HabitDetails = memo(
 						{typeof percentage === "number" && (
 							<div className={cs.Field}>
 								<span className={cs.Label}>Success</span>
-								You've been successful for{" "}
-								<ProgressIcon size={45} percentage={percentage} /> of{" "}
-								{habitData.completionTimescale}s.
+								<div
+									style={{
+										display: "grid",
+										gridTemplateColumns: "max-content 1fr",
+										alignItems: "center",
+										gridGap: "0.5rem",
+									}}
+								>
+									<ProgressIcon size={45} percentage={percentage} /> of{" "}
+									{habitData.completionTimescale}s completed since tracking started
+								</div>
 							</div>
 						)}
 						<div className={cs.Field}>

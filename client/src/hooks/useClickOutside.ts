@@ -11,7 +11,7 @@ import { useEffect } from "react";
  */
 export function useClickOutside(
 	ref,
-	handleClickOutside: (e) => any,
+	handleClickOutside: (e?: any) => any,
 	keys: string[] = ["Enter", "Escape"]
 ) {
 	// const keys = ['Enter', 'Escape'];
