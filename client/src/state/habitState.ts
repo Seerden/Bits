@@ -1,7 +1,11 @@
 import { atom } from "recoil";
-import { Habit } from "../../../shared/types/Habit";
+import { HabitWithCompletion } from "../../../shared/types/Habit";
 
-export const habitsAtom = atom<Habit[]>({
+/**
+ * Piece of state that contains a list of `{ habitData, completionData }`.
+ * Could also be called habitsWithCompletionAtom
+ */
+export const habitsAtom = atom<HabitWithCompletion[]>({
     key: "Habits",
     default: []
-})
+});

@@ -29,7 +29,7 @@ export interface Habit extends NewHabit {
     habitId: string,
 };
 
-export type HabitResponse = { 
+export type HabitWithCompletion = { 
     habitData: Habit,
-    completionData:Completion[]
+    completionData: Completion[]
 }

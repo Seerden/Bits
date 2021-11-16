@@ -3,10 +3,7 @@ import { asDates } from "helpers/time/asDates";
 import { getDatesForLabels, listDatesBetween } from "helpers/time/dateList";
 import { timescaleFormatters } from "helpers/time/format";
 import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
-import {
-	partitionDates,
-	partitionsAsTimestamps,
-} from "helpers/time/partitionDates";
+import { partitionDates, partitionsAsTimestamps } from "helpers/time/partitionDates";
 import { getTimestepIndex, timesteps } from "helpers/time/timesteps";
 import { useCallback, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -21,7 +18,7 @@ export function useHabits() {
 	const [labels, partitionsAsTimes, labelDates] = useMemo(() => {
 		const endOfRange = getCurrentTimestepStartOf(timestep).add(1, timestep);
 		const labelDates = getDatesForLabels(timestep, length - 1);
-		const labels = labelDates.map(date => timescaleFormatter(date));
+		const labels = labelDates.map((date) => timescaleFormatter(date));
 		const datesInRange = listDatesBetween(labelDates[0], endOfRange);
 		const partitions = partitionDates(
 			asDates(datesInRange),
@@ -34,7 +31,7 @@ export function useHabits() {
 
 	const cycleTimestep = useCallback(() => {
 		const currentIndex = getTimestepIndex(timestep);
-        const nextIndex = (currentIndex + 1) % timesteps.length;
+		const nextIndex = (currentIndex + 1) % timesteps.length;
 		setTimestep(timesteps[nextIndex]);
 	}, [timestep]);
 

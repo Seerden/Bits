@@ -3,8 +3,10 @@ import dayjs from 'dayjs';
 import { useAuth } from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { useSetRecoilState } from 'recoil';
+import { habitsAtom } from 'state/habitState';
 import type { DateRange } from '../../../../shared/types/Date';
-import { HabitResponse } from '../../../../shared/types/Habit';
+import { HabitWithCompletion } from '../../../../shared/types/Habit';
 
 async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[], username?: string) {
     const { data } = await axios.get('/api/db/habits/range/ids', {
@@ -14,7 +16,7 @@ async function fetchHabitsInRange(dateRange: DateRange, habitIds?: string[], use
             username
         }
     });
-    return data as HabitResponse[];
+    return data as HabitWithCompletion[];
 };
 
 const today = dayjs(new Date()).startOf('day')
@@ -26,7 +28,15 @@ const defaultDateRange = {
     // otherwise we won't get all the values from the database
 };
 
+/**
+ * Hook to fetch habits with completion data from the API.
+ * 
+ * @note Automatically updates habitsAtom on successful fetch. 
+ * There might be usecases where we don't want this to happen, but until we find those,
+ * there's no need to preventively complicate things by anticipating that usecase
+ */
 export function useFetchHabits() {
+    const setHabits = useSetRecoilState(habitsAtom);
     const [dateRange, setDateRange] = useState<DateRange>(defaultDateRange);
     const { username } = useAuth().currentUser;
     const { data, refetch } = useQuery(['fetchHabits', dateRange, username], () =>
@@ -37,7 +47,13 @@ export function useFetchHabits() {
 
     useEffect(() => {  // @todo: move this to useHabits?
         refetch();
-    }, [dateRange, refetch]);
+    }, [dateRange]);
+
+    useEffect(() => {
+        if (data) {
+            setHabits(data);
+        }
+    }, [data])
 
 
     return { data, setDateRange } as const;
