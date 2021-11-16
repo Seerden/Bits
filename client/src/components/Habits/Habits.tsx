@@ -11,7 +11,7 @@ import { useRecoilValue } from "recoil";
 const Habits = () => {
 	const base = "Habits";
 	const habits = useRecoilValue(habitsAtom);
-	const { timestep, setTimestep, cycleTimestep, labels, labelDates, partitionsAsTimes } =
+	const { timestep, setTimestep, cycleTimestep, labels, partitionsAsTimes } =
 		useHabits();
 	const navigate = useNavigate();
 	const timescaleProps = { labels, cycleTimestep, timestep, setTimestep };
@@ -23,7 +23,6 @@ const Habits = () => {
 				const compactHabitProps = {
 					habitId: habitData.habitId,
 					partitionsAsTimes,
-					labelDates,
 				};
 				return <CompactHabit key={index} {...compactHabitProps} />;
 			}),

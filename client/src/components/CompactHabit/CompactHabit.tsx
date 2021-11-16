@@ -5,18 +5,16 @@ import { BiExpandAlt, BiX } from "react-icons/bi";
 import cs from "./CompactHabit.module.scss";
 import HabitDetails from "components/HabitDetails/HabitDetails";
 import { makeCompletionEntries } from "helpers/completion/completionEntries";
-import { Dayjs } from "dayjs";
 import { useCompactHabit } from "./useCompactHabit";
 import { memo } from "react";
 
 type CompactHabitProps = {
 	habitId: Habit["habitId"];
 	partitionsAsTimes: number[][];
-	labelDates: Dayjs[];
 };
 
 const CompactHabit = memo(
-	({ habitId, partitionsAsTimes, labelDates }: CompactHabitProps) => {
+	({ habitId, partitionsAsTimes }: CompactHabitProps) => {
 		const base = "CompactHabit";
 		const {
 			habitData,
