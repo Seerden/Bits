@@ -15,8 +15,10 @@ export const habitsAtom = atom<HabitWithCompletion[]>({
  */
 export const habitByIdState = selectorFamily({
 	key: "HabitById",
-	get: (habitId: Habit["habitId"]) => ({ get }) => {
-        const habits = get(habitsAtom);
-        return habits.filter(({ habitData }) => habitData.habitId === habitId);
-    },
+	get:
+		(habitId: Habit["habitId"]) =>
+		({ get }) => {
+			const habits = get(habitsAtom);
+			return habits.filter(({ habitData }) => habitData.habitId === habitId)[0];
+		},
 });

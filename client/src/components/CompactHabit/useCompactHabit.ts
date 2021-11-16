@@ -2,17 +2,23 @@ import { usePutHabit } from "helpers/api/mutateHabits";
 import { useClickOutside } from "hooks/useClickOutside";
 import { useToggle } from "hooks/useToggle";
 import { useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { habitByIdState } from "state/habits/habitState";
 import { Habit } from "../../../../shared/types/Habit";
 
-export function useCompactHabit(habitData: Habit) {
-	const { habitName: name, habitId } = habitData;
+export function useCompactHabit(habitId: Habit["habitId"]) {
+	const { habitData, completionData } = useRecoilValue(habitByIdState(habitId));
 	const [isEditing, setIsEditing] = useState<boolean>(false);
-	const [habitName, setHabitName] = useState<string>(name);
+	const [habitName, setHabitName] = useState<string>(habitData.habitName);
 	const { mutate } = usePutHabit();
 	const [showDetails, toggleDetails] = useToggle({ initial: false });
 
 	function handleBlur(e) {
-		const newName = e.target ? e.target.value : e.value;  // e is either an event or inputRef.current
+		/* e is either an event or inputRef.current (referring to an HTML input element)
+            if it's an event, it has property .target. 
+            if it's an HTML input, it has property .value
+        */
+		const newName = e.target ? e.target.value : e.value;
 		setHabitName(newName);
 		mutate({
 			field: "habitName",
@@ -26,7 +32,7 @@ export function useCompactHabit(habitData: Habit) {
 
 	const inputRef = useRef(null);
 	const handleClickOutside = (e) => {
-        if (isEditing) {
+		if (isEditing) {
 			handleBlur(inputRef.current);
 		}
 	};
@@ -34,6 +40,8 @@ export function useCompactHabit(habitData: Habit) {
 	useClickOutside(inputRef, handleClickOutside);
 
 	return {
+		habitData,
+		completionData,
 		isEditing,
 		setIsEditing,
 		showDetails,

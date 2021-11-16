@@ -10,25 +10,18 @@ import { useRecoilValue } from "recoil";
 
 const Habits = () => {
 	const base = "Habits";
-    const habits = useRecoilValue(habitsAtom);
-	const {
-		timestep,
-		setTimestep,
-		cycleTimestep,
-		labels,
-		labelDates,
-		partitionsAsTimes,
-	} = useHabits();
-    const navigate = useNavigate();
+	const habits = useRecoilValue(habitsAtom);
+	const { timestep, setTimestep, cycleTimestep, labels, labelDates, partitionsAsTimes } =
+		useHabits();
+	const navigate = useNavigate();
 	const timescaleProps = { labels, cycleTimestep, timestep, setTimestep };
 
 	const compactHabits = useMemo(
 		() =>
 			habits?.length > 0 &&
-			habits.map(({ habitData, completionData }, index) => {
+			habits.map(({ habitData }, index) => {
 				const compactHabitProps = {
-					completionData,
-					habitData,
+					habitId: habitData.habitId,
 					partitionsAsTimes,
 					labelDates,
 				};
@@ -42,7 +35,7 @@ const Habits = () => {
 			<Timescale {...timescaleProps} />
 			{habits?.length > 0 && <ul className={`${base}__list`}>{compactHabits}</ul>}
 
-            <NewHabitButton onClick={() => navigate('/newhabit')} />
+			<NewHabitButton onClick={() => navigate("/newhabit")} />
 		</div>
 	);
 };

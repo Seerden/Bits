@@ -1,5 +1,4 @@
 import { Habit } from "../../../../shared/types/Habit";
-import { Completion } from "../../../../shared/types/Completion";
 import "./CompactHabit.scss";
 import HabitEntry from "components/HabitEntry/HabitEntry";
 import { BiExpandAlt, BiX } from "react-icons/bi";
@@ -11,16 +10,17 @@ import { useCompactHabit } from "./useCompactHabit";
 import { memo } from "react";
 
 type CompactHabitProps = {
-	habitData: Habit;
-	completionData: Completion[];
+	habitId: Habit["habitId"];
 	partitionsAsTimes: number[][];
 	labelDates: Dayjs[];
 };
 
 const CompactHabit = memo(
-	({ habitData, completionData, partitionsAsTimes, labelDates }: CompactHabitProps) => {
+	({ habitId, partitionsAsTimes, labelDates }: CompactHabitProps) => {
 		const base = "CompactHabit";
 		const {
+			habitData,
+			completionData,
 			habitName,
 			isEditing,
 			setIsEditing,
@@ -28,7 +28,7 @@ const CompactHabit = memo(
 			toggleDetails,
 			handleBlur,
 			inputRef,
-		} = useCompactHabit(habitData);
+		} = useCompactHabit(habitId);
 		const { completionFrequency, completionTimescale } = habitData;
 		const entriesPerDay = completionTimescale === "day" ? completionFrequency : 1;
 		const completionEntries = makeCompletionEntries({
