@@ -26,7 +26,7 @@ export function useCompactHabit(habitData: Habit) {
 
 	const inputRef = useRef(null);
 	const handleClickOutside = (e) => {
-        if (isEditing && inputRef.current && !inputRef.current.contains(e.target)) {
+        if (isEditing) {
 			handleBlur(inputRef.current);
 		}
 	};

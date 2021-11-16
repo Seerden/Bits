@@ -2,7 +2,8 @@ import dayjs from "dayjs";
 import { useDeleteHabit } from "helpers/api/mutateHabits";
 import { useFetchCompletionsById } from "helpers/api/queryCompletions";
 import { getCompletionSuccessPercentage } from "helpers/completion/completionPercentage";
-import { memo, useEffect, useMemo } from "react";
+import { useClickOutside } from "hooks/useClickOutside";
+import { memo, useEffect, useMemo, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { timescaleAtom } from "state/timescale";
 import { Completion } from "../../../../shared/types/Completion";
@@ -32,9 +33,24 @@ function DeleteButton({ habitId }: { habitId: string }) {
 }
 
 const HabitDetails = memo(
-	({ habitData, completionData }: { habitData: Habit; completionData: Completion[] }) => {
+	({
+		habitData,
+		completionData,
+		toggleDetails,
+	}: {
+		habitData: Habit;
+		completionData: Completion[];
+		toggleDetails: () => void;
+	}) => {
 		const { data, refetch } = useFetchCompletionsById(habitData.habitId);
 		const timescale = useRecoilValue(timescaleAtom);
+
+		const modalRef = useRef(null);
+		function handleClickOutside(e) {
+			toggleDetails();
+		}
+
+		useClickOutside(modalRef, handleClickOutside, ["Escape"]);
 
 		useEffect(() => {
 			refetch();
@@ -50,36 +66,38 @@ const HabitDetails = memo(
 		);
 
 		return (
-            <div className={cs.Wrapper}>
-                <div className={cs.HabitDetails}>
-                    <header>
-                        <h2>Details for habit <span style={{color: "deepskyblue"}}>
-                        {habitData.habitName}</span></h2>
-                    </header>
-                    <section>
-                        <div className={cs.Field}>
-                            <span className={cs.Label}>Age</span>
-                            Tracking since {trackingSince}
-                        </div>
-                        {typeof percentage === "number" && (
-                            <div className={cs.Field}>
-                                <span className={cs.Label}>Success</span>
-                                You've been successful for{" "}
-                                <ProgressIcon size={45} percentage={percentage} /> of{" "}
-                                {habitData.completionTimescale}s.
-                            </div>
-                        )}
-                        <div className={cs.Field}>
-                            <span className={cs.Label}>Current</span> Current streak:
-                        </div>
-                        <div className={cs.Field}>
-                            <span className={cs.Label}>Best</span>
-                            Best streak:
-                        </div>
-                    </section>
-                    <DeleteButton habitId={habitData.habitId} />
-                </div>
-            </div>
+			<div className={cs.Wrapper}>
+				<div ref={modalRef} className={cs.HabitDetails}>
+					<header>
+						<h2>
+							Details for habit{" "}
+							<span style={{ color: "deepskyblue" }}>{habitData.habitName}</span>
+						</h2>
+					</header>
+					<section>
+						<div className={cs.Field}>
+							<span className={cs.Label}>Age</span>
+							Tracking since {trackingSince}
+						</div>
+						{typeof percentage === "number" && (
+							<div className={cs.Field}>
+								<span className={cs.Label}>Success</span>
+								You've been successful for{" "}
+								<ProgressIcon size={45} percentage={percentage} /> of{" "}
+								{habitData.completionTimescale}s.
+							</div>
+						)}
+						<div className={cs.Field}>
+							<span className={cs.Label}>Current</span> Current streak:
+						</div>
+						<div className={cs.Field}>
+							<span className={cs.Label}>Best</span>
+							Best streak:
+						</div>
+					</section>
+					<DeleteButton habitId={habitData.habitId} />
+				</div>
+			</div>
 		);
 	}
 );
