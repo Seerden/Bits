@@ -5,11 +5,13 @@ import { useHabits } from "./useHabits";
 import "./Habits.scss";
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
+import { habitsAtom } from "state/habitState";
+import { useRecoilValue } from "recoil";
 
 const Habits = () => {
 	const base = "Habits";
+    const habits = useRecoilValue(habitsAtom);
 	const {
-		data: habits,
 		timestep,
 		setTimestep,
 		cycleTimestep,

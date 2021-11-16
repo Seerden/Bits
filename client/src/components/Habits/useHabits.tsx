@@ -5,15 +5,20 @@ import { timescaleFormatters } from "helpers/time/format";
 import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { partitionDates, partitionsAsTimestamps } from "helpers/time/partitionDates";
 import { getTimestepIndex, timesteps } from "helpers/time/timesteps";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import { timescaleAtom } from "state/timescale";
 
 export function useHabits() {
 	const [length] = useState<number>(6);
-	const { data } = useFetchHabits();
+	const { refetch } = useFetchHabits();
 	const [timestep, setTimestep] = useRecoilState(timescaleAtom);
 	const timescaleFormatter = timescaleFormatters[timestep];
+
+    // fetch habits when this hook first loads
+	useEffect(() => {
+		refetch();
+	}, []);
 
 	const [labels, partitionsAsTimes, labelDates] = useMemo(() => {
 		const endOfRange = getCurrentTimestepStartOf(timestep).add(1, timestep);
@@ -36,7 +41,6 @@ export function useHabits() {
 	}, [timestep]);
 
 	return {
-		data,
 		timestep,
 		setTimestep,
 		labels,

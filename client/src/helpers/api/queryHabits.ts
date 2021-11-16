@@ -45,10 +45,6 @@ export function useFetchHabits() {
         fetchHabitsInRange(dateRange, null, username), { enabled: false, retry: false }
     );
 
-    useEffect(() => {  // @todo: move this to useHabits?
-        refetch();
-    }, [dateRange]);
-
     useEffect(() => {
         if (data) {
             setHabits(data);
@@ -56,5 +52,5 @@ export function useFetchHabits() {
     }, [data])
 
 
-    return { data, setDateRange } as const;
+    return { refetch, setDateRange } as const;
 }
