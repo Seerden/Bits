@@ -9,18 +9,16 @@ interface TimescaleProps {
 }
 
 const Timescale = ({ labels, timestep, cycleTimestep }: TimescaleProps) => {
-	const base = "Timescale";
-
 	return (
-		<div className={`${base}`}>
-			<ul className={`${base}__list`}>
+		<div className="Timescale">
+			<ul className="Timescale__list">
 				{labels.map((label, index) => (
-					<li className={`${base}__list--entry`} key={index}>
+					<li className="Timescale__list--entry" key={index}>
 						{label}
 					</li>
 				))}
 			</ul>
-			<button className={`${base}__cycle`} onClick={cycleTimestep}>
+			<button className="Timescale__cycle" onClick={cycleTimestep}>
 				{timestepDisplayStringMap[timestep].toUpperCase()}
 			</button>
 		</div>
