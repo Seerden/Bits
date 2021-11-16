@@ -6,16 +6,18 @@ import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { partitionDates, partitionsAsTimestamps } from "helpers/time/partitionDates";
 import { getTimestepIndex, timesteps } from "helpers/time/timesteps";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { habitsAtom } from "state/habits/habitState";
 import { timescaleAtom } from "state/timescale";
 
 export function useHabits() {
 	const [length] = useState<number>(6);
 	const { refetch } = useFetchHabits();
+	const habits = useRecoilValue(habitsAtom);
 	const [timestep, setTimestep] = useRecoilState(timescaleAtom);
 	const timescaleFormatter = timescaleFormatters[timestep];
 
-    // fetch habits when this hook first loads
+	// fetch habits when this hook first loads
 	useEffect(() => {
 		refetch();
 	}, []);
@@ -41,6 +43,7 @@ export function useHabits() {
 	}, [timestep]);
 
 	return {
+		habits,
 		timestep,
 		setTimestep,
 		labels,

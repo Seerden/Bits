@@ -1,21 +1,14 @@
 import "./Timescale.scss";
-import { SetterOrUpdater } from "recoil";
 import { Timestep } from "types/time";
 import { timestepDisplayStringMap } from "helpers/time/timesteps";
 
 interface TimescaleProps {
-	length?: number;
 	timestep: Timestep;
 	labels: string[];
-	setTimestep?: SetterOrUpdater<Timestep>;
 	cycleTimestep: () => any;
 }
 
-const Timescale = ({
-	labels,
-	timestep,
-	cycleTimestep,
-}: TimescaleProps) => {
+const Timescale = ({ labels, timestep, cycleTimestep }: TimescaleProps) => {
 	const base = "Timescale";
 
 	return (
