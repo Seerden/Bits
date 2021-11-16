@@ -5,7 +5,7 @@ import { Habit } from "../../../../shared/types/Habit";
 type Args = {
 	partitionsAsTimes: ReturnType<typeof partitionsAsTimestamps>;
 	completionData: Completion[];
-    habitData: Partial<Habit>
+	habitData: Partial<Habit>;
 	entriesPerDay: number;
 };
 
@@ -21,13 +21,14 @@ type Args = {
  *
  */
 export function makeCompletionEntries({
-	partitionsAsTimes,
+	habitData,
 	completionData,
+	partitionsAsTimes,
 	entriesPerDay,
-    habitData
 }: Args) {
 	const entryIndices = [...Array(entriesPerDay).keys()];
-    const { created, habitId, completionType, completionInterval } = habitData
+	const { created, habitId, completionType, completionInterval, startDate, endDate } =
+		habitData;
 
 	return partitionsAsTimes.map((partition) =>
 		partition.map((timestamp) => {
@@ -47,7 +48,9 @@ export function makeCompletionEntries({
 					rangeValue: existingEntryAtIndex?.rangeValue || 0,
 					completionId: existingEntryAtIndex?.completionId || null,
 					entryIndex,
-                    created
+					created,
+					startDate,
+					endDate,
 				};
 
 				return {
@@ -55,8 +58,14 @@ export function makeCompletionEntries({
 					habitEntryDate: new Date(timestamp),
 					habitId,
 					completionType,
-                    completionInterval,
-					...entryProps,
+					completionInterval,
+					completed: existingEntryAtIndex?.completed || false,
+					rangeValue: existingEntryAtIndex?.rangeValue || 0,
+					completionId: existingEntryAtIndex?.completionId || null,
+					entryIndex,
+					created,
+					startDate,
+					endDate,
 				};
 			});
 		})

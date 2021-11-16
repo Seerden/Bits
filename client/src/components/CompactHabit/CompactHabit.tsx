@@ -79,7 +79,7 @@ const CompactHabit = memo(
 						key={new Date().toISOString()}
 						habitData={habitData}
 						completionData={completionData}
-                        toggleDetails={toggleDetails}
+						toggleDetails={toggleDetails}
 					/>
 				)}
 			</li>
