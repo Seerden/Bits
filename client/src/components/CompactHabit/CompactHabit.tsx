@@ -8,7 +8,7 @@ import HabitDetails from "components/HabitDetails/HabitDetails";
 import { makeCompletionEntries } from "helpers/completion/completionEntries";
 import { Dayjs } from "dayjs";
 import { useCompactHabit } from "./useCompactHabit";
-import { memo, useEffect } from "react";
+import { memo } from "react";
 
 type CompactHabitProps = {
 	habitData: Habit;

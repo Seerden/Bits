@@ -5,7 +5,7 @@ import { useHabits } from "./useHabits";
 import "./Habits.scss";
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
-import { habitsAtom } from "state/habitState";
+import { habitsAtom } from "state/habits/habitState";
 import { useRecoilValue } from "recoil";
 
 const Habits = () => {

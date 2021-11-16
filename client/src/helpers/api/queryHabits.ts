@@ -4,7 +4,7 @@ import { useAuth } from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSetRecoilState } from 'recoil';
-import { habitsAtom } from 'state/habitState';
+import { habitsAtom } from 'state/habits/habitState';
 import type { DateRange } from '../../../../shared/types/Date';
 import { HabitWithCompletion } from '../../../../shared/types/Habit';
 
