@@ -5,7 +5,7 @@ import { timestepDisplayStringMap } from "helpers/time/timesteps";
 interface TimescaleProps {
 	timestep: Timestep;
 	labels: string[];
-	cycleTimestep: () => any;
+	cycleTimestep: () => void;
 }
 
 const Timescale = ({ labels, timestep, cycleTimestep }: TimescaleProps) => {

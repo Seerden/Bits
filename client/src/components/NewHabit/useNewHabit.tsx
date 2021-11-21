@@ -2,7 +2,7 @@ import { usePostNewHabit } from "helpers/api/mutateHabits";
 import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { useAuth } from "hooks/useAuth";
 import { useCallback, useEffect, useReducer } from "react";
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import type { NewHabit } from "../../../../shared/types/Habit";
 
 const defaultHabit: Omit<NewHabit, "userId"> = {
@@ -50,14 +50,13 @@ function reduceNewHabitForm(
 /**
  * This hook provides the functionality for the NewHabit form
  */
-export function useNewHabit(props?: any) {
+export function useNewHabit() {
 	const [newHabit, dispatchNewHabit] = useReducer(reduceNewHabitForm, defaultHabit);
-	const { data, mutate, isSuccess } = usePostNewHabit();
+	const { mutate, isSuccess } = usePostNewHabit();
 	const { currentUser: user } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	// @dev: alert successful post
 	useEffect(() => {
 		if (isSuccess) {
             if (location.pathname === '/habits') {
@@ -81,8 +80,6 @@ export function useNewHabit(props?: any) {
 		},
 		[newHabit]
 	);
-
-	// @todo: handle successful/failed mutation
 
 	return [newHabit, dispatchNewHabit, handleSubmitNewHabit] as const;
 }

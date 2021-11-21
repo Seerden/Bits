@@ -16,7 +16,7 @@ const NewHabit = (props) => {
 					<Label>Name</Label>
 					<Description>Name your habit. You can always change this later.</Description>
 					<input
-                        defaultValue={newHabit.habitName || ''}
+						defaultValue={newHabit.habitName || ""}
 						onBlur={(e) =>
 							dispatchNewHabit({ formField: "habitName", value: e.target.value })
 						}
@@ -30,7 +30,7 @@ const NewHabit = (props) => {
 					<Label>Description</Label>
 					<Description>Optional</Description>
 					<input
-                        defaultValue={newHabit.description || ''}
+						defaultValue={newHabit.description || ""}
 						onBlur={(e) =>
 							dispatchNewHabit({ formField: "description", value: e.target.value })
 						}
@@ -49,12 +49,12 @@ const NewHabit = (props) => {
 						can specify a number (e.g. "5000 steps").
 					</Description>
 					<div
-						style={{ 
-                            display: "inline-flex", 
-                            flexDirection: "row", 
-                            gap: "2.5rem",
-                            alignItems: "center",
-                        }}
+						style={{
+							display: "inline-flex",
+							flexDirection: "row",
+							gap: "2.5rem",
+							alignItems: "center",
+						}}
 					>
 						<select
 							defaultValue={newHabit.completionType}
@@ -74,23 +74,24 @@ const NewHabit = (props) => {
 							</option>
 						</select>
 						{newHabit.completionType === "interval" && (
-                            <div>
-                                <span>Target: </span>
-                                <input
-                                    className={c.Input}
-                                    type="number"
-                                    defaultValue={newHabit.completionInterval || 1}
-                                    style={{ 
-                                        display: "inline-flex",
-                                        width: "4rem" }}
-                                    onBlur={(e) =>
-                                        dispatchNewHabit({
-                                            formField: "completionInterval",
-                                            value: +e.target.value,
-                                        })
-                                    }
-                                />
-                            </div>
+							<div>
+								<span>Target: </span>
+								<input
+									className={c.Input}
+									type="number"
+									defaultValue={newHabit.completionInterval || 1}
+									style={{
+										display: "inline-flex",
+										width: "4rem",
+									}}
+									onBlur={(e) =>
+										dispatchNewHabit({
+											formField: "completionInterval",
+											value: +e.target.value,
+										})
+									}
+								/>
+							</div>
 						)}
 					</div>
 				</Section>
@@ -123,7 +124,7 @@ const NewHabit = (props) => {
 							}
 						>
 							{["day", "week", "month", "year"].map((value) => (
-								<option className={c.Option} value={value}>
+								<option key={value} className={c.Option} value={value}>
 									{value}
 								</option>
 							))}
@@ -142,13 +143,13 @@ const NewHabit = (props) => {
 					{[
 						{ formField: "startDate", label: "Start" },
 						{ formField: "endDate", label: "End" },
-					].map(({ formField, label }) => (
-						<div className={c.Field}>
+					].map(({ formField, label }, index) => (
+						<div key={index} className={c.Field}>
 							<label className={c.SubLabel}>{label}</label>
 							<input
 								onChange={(e) =>
 									dispatchNewHabit({
-										formField: formField as any,
+										formField: formField,
 										value: e.target.valueAsDate,
 									})
 								}

@@ -1,17 +1,12 @@
 import { useMutateCompletion } from "helpers/api/mutateCompletion";
 import { useToggle } from "hooks/useToggle";
 import { useCallback, useEffect } from "react";
-import {
-	RiCheckboxCircleFill,
-	RiCheckboxBlankCircleFill,
-} from "react-icons/ri";
+import { RiCheckboxCircleFill, RiCheckboxBlankCircleFill } from "react-icons/ri";
 import { Completion } from "../../../../shared/types/Completion";
 
 import "./HabitToggleInstance.scss";
 
-const HabitToggleInstance = (
-	props: Partial<Completion> & { demo?: boolean }
-) => {
+const HabitToggleInstance = (props: Partial<Completion> & { demo?: boolean }) => {
 	const base = "HabitToggleInstance";
 	const [checked, toggleChecked] = useToggle({ initial: props.completed });
 	const { mutate } = useMutateCompletion();
@@ -35,7 +30,7 @@ const HabitToggleInstance = (
 				handleClick();
 		  }
 		: (e) => {
-                e.preventDefault();
+				e.preventDefault();
 				toggleChecked();
 		  };
 
@@ -46,7 +41,12 @@ const HabitToggleInstance = (
 		},
 	};
 	return (
-		<button onClick={(e) => {e.preventDefault()}} className={`${base}`}>
+		<button
+			onClick={(e) => {
+				e.preventDefault();
+			}}
+			className={`${base}`}
+		>
 			{checked ? (
 				<RiCheckboxCircleFill {...checkboxProps} />
 			) : (

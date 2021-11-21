@@ -7,7 +7,7 @@ const colorByQuarter = {
 	1: "orange",
 	2: "greenyellow",
 	3: "green",
-    4: "forestgreen"
+	4: "forestgreen",
 };
 
 type Props = {
