@@ -1,6 +1,6 @@
 import "./ProgressIcon.scss";
 import styled, { Keyframes, keyframes } from "styled-components";
-import {} from "styled-components/cssprop";
+/// <reference types="styled-components/cssprop" />
 
 const colorByQuarter = {
 	0: "orangered",

@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
+import { NewHabit } from "../../../../shared/types/Habit";
 import c from "./NewHabit.module.scss";
 import { Description, Form, Label, Row, Section } from "./Primitives";
 import { useNewHabit } from "./useNewHabit";
 
 const NewHabit = (props) => {
-	const base = "NewHabit";
 	const [newHabit, dispatchNewHabit, handleSubmitNewHabit] = useNewHabit();
 
 	return (
@@ -149,7 +149,7 @@ const NewHabit = (props) => {
 							<input
 								onChange={(e) =>
 									dispatchNewHabit({
-										formField: formField,
+										formField: formField as keyof Omit<NewHabit, "userId">,
 										value: e.target.valueAsDate,
 									})
 								}
@@ -161,6 +161,7 @@ const NewHabit = (props) => {
 								}
 							/>
 						</div>
+
 					))}
 				</Section>
 			</Row>
