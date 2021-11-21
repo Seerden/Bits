@@ -3,10 +3,10 @@ import Timescale from "components/Timescale/Timescale";
 import NewHabitButton from "./NewHabitButton/NewHabitButton";
 import { useHabits } from "./useHabits";
 import cs from "./Habits.module.scss";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { useNavigate } from "react-router";
 
-const Habits = () => {
+const Habits = memo(() => {
 	const { habits, timestep, cycleTimestep, labels, partitionsAsTimes } = useHabits();
 	const navigate = useNavigate();
 
@@ -38,6 +38,6 @@ const Habits = () => {
 			<NewHabitButton onClick={() => navigate("/newhabit")} />
 		</div>
 	);
-};
+});
 
 export default Habits;

@@ -5,13 +5,28 @@ import { timescaleFormatters } from "helpers/time/format";
 import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { partitionDates, partitionsAsTimestamps } from "helpers/time/partitionDates";
 import { getTimestepIndex, timesteps } from "helpers/time/timesteps";
+import { useWindow } from "hooks/useWindow";
 import { useCallback, useLayoutEffect, useMemo, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { habitsAtom } from "state/habits/habitState";
 import { timescaleAtom } from "state/timescale";
 
+/**
+ * Determine amount (= "length") of date intervals to display,
+ * depending on window width
+ */
+function getLength(width: number) {
+    if (width > 1080) {
+        return 6
+    }
+    return 3
+}
+
 export function useHabits() {
-	const [length] = useState<number>(6);
+    const { width } = useWindow();
+	const length = useMemo(() => {
+        return getLength(width)
+    }, [width])
 	const { refetch } = useFetchHabits();
 	const habits = useRecoilValue(habitsAtom);
 	const [timestep, setTimestep] = useRecoilState(timescaleAtom);
