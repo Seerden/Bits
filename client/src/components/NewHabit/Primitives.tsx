@@ -19,10 +19,10 @@ export function Form(props) {
 export function Row(props) {
 	return (
 		<>
-			<section className={c.Row}>
-				<span className={c.Row__label}>{props.label}</span>
+			<fieldset className={c.Row}>
+				<legend className={c.Row__label}>{props.label}</legend>
 				<div className={c.Row__fields}>{props.children}</div>
-			</section>
+			</fieldset>
 		</>
 	);
 }
