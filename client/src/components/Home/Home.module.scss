@@ -1,10 +1,16 @@
 .Home {
-	max-width: 40rem;
+    width: 95%;
+
+    @media screen and (min-width: 768px) {
+        margin: 0 auto;
+        max-width: 60rem;
+    }
+
 	border-radius: 20px;
 	padding: 2rem;
 }
 
-.Paragraph {
+.Section {
 	background-color: #151515;
 	padding: 1.5rem 2rem;
 	margin: 1rem 0;

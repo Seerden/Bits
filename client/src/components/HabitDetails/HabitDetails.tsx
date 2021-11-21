@@ -114,7 +114,7 @@ const HabitDetails = memo(
 						</div>
 						{typeof percentage === "number" && (
 							<div className={cs.Field}>
-								<span className={cs.Label}>Success</span>
+								<span className={cs.Label}>Progress</span>
 								<div
 									style={{
 										display: "grid",
