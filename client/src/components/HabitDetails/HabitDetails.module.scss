@@ -35,6 +35,13 @@
     font-size: 1.3rem;
 }
 
+.Name {
+    width: max-content;
+    padding: 0.2rem 0.5rem;
+    background-color: #ccc;
+    color: #111;
+}
+
 .Field {
     border-left: 4px solid #333;
     max-width: 30rem;
@@ -47,10 +54,6 @@
     &:nth-of-type(1) {
         margin-top: 1rem;
     }
-
-    // &:nth-last-of-type(1) {
-    //     padding-bottom: 1rem;
-    // }
 }
 
 .Label {
@@ -58,7 +61,6 @@
     min-width: 6rem;
     display: inline-flex;
     background-color: #333;
-    // border: 1px solid #222;
     justify-content: flex-end;
     padding: 0.5rem 1rem;
     margin-left: -0.2rem;
