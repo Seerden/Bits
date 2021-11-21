@@ -10,17 +10,18 @@ export const useHeaderLinks = () => {
 
 	const isActive = useCallback(
 		(to) => {
+            // .slice(1) to exclude the leading "/"
 			return location.pathname.slice(1) === to;
 		},
 		[location]
 	);
 
 	const links = useMemo(() => {
-		const links: string[] = currentUser?.username
-			? ["habits", "logout"]
-			: ["login", "register"];
+		const paths: string[] = currentUser?.username
+			? ["home", "habits", "logout"]
+			: ["home", "login", "register"];
 
-		return links.map((view) => (
+		return paths.map((view) => (
 			<NavLink
                 key={Math.random()}
 				end

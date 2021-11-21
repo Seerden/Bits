@@ -9,7 +9,7 @@ import type { User } from "../../../shared/types/User";
 
 export function useAuth() {
 	const [currentUser, setCurrentUser] =
-		useRecoilState<Maybe<Partial<User>>>(currentUserAtom);
+		useRecoilState<Maybe<Omit<User, "password">>>(currentUserAtom);
 	const { data, mutate, isSuccess } = useLoginMutation();
 	const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ export function useAuth() {
 		login,
 		logout,
 	} as const;
-};
+}
 
 type UpdateProps = {
 	action: "set" | "remove";
@@ -61,4 +61,4 @@ function updateLocalStorageUser({ action, user }: UpdateProps) {
 	} else {
 		localStorage.removeItem("currentUser");
 	}
-};
+}

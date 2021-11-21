@@ -5,7 +5,7 @@ import Habits from "components/Habits/Habits";
 import Home from "components/Home/Home";
 import Header from "components/Layout/Header";
 import NewHabit from "components/NewHabit/NewHabit";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.scss";
 
 const App = (props) => {
@@ -14,7 +14,8 @@ const App = (props) => {
 			<BrowserRouter>
 				<Header />
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/" element={<Navigate replace to="home" />} />
+                    <Route path="home" element={<Home />}/>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
 					<Route
