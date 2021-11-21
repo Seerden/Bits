@@ -5,7 +5,7 @@ import { timescaleFormatters } from "helpers/time/format";
 import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { partitionDates, partitionsAsTimestamps } from "helpers/time/partitionDates";
 import { getTimestepIndex, timesteps } from "helpers/time/timesteps";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useLayoutEffect, useMemo, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { habitsAtom } from "state/habits/habitState";
 import { timescaleAtom } from "state/timescale";
@@ -18,7 +18,7 @@ export function useHabits() {
 	const timescaleFormatter = timescaleFormatters[timestep];
 
 	// fetch habits when this hook first loads
-	useEffect(() => {
+	useLayoutEffect(() => {
 		refetch();
 	}, []);
 
@@ -36,6 +36,10 @@ export function useHabits() {
 		return [labels, partitionsAsTimes, labelDates];
 	}, [timestep, length]);
 
+    /**
+     * Cycle through timesteps (Timestep[]) by going to either the next index, 
+     * or to index 0. For reference, cycle goes from day > week > month > year
+     */
 	const cycleTimestep = useCallback(() => {
 		const currentIndex = getTimestepIndex(timestep);
 		const nextIndex = (currentIndex + 1) % timesteps.length;

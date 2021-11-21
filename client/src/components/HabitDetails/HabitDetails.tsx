@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { useFetchCompletionsById } from "helpers/api/queryCompletions";
 import { getCompletionSuccessPercentage } from "helpers/completion/completionPercentage";
 import { useClickOutside } from "hooks/useClickOutside";
-import { memo, useEffect, useMemo, useRef } from "react";
+import { memo, useLayoutEffect, useMemo, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { timescaleAtom } from "state/timescale";
 import { Completion } from "../../../../shared/types/Completion";
@@ -35,7 +35,7 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 	}
 	useClickOutside(modalRef, handleClickOutside, ["Escape"]);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		refetch();
 	}, []);
 
@@ -85,7 +85,7 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 								}}
 							>
 								<ProgressIcon size={45} percentage={percentage} /> of{" "}
-								{habitData.completionTimescale}s completed since tracking started
+								{habitData.completionTimescale}s successful since tracking started
 							</div>
 						</Datum>
 					)}
