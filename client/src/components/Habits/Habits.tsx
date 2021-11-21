@@ -25,9 +25,15 @@ const Habits = () => {
 
 	return (
 		<div className={cs.Habits}>
-			<Timescale {...{ labels, cycleTimestep, timestep }} />
+			{habits?.length ? (
+				<>
+					<Timescale {...{ labels, cycleTimestep, timestep }} />
 
-			{habits?.length > 0 && <ul>{compactHabits}</ul>}
+					{compactHabits}
+				</>
+			) : (
+				<>It appears you haven't started tracking any habits yet.</>
+			)}
 
 			<NewHabitButton onClick={() => navigate("/newhabit")} />
 		</div>

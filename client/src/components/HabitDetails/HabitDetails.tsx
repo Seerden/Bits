@@ -49,25 +49,29 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 	);
 
 	return (
-        /* The wrapper class adds a full-screen slightly transparent background to
+		/* The wrapper class adds a full-screen slightly transparent background to
             highlight that the modal is, well, a modal
         */
 		<div className={cs.Wrapper}>
 			<div ref={modalRef} className={cs.HabitDetails}>
 				<Header>
-					Details for habit{" "}
-					<span className={cs.Name}>{habitData.habitName}</span>
+					Details for habit <span className={cs.Name}>{habitData.habitName}</span>
 				</Header>
 
 				<ul>
+					{/* DESCRIPTION */}
+					{habitData.description.length && (
+						<Datum label="Description">{habitData.description}</Datum>
+					)}
+
 					{/* TRACKING SINCE */}
 					<Datum label="Age">Tracking this habit since {trackingSince}</Datum>
 
-                    {/* HABIT COMPLETION SETTINGS */}
-                    <Datum label="Target">
-                        {/* @todo -- PLACEHOLDER */}
-                         You aim to complete this habit X times per Y interval.
-                    </Datum>
+					{/* HABIT COMPLETION SETTINGS */}
+					<Datum label="Target">
+						{/* @todo -- PLACEHOLDER */}
+						You aim to complete this habit X times per Y interval.
+					</Datum>
 
 					{/* PROGRESS */}
 					{!isNaN(percentage) && (

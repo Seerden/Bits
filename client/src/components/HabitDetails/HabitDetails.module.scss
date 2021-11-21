@@ -58,7 +58,8 @@
 
 .Label {
     font-weight: 500;
-    min-width: 6rem;
+    font-size: 0.89rem;
+    min-width: 9rem;
     display: inline-flex;
     background-color: #333;
     justify-content: flex-end;
@@ -87,7 +88,6 @@ $shadow: 0 0 0.5rem black;
     &:hover, &:active {
         box-shadow: $shadow;
     }
-
 }
 
 .Delete {

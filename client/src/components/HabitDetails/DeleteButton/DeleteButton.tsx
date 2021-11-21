@@ -41,7 +41,7 @@ function DeleteButton({ habitId }: { habitId: string }) {
 }
 
 /**
- * These two buttons are shown when a user clicks on DeleteButton. 
+ * These two buttons are shown when a user clicks on DeleteButton.
  * - DELETE:    user wants to delete habit
  * - KEEP:      user wants to keep habit.
  */
