@@ -7,6 +7,7 @@ import HabitDetails from "components/HabitDetails/HabitDetails";
 import { makeCompletionEntries } from "helpers/completion/completionEntries";
 import { useCompactHabit } from "./useCompactHabit";
 import { memo } from "react";
+import { remainingCompletionsForSuccess } from "helpers/completion/completionMessage";
 
 type CompactHabitProps = {
 	habitId: Habit["habitId"];
@@ -34,6 +35,8 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 		completionData,
 		entriesPerDay,
 	});
+	const currentIntervalIsSuccessful =
+		remainingCompletionsForSuccess(habitData, completionData) === 0;
 
 	return (
 		<li
@@ -44,7 +47,12 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 				position: "relative",
 			}}
 		>
-			<div className={`${base}`}>
+			<div
+				className={`${base}`}
+				style={{ 
+                    outline: currentIntervalIsSuccessful && "2px solid green",
+                }}
+			>
 				<span className={`${base}__name`}>
 					{!isEditing ? (
 						<span onClick={() => setIsEditing((cur) => !cur)}>{habitName}</span>
