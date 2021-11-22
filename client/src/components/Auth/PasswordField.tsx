@@ -1,7 +1,7 @@
 import { useToggle } from "hooks/useToggle";
 import { useMemo } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
-import cs from "./register.module.scss";
+import cs from "./Register/register.module.scss";
 
 type PasswordFieldProps = {
 	text: string;

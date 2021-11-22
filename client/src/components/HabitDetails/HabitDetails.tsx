@@ -58,6 +58,13 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 					Details for habit <span className={cs.Name}>{habitData.habitName}</span>
 				</Header>
 
+				<input
+					onClick={() => toggleDetails()}
+					className={cs.Close}
+					type="button"
+					value="Hide details"
+				/>
+
 				<ul>
 					{/* DESCRIPTION */}
 					{habitData.description.length > 0 && (

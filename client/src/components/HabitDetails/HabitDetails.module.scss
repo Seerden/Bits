@@ -1,124 +1,147 @@
-@use '../../style/shared/shared';
-@use '../../style/shared/color';
+@use "../../style/shared/shared";
+@use "../../style/shared/color";
 
 .Wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9;
-    background-color: rgba(#111, 0.65);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9;
+	background-color: rgba(#111, 0.65);
 }
 
 .HabitDetails {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    z-index: 10;
-    position: fixed;
-    top: 20vh;
-    background-color: #212121;
-    width: 40rem;
-    right: calc(50% - 20rem);
-    box-shadow: 0 0 3rem -0.5rem black, 0 0 0 0.3rem #444;
-    padding: 1rem 2rem;
-    padding-top: 0;
-    padding-left: 0;
-    font-size: 0.93rem;
-    border-radius: 10px;
-    padding: 2rem 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	z-index: 10;
+	position: fixed;
+	top: 20vh;
+	background-color: #212121;
+	width: 40rem;
+	right: calc(50% - 20rem);
+	box-shadow: 0 0 3rem -0.5rem black, 0 0 0 0.3rem #444;
+	padding: 1rem 2rem;
+	padding-top: 0;
+	padding-left: 0;
+	font-size: 0.93rem;
+	border-radius: 10px;
+	padding: 2rem 0;
 }
 
 .Header {
-    margin: 0.5rem 1rem;
-    margin-top: 1.5rem;
-    font-weight: 500;
-    font-size: 1.3rem;
+	margin: 0.5rem 1rem;
+	margin-top: 1.5rem;
+	font-weight: 500;
+	font-size: 1.3rem;
 }
 
 .Name {
-    width: max-content;
-    padding: 0.2rem 0.5rem;
-    background-color: #ccc;
-    color: #111;
+	width: max-content;
+	padding: 0.2rem 0.5rem;
+	background-color: #ccc;
+	color: #111;
 }
 
 .Field {
-    border-left: 4px solid #333;
-    max-width: 100%;
-    padding: 0.2rem 0;
-    padding-left: -0.2rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
+	border-left: 4px solid #333;
+	max-width: 100%;
+	padding: 0.2rem 0;
+	padding-left: -0.2rem;
+	height: 3rem;
+	display: flex;
+	align-items: center;
 
-    &:nth-of-type(1) {
-        margin-top: 1rem;
-    }
+	&:nth-of-type(1) {
+		margin-top: 1rem;
+	}
 }
 
 .Label {
-    font-weight: 500;
-    font-size: 0.89rem;
-    min-width: 9rem;
-    display: inline-flex;
-    background-color: #333;
-    justify-content: flex-end;
-    padding: 0.5rem 1rem;
-    margin-left: -0.2rem;
-    margin-right: 1rem;
+	font-weight: 500;
+	font-size: 0.89rem;
+	min-width: 9rem;
+	display: inline-flex;
+	background-color: #333;
+	justify-content: flex-end;
+	padding: 0.5rem 1rem;
+	margin-left: -0.2rem;
+	margin-right: 1rem;
 }
 
 $shadow: 0 0 0.5rem black;
 
-.Delete, .Delete__confirm, .Delete__keep {
-    @extend %default-button;
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    display: inline-flex;
-    width: max-content;
-    padding: 0.6rem 1.4rem;
-    border: 2px solid orangered;
-    margin-top: 1rem;
-    border-radius: 2px;
+.Delete,
+.Delete__confirm,
+.Delete__keep {
+	@extend %default-button;
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	display: inline-flex;
+	width: max-content;
+	padding: 0.6rem 1.4rem;
+	border: 2px solid orangered;
+	margin-top: 1rem;
+	border-radius: 2px;
 
-    font-weight: 600;
-    transition: background-color 50ms linear 30ms;
+	font-weight: 600;
+	transition: background-color 50ms linear 30ms;
 
-    &:hover, &:active {
-        box-shadow: $shadow;
-    }
+	&:hover,
+	&:active {
+		box-shadow: $shadow;
+	}
 }
 
 .Delete {
-    &:hover, &:active {
-        transform: translateY(-1px);
-        box-shadow: 0 0.5rem 0 -0.4rem orangered, $shadow;
-    }
+	&:hover,
+	&:active {
+		transform: translateY(-1px);
+		box-shadow: 0 0.5rem 0 -0.4rem orangered, $shadow;
+	}
 
-    &__confirm, &__keep {
-        justify-content: center;
-        width: 5rem;
-        border-color: #111;
-        color: azure;
-    }
+	&__confirm,
+	&__keep {
+		justify-content: center;
+		width: 5rem;
+		border-color: #111;
+		color: azure;
+	}
 
-    &__confirm {
-        transform: translateX(-5.5rem);
-        border-color: indianred;
+	&__confirm {
+		transform: translateX(-5.5rem);
+		border-color: indianred;
 
-        &:hover {
-            outline: 2px solid indianred;
-        }
-    }
+		&:hover {
+			outline: 2px solid indianred;
+		}
+	}
 
-    &__keep {
-        border-color: seagreen;
+	&__keep {
+		border-color: seagreen;
 
-        &:hover {
-            outline: 2px solid seagreen;
-        }
-    }
+		&:hover {
+			outline: 2px solid seagreen;
+		}
+	}
+}
+
+.Close {
+	@extend %default-button;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	display: inline-flex;
+    border-radius: 18px;
+	width: max-content;
+	padding: 0.6rem 1.4rem;
+	border: 2px solid transparent;
+    transition: background-color 30ms ease-out, border-color 15ms ease-in;
+    
+	&:hover {
+		border: 2px solid #444;
+        background-color: #191919;
+	}
 }
