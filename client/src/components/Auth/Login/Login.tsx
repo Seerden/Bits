@@ -1,5 +1,5 @@
 import { useLoginForm } from "./useLoginForm";
-import PasswordField from "./PasswordField";
+import PasswordField from "../PasswordField";
 import cs from "./Login.module.scss";
 
 type LoginProps = {
@@ -18,7 +18,7 @@ const Login = ({ message }: LoginProps) => {
 			}}
 		>
 			{message && <div className={cs.Message}>{message}</div>}
-            {loginMessage && <div className={cs.Message}>{loginMessage}</div>}
+			{loginMessage && <div className={cs.Message}>{loginMessage}</div>}
 			<header>
 				<h2 className={cs.Header}>Log in</h2>
 			</header>

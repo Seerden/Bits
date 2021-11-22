@@ -1,5 +1,5 @@
 import { useAuth } from "hooks/useAuth";
-import Login from "./Login";
+import Login from "./Login/Login";
 
 type PrivateProps = {
 	children: React.ReactChildren | React.ReactChild;
@@ -14,9 +14,7 @@ const Private = (props: PrivateProps) => {
 				props.children
 			) : (
 				<>
-					<Login
-						message={"You need to be logged in to view this page"}
-					/>
+					<Login message={"You need to be logged in to view this page"} />
 				</>
 			)}
 		</>

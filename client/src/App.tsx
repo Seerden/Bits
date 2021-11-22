@@ -1,6 +1,6 @@
-import Login from "components/Auth/Login";
+import Login from "components/Auth/Login/Login";
 import Private from "components/Auth/Private";
-import Register from "components/Auth/Register";
+import Register from "components/Auth/Register/Register";
 import Habits from "components/Habits/Habits";
 import Home from "components/Home/Home";
 import Header from "components/Layout/Header";
@@ -15,7 +15,7 @@ const App = (props) => {
 				<Header />
 				<Routes>
 					<Route path="/" element={<Navigate replace to="home" />} />
-                    <Route path="home" element={<Home />}/>
+					<Route path="home" element={<Home />} />
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
 					<Route

@@ -1,6 +1,5 @@
-import { useCallback, useMemo } from "react";
 import cs from "./register.module.scss";
-import PasswordField from "./PasswordField";
+import PasswordField from "../PasswordField";
 import { useRegister } from "./useRegister";
 
 const Register = (props) => {
@@ -8,9 +7,9 @@ const Register = (props) => {
 
 	return (
 		<form className={cs.Register} onSubmit={handleSubmit}>
-            <header>
-                <h2>Register</h2>
-            </header>
+			<header>
+				<h2>Register</h2>
+			</header>
 			<section className={cs.Register__field}>
 				<label htmlFor="username">Username</label>
 				<input type="text" name="username" onChange={handleChange} />
@@ -30,11 +29,7 @@ const Register = (props) => {
 					style={{ borderColor }}
 				/>
 			</section>
-			<input
-				type="submit"
-				value="Register"
-				className={cs.Register__submit}
-			/>
+			<input type="submit" value="Register" className={cs.Register__submit} />
 		</form>
 	);
 };
