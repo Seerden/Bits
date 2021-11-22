@@ -49,11 +49,11 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 		>
 			<div
 				className={`${base}`}
-				style={{ 
-                    outline: currentIntervalIsSuccessful && "2px solid green",
-                }}
+				style={{
+					outline: currentIntervalIsSuccessful && "2px solid green",
+				}}
 			>
-				<span className={`${base}__name`}>
+				<span title="Click to edit habit name" className={`${base}__name`}>
 					{!isEditing ? (
 						<span onClick={() => setIsEditing((cur) => !cur)}>{habitName}</span>
 					) : (
@@ -71,7 +71,11 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 						<HabitEntry key={idx} completionEntries={partition} />
 					))}
 				</ul>
-				<button onClick={toggleDetails} className={cs.Button}>
+				<button
+					title="Click to show habit details"
+					onClick={toggleDetails}
+					className={cs.Button}
+				>
 					{!showDetails ? <BiExpandAlt className={cs.Expand} /> : <BiX className={cs.Close} />}
 				</button>
 			</div>
