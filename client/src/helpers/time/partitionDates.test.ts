@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { dateTruncateMap, isSameYear, partitionDates } from "./partitionDates";
+import { dateToIdentifierMappings, isSameYear, partitionDates } from "./partitionDates";
 
 const jan1 = dayjs('2021-01-01');
 const lastJan1 = dayjs('2020-01-01');
@@ -20,10 +20,10 @@ describe('isSameYear', () => {
 describe('truncateMap', () => {
     describe('truncateFn(day)', () => {
         test.each([
-            [dateTruncateMap['day'], jan1, '2021-1'],
-            [dateTruncateMap['week'], jan1, '2021-1'],
-            [dateTruncateMap['month'], jan1, '2021-0'],
-            [dateTruncateMap['year'], jan1, 2021]
+            [dateToIdentifierMappings['day'], jan1, '2021-1'],
+            [dateToIdentifierMappings['week'], jan1, '2021-1'],
+            [dateToIdentifierMappings['month'], jan1, '2021-0'],
+            [dateToIdentifierMappings['year'], jan1, 2021]
         ])('%i %i', (truncateFn, date, expected) => {
             expect(truncateFn(date)).toBe(expected)
         });

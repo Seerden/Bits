@@ -6,14 +6,14 @@ import { asDates, asTimes } from "./asDates";
 dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
 
-type TruncateFn = {
+type DateIdentifiers = {
 	[K in Timestep]: (d: Dayjs) => number | string;
 };
 
 // @todo: What happens if the displayed date range spans multiple years?
 //  In that case, d.month() for two dates a year apart will be equal,
 //      though they shouldn't be in the same partition
-export const dateTruncateMap: TruncateFn = {
+export const dateToIdentifierMappings: DateIdentifiers = {
 	day: (d) => `${d.year()}-${d.dayOfYear()}`,
 	week: (d) => `${d.year()}-${d.week()}`,
 	month: (d) => `${d.year()}-${d.month()}`,
@@ -58,9 +58,9 @@ export function partitionDates(
 	dates: Date[],
 	partitions: Date[],
 	timescale: Timestep,
-	returnIndices: boolean = false
+	returnIndices = false
 ) {
-	const truncateFn = dateTruncateMap[timescale];
+	const truncateFn = dateToIdentifierMappings[timescale];
 	const partitionedDates = partitions.map((partitionLabelDate) => {
 		const truncatedLabel = truncateFn(dayjs(partitionLabelDate));
 		const datesForPartition = dates.filter(

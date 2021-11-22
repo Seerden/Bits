@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { listDatesBetween } from "helpers/time/dateList";
-import { dateTruncateMap } from "helpers/time/partitionDates";
+import { dateToIdentifierMappings } from "helpers/time/partitionDates";
 import { Timestep } from "types/time";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
@@ -32,12 +32,12 @@ export function isSuccessfulCompletion(
  * Take a habit's completionData. Map all entries to the `timescale` interval in which
  * they belong, and count the number of successful completion entries in each interval
  */
-function completionSuccessCountPerPartition(
+export function completionSuccessCountPerPartition(
 	completionData: Completion[],
 	habitData: Habit,
 	timescale: Timestep
 ) {
-	const truncator = dateTruncateMap[timescale];
+	const truncator = dateToIdentifierMappings[timescale];
 
 	return completionData.reduce((acc, entry) => {
 		const label = truncator(dayjs(entry.habitEntryDate));
