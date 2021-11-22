@@ -3,7 +3,7 @@ import { DateOrDayjs, Timestep } from "types/time";
 import { dateToIdentifierMappings } from "./partitionDates";
 
 /**
- * Take the current date and get its timestep-dependent identifier.
+ * Map a date to its timestep-dependent identifier.
  * 
  * Example:
  * - date: February 1, 2021

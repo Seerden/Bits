@@ -1,35 +1,33 @@
-@use '../../style/shared/shared';
+@use "../../style/shared/shared";
 
 .CompactHabit {
-    outline: 1px solid #222;
-    width: max-content;
+	outline: 1px solid #222;
+	width: max-content;
+	display: flex;
+	padding: 0.5rem 1rem;
+	box-shadow: 0.2rem 0.2rem 1rem 0 black;
+	border: 1px solid #333;
+	border-radius: 2px;
+	align-items: center;
 
-    width: max-content;
+	&:nth-of-type(1) {
+		margin-top: 1rem;
+	}
 
-    display: flex;
-    padding: 1rem;
-    box-shadow: 0.2rem 0.2rem 1rem 0 black;
-    margin: 0.8rem 0;
-    border: 1px solid #333;
-    border-radius: 10px 0;
+	&__name {
+		font-weight: 500;
+		display: block;
+		font-size: 1rem;
+		width: shared.$habitNameWidth; // match shared.$width - shared.$timeline-entry-margin (horizontal part)
 
-    align-items: center;
+		span {
+			display: inline-block;
+			width: shared.$habitNameWidth;
+		}
+	}
 
-    &__name {
-        font-weight: 500;
-        display: block;
-        font-size: 1rem;
-        padding: 0rem;
-        width: shared.$habitNameWidth;  // match shared.$width - shared.$timeline-entry-margin (horizontal part)
-
-        span {
-            display: inline-block;
-            width: shared.$habitNameWidth;
-        }
-    }
-
-    &__list {
-        display: flex;
-        flex-direction: row;
-    }
+	&__list {
+		display: flex;
+		flex-direction: row;
+	}
 }

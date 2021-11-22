@@ -58,16 +58,18 @@
 		overflow: hidden;
 		height: 2.2rem;
 		align-self: center;
-		background-color: #222;
-		outline: 0.2rem solid #555;
+        background-color: #111;
+		outline: 4px solid #444;
+        font-size: 0.7rem;
 		color: azure;
 		border: none;
-		border-radius: 0.5rem;
+        border-radius: 3%;
+        box-shadow: 0 0.3rem 0 0 #666, 0 -0.3rem 0 0 #666;
+
+        transition: all 50ms ease-in;
 
 		&:hover {
-			background-color: #111;
-			box-shadow: 0rem 0rem 0.5rem 0 black, 0 0.15rem 0.5rem -0.2rem black;
-			transform: translateY(-2px);
+			background-color: #333;
 		}
 	}
 }
