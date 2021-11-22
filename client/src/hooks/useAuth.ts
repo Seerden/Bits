@@ -5,17 +5,13 @@ import { useRecoilState } from "recoil";
 import { currentUserAtom } from "state/auth";
 import { Credentials } from "types/credentials";
 import type { Maybe } from "../../../shared/types/Maybe";
-import type { User } from "../../../shared/types/User";
+import type { UserWithoutPassword } from "../../../shared/types/User";
 
 export function useAuth() {
 	const [currentUser, setCurrentUser] =
-		useRecoilState<Maybe<Omit<User, "password">>>(currentUserAtom);
+		useRecoilState<Maybe<UserWithoutPassword>>(currentUserAtom);
 	const { data, mutate, isSuccess } = useLoginMutation();
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		data && console.log(data);
-	}, [data]);
 
 	useEffect(() => {
 		if (data && isSuccess) {
@@ -52,7 +48,7 @@ export function useAuth() {
 
 type UpdateProps = {
 	action: "set" | "remove";
-	user?: any;
+	user?: UserWithoutPassword;
 };
 
 function updateLocalStorageUser({ action, user }: UpdateProps) {

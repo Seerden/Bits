@@ -1,7 +1,10 @@
 import { useAuth } from "./useAuth";
 
-// actual URLS will all be relative, but new URL() wants an actual URL, 
-// so temporarily prepend URL with this, and return url.pathname+url.search
+/*  the URLs we use (e.g. in Axios/fetch calls) will all be relative, 
+    but new URL() wants an actual URL, so temporarily prepend the URL with 
+    baseUrl to trick new URL() into thinking it's dealing with a proper URL. 
+    In the end, we can just splice off baseUrl by only returning url.pathname + url.search 
+*/
 const baseUrl = "http://localhost"  
 
 /**

@@ -10,9 +10,10 @@ const Habits = memo(() => {
 	const { habits, timestep, cycleTimestep, labels, partitionsAsTimes } = useHabits();
 	const navigate = useNavigate();
 
+	// derive <CompactHabit />[] from habits state
 	const compactHabits = useMemo(
 		() =>
-			habits?.length > 0 &&
+			habits?.length &&
 			habits.map(({ habitData }, index) => (
 				<CompactHabit
 					key={index}

@@ -3,3 +3,5 @@ export type User = {
     userId: string,
     password: string,
 }
+
+export type UserWithoutPassword = Omit<User, "password">;
