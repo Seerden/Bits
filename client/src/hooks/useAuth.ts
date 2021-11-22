@@ -10,7 +10,7 @@ import type { UserWithoutPassword } from "../../../shared/types/User";
 export function useAuth() {
 	const [currentUser, setCurrentUser] =
 		useRecoilState<Maybe<UserWithoutPassword>>(currentUserAtom);
-	const { data, mutate, isSuccess } = useLoginMutation();
+	const { data, mutate, isSuccess, error } = useLoginMutation();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -43,6 +43,7 @@ export function useAuth() {
 		currentUser,
 		login,
 		logout,
+        error
 	} as const;
 }
 

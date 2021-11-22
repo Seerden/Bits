@@ -7,7 +7,7 @@ type LoginProps = {
 };
 
 const Login = ({ message }: LoginProps) => {
-	const { handleSubmit, handleInputChangeOrBlur } = useLoginForm();
+	const { handleSubmit, handleInputChangeOrBlur, message: loginMessage } = useLoginForm();
 
 	return (
 		<form
@@ -18,6 +18,7 @@ const Login = ({ message }: LoginProps) => {
 			}}
 		>
 			{message && <div className={cs.Message}>{message}</div>}
+            {loginMessage && <div className={cs.Message}>{loginMessage}</div>}
 			<header>
 				<h2 className={cs.Header}>Log in</h2>
 			</header>

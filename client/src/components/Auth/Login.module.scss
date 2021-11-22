@@ -1,13 +1,14 @@
 @use '../../style/shared/shared';
 
 $gap: 0.5rem;
+$pad-x: 4rem;
 
 .Form {
     margin: 0 auto;
-    width: max-content;
+    width: 30rem;
     margin-top: 2rem;
 
-    padding: 2rem 4rem;
+    padding: 2rem $pad-x;
     @extend %box;
 
     label {
@@ -66,8 +67,9 @@ $gap: 0.5rem;
     color: black;
     font-weight: 500;
     font-size: 1.1em;
+    width: 30rem;
+    margin-left: -$pad-x;
     padding: 1rem 2rem;
-    max-width: 100%;
     margin-bottom: 1rem;
     border-radius: 5px;
     box-shadow: 0 0.3rem 0.8rem black;
