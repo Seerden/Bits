@@ -17,9 +17,7 @@ const NewHabit = (props) => {
 					<Description>Name your habit. You can always change this later.</Description>
 					<input
 						defaultValue={newHabit.habitName || ""}
-						onBlur={(e) =>
-							dispatchNewHabit({ formField: "habitName", value: e.target.value })
-						}
+						onBlur={(e) => dispatchNewHabit({ formField: "habitName", value: e.target.value })}
 						type="text"
 						className={c.Input}
 						style={{ width: "8rem" }}
@@ -45,15 +43,15 @@ const NewHabit = (props) => {
 				<Section>
 					<Label>Type</Label>
 					<Description>
-						A toggle means you either complete the task or not, but with an interval you
-						can specify a number (e.g. "5000 steps").
+						A toggle means you either complete the task or not, but with an interval you can
+						specify a number (e.g. "5000 steps").
 					</Description>
 					<div
 						style={{
 							display: "inline-flex",
 							flexDirection: "row",
-							gap: "2.5rem",
 							alignItems: "center",
+                            justifyContent: "space-between"
 						}}
 					>
 						<select
@@ -74,23 +72,46 @@ const NewHabit = (props) => {
 							</option>
 						</select>
 						{newHabit.completionType === "interval" && (
-							<div>
+							<div
+								style={{
+									display: "flex",
+                                    gap: "0.6rem",
+                                    alignItems: "center",
+									flexDirection: "row",
+                                    justifyContent: "space-between"
+								}}
+							>
 								<span>Target: </span>
-								<input
-									className={c.Input}
-									type="number"
-									defaultValue={newHabit.completionInterval || 1}
-									style={{
-										display: "inline-flex",
-										width: "4rem",
-									}}
-									onBlur={(e) =>
-										dispatchNewHabit({
-											formField: "completionInterval",
-											value: +e.target.value,
-										})
-									}
-								/>
+								<p>
+									<input
+										className={c.Input}
+										type="number"
+										defaultValue={newHabit.completionInterval || 1}
+										style={{
+											display: "inline-flex",
+											width: "3rem",
+										}}
+										onBlur={(e) =>
+											dispatchNewHabit({
+												formField: "completionInterval",
+												value: +e.target.value,
+											})
+										}
+									/>
+									<input
+										type="text"
+										name="unit"
+										className={c.Input}
+										style={{ width: "3.5rem" }}
+										placeholder="parsec"
+										onBlur={(e) =>
+											dispatchNewHabit({
+												formField: "unit",
+												value: e.target.value,
+											})
+										}
+									/>
+								</p>
 							</div>
 						)}
 					</div>
@@ -137,8 +158,8 @@ const NewHabit = (props) => {
 				<Section>
 					<Label>Date range</Label>
 					<Description>
-						Specify how long you want to track the habit for. You don't have to fill in
-						the 'End' date if you want to keep tracking forever.
+						Specify how long you want to track the habit for. You don't have to fill in the
+						'End' date if you want to keep tracking forever.
 					</Description>
 					{[
 						{ formField: "startDate", label: "Start" },
@@ -156,12 +177,10 @@ const NewHabit = (props) => {
 								type="date"
 								className={c.Input}
 								defaultValue={
-									formField === "startDate" &&
-									dayjs(newHabit.startDate).format("YYYY-MM-DD")
+									formField === "startDate" && dayjs(newHabit.startDate).format("YYYY-MM-DD")
 								}
 							/>
 						</div>
-
 					))}
 				</Section>
 			</Row>

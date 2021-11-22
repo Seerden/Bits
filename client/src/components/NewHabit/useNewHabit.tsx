@@ -14,6 +14,7 @@ const defaultHabit: Omit<NewHabit, "userId"> = {
 	completionType: "toggle",
 	completionInterval: null,
 	completionTimescale: "day",
+    unit: ""
 };
 
 // @todo: this doesn't quite accomplish what I want
@@ -30,11 +31,11 @@ type ReducerProps<T extends keyof typeof defaultHabit> = {
  * and whether the completion settings are correct
  */
 function isValidNewHabit(newHabit: Omit<NewHabit, "userId">): boolean {
-	const { habitName, completionType, completionInterval } = newHabit;
+	const { habitName, completionType, completionInterval, unit } = newHabit;
 
 	const hasValidName = habitName.length > 0;
 	const hasValidCompletion =
-		(completionType === "interval" && completionInterval > 0) ||
+		(completionType === "interval" && completionInterval > 0 && unit.length > 0 ) ||
 		completionType === "toggle";
 
 	return hasValidName && hasValidCompletion;

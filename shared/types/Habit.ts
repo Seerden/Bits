@@ -21,7 +21,8 @@ export type NewHabit = {
     completionFrequency: number,
     completionInterval: number,
     startDate?: Date,
-    endDate?: Date
+    endDate?: Date,
+    unit?: string
 };
 
 export interface Habit extends NewHabit {
