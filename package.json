@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start-dev": "concurrently \"npm:serve --prefix ./client\" \"npm:start-dev --prefix ./server\"",
+        "dev": "concurrently \"npm:serve --prefix ./client\" \"npm:start-dev --prefix ./server\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],

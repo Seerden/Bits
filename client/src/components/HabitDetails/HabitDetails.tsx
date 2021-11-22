@@ -60,12 +60,12 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 
 				<ul>
 					{/* DESCRIPTION */}
-					{habitData.description.length && (
+					{habitData.description.length > 0 && (
 						<Datum label="Description">{habitData.description}</Datum>
 					)}
 
 					{/* TRACKING SINCE */}
-					<Datum label="Age">Tracking this habit since {trackingSince}</Datum>
+					<Datum label="Age">Tracking since {trackingSince}</Datum>
 
 					{/* HABIT COMPLETION SETTINGS */}
 					<Datum label="Target">

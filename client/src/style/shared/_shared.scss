@@ -1,3 +1,5 @@
+@use './color';
+
 $width: 6rem;
 
 $timeline-entry-margin: 0 1rem;
@@ -31,11 +33,15 @@ $habitEntryMarginSmall: 0.3rem;
 }
 
 %outline-active {
-    
     &:hover,
 	&:active,
 	&:focus {
         transition: border-color 60ms ease-out;
 		border-color: #bbb;
 	}
+}
+
+%box {
+    border: 3px solid color.$secondary;
+    box-shadow: 0 0 0.8rem 0 #111;
 }

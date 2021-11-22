@@ -36,7 +36,7 @@ export function useAuth() {
 
 	const logout = () => {
 		updateLocalStorageUser({ action: "remove" });
-		setCurrentUser(null);
+		setCurrentUser({ username: null, userId: null });
 	};
 
 	return {

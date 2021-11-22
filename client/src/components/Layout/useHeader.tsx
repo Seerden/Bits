@@ -44,7 +44,5 @@ export const useHeaderLinks = () => {
 		));
 	}, [currentUser, location]);
 
-	console.log(location.pathname);
-
 	return links;
 };

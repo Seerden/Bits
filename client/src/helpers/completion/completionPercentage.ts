@@ -13,7 +13,10 @@ import { Habit } from "../../../../shared/types/Habit";
  * @note We could loosen up requirements for completion of interval habits by specifying
  *  an optional threshold (e.g. 90% towards the target could be 'successful', still)
  */
-export function isSuccessfulCompletion(completion: Completion, habitData: Partial<Habit>) {
+export function isSuccessfulCompletion(
+	completion: Completion,
+	habitData: Partial<Habit>
+) {
 	const { completed, rangeValue } = completion;
 	const { completionType, completionInterval } = habitData;
 

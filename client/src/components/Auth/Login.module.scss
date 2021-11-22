@@ -1,0 +1,74 @@
+@use '../../style/shared/shared';
+
+$gap: 0.5rem;
+
+.Form {
+    margin: 0 auto;
+    width: max-content;
+    margin-top: 2rem;
+
+    padding: 2rem 4rem;
+    @extend %box;
+
+    label {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+    }
+
+    input {
+        &[type="text"], &[type="password"] {
+            width: 11rem;
+            @extend %outline-active;
+
+            background-color: #222;
+            border: 3px solid #555;
+            color: azure;
+            font-size: 0.95rem;
+            line-height: 2rem;
+            border-radius: 3px;
+            text-indent: $gap;
+        }
+    }
+}
+
+.Button {
+    margin-top: calc(2 * $gap);
+    display: flex;
+    justify-content: center;
+    line-height: 2rem;
+    font-size: 0.9em;
+    padding: 0.6rem 3rem;
+    background-color: #111;
+    border: 3px solid #555;
+    color: azure;
+    box-shadow: 0 0.2rem 0.5rem 0 black;
+    width: calc(11rem/2);
+
+    @extend %outline-active;
+}
+
+.Field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    width: max-content;
+}
+
+.Header {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: $gap;
+}
+
+.Message {
+    background-color: deepskyblue;
+    color: black;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 1rem 2rem;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0.3rem 0.8rem black;
+}

@@ -1,6 +1,6 @@
 import { useLoginForm } from "./useLoginForm";
-import cs from "./register.module.scss";
 import PasswordField from "./PasswordField";
+import cs from "./Login.module.scss";
 
 type LoginProps = {
 	message?: string;
@@ -10,37 +10,36 @@ const Login = ({ message }: LoginProps) => {
 	const { handleSubmit, handleInputChangeOrBlur } = useLoginForm();
 
 	return (
-		<>
-			{message && <div className={cs.Register__message}>{message}</div>}
-
-			<form
-				className={`${cs.Register} ${cs.Form}`}
-				onSubmit={(e) => {
-					e.preventDefault();
-					handleSubmit();
-				}}
-			>
-				<header>
-					<h2>Log in</h2>
-				</header>
-				<section className={cs.Register__field}>
-					<p style={{ marginBottom: "1rem" }}>
-						<label htmlFor="username">Username</label>
-						<input
-							type="text"
-							name="username"
-							onChange={(e) => handleInputChangeOrBlur(e, "username")}
-						/>
-					</p>
+		<form
+			className={cs.Form}
+			onSubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
+			{message && <div className={cs.Message}>{message}</div>}
+			<header>
+				<h2 className={cs.Header}>Log in</h2>
+			</header>
+			<fieldset>
+				<p className={cs.Field}>
+					<label htmlFor="username">Username</label>
+					<input
+						type="text"
+						name="username"
+						onChange={(e) => handleInputChangeOrBlur(e, "username")}
+					/>
+				</p>
+				<p className={cs.Field}>
 					<PasswordField
 						htmlFor="password"
 						text="Password"
 						handleChange={(e) => handleInputChangeOrBlur(e, "password")}
 					/>
-				</section>
-				<input className={cs.Register__submit} type="submit" value="Log me in!" />
-			</form>
-		</>
+				</p>
+				<input className={cs.Button} type="submit" value="Log me in!" />
+			</fieldset>
+		</form>
 	);
 };
 

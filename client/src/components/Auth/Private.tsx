@@ -10,7 +10,7 @@ const Private = (props: PrivateProps) => {
 
 	return (
 		<>
-			{currentUser ? (
+			{currentUser?.username ? (
 				props.children
 			) : (
 				<>
