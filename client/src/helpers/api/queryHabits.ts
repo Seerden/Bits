@@ -3,8 +3,7 @@ import dayjs from "dayjs";
 import { useAuth } from "hooks/useAuth";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useSetRecoilState } from "recoil";
-import { habitsAtom } from "state/habits/habitState";
+import { useHabitsState } from "state/habits/habitFamily";
 import type { DateRange } from "../../../../shared/types/Date";
 import { HabitWithCompletion } from "../../../../shared/types/Habit";
 
@@ -40,9 +39,9 @@ const defaultDateRange = {
  * there's no need to preventively complicate things by anticipating that usecase
  */
 export function useFetchHabits() {
-	const setHabits = useSetRecoilState(habitsAtom);
 	const [dateRange, setDateRange] = useState<DateRange>(defaultDateRange);
 	const { username } = useAuth().currentUser;
+	const { setHabitsInFamily } = useHabitsState();
 	const { data, refetch } = useQuery(
 		["fetchHabits", dateRange, username],
 		() =>
@@ -54,7 +53,8 @@ export function useFetchHabits() {
 
 	useEffect(() => {
 		if (data) {
-			setHabits(data);
+			// @state-refactor post-refactor
+			setHabitsInFamily(data);
 		}
 	}, [data]);
 

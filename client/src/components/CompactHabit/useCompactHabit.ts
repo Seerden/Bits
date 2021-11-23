@@ -3,11 +3,11 @@ import { useClickOutside } from "hooks/useClickOutside";
 import { useToggle } from "hooks/useToggle";
 import { useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { habitByIdState } from "state/habits/habitState";
+import { habitsState } from "state/habits/habitFamily";
 import { Habit } from "../../../../shared/types/Habit";
 
 export function useCompactHabit(habitId: Habit["habitId"]) {
-	const { habitData, completionData } = useRecoilValue(habitByIdState(habitId));
+	const { habitData, completionData } = useRecoilValue(habitsState(habitId));
 	const [isEditing, setIsEditing] = useState<boolean>(false);
 	const [habitName, setHabitName] = useState<string>(habitData.habitName);
 	const { mutate } = usePutHabit();
