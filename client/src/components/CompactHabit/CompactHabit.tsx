@@ -1,5 +1,4 @@
 import { Habit } from "../../../../shared/types/Habit";
-import "./CompactHabit.scss";
 import HabitEntry from "components/HabitEntry/HabitEntry";
 import { BiExpandAlt, BiX } from "react-icons/bi";
 import cs from "./CompactHabit.module.scss";
@@ -15,7 +14,6 @@ type CompactHabitProps = {
 };
 
 const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) => {
-	const base = "CompactHabit";
 	const {
 		habitData,
 		completionData,
@@ -27,8 +25,8 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 		handleBlur,
 		inputRef,
 	} = useCompactHabit(habitId);
-	const { completionFrequency, completionTimescale } = habitData;
-	const entriesPerDay = completionTimescale === "day" ? completionFrequency : 1;
+	const entriesPerDay =
+		habitData.completionTimescale === "day" ? habitData.completionFrequency : 1;
 	const completionEntries = makeCompletionEntries({
 		partitionsAsTimes,
 		habitData,
@@ -48,25 +46,19 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 			}}
 		>
 			<div
-				className={`${base}`}
+				className={cs.CompactHabit}
 				style={{
 					outline: currentIntervalIsSuccessful && "2px solid green",
 				}}
 			>
-				<span title="Click to edit habit name" className={`${base}__name`}>
+				<span title="Click to edit habit name" className={cs.NameField}>
 					{!isEditing ? (
 						<span onClick={() => setIsEditing((cur) => !cur)}>{habitName}</span>
 					) : (
-						<input
-							ref={inputRef}
-							className={`${base}__name--input`}
-							type="text"
-							defaultValue={habitName}
-							onBlur={handleBlur}
-						/>
+						<input ref={inputRef} type="text" defaultValue={habitName} onBlur={handleBlur} />
 					)}
 				</span>
-				<ul className={`${base}__list`}>
+				<ul className={cs.List}>
 					{completionEntries.map((partition, idx) => (
 						<HabitEntry key={idx} completionEntries={partition} />
 					))}

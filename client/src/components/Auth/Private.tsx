@@ -1,4 +1,5 @@
 import { useAuth } from "hooks/useAuth";
+import { useMemo } from "react";
 import Login from "./Login/Login";
 
 type PrivateProps = {
@@ -7,10 +8,11 @@ type PrivateProps = {
 
 const Private = (props: PrivateProps) => {
 	const { currentUser } = useAuth();
+	const isLoggedIn = useMemo(() => currentUser.username?.length > 0, [currentUser]);
 
 	return (
 		<>
-			{currentUser?.username ? (
+			{isLoggedIn ? (
 				props.children
 			) : (
 				<>

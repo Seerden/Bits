@@ -15,9 +15,7 @@ import {
  * @dev
  */
 export async function getHabits(options?: any) {
-    const rows = await makePooledQuery(constructAllHabitsQuery());
-
-    return rows;
+    return await makePooledQuery(constructAllHabitsQuery());
 };
 
 /**

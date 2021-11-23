@@ -20,19 +20,19 @@ export function useRegister() {
 		return password && repeatPassword && password === repeatPassword;
 	}, [formValue]);
 
-    const borderColor = useMemo(() => {
-        const { password, repeatPassword } = formValue;
+	const borderColor = useMemo(() => {
+		const { password, repeatPassword } = formValue;
 
-        if (match) { 
-            return 'forestgreen';
-        }
+		if (match) {
+			return "forestgreen";
+		}
 
-        if (password?.length && repeatPassword?.length && !match) {
-            return 'orangered'
-        }
+		if (password?.length && repeatPassword?.length && !match) {
+			return "orangered";
+		}
 
-        return '';
-    }, [match, formValue])
+		return "";
+	}, [match, formValue]);
 
 	function handleChange(e) {
 		const { value, name } = e.target;
@@ -51,7 +51,7 @@ export function useRegister() {
 			const { username, password } = formValue;
 
 			if (username.length > 0 && password.length > 0) {
-				// @todo: is it worth enforcing stronger passwords?
+				/* @note: is it worth enforcing stronger passwords? */
 				mutate({ username, password });
 			}
 		},
@@ -60,7 +60,7 @@ export function useRegister() {
 
 	return {
 		match,
-        borderColor,
+		borderColor,
 		handleChange,
 		handleSubmit,
 	} as const;

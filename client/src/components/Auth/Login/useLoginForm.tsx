@@ -26,12 +26,17 @@ export function useLoginForm() {
 		}
 	}, [credentials]);
 
-	function handleInputChangeOrBlur(
-		e: React.ChangeEvent<HTMLInputElement>,
-		field: keyof Credentials
-	) {
-		const { value } = e.target;
-		setCredentials((cur) => ({ ...cur, [field]: value }));
+	/**
+	 * onChange/onBlur event handler that sets credentials[name] to `value`,
+	 * where { name, value } = e.target.
+	 *
+	 * @note For this function to work properly, make sure that the input
+	 * that this handler controls is controlled, and that its `name`  matches
+	 * the `credentials` property we want it to control.
+	 */
+	function handleInputChangeOrBlur(e: React.ChangeEvent<HTMLInputElement>) {
+		const { name, value } = e.target;
+		setCredentials((cur) => ({ ...cur, [name]: value }));
 	}
 
 	return { handleSubmit, handleInputChangeOrBlur, message };

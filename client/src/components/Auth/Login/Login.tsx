@@ -25,17 +25,13 @@ const Login = ({ message }: LoginProps) => {
 			<fieldset>
 				<p className={cs.Field}>
 					<label htmlFor="username">Username</label>
-					<input
-						type="text"
-						name="username"
-						onChange={(e) => handleInputChangeOrBlur(e, "username")}
-					/>
+					<input type="text" name="username" onChange={handleInputChangeOrBlur} />
 				</p>
 				<p className={cs.Field}>
 					<PasswordField
 						htmlFor="password"
 						text="Password"
-						handleChange={(e) => handleInputChangeOrBlur(e, "password")}
+						onChange={handleInputChangeOrBlur}
 					/>
 				</p>
 				<input className={cs.Button} type="submit" value="Log me in!" />

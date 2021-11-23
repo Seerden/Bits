@@ -1,48 +1,79 @@
-@use '../../style/shared/shared';
+@use "../../style/shared/shared";
 
-.Button {
-    @extend %default-button;
-    justify-self: center;
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    max-width: 3rem;
-    height: 100%;
-    margin: 0 0.8rem;
-    display: flex;
-    justify-content: center;
-    background-color: #181818;
-    border-radius: 10%;
+.CompactHabit {
+	outline: 1px solid #222;
+	width: max-content;
+	display: flex;
+	padding: 0.5rem 1rem;
+	box-shadow: 0.2rem 0.2rem 1rem 0 black;
+	border: 1px solid #333;
+	border-radius: 2px;
+	align-items: center;
 
-    transition: all 80ms linear;
-    box-shadow: 0 0 0 0.15rem #333;
-    // box-shadow: 0.2rem 0.2rem 0 0.1rem slateblue, -0.2rem -0.2rem 0 0.1rem deepskyblue;
-
-    &:hover {
-        background-color: #333;
-        border-radius: 5px;
-        // box-shadow: -0.2rem 0.2rem 0 0.1rem slateblue, 0.2rem -0.2rem 0 0.1rem deepskyblue;
-    }
+	&:nth-of-type(1) {
+		margin-top: 1rem;
+	}
 }
 
-.Expand, .Close {
-    width: 2rem;
-    height: 2rem;
-    padding: 0.65rem;
-    transition: all 20ms ease-in-out;
-    transform: scale(1.1);
+.NameField {
+	font-weight: 500;
+	display: block;
+	font-size: 1rem;
+	width: shared.$habitNameWidth; // match shared.$width - shared.$timeline-entry-margin (horizontal part)
+
+	span {
+		display: inline-block;
+		width: shared.$habitNameWidth;
+	}
+}
+
+.List {
+    display: flex;
+    flex-direction: row;
+}
+
+.Button {
+	@extend %default-button;
+	justify-self: center;
+	align-self: center;
+	align-items: center;
+	justify-content: center;
+	max-width: 3rem;
+	height: 100%;
+	margin: 0 0.8rem;
+	display: flex;
+	justify-content: center;
+	background-color: #181818;
+	border-radius: 10%;
+	box-shadow: 0 0 0 0.15rem #333;
+
+	transition: all 80ms linear;
+
+	&:hover {
+		background-color: #333;
+		border-radius: 5px;
+	}
+}
+
+.Expand,
+.Close {
+	width: 2rem;
+	height: 2rem;
+	padding: 0.65rem;
+	transition: all 20ms ease-in-out;
+	transform: scale(1.1);
 }
 
 .Expand {
-    transform: rotate(45deg);
+	transform: rotate(45deg);
 
-    &:hover {
-        transform: rotate(-45deg);
-    }
+	&:hover {
+		transform: rotate(-45deg);
+	}
 }
 
 .Close {
-    transition: transform 50ms ease-in;
+	transition: transform 50ms ease-in;
 
-    transform: scale(1.5);
+	transform: scale(1.5);
 }

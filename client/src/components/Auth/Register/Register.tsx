@@ -1,8 +1,8 @@
-import cs from "./register.module.scss";
+import cs from "./Register.module.scss";
 import PasswordField from "../PasswordField";
 import { useRegister } from "./useRegister";
 
-const Register = (props) => {
+const Register = () => {
 	const { match, handleChange, handleSubmit, borderColor } = useRegister();
 
 	return (
@@ -19,13 +19,13 @@ const Register = (props) => {
 				<PasswordField
 					htmlFor="password"
 					text="Password"
-					handleChange={handleChange}
+					onChange={handleChange}
 					style={{ borderColor }}
 				/>
 				<PasswordField
 					htmlFor="repeatPassword"
 					text="Repeat password"
-					handleChange={handleChange}
+					onChange={handleChange}
 					style={{ borderColor }}
 				/>
 			</section>
