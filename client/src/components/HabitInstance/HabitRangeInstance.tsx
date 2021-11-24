@@ -9,8 +9,7 @@ const HabitRangeInstance = ({
 	completionInterval,
 	habitEntryDate,
 	entryIndex,
-    demo
-}: CompletionInstanceProps & { demo?: boolean }) => {
+}: CompletionInstanceProps) => {
 	const base = "HabitRangeInstance";
 	const [sliderValue, setSliderValue] = useState<number>(rangeValue);
 	const { mutate } = useMutateCompletion();
@@ -29,7 +28,7 @@ const HabitRangeInstance = ({
 
 		setSliderValue(+newValue);
 
-		!demo && mutate({
+		mutate({
 			habitId,
 			rangeValue: +newValue,
 			habitEntryDate,

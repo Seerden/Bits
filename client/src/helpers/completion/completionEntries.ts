@@ -1,4 +1,5 @@
 import { partitionsAsTimestamps } from "helpers/time/partitionDates";
+import { CompletionInstanceProps } from "types/CompletionInstance";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
 
@@ -43,16 +44,6 @@ export function makeCompletionEntries({
 					indexMatches(entry, entryIndex)
 				)[0];
 
-				const entryProps: any = {
-					completed: existingEntryAtIndex?.completed || false,
-					rangeValue: existingEntryAtIndex?.rangeValue || 0,
-					completionId: existingEntryAtIndex?.completionId || null,
-					entryIndex,
-					created,
-					startDate,
-					endDate,
-				};
-
 				return {
 					_key: `${timestamp}-${entryIndex}`,
 					habitEntryDate: new Date(timestamp),
@@ -66,7 +57,7 @@ export function makeCompletionEntries({
 					created,
 					startDate,
 					endDate,
-				};
+				} as CompletionInstanceProps;
 			});
 		})
 	);

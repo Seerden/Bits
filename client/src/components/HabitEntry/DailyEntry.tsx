@@ -1,9 +1,13 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 import CompletionInstance from "components/HabitInstance/CompletionInstance";
-import { EntryProps } from "types/HabitEntry";
 import "./DailyEntry.scss";
+import { CompletionInstanceProps } from "types/CompletionInstance";
 
-const DailyEntry = ({ completionEntries }: EntryProps) => {
+const DailyEntry = ({
+	completionEntries,
+}: {
+	completionEntries: CompletionInstanceProps[][];
+}) => {
 	const base = "DailyEntry";
 
 	return (
