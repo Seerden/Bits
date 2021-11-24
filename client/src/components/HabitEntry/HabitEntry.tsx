@@ -41,7 +41,7 @@ export function mapTimescaleToEntryComponent(timescale: Timestep) {
 const HabitEntry = ({ completionEntries }: { completionEntries: CompletionInstanceProps[][]}) => {
 	const base = "HabitEntry";
 	const timescale = useRecoilValue(timescaleAtom);
-	const EntryComponent = mapTimescaleToEntryComponent(timescale);
+	const EntryComponent = mapTimescaleToEntryComponent(timescale) as typeof DailyEntry;
 
 	return (
 		<span className={`${base} ${timescale === "week" ? "__weekly" : ""}`}>

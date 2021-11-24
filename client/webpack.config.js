@@ -43,6 +43,7 @@ module.exports = {
       helpers: path.resolve(__dirname, "src", "helpers/"),
       state: path.resolve(__dirname, "src", "state/"),
       types: path.resolve(__dirname, "src", "types/"),
+      shared: path.resolve(__dirname, "..", "shared/")
     },
   },
   plugins: [new miniCss()],

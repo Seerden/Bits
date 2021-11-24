@@ -8,7 +8,7 @@ type PrivateProps = {
 
 const Private = (props: PrivateProps) => {
 	const { currentUser } = useAuth();
-	const isLoggedIn = useMemo(() => currentUser.username?.length > 0, [currentUser]);
+	const isLoggedIn = useMemo(() => currentUser?.username?.length > 0, [currentUser]);
 
 	return (
 		<>

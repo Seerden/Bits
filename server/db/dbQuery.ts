@@ -11,7 +11,7 @@ export type QueryArgs = {
  * Make a single query to the PostgreSQL database
  * @returns postgres response
  */
-export async function makePooledQuery<ReturnType>(queryOptions: QueryArgs): Promise<ReturnType>{ 
+export async function makePooledQuery<ReturnType = any>(queryOptions: QueryArgs): Promise<ReturnType>{ 
     const client = await pool.connect();
 
     try {

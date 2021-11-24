@@ -23,8 +23,8 @@
 
 import { updateCompletionData } from "helpers/completion/updateCompletionData";
 import { atom, atomFamily, selectorFamily, useRecoilCallback } from "recoil";
-import { Completion } from "../../../../shared/types/Completion";
-import { Habit, HabitWithCompletion } from "../../../../shared/types/Habit";
+import { Completion } from "shared/types/Completion";
+import { Habit, HabitWithCompletion } from "shared/types/Habit";
 
 /**
  * Atom that stores a list of habitIds
@@ -64,18 +64,18 @@ export function useHabitsState() {
 		[]
 	);
 
-    /**
-     * Add or update a completion entry of habitFamily(habitId).completionData.
-     * @param completion return value from the API at PUT /db/habits/completion, which represents a single 
-     * just-updated/added completion entry. We could alternatively manually edit a completion entry and pass it
-     * to this function, but the point of this function is to synchronize state with the API after putting 
-     * something in the database.
-     * @usage 
-     * ```ts
-     *  const { data, mutate } = useMutateCompletion()
-     *  useEffect(() => {data && updateHabitCompletionData(habitId, data)}, [data])
-     * ```
-     */
+	/**
+	 * Add or update a completion entry of habitFamily(habitId).completionData.
+	 * @param completion return value from the API at PUT /db/habits/completion, which represents a single
+	 * just-updated/added completion entry. We could alternatively manually edit a completion entry and pass it
+	 * to this function, but the point of this function is to synchronize state with the API after putting
+	 * something in the database.
+	 * @usage
+	 * ```ts
+	 *  const { data, mutate } = useMutateCompletion()
+	 *  useEffect(() => {data && updateHabitCompletionData(habitId, data)}, [data])
+	 * ```
+	 */
 	const updateHabitCompletionData = useRecoilCallback(
 		({ set }) =>
 			(habitId: Habit["habitId"], completion: Completion) => {

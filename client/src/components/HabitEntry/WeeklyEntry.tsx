@@ -1,6 +1,6 @@
-import { EntryProps } from "types/HabitEntry";
+import { CompletionInstanceProps } from "types/CompletionInstance";
 
-const WeeklyEntry = ({ completionEntries }: EntryProps) => {
+const WeeklyEntry = ({ completionEntries }: { completionEntries: CompletionInstanceProps[][]}) => {
 	const size = 10;
 	const entriesPerDay = completionEntries[0].length;
 

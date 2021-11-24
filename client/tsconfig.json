@@ -23,7 +23,8 @@
             "hooks/*": ["src/hooks/*"],
             "helpers/*": ["src/helpers/*"],
             "state/*": ["src/state/*"],
-            "types/*": ["src/types/*"]
+            "types/*": ["src/types/*"],
+            "shared/*": ["../shared/*"]
         }
     },
     "exclude": ["node_modules", "./node_modules"],

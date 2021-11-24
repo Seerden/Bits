@@ -1,6 +1,6 @@
-import { EntryProps } from "types/HabitEntry";
+import { CompletionInstanceProps } from "types/CompletionInstance";
 
-const YearlyEntry = (props: EntryProps) => {
+const YearlyEntry = (props: CompletionInstanceProps) => {
     const base = "YearlyEntry";
     
     return (

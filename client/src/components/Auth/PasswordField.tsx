@@ -18,9 +18,9 @@ function PasswordField({ text, htmlFor, onChange, style }: PasswordFieldProps) {
 	}, [hidden]);
 
 	return (
-		<div>
+		<span>
 			<label htmlFor={htmlFor}>{text}</label>
-			<p
+			<span
 				style={{
 					display: "flex",
 					alignItems: "center",
@@ -31,8 +31,8 @@ function PasswordField({ text, htmlFor, onChange, style }: PasswordFieldProps) {
 				<span className={cs.Register__eye} onClick={toggleHidden}>
 					{hidden ? <FiEyeOff fill="#111" /> : <FiEye fill="#333" />}
 				</span>
-			</p>
-		</div>
+			</span>
+		</span>
 	);
 }
 
