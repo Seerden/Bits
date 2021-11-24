@@ -1,29 +1,46 @@
 import { useMutateCompletion } from "helpers/api/mutateCompletion";
 import { useToggle } from "hooks/useToggle";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { useHabitsState } from "state/habits/habitFamily";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 
 export function useHabitToggleInstance(props: CompletionInstanceProps) {
 	const [checked, toggleChecked] = useToggle({ initial: props.completed });
-	const { mutate } = useMutateCompletion();
+	const { data, mutate } = useMutateCompletion();
+    const { updateHabitCompletionData } = useHabitsState();
 
-	const handleClick = useCallback(() => {
+    useEffect(() => {
+        if(data) {
+            updateHabitCompletionData(props.habitId, data)
+        }
+    }, [data])
+
+	const mutateCompletion = useCallback(() => {
 		const { completionId, habitId, habitEntryDate, entryIndex } = props;
 
-		mutate({
-			completionId,
-			completed: !checked, // happens in same render cycle as update, so `checked` will be one step behind
-			habitId,
-			habitEntryDate,
-			entryIndex,
-		});
+        /* @todo: the only difference between RangeInstance and ToggleInstance is the presence/absence of completed/rangeValue
+            make sure that we keep that in mind when creating this functionality in useHabitRangeInstance
+        */
+        const newOrUpdatedCompletion = {
+            completionId,
+            completed: !checked, // happens in same render cycle as update, so `checked` will be one step behind
+            habitId,
+            habitEntryDate,
+            entryIndex,
+            rangeValue: null
+        }
+
+		mutate(newOrUpdatedCompletion);
 	}, [checked]);
 
-	const onClick = (e) => {
+	/**
+	 * Handler that toggles checked state and triggers mutateCompletion
+	 */
+	function onClick(e) {
 		e.preventDefault();
 		toggleChecked();
-		handleClick();
-	};
+		mutateCompletion();
+	}
 
-    return { checked, onClick } as const;
+	return { checked, onClick } as const;
 }

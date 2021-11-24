@@ -8,8 +8,8 @@ const completionRouter = express.Router({ mergeParams: true });
 
 completionRouter.put('/', isPermitted, async (req, res) => {
     const completionEntry: NewCompletion = req.body;
-    const rows = await insertOrUpdateCompletion(completionEntry);
-    res.send(rows);
+    const returnedCompletion = await insertOrUpdateCompletion(completionEntry);
+    res.send(returnedCompletion);
 });
 
 completionRouter.get('/id', isPermitted, async (req, res) => {

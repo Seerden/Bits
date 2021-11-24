@@ -3,14 +3,15 @@ import { useMemo, useState } from "react";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 import { useMutateCompletion } from "helpers/api/mutateCompletion";
 
-const HabitRangeInstance = ({
-	habitId,
+const HabitRangeInstance = (props: CompletionInstanceProps) => {
+	const base = "HabitRangeInstance";
+    const {
+        habitId,
 	rangeValue,
 	completionInterval,
 	habitEntryDate,
 	entryIndex,
-}: CompletionInstanceProps) => {
-	const base = "HabitRangeInstance";
+    } = props;
 	const [sliderValue, setSliderValue] = useState<number>(rangeValue);
 	const { mutate } = useMutateCompletion();
 

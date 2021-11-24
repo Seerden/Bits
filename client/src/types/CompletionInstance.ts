@@ -4,10 +4,10 @@ import { Maybe } from "../../../shared/types/Maybe";
 
 export type CompletionInstanceProps = {
 	_key: string;
-    habitId: Habit["habitId"];
+	habitId: Habit["habitId"];
 	habitEntryDate: Completion["habitEntryDate"];
-    completionType: Habit["completionType"]
-    completionInterval: Habit["completionInterval"]
+	completionType: Habit["completionType"];
+	completionInterval: Habit["completionInterval"];
 	completed: Completion["completed"];
 	rangeValue: Completion["rangeValue"];
 	completionId: Maybe<Completion["completionId"]>;

@@ -1,4 +1,3 @@
-import { QueryResult } from "pg";
 import { withCamelCaseKeys } from "../lib/toCamelCase";
 import pool from "./pool";
 
@@ -12,12 +11,12 @@ export type QueryArgs = {
  * Make a single query to the PostgreSQL database
  * @returns postgres response
  */
-export async function makePooledQuery(queryOptions: QueryArgs){ 
+export async function makePooledQuery<ReturnType>(queryOptions: QueryArgs): Promise<ReturnType>{ 
     const client = await pool.connect();
 
     try {
         const { rows } = await client.query({ ...queryOptions })
-        return withCamelCaseKeys(rows);
+        return withCamelCaseKeys(rows) as unknown as ReturnType;
     } catch (e) {
         throw(e);
     } finally {

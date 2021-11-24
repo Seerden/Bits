@@ -1,6 +1,3 @@
-import { atom, atomFamily, selectorFamily, useRecoilCallback } from "recoil";
-import { Habit, HabitWithCompletion } from "../../../../shared/types/Habit";
-
 /*
     Habits (as HabitWithCompletion[]) is obtained from the API. Most components only care about 
     a single habit, so we want to use an atomFamily instead of storing all habits as a list in 
@@ -17,9 +14,17 @@ import { Habit, HabitWithCompletion } from "../../../../shared/types/Habit";
 
     USAGE:
     - after receiving habits from the API, invoke setHabitsInFamily(habits)
+    - after mutating a completion entry, invoke updateHabitCompletionData(habitId, data)
+        where `data` represents the response from the API containing only the completion entry
+        that was just updated
     - to interact with an atom from habitFamily, use habitsState as follows:
         const [habit, setHabit] = useRecoilState(habitFamily(habitId))
 */
+
+import { updateCompletionData } from "helpers/completion/updateCompletionData";
+import { atom, atomFamily, selectorFamily, useRecoilCallback } from "recoil";
+import { Completion } from "../../../../shared/types/Completion";
+import { Habit, HabitWithCompletion } from "../../../../shared/types/Habit";
 
 /**
  * Atom that stores a list of habitIds
@@ -38,8 +43,8 @@ const habitFamily = atomFamily<HabitWithCompletion, Habit["habitId"]>({
 });
 
 export function useHabitsState() {
-    /**
-     * SETTER OPTION 1
+	/**
+	 * SETTER OPTION 1
 	 * Recoil callback function that takes a list of habits and
 	 * - (1) puts each habit's habitId in habitIdsAtom,
 	 * - (2) creates a habitFamily atom for each habit
@@ -59,7 +64,30 @@ export function useHabitsState() {
 		[]
 	);
 
-	return { setHabitsInFamily };
+    /**
+     * Add or update a completion entry of habitFamily(habitId).completionData.
+     * @param completion return value from the API at PUT /db/habits/completion, which represents a single 
+     * just-updated/added completion entry. We could alternatively manually edit a completion entry and pass it
+     * to this function, but the point of this function is to synchronize state with the API after putting 
+     * something in the database.
+     * @usage 
+     * ```ts
+     *  const { data, mutate } = useMutateCompletion()
+     *  useEffect(() => {data && updateHabitCompletionData(habitId, data)}, [data])
+     * ```
+     */
+	const updateHabitCompletionData = useRecoilCallback(
+		({ set }) =>
+			(habitId: Habit["habitId"], completion: Completion) => {
+				set(habitFamily(habitId), (cur) => {
+					const updatedCompletionData = updateCompletionData(cur.completionData, completion);
+					return { ...cur, completionData: updatedCompletionData };
+				});
+			},
+		[]
+	);
+
+	return { setHabitsInFamily, updateHabitCompletionData };
 }
 
 /* SETTER OPTION 2: abstract away atomFamily atom get/set using a selectorFamily
