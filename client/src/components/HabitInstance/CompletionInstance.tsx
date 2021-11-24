@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 import { Habit } from "../../../../shared/types/Habit";
-import HabitRangeInstance from "./HabitRangeInstance";
-import HabitToggleInstance from "./HabitToggleInstance";
+import HabitRangeInstance from "./RangeInstance/HabitRangeInstance";
+import HabitToggleInstance from "./ToggleInstance/HabitToggleInstance";
 
 type MapProps = {
 	[k in Habit["completionType"]]: typeof HabitToggleInstance | typeof HabitRangeInstance;

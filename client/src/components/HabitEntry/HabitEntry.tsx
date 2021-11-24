@@ -1,6 +1,5 @@
 import { useRecoilValue } from "recoil";
 import { timescaleAtom } from "state/timescale";
-import { EntryProps } from "types/HabitEntry";
 import "./HabitEntry.scss";
 
 import DailyEntry from "components/HabitEntry/DailyEntry";
@@ -8,6 +7,7 @@ import MonthlyEntry from "components/HabitEntry/MonthlyEntry";
 import WeeklyEntry from "components/HabitEntry/WeeklyEntry";
 import YearlyEntry from "components/HabitEntry/YearlyEntry";
 import { Timestep } from "types/time";
+import { CompletionInstanceProps } from "types/CompletionInstance";
 
 const timescaleToEntryComponentMap = {
 	day: DailyEntry,
@@ -38,7 +38,7 @@ export function mapTimescaleToEntryComponent(timescale: Timestep) {
  * e.g. 165 days in a given year
  */
 
-const HabitEntry = ({ completionEntries }: EntryProps) => {
+const HabitEntry = ({ completionEntries }: { completionEntries: CompletionInstanceProps[][]}) => {
 	const base = "HabitEntry";
 	const timescale = useRecoilValue(timescaleAtom);
 	const EntryComponent = mapTimescaleToEntryComponent(timescale);
