@@ -10,36 +10,42 @@ import cs from "../HabitDetails.module.scss";
  * in the form of the ConfirmDelete component -- a user must confirm that they wish to
  * delete the habit to prevent accidental deletions.
  */
-function DeleteButton({ habitId, toggleDetails }: { habitId: string, toggleDetails: () => void }) {
-	const { mutate, data } = useDeleteHabit(habitId);
-	const [confirming, toggleConfirming] = useToggle({ initial: false });
+function DeleteButton({
+    habitId,
+    toggleDetails,
+}: {
+    habitId: string;
+    toggleDetails: () => void;
+}) {
+    const { mutate, data } = useDeleteHabit(habitId);
+    const [confirming, toggleConfirming] = useToggle({ initial: false });
     const { removeHabitFromState } = useHabitsState();
 
-	useEffect(() => {
+    useEffect(() => {
         // update habit(s) state on successful habit deletion
         if (data) {
             removeHabitFromState(habitId);
             toggleDetails();
         }
-    }, [data])
+    }, [data]);
 
-	function handleConfirm() {
-		mutate(habitId);
-	}
+    function handleConfirm() {
+        mutate(habitId);
+    }
 
-	return !confirming ? (
-		<input
-			className={cs.Delete}
-			type="button"
-			value="Delete habit"
-			onClick={(e) => {
-				e.stopPropagation();
-				toggleConfirming();
-			}}
-		/>
-	) : (
-		<ConfirmDelete {...{ handleConfirm, toggleConfirming }} />
-	);
+    return !confirming ? (
+        <input
+            className={cs.Delete}
+            type="button"
+            value="Delete habit"
+            onClick={(e) => {
+                e.stopPropagation();
+                toggleConfirming();
+            }}
+        />
+    ) : (
+        <ConfirmDelete {...{ handleConfirm, toggleConfirming }} />
+    );
 }
 
 /**
@@ -48,28 +54,28 @@ function DeleteButton({ habitId, toggleDetails }: { habitId: string, toggleDetai
  * - KEEP:      user wants to keep habit.
  */
 function ConfirmDelete({ handleConfirm, toggleConfirming }) {
-	return (
-		<>
-			<input
-				onClick={(e) => {
-					e.stopPropagation();
-					handleConfirm();
-				}}
-				className={cs.Delete__confirm}
-				type="button"
-				value="DELETE"
-			/>
-			<input
-				onClick={(e) => {
-					e.stopPropagation();
-					toggleConfirming();
-				}}
-				className={cs.Delete__keep}
-				type="button"
-				value="KEEP"
-			/>
-		</>
-	);
+    return (
+        <>
+            <input
+                onClick={(e) => {
+                    e.stopPropagation();
+                    handleConfirm();
+                }}
+                className={cs.Delete__confirm}
+                type="button"
+                value="DELETE"
+            />
+            <input
+                onClick={(e) => {
+                    e.stopPropagation();
+                    toggleConfirming();
+                }}
+                className={cs.Delete__keep}
+                type="button"
+                value="KEEP"
+            />
+        </>
+    );
 }
 
 export default DeleteButton;
