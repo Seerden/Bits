@@ -73,7 +73,6 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
 			</div>
 			{showDetails && (
 				<HabitDetails
-					key={new Date().toISOString()}
 					habitData={habitData}
 					completionData={completionData}
 					toggleDetails={toggleDetails}

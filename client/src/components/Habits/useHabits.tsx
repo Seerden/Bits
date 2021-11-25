@@ -27,7 +27,7 @@ export function useHabits() {
 	const length = useMemo(() => {
         return getLength(width)
     }, [width])
-	const { refetch } = useFetchHabits();
+	const { refetch, isFetching } = useFetchHabits();
 	const habitIds = useRecoilValue(habitIdsAtom);
 	const [timestep, setTimestep] = useRecoilState(timescaleAtom);
 	const timescaleFormatter = timescaleFormatters[timestep];
@@ -63,6 +63,7 @@ export function useHabits() {
 
 	return {
 		habitIds,
+        isFetching,
 		timestep,
 		setTimestep,
 		labels,

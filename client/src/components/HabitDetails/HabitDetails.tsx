@@ -103,7 +103,7 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 					{/* BEST STREAK */}
 					<Datum label="Best">Best streak:</Datum>
 				</ul>
-				<DeleteButton habitId={habitData.habitId} />
+				<DeleteButton toggleDetails={toggleDetails} habitId={habitData.habitId} />
 			</div>
 		</div>
 	);

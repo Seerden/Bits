@@ -42,7 +42,7 @@ export function useFetchHabits() {
 	const [dateRange, setDateRange] = useState<DateRange>(defaultDateRange);
 	const { username } = useAuth().currentUser;
 	const { setHabitsInFamily } = useHabitsState();
-	const { data, refetch } = useQuery(
+	const response = useQuery(
 		["fetchHabits", dateRange, username],
 		() =>
 			// @todo: the 'null' in the next line refers to the habitIds to fetch
@@ -52,10 +52,10 @@ export function useFetchHabits() {
 	);
 
 	useEffect(() => {
-		if (data) {
-			setHabitsInFamily(data);
+		if (response.data) {
+			setHabitsInFamily(response.data);
 		}
-	}, [data]);
+	}, [response.data]);
 
-	return { refetch, setDateRange } as const;
+	return response;
 }

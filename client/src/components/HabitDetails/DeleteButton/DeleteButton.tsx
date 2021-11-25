@@ -1,5 +1,7 @@
 import { useDeleteHabit } from "helpers/api/mutateHabits";
 import { useToggle } from "hooks/useToggle";
+import { useEffect } from "react";
+import { useHabitsState } from "state/habits/habitFamily";
 import cs from "../HabitDetails.module.scss";
 
 /**
@@ -8,18 +10,18 @@ import cs from "../HabitDetails.module.scss";
  * in the form of the ConfirmDelete component -- a user must confirm that they wish to
  * delete the habit to prevent accidental deletions.
  */
-function DeleteButton({ habitId }: { habitId: string }) {
+function DeleteButton({ habitId, toggleDetails }: { habitId: string, toggleDetails: () => void }) {
 	const { mutate, data } = useDeleteHabit(habitId);
 	const [confirming, toggleConfirming] = useToggle({ initial: false });
+    const { removeHabitFromState } = useHabitsState();
 
-	// useEffect(() => {
-	// 	/*  to ensure the just-deleted habit is removed from view
-	//      on successful deletion, either
-	//          1. update habitsState
-	//          2. refetch habits
-	//
-	//     */
-	// }, [data]);
+	useEffect(() => {
+        // update habit(s) state on successful habit deletion
+        if (data) {
+            removeHabitFromState(habitId);
+            toggleDetails();
+        }
+    }, [data])
 
 	function handleConfirm() {
 		mutate(habitId);

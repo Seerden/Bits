@@ -64,6 +64,18 @@ export function useHabitsState() {
 		[]
 	);
 
+    /**
+     * Remove the habit with given `habitId` from habit-related states
+     */
+	const removeHabitFromState = useRecoilCallback(
+		({ set, reset }) =>
+			(habitId: Habit["habitId"]) => {
+                set(habitIdsAtom, cur => cur.filter(id => id !== habitId));
+                reset(habitFamily(habitId))
+            },
+		[]
+	);
+
 	/**
 	 * Add or update a completion entry of habitFamily(habitId).completionData.
 	 * @param completion return value from the API at PUT /db/habits/completion, which represents a single
@@ -87,7 +99,7 @@ export function useHabitsState() {
 		[]
 	);
 
-	return { setHabitsInFamily, updateHabitCompletionData };
+	return { setHabitsInFamily, updateHabitCompletionData, removeHabitFromState };
 }
 
 /* SETTER OPTION 2: abstract away atomFamily atom get/set using a selectorFamily

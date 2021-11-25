@@ -7,22 +7,25 @@ import { memo, useMemo } from "react";
 import { useNavigate } from "react-router";
 
 const Habits = memo(() => {
-	const { habitIds, timestep, cycleTimestep, labels, partitionsAsTimes } = useHabits();
+	const { habitIds, timestep, cycleTimestep, labels, partitionsAsTimes, isFetching } =
+		useHabits();
 	const navigate = useNavigate();
 
 	// derive <CompactHabit />[] from habits state
 	const compactHabits = useMemo(
 		() =>
 			habitIds?.length > 0 &&
-			habitIds.map((habitId, index) => (
-				<CompactHabit key={index} habitId={habitId} partitionsAsTimes={partitionsAsTimes} />
+			habitIds.map(habitId => (
+				<CompactHabit key={habitId} habitId={habitId} partitionsAsTimes={partitionsAsTimes} />
 			)),
 		[habitIds, timestep, partitionsAsTimes]
 	);
 
 	return (
 		<div className={cs.Habits}>
-			{habitIds.length > 0 ? (
+			{isFetching ? (
+				<>Fetching habits</>
+			) : habitIds.length > 0 ? (
 				<>
 					<Timescale {...{ labels, cycleTimestep, timestep }} />
 
