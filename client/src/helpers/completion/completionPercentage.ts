@@ -14,18 +14,18 @@ import { Habit } from "../../../../shared/types/Habit";
  *  an optional threshold (e.g. 90% towards the target could be 'successful', still)
  */
 export function isSuccessfulCompletion(
-	completion: Completion,
-	habitData: Partial<Habit>
+    completion: Completion,
+    habitData: Partial<Habit>
 ) {
-	const { completed, rangeValue } = completion;
-	const { completionType, completionInterval } = habitData;
+    const { completed, rangeValue } = completion;
+    const { completionType, completionInterval } = habitData;
 
-	if (completionType === "toggle") {
-		return completed;
-	}
+    if (completionType === "toggle") {
+        return completed;
+    }
 
-	// completionType === 'interval'
-	return rangeValue >= completionInterval;
+    // completionType === 'interval'
+    return rangeValue >= completionInterval;
 }
 
 /**
@@ -33,19 +33,19 @@ export function isSuccessfulCompletion(
  * they belong, and count the number of successful completion entries in each interval
  */
 export function completionSuccessCountPerPartition(
-	completionData: Completion[],
-	habitData: Habit,
-	timescale: Timestep
+    completionData: Completion[],
+    habitData: Habit,
+    timescale: Timestep
 ) {
-	const truncator = dateToIdentifierMappings[timescale];
+    const truncator = dateToIdentifierMappings[timescale];
 
-	return completionData.reduce((acc, entry) => {
-		const label = truncator(dayjs(entry.habitEntryDate));
-		const isSuccess = isSuccessfulCompletion(entry, habitData);
-		const oldValue = acc[label] || 0;
-		const newValue = isSuccess ? oldValue + 1 : oldValue;
-		return { ...acc, [label]: newValue };
-	}, {} as { [k: string]: number });
+    return completionData.reduce((acc, entry) => {
+        const label = truncator(dayjs(entry.habitEntryDate));
+        const isSuccess = isSuccessfulCompletion(entry, habitData);
+        const oldValue = acc[label] || 0;
+        const newValue = isSuccess ? oldValue + 1 : oldValue;
+        return { ...acc, [label]: newValue };
+    }, {} as { [k: string]: number });
 }
 
 /**
@@ -58,22 +58,22 @@ export function completionSuccessCountPerPartition(
  * and only compute the percentage of fully elapsed intervals
  */
 export function getCompletionSuccessPercentage(
-	completionData: Completion[],
-	habitData: Habit,
-	timescale: Timestep
+    completionData: Completion[],
+    habitData: Habit,
+    timescale: Timestep
 ) {
-	const partitionedSuccessCounts = completionSuccessCountPerPartition(
-		completionData,
-		habitData,
-		timescale
-	);
-	const successfulPartitionCount = Object.values(partitionedSuccessCounts).filter(
-		(partitionSuccessCount) => partitionSuccessCount >= habitData.completionFrequency
-	).length;
+    const partitionedSuccessCounts = completionSuccessCountPerPartition(
+        completionData,
+        habitData,
+        timescale
+    );
+    const successfulPartitionCount = Object.values(partitionedSuccessCounts).filter(
+        (partitionSuccessCount) => partitionSuccessCount >= habitData.completionFrequency
+    ).length;
 
-	const start = habitData.startDate || habitData.created;
-	const end = dayjs(new Date()).startOf(timescale);
-	const totalIntervalCount = listDatesBetween(dayjs(start), end, timescale).length;
+    const start = habitData.startDate || habitData.created;
+    const end = dayjs(new Date()).startOf(timescale);
+    const totalIntervalCount = listDatesBetween(dayjs(start), end, timescale).length;
 
-	return Math.floor((100 * successfulPartitionCount) / totalIntervalCount);
+    return Math.floor((100 * successfulPartitionCount) / totalIntervalCount);
 }

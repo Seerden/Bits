@@ -9,77 +9,88 @@ import { memo } from "react";
 import { remainingCompletionsForSuccess } from "helpers/completion/completionMessage";
 
 type CompactHabitProps = {
-	habitId: Habit["habitId"];
-	partitionsAsTimes: number[][];
+    habitId: Habit["habitId"];
+    partitionsAsTimes: number[][];
 };
 
 const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) => {
-	const {
-		habitData,
-		completionData,
-		habitName,
-		isEditing,
-		setIsEditing,
-		showDetails,
-		toggleDetails,
-		handleBlur,
-		inputRef,
-	} = useCompactHabit(habitId);
-	const entriesPerDay =
-		habitData.completionTimescale === "day" ? habitData.completionFrequency : 1;
-	const completionEntries = makeCompletionEntries({
-		partitionsAsTimes,
-		habitData,
-		completionData,
-		entriesPerDay,
-	});
-	const currentIntervalIsSuccessful =
-		remainingCompletionsForSuccess(habitData, completionData) === 0;
+    const {
+        habitData,
+        completionData,
+        habitName,
+        isEditing,
+        setIsEditing,
+        showDetails,
+        toggleDetails,
+        handleBlur,
+        inputRef,
+    } = useCompactHabit(habitId);
+    const entriesPerDay =
+        habitData.completionTimescale === "day" ? habitData.completionFrequency : 1;
+    const completionEntries = makeCompletionEntries({
+        partitionsAsTimes,
+        habitData,
+        completionData,
+        entriesPerDay,
+    });
+    const currentIntervalIsSuccessful =
+        remainingCompletionsForSuccess(habitData, completionData) === 0;
 
-	return (
-		<li
-			style={{
-				listStyle: "none",
-				display: "flex",
-				flexDirection: "column",
-				position: "relative",
-			}}
-		>
-			<div
-				className={cs.CompactHabit}
-				style={{
-					outline: currentIntervalIsSuccessful && "2px solid green",
-				}}
-			>
-				<span title="Click to edit habit name" className={cs.NameField}>
-					{!isEditing ? (
-						<span onClick={() => setIsEditing((cur) => !cur)}>{habitName}</span>
-					) : (
-						<input ref={inputRef} type="text" defaultValue={habitName} onBlur={handleBlur} />
-					)}
-				</span>
-				<ul className={cs.List}>
-					{completionEntries.map((partition, idx) => (
-						<HabitEntry key={idx} completionEntries={partition} />
-					))}
-				</ul>
-				<button
-					title="Click to show habit details"
-					onClick={toggleDetails}
-					className={cs.Button}
-				>
-					{!showDetails ? <BiExpandAlt className={cs.Expand} /> : <BiX className={cs.Close} />}
-				</button>
-			</div>
-			{showDetails && (
-				<HabitDetails
-					habitData={habitData}
-					completionData={completionData}
-					toggleDetails={toggleDetails}
-				/>
-			)}
-		</li>
-	);
+    return (
+        <li
+            style={{
+                listStyle: "none",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+            }}
+        >
+            <div
+                className={cs.CompactHabit}
+                style={{
+                    outline: currentIntervalIsSuccessful && "2px solid green",
+                }}
+            >
+                <span title="Click to edit habit name" className={cs.NameField}>
+                    {!isEditing ? (
+                        <span onClick={() => setIsEditing((cur) => !cur)}>
+                            {habitName}
+                        </span>
+                    ) : (
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            defaultValue={habitName}
+                            onBlur={handleBlur}
+                        />
+                    )}
+                </span>
+                <ul className={cs.List}>
+                    {completionEntries.map((partition, idx) => (
+                        <HabitEntry key={idx} completionEntries={partition} />
+                    ))}
+                </ul>
+                <button
+                    title="Click to show habit details"
+                    onClick={toggleDetails}
+                    className={cs.Button}
+                >
+                    {!showDetails ? (
+                        <BiExpandAlt className={cs.Expand} />
+                    ) : (
+                        <BiX className={cs.Close} />
+                    )}
+                </button>
+            </div>
+            {showDetails && (
+                <HabitDetails
+                    habitData={habitData}
+                    completionData={completionData}
+                    toggleDetails={toggleDetails}
+                />
+            )}
+        </li>
+    );
 });
 
 export default CompactHabit;

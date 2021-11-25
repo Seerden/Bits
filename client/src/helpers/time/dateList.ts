@@ -9,16 +9,16 @@ dayjs.extend(weekOfYear);
  * with steps of `timescale` between each entry
  */
 export function listDatesBetween(start: Dayjs, end: Dayjs, timescale: Timestep = "day") {
-	if (end.valueOf() < start.valueOf()) return [];
-	if (start == end) return [end];
+    if (end.valueOf() < start.valueOf()) return [];
+    if (start == end) return [end];
 
-	const dateList: dayjs.Dayjs[] = [];
-	let latest = start;
-	while (latest <= end) {
-		dateList.push(latest);
-		latest = latest.add(1, timescale);
-	}
-	return dateList;
+    const dateList: dayjs.Dayjs[] = [];
+    let latest = start;
+    while (latest <= end) {
+        dateList.push(latest);
+        latest = latest.add(1, timescale);
+    }
+    return dateList;
 }
 
 /**
@@ -29,14 +29,14 @@ export function listDatesBetween(start: Dayjs, end: Dayjs, timescale: Timestep =
  * @param {TimescaleType} timescale timescale
  */
 export function getPastNDates(
-	n: number,
-	timescale: TimescaleType["timescale"]
+    n: number,
+    timescale: TimescaleType["timescale"]
 ): dayjs.Dayjs[] {
-	const today = dayjs(Date.now()).startOf("day");
+    const today = dayjs(Date.now()).startOf("day");
 
-	const startOfRange = today.add(-n, timescale);
+    const startOfRange = today.add(-n, timescale);
 
-	return listDatesBetween(startOfRange, today);
+    return listDatesBetween(startOfRange, today);
 }
 
 /**
@@ -46,13 +46,13 @@ export function getPastNDates(
  * @returns list of dayjs date objects
  */
 export function getDatesForLabels(timestep: Timestep, stepsBack: number) {
-	const now = dayjs(Date.now()).startOf(timestep);
+    const now = dayjs(Date.now()).startOf(timestep);
 
-	const labels: Dayjs[] = [...Array(stepsBack + 2).keys()]
-		.map((entry, index) => now.add(-index, timestep))
-		.reverse();
+    const labels: Dayjs[] = [...Array(stepsBack + 2).keys()]
+        .map((entry, index) => now.add(-index, timestep))
+        .reverse();
 
-	return labels;
+    return labels;
 }
 
 /**
@@ -60,5 +60,5 @@ export function getDatesForLabels(timestep: Timestep, stepsBack: number) {
  * @returns List of dates formatted following `format`
  */
 export function formatDates(dates: Dayjs[], format: string) {
-	return dates.map((date) => date.format(format));
+    return dates.map((date) => date.format(format));
 }

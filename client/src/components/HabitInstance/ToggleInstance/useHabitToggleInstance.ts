@@ -5,18 +5,18 @@ import { useHabitsState } from "state/habits/habitFamily";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 
 export function useHabitToggleInstance(props: CompletionInstanceProps) {
-	const [checked, toggleChecked] = useToggle({ initial: props.completed });
-	const { data, mutate } = useMutateCompletion();
+    const [checked, toggleChecked] = useToggle({ initial: props.completed });
+    const { data, mutate } = useMutateCompletion();
     const { updateHabitCompletionData } = useHabitsState();
 
     useEffect(() => {
-        if(data) {
-            updateHabitCompletionData(props.habitId, data)
+        if (data) {
+            updateHabitCompletionData(props.habitId, data);
         }
-    }, [data])
+    }, [data]);
 
-	const mutateCompletion = useCallback(() => {
-		const { completionId, habitId, habitEntryDate, entryIndex } = props;
+    const mutateCompletion = useCallback(() => {
+        const { completionId, habitId, habitEntryDate, entryIndex } = props;
 
         /* @todo: the only difference between RangeInstance and ToggleInstance is the presence/absence of completed/rangeValue
             make sure that we keep that in mind when creating this functionality in useHabitRangeInstance
@@ -27,20 +27,20 @@ export function useHabitToggleInstance(props: CompletionInstanceProps) {
             habitId,
             habitEntryDate,
             entryIndex,
-            rangeValue: null
-        }
+            rangeValue: null,
+        };
 
-		mutate(newOrUpdatedCompletion);
-	}, [checked]);
+        mutate(newOrUpdatedCompletion);
+    }, [checked]);
 
-	/**
-	 * Handler that toggles checked state and triggers mutateCompletion
-	 */
-	function onClick(e) {
-		e.preventDefault();
-		toggleChecked();
-		mutateCompletion();
-	}
+    /**
+     * Handler that toggles checked state and triggers mutateCompletion
+     */
+    function onClick(e) {
+        e.preventDefault();
+        toggleChecked();
+        mutateCompletion();
+    }
 
-	return { checked, onClick } as const;
+    return { checked, onClick } as const;
 }

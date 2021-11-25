@@ -4,7 +4,7 @@ import { dateToIdentifierMappings } from "./partitionDates";
 
 /**
  * Map a date to its timestep-dependent identifier.
- * 
+ *
  * Example:
  * - date: February 1, 2021
  * - timestep: "month"
@@ -13,12 +13,12 @@ import { dateToIdentifierMappings } from "./partitionDates";
  * @idea: rename "dateToIdentifierMappings" to "dateIdentifierMap"
  */
 export function getDateIdentifier({
-	date,
-	timestep,
+    date,
+    timestep,
 }: {
-	date: DateOrDayjs;
-	timestep: Timestep;
+    date: DateOrDayjs;
+    timestep: Timestep;
 }) {
-	const dateIdentityFn = dateToIdentifierMappings[timestep];
-	return dateIdentityFn(dayjs(date));
+    const dateIdentityFn = dateToIdentifierMappings[timestep];
+    return dateIdentityFn(dayjs(date));
 }

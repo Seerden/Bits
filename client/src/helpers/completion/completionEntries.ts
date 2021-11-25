@@ -4,10 +4,10 @@ import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
 
 type Args = {
-	partitionsAsTimes: ReturnType<typeof partitionsAsTimestamps>;
-	completionData: Completion[];
-	habitData: Partial<Habit>;
-	entriesPerDay: number;
+    partitionsAsTimes: ReturnType<typeof partitionsAsTimestamps>;
+    completionData: Completion[];
+    habitData: Partial<Habit>;
+    entriesPerDay: number;
 };
 
 /**
@@ -22,50 +22,50 @@ type Args = {
  *
  */
 export function makeCompletionEntries({
-	habitData,
-	completionData,
-	partitionsAsTimes,
-	entriesPerDay,
+    habitData,
+    completionData,
+    partitionsAsTimes,
+    entriesPerDay,
 }: Args) {
-	const entryIndices = [...Array(entriesPerDay).keys()];
-	const { created, habitId, completionType, completionInterval, startDate, endDate } =
-		habitData;
+    const entryIndices = [...Array(entriesPerDay).keys()];
+    const { created, habitId, completionType, completionInterval, startDate, endDate } =
+        habitData;
 
-	return partitionsAsTimes.map((partition) =>
-		partition.map((timestamp) => {
-			const existingEntriesAtDate = completionData.filter(
-				(d) => new Date(d.habitEntryDate).getTime() === timestamp
-			);
+    return partitionsAsTimes.map((partition) =>
+        partition.map((timestamp) => {
+            const existingEntriesAtDate = completionData.filter(
+                (d) => new Date(d.habitEntryDate).getTime() === timestamp
+            );
 
-			return entryIndices.map((entryIndex) => {
-				// @note: typescript seems to fail here.
-				// it thinks existingEntryAtIndex is always Completion, but it might be undefined
-				const existingEntryAtIndex = existingEntriesAtDate.filter((entry) =>
-					indexMatches(entry, entryIndex)
-				)[0];
+            return entryIndices.map((entryIndex) => {
+                // @note: typescript seems to fail here.
+                // it thinks existingEntryAtIndex is always Completion, but it might be undefined
+                const existingEntryAtIndex = existingEntriesAtDate.filter((entry) =>
+                    indexMatches(entry, entryIndex)
+                )[0];
 
-				return {
-					_key: `${timestamp}-${entryIndex}`,
-					habitEntryDate: new Date(timestamp),
-					habitId,
-					completionType,
-					completionInterval,
-					completed: existingEntryAtIndex?.completed || false,
-					rangeValue: existingEntryAtIndex?.rangeValue || 0,
-					completionId: existingEntryAtIndex?.completionId || null,
-					entryIndex,
-					created,
-					startDate,
-					endDate,
-				} as CompletionInstanceProps;
-			});
-		})
-	);
+                return {
+                    _key: `${timestamp}-${entryIndex}`,
+                    habitEntryDate: new Date(timestamp),
+                    habitId,
+                    completionType,
+                    completionInterval,
+                    completed: existingEntryAtIndex?.completed || false,
+                    rangeValue: existingEntryAtIndex?.rangeValue || 0,
+                    completionId: existingEntryAtIndex?.completionId || null,
+                    entryIndex,
+                    created,
+                    startDate,
+                    endDate,
+                } as CompletionInstanceProps;
+            });
+        })
+    );
 }
 
 /**
  * Given a `Completion` instance, check whether its entryIndex value matches `index`
  */
 export function indexMatches(entry: Completion, index: number) {
-	return entry.entryIndex === index;
+    return entry.entryIndex === index;
 }

@@ -27,8 +27,8 @@ import { completionSuccessCountPerPartition } from "./completionPercentage";
  * - return 2, since habit needs 2 more successful entries this week to hit the completion target
  */
 export function remainingCompletionsForSuccess(
-	habitData: Habit,
-	completionData: Completion[]
+    habitData: Habit,
+    completionData: Completion[]
 ) {
     /*  use habitData.completionTimescale since we want to display habit-specific information. By 
         this we mean the following: even if the UI displays daily entries, we want to know how many 
@@ -37,17 +37,16 @@ export function remainingCompletionsForSuccess(
         not the timescale displayed by the UI  */
     const timescale = habitData.completionTimescale;
 
-
     const successCountPerPartition = completionSuccessCountPerPartition(
-		completionData,
-		habitData,
-		timescale
-	);
+        completionData,
+        habitData,
+        timescale
+    );
 
-	const nowIdentifier = getDateIdentifier({
+    const nowIdentifier = getDateIdentifier({
         date: new Date(),
-        timestep: timescale
-    })
+        timestep: timescale,
+    });
 
     const successCountCurrentInterval = successCountPerPartition[nowIdentifier] || 0;
     return habitData.completionFrequency - successCountCurrentInterval;

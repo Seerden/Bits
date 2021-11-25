@@ -9,21 +9,21 @@ import { Completion } from "../../../../shared/types/Completion";
  * data from the API.
  */
 export function updateCompletionData(
-	completionData: Completion[],
-	completion: Completion
+    completionData: Completion[],
+    completion: Completion
 ) {
-	const copy = [...completionData];
-	// see if there's already a value with completion.completionId in completionData
-	const completionIndex = copy.findIndex(
-		(val) => val.completionId === completion.completionId
-	);
+    const copy = [...completionData];
+    // see if there's already a value with completion.completionId in completionData
+    const completionIndex = copy.findIndex(
+        (val) => val.completionId === completion.completionId
+    );
 
-	if (completionIndex > -1) {
-		// if entry already exists, update its value
-		copy[completionIndex] = completion;
-	} else {
-		// if entry doesn't exist yet, add it to the array
-		copy.push(completion);
-	}
-	return copy;
+    if (completionIndex > -1) {
+        // if entry already exists, update its value
+        copy[completionIndex] = completion;
+    } else {
+        // if entry doesn't exist yet, add it to the array
+        copy.push(completion);
+    }
+    return copy;
 }

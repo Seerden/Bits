@@ -10,14 +10,14 @@ import { Timestep } from "types/time";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 
 const timescaleToEntryComponentMap = {
-	day: DailyEntry,
-	week: WeeklyEntry,
-	month: MonthlyEntry,
-	year: YearlyEntry,
+    day: DailyEntry,
+    week: WeeklyEntry,
+    month: MonthlyEntry,
+    year: YearlyEntry,
 };
 
 export function mapTimescaleToEntryComponent(timescale: Timestep) {
-	return timescaleToEntryComponentMap[timescale];
+    return timescaleToEntryComponentMap[timescale];
 }
 
 /**
@@ -38,16 +38,20 @@ export function mapTimescaleToEntryComponent(timescale: Timestep) {
  * e.g. 165 days in a given year
  */
 
-const HabitEntry = ({ completionEntries }: { completionEntries: CompletionInstanceProps[][]}) => {
-	const base = "HabitEntry";
-	const timescale = useRecoilValue(timescaleAtom);
-	const EntryComponent = mapTimescaleToEntryComponent(timescale) as typeof DailyEntry;
+const HabitEntry = ({
+    completionEntries,
+}: {
+    completionEntries: CompletionInstanceProps[][];
+}) => {
+    const base = "HabitEntry";
+    const timescale = useRecoilValue(timescaleAtom);
+    const EntryComponent = mapTimescaleToEntryComponent(timescale) as typeof DailyEntry;
 
-	return (
-		<span className={`${base} ${timescale === "week" ? "__weekly" : ""}`}>
-			<EntryComponent completionEntries={completionEntries} />
-		</span>
-	);
+    return (
+        <span className={`${base} ${timescale === "week" ? "__weekly" : ""}`}>
+            <EntryComponent completionEntries={completionEntries} />
+        </span>
+    );
 };
 
 export default HabitEntry;

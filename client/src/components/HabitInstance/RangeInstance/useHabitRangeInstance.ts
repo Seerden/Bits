@@ -4,49 +4,49 @@ import { useHabitsState } from "state/habits/habitFamily";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 
 export function useHabitRangeInstance(props: CompletionInstanceProps) {
-	const { habitId, rangeValue, completionInterval, habitEntryDate, entryIndex } = props;
-	const [sliderValue, setSliderValue] = useState<number>(rangeValue);
-	const { data, mutate } = useMutateCompletion();
+    const { habitId, rangeValue, completionInterval, habitEntryDate, entryIndex } = props;
+    const [sliderValue, setSliderValue] = useState<number>(rangeValue);
+    const { data, mutate } = useMutateCompletion();
     const { updateHabitCompletionData } = useHabitsState();
 
     useEffect(() => {
-        if(data) updateHabitCompletionData(props.habitId, data)
-    }, [data])
+        if (data) updateHabitCompletionData(props.habitId, data);
+    }, [data]);
 
-	const progressString = useMemo(() => {
-		return sliderValue >= completionInterval
-			? "completed"
-			: sliderValue >= completionInterval / 2
-			? "underway"
-			: "incomplete";
-	}, [sliderValue]);
+    const progressString = useMemo(() => {
+        return sliderValue >= completionInterval
+            ? "completed"
+            : sliderValue >= completionInterval / 2
+            ? "underway"
+            : "incomplete";
+    }, [sliderValue]);
 
-	function handleInputBlur(e) {
-		const { value } = e.target;
-		const newValue = value > 0 ? value : 0;
+    function handleInputBlur(e) {
+        const { value } = e.target;
+        const newValue = value > 0 ? value : 0;
 
-		setSliderValue(+newValue);
+        setSliderValue(+newValue);
 
-		mutate({
-			habitId,
-			rangeValue: +newValue,
-			habitEntryDate,
-			entryIndex,
-		});
-	}
+        mutate({
+            habitId,
+            rangeValue: +newValue,
+            habitEntryDate,
+            entryIndex,
+        });
+    }
 
-	function handleInputChange(e) {
-		const { value } = e.target;
+    function handleInputChange(e) {
+        const { value } = e.target;
 
-		if (+value >= 0) {
-			setSliderValue(+value);
-		}
-	}
+        if (+value >= 0) {
+            setSliderValue(+value);
+        }
+    }
 
-	return {
-		progressString,
-		sliderValue,
-		handleInputChange,
-		handleInputBlur,
-	} as const;
+    return {
+        progressString,
+        sliderValue,
+        handleInputChange,
+        handleInputBlur,
+    } as const;
 }

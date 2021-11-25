@@ -29,77 +29,80 @@ import { Habit, HabitWithCompletion } from "shared/types/Habit";
 /**
  * Atom that stores a list of habitIds
  */
-export const habitIdsAtom = atom({
-	key: "habitIds",
-	default: [] as Array<Habit["habitId"]>,
+export const habitIdsAtom = atom<Habit["habitId"][]>({
+    key: "habitIds",
+    default: [] as Habit["habitId"][],
 });
 
 /**
  * AtomFamily that stores HabitWithCompletion entries using their habitData.habitId as keys
  */
 const habitFamily = atomFamily<HabitWithCompletion, Habit["habitId"]>({
-	key: "habitFamily",
-	default: null,
+    key: "habitFamily",
+    default: null,
 });
 
 export function useHabitsState() {
-	/**
-	 * SETTER OPTION 1
-	 * Recoil callback function that takes a list of habits and
-	 * - (1) puts each habit's habitId in habitIdsAtom,
-	 * - (2) creates a habitFamily atom for each habit
-	 *
-	 * @param habits HabitWithCompletion[] as received from the API.
-	 */
-	const setHabitsInFamily = useRecoilCallback(
-		({ set }) =>
-			(habits: HabitWithCompletion[]) => {
-				const habitIds = habits.map(({ habitData }) => habitData.habitId);
-				set(habitIdsAtom, habitIds);
+    /**
+     * SETTER OPTION 1
+     * Recoil callback function that takes a list of habits and
+     * - (1) puts each habit's habitId in habitIdsAtom,
+     * - (2) creates a habitFamily atom for each habit
+     *
+     * @param habits HabitWithCompletion[] as received from the API.
+     */
+    const setHabitsInFamily = useRecoilCallback(
+        ({ set }) =>
+            (habits: HabitWithCompletion[]) => {
+                const habitIds = habits.map(({ habitData }) => habitData.habitId);
+                set(habitIdsAtom, habitIds);
 
-				for (const { habitData, completionData } of habits) {
-					set(habitFamily(habitData.habitId), { habitData, completionData });
-				}
-			},
-		[]
-	);
+                for (const { habitData, completionData } of habits) {
+                    set(habitFamily(habitData.habitId), { habitData, completionData });
+                }
+            },
+        []
+    );
 
     /**
      * Remove the habit with given `habitId` from habit-related states
      */
-	const removeHabitFromState = useRecoilCallback(
-		({ set, reset }) =>
-			(habitId: Habit["habitId"]) => {
-                set(habitIdsAtom, cur => cur.filter(id => id !== habitId));
-                reset(habitFamily(habitId))
+    const removeHabitFromState = useRecoilCallback(
+        ({ set, reset }) =>
+            (habitId: Habit["habitId"]) => {
+                set(habitIdsAtom, (cur) => cur.filter((id) => id !== habitId));
+                reset(habitFamily(habitId));
             },
-		[]
-	);
+        []
+    );
 
-	/**
-	 * Add or update a completion entry of habitFamily(habitId).completionData.
-	 * @param completion return value from the API at PUT /db/habits/completion, which represents a single
-	 * just-updated/added completion entry. We could alternatively manually edit a completion entry and pass it
-	 * to this function, but the point of this function is to synchronize state with the API after putting
-	 * something in the database.
-	 * @usage
-	 * ```ts
-	 *  const { data, mutate } = useMutateCompletion()
-	 *  useEffect(() => {data && updateHabitCompletionData(habitId, data)}, [data])
-	 * ```
-	 */
-	const updateHabitCompletionData = useRecoilCallback(
-		({ set }) =>
-			(habitId: Habit["habitId"], completion: Completion) => {
-				set(habitFamily(habitId), (cur) => {
-					const updatedCompletionData = updateCompletionData(cur.completionData, completion);
-					return { ...cur, completionData: updatedCompletionData };
-				});
-			},
-		[]
-	);
+    /**
+     * Add or update a completion entry of habitFamily(habitId).completionData.
+     * @param completion return value from the API at PUT /db/habits/completion, which represents a single
+     * just-updated/added completion entry. We could alternatively manually edit a completion entry and pass it
+     * to this function, but the point of this function is to synchronize state with the API after putting
+     * something in the database.
+     * @usage
+     * ```ts
+     *  const { data, mutate } = useMutateCompletion()
+     *  useEffect(() => {data && updateHabitCompletionData(habitId, data)}, [data])
+     * ```
+     */
+    const updateHabitCompletionData = useRecoilCallback(
+        ({ set }) =>
+            (habitId: Habit["habitId"], completion: Completion) => {
+                set(habitFamily(habitId), (cur) => {
+                    const updatedCompletionData = updateCompletionData(
+                        cur.completionData,
+                        completion
+                    );
+                    return { ...cur, completionData: updatedCompletionData };
+                });
+            },
+        []
+    );
 
-	return { setHabitsInFamily, updateHabitCompletionData, removeHabitFromState };
+    return { setHabitsInFamily, updateHabitCompletionData, removeHabitFromState };
 }
 
 /* SETTER OPTION 2: abstract away atomFamily atom get/set using a selectorFamily
@@ -118,23 +121,23 @@ export function useHabitsState() {
  *      - adds habitId
  */
 export const habitsState = selectorFamily({
-	key: "selectorFamily/habitsState",
-	get:
-		(habitId: Habit["habitId"]) =>
-		({ get }) => {
-			return get(habitFamily(habitId));
-		},
-	set:
-		(habitId: Habit["habitId"]) =>
-		({ set }, habit: HabitWithCompletion) => {
-			set(habitFamily(habitId), habit);
-			set(habitIdsAtom, (cur) => {
-				/* only add habitId to habitIdsAtom if it's not already in there. we don't want to do something 
+    key: "selectorFamily/habitsState",
+    get:
+        (habitId: Habit["habitId"]) =>
+        ({ get }) => {
+            return get(habitFamily(habitId));
+        },
+    set:
+        (habitId: Habit["habitId"]) =>
+        ({ set }, habit: HabitWithCompletion) => {
+            set(habitFamily(habitId), habit);
+            set(habitIdsAtom, (cur) => {
+                /* only add habitId to habitIdsAtom if it's not already in there. we don't want to do something 
                     like Array.from(new Set([...cur, habitId])), because Sets don't have a consistent order, 
                     which would mean the state would change, which might have UI implications (e.g. suddenly 
                         habits might be displayed in different order)
                 */
-				return habitId in cur ? cur : [...cur, habitId];
-			});
-		},
+                return habitId in cur ? cur : [...cur, habitId];
+            });
+        },
 });
