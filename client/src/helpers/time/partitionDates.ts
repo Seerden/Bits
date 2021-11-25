@@ -10,9 +10,6 @@ type DateIdentifiers = {
     [K in Timestep]: (d: Dayjs) => number | string;
 };
 
-// @todo: What happens if the displayed date range spans multiple years?
-//  In that case, d.month() for two dates a year apart will be equal,
-//      though they shouldn't be in the same partition
 export const dateToIdentifierMappings: DateIdentifiers = {
     day: (d) => `${d.year()}-${d.dayOfYear()}`,
     week: (d) => `${d.year()}-${d.week()}`,
@@ -21,7 +18,7 @@ export const dateToIdentifierMappings: DateIdentifiers = {
 };
 
 /**
- * Given two dates, returns a boolean depending on if the two dates exist in the same year.
+ * Check if two dates fall in the same year.
  */
 export function isSameYear(date1: Dayjs, date2: Dayjs) {
     return date1.year() === date2.year();
