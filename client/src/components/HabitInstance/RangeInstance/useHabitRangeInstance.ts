@@ -1,11 +1,17 @@
 import { useMutateCompletion } from "helpers/api/mutateCompletion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useHabitsState } from "state/habits/habitFamily";
 import { CompletionInstanceProps } from "types/CompletionInstance";
 
 export function useHabitRangeInstance(props: CompletionInstanceProps) {
 	const { habitId, rangeValue, completionInterval, habitEntryDate, entryIndex } = props;
 	const [sliderValue, setSliderValue] = useState<number>(rangeValue);
-	const { mutate } = useMutateCompletion();
+	const { data, mutate } = useMutateCompletion();
+    const { updateHabitCompletionData } = useHabitsState();
+
+    useEffect(() => {
+        if(data) updateHabitCompletionData(props.habitId, data)
+    }, [data])
 
 	const progressString = useMemo(() => {
 		return sliderValue >= completionInterval
