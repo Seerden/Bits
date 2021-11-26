@@ -53,6 +53,11 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
             >
                 <span
                     title="Click to edit habit name"
+                    onClick={() => {
+                        if (!isEditing) {
+                            setIsEditing((cur) => !cur);
+                        }
+                    }}
                     className={cs.NameField}
                     style={{
                         backgroundColor: isEditing ? "#222" : "",
@@ -63,9 +68,7 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
                     }}
                 >
                     {!isEditing ? (
-                        <span onClick={() => setIsEditing((cur) => !cur)}>
-                            {habitName}
-                        </span>
+                        <span>{habitName}</span>
                     ) : (
                         <input
                             autoFocus
