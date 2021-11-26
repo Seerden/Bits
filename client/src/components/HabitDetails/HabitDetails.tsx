@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { useFetchCompletionsById } from "helpers/api/queryCompletions";
 import { getCompletionSuccessPercentage } from "helpers/completion/completionPercentage";
+import { completionString } from "helpers/habit/describe.habit";
 import { useClickOutside } from "hooks/useClickOutside";
 import { memo, useLayoutEffect, useMemo, useRef } from "react";
 import { useRecoilValue } from "recoil";
@@ -76,10 +77,7 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
                     <Datum label="Age">Tracking since {trackingSince}</Datum>
 
                     {/* HABIT COMPLETION SETTINGS */}
-                    <Datum label="Target">
-                        {/* @todo -- PLACEHOLDER */}
-                        You aim to complete this habit X times per Y interval.
-                    </Datum>
+                    <Datum label="Target">{completionString(habitData)}</Datum>
 
                     {/* PROGRESS */}
                     {!isNaN(percentage) && (
