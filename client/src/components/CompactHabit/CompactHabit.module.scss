@@ -29,10 +29,18 @@
     font-size: 1rem;
     width: shared.$habitNameWidth; // match shared.$width - shared.$timeline-entry-margin (horizontal part)
 
+    transition: all 70ms linear;
+
     span {
         display: inline-flex;
         width: shared.$habitNameWidth;
         height: 100%;
+    }
+
+    &__input {
+        width: 100%;
+        background-color: inherit;
+        color: inherit;
     }
 }
 

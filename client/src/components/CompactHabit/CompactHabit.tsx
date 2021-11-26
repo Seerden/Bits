@@ -51,13 +51,25 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
                     outline: currentIntervalIsSuccessful && "2px solid green",
                 }}
             >
-                <span title="Click to edit habit name" className={cs.NameField}>
+                <span
+                    title="Click to edit habit name"
+                    className={cs.NameField}
+                    style={{
+                        backgroundColor: isEditing ? "#222" : "",
+                        outline: isEditing ? "2px solid #444" : "2px solid transparent",
+                        fontSize: "inherit",
+                        lineHeight: "inherit",
+                        fontWeight: "inherit",
+                    }}
+                >
                     {!isEditing ? (
                         <span onClick={() => setIsEditing((cur) => !cur)}>
                             {habitName}
                         </span>
                     ) : (
                         <input
+                            autoFocus
+                            className={cs.NameField__input}
                             ref={inputRef}
                             type="text"
                             defaultValue={habitName}
