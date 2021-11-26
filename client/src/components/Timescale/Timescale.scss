@@ -1,75 +1,74 @@
 @use "../../style/shared/shared";
-@use '../../style/shared/color';
+@use "../../style/shared/color";
 
 .Timescale {
-	display: flex;
-	width: max-content;
-	flex-direction: row;
+    display: flex;
+    width: max-content;
+    flex-direction: row;
 
-    background-color: color.$dark;
+    color: azure;
+    padding: 0 2rem;
+    margin-top: 1rem;
 
-	color: azure;
-	padding: 0 2rem;
-	margin-top: 1rem;
+    &__list {
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-left: shared.$habitNameWidth;
 
-	&__list {
-		width: 100%;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		margin-left: shared.$habitNameWidth;
+        display: flex;
+        // justify-content: space-evenly;
 
-		display: flex;
-		// justify-content: space-evenly;
-
-		&--entry {
-			&:nth-of-type(1) {
-				margin-left: 0;
-			}
+        &--entry {
+            &:nth-of-type(1) {
+                margin-left: 0;
+            }
 
             display: inline-flex;
-			width: shared.$habitEntryWidth;
-			overflow: hidden;
-			text-align: center;
-			font-size: 1.1rem;
+            width: shared.$habitEntryWidth;
+            overflow: hidden;
+            text-align: center;
+            font-size: 1.1rem;
             line-height: 120%;
             height: 120%;
             align-self: center;
-			padding: 0.5rem 0;
+            padding: 0.5rem 0;
             justify-content: center;
             place-items: center;
-			background-color: #292929;
+            background-color: #292929;
             border-radius: 5px;
-			user-select: none;
-			border: 1px solid #333;
-			box-shadow: 0 0.2rem 0.5rem -0.3rem color.$dark, 0 -0.2rem 0.5rem -0.3rem color.$dark-tint;
+            user-select: none;
+            border: 1px solid #333;
+            box-shadow: 0 0.2rem 0.5rem -0.3rem color.$dark,
+                0 -0.2rem 0.5rem -0.3rem color.$dark-tint;
 
-			@media screen and (min-width: 1280px) {
-				margin: 0 shared.$timelineEntryMarginX;
-			}
+            @media screen and (min-width: 1280px) {
+                margin: 0 shared.$timelineEntryMarginX;
+            }
             margin: 0 shared.$habitEntryMarginSmall;
-		}
-	}
+        }
+    }
 
-	&__cycle {
+    &__cycle {
         font-size: 0.82rem;
         width: shared.$compactHabitButtonWidth;
-		max-width: 4.5rem;
-		overflow: hidden;
-		height: 2.2rem;
-		align-self: center;
+        max-width: 4.5rem;
+        overflow: hidden;
+        height: 2.2rem;
+        align-self: center;
         background-color: #111;
-		outline: 4px solid #444;
+        outline: 4px solid #444;
         font-size: 0.7rem;
-		color: azure;
-		border: none;
+        color: azure;
+        border: none;
         border-radius: 3%;
         box-shadow: 0 0.3rem 0 0 #666, 0 -0.3rem 0 0 #666;
 
         transition: all 50ms ease-in;
 
-		&:hover {
-			background-color: #333;
-		}
-	}
+        &:hover {
+            background-color: #333;
+        }
+    }
 }

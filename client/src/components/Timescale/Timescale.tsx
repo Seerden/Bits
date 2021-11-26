@@ -18,9 +18,9 @@ const Timescale = ({ labels, timestep, cycleTimestep }: TimescaleProps) => {
                     </li>
                 ))}
             </ul>
-            <button className="Timescale__cycle" onClick={cycleTimestep}>
+            {/* <button className="Timescale__cycle" onClick={cycleTimestep}>
                 {timestepDisplayStringMap[timestep].toUpperCase()}
-            </button>
+            </button> */}
         </div>
     );
 };
