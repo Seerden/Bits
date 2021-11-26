@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { CompletionInstanceProps } from "types/CompletionInstance";
-import { Habit } from "../../../../shared/types/Habit";
+import { Habit } from "shared/types/Habit";
 import HabitRangeInstance from "./RangeInstance/HabitRangeInstance";
 import HabitToggleInstance from "./ToggleInstance/HabitToggleInstance";
 

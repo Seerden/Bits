@@ -1,4 +1,4 @@
-@use '../../style/shared/color';
+@use "../../style/shared/color";
 
 .Habits {
     display: flex;
@@ -7,6 +7,4 @@
 
     margin: 2rem auto;
     padding: 2rem;
-
-    border: 4px solid color.$secondary;
 }

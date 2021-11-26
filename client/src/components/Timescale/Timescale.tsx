@@ -1,6 +1,5 @@
 import "./Timescale.scss";
 import { Timestep } from "types/time";
-import { timestepDisplayStringMap } from "helpers/time/timesteps";
 
 interface TimescaleProps {
     timestep: Timestep;
@@ -18,9 +17,6 @@ const Timescale = ({ labels, timestep, cycleTimestep }: TimescaleProps) => {
                     </li>
                 ))}
             </ul>
-            {/* <button className="Timescale__cycle" onClick={cycleTimestep}>
-                {timestepDisplayStringMap[timestep].toUpperCase()}
-            </button> */}
         </div>
     );
 };

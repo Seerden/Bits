@@ -29,14 +29,15 @@
             width: shared.$habitEntryWidth;
             overflow: hidden;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 120%;
+            color: color.$light;
             height: 120%;
             align-self: center;
             padding: 0.5rem 0;
             justify-content: center;
             place-items: center;
-            background-color: #292929;
+            background-color: color.$dark-tint;
             border-radius: 5px;
             user-select: none;
             border: 1px solid #333;

@@ -12,7 +12,7 @@ const defaultHabit: Omit<NewHabit, "userId"> = {
     endDate: null,
     completionFrequency: 1,
     completionType: "toggle",
-    completionInterval: null,
+    completionInterval: 1,
     completionTimescale: "day",
     unit: "",
 };
