@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { listDatesBetween } from "helpers/time/dateList";
-import { dateToIdentifierMappings } from "helpers/time/partitionDates";
+import { dateToIdentifierMappings } from "helpers/time/truncate";
 import { Timestep } from "types/time";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";

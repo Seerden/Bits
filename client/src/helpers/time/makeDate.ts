@@ -6,8 +6,8 @@ import { Timestep } from "types/time";
  *
  * Examples:
  * - 'day' -> returns date of midnight today,
- * - 'week' -> returns date of midnight of this week's sunday
- * - 'month' -> returns midnight of the first of the current month
+ * - 'week' -> returns date of midnight of nearest past Sunday
+ * - 'month' -> returns midnight of the first day of the current month
  */
 export function getCurrentTimestepStartOf(timestep: Timestep = "day") {
     return dayjs(new Date()).startOf(timestep);

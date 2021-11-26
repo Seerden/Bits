@@ -3,19 +3,9 @@ import dayjs, { Dayjs } from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 import { asDates, asTimes } from "./asDates";
+import { dateToIdentifierMappings } from "./truncate";
 dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
-
-type DateIdentifiers = {
-    [K in Timestep]: (d: Dayjs) => number | string;
-};
-
-export const dateToIdentifierMappings: DateIdentifiers = {
-    day: (d) => `${d.year()}-${d.dayOfYear()}`,
-    week: (d) => `${d.year()}-${d.week()}`,
-    month: (d) => `${d.year()}-${d.month()}`,
-    year: (d) => d.year(),
-};
 
 /**
  * Check if two dates fall in the same year.
@@ -57,13 +47,13 @@ export function partitionDates(
     timescale: Timestep,
     returnIndices = false
 ) {
-    const truncateFn = dateToIdentifierMappings[timescale];
+    const identifierMap = dateToIdentifierMappings[timescale];
     const partitionedDates = partitions.map((partitionLabelDate) => {
-        const truncatedLabel = truncateFn(dayjs(partitionLabelDate));
+        const truncatedLabel = identifierMap(dayjs(partitionLabelDate));
         const datesForPartition = dates.filter(
             (date) =>
                 isSameYear(dayjs(partitionLabelDate), dayjs(date)) &&
-                truncateFn(dayjs(date)) === truncatedLabel
+                identifierMap(dayjs(date)) === truncatedLabel
         );
 
         if (!datesForPartition.length) return [];
@@ -98,8 +88,8 @@ type DateAndIndex = {
  * @param partitionDateLabels list of dates to use as partition labels. ideally, each label corresponds to one partition // @todo: use Array.from(new Set(partitionDateLabels)) to ensure uniqueness
  * @param timescale width of each partition
  */
-export function partitionObjectsByDate(
-    objects: any[],
+export function partitionObjectsByDate<T>(
+    objects: T[],
     dateProperty: string, // denotes whichever property of objects[i] corresponds to a date
     timescale: Timestep,
     partitionDateLabels: Dayjs[]

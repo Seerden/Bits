@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
-import { dateToIdentifierMappings, isSameYear, partitionDates } from "./partitionDates";
+import { isSameYear, partitionDates } from "./partitionDates";
+import { dateToIdentifierMappings } from "./truncate";
 
 const jan1 = dayjs("2021-01-01");
 const lastJan1 = dayjs("2020-01-01");
