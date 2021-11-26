@@ -31,6 +31,11 @@
 
     transition: all 70ms linear;
 
+    &:hover {
+        transform: translateX(0.3rem);
+        box-shadow: -0.3rem 0 0 -0.1rem #333;
+    }
+
     span {
         display: inline-flex;
         width: shared.$habitNameWidth;
