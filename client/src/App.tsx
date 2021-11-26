@@ -8,7 +8,7 @@ import NewHabit from "components/NewHabit/NewHabit";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.scss";
 
-const App = (props) => {
+const App = () => {
     return (
         <div className="App">
             <BrowserRouter>

@@ -1,4 +1,5 @@
 @use "../../style/shared/shared";
+@use "../../style/shared/color";
 
 .HabitEntry {
     width: shared.$habitEntryWidth;
@@ -13,10 +14,12 @@
     }
 
     display: flex;
-    background-color: #1a1a1a;
-    border-radius: 5px 0;
+    background-color: color.$dark-tint;
+    border-radius: 5px;
     justify-content: space-evenly;
-    padding: 0.8rem 0;
+    padding: 0.2rem 0;
+    align-items: center;
+    min-height: 3rem;
 }
 
 .__weekly {

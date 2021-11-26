@@ -1,11 +1,12 @@
-import "./NewHabitButton.scss";
+import cs from "./NewHabitButton.module.scss";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const NewHabitButton = ({ onClick }) => {
     const base = "NewHabitButton";
 
     return (
-        <button className={`${base}`} onClick={onClick}>
-            Create new habit
+        <button title="Create new habit" className={cs.Button} onClick={onClick}>
+            <AiOutlinePlus className={cs.Plus} />
         </button>
     );
 };
