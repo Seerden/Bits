@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
 import { NewHabit } from "../../../../shared/types/Habit";
-import c from "./NewHabit.module.scss";
+import cs from "./NewHabit.module.scss";
 import { Description, Form, Label, Row, Section } from "./Primitives";
 import { useNewHabit } from "./useNewHabit";
 
-const NewHabit = (props) => {
+const NewHabit = () => {
     const [newHabit, dispatchNewHabit, handleSubmitNewHabit] = useNewHabit();
 
     return (
@@ -26,7 +26,7 @@ const NewHabit = (props) => {
                             })
                         }
                         type="text"
-                        className={c.Input}
+                        className={cs.Input}
                         style={{ width: "8rem" }}
                     />
                 </Section>
@@ -42,7 +42,7 @@ const NewHabit = (props) => {
                                 value: e.target.value,
                             })
                         }
-                        className={c.Input}
+                        className={cs.Input}
                         type="text"
                         style={{ width: "10rem" }}
                     />
@@ -72,12 +72,12 @@ const NewHabit = (props) => {
                                     value: e.target.value,
                                 })
                             }
-                            className={c.Select}
+                            className={cs.Select}
                         >
-                            <option className={c.Option} value="toggle">
+                            <option className={cs.Option} value="toggle">
                                 Toggle
                             </option>
-                            <option className={c.Option} value="interval">
+                            <option className={cs.Option} value="interval">
                                 Interval
                             </option>
                         </select>
@@ -94,7 +94,7 @@ const NewHabit = (props) => {
                                 <span>Target: </span>
                                 <p>
                                     <input
-                                        className={c.Input}
+                                        className={cs.Input}
                                         type="number"
                                         defaultValue={newHabit.completionInterval || 1}
                                         style={{
@@ -111,7 +111,7 @@ const NewHabit = (props) => {
                                     <input
                                         type="text"
                                         name="unit"
-                                        className={c.Input}
+                                        className={cs.Input}
                                         style={{ width: "3.5rem" }}
                                         placeholder="parsec"
                                         onBlur={(e) =>
@@ -132,7 +132,7 @@ const NewHabit = (props) => {
                     <Description>
                         Choose how often you want to perform this habit.
                     </Description>
-                    <div className={c.Field}>
+                    <div className={cs.Field}>
                         <input
                             onChange={(e) =>
                                 dispatchNewHabit({
@@ -140,7 +140,7 @@ const NewHabit = (props) => {
                                     value: +e.target.value,
                                 })
                             }
-                            className={c.Input}
+                            className={cs.Input}
                             type="number"
                             style={{ width: "2rem" }}
                             value={newHabit.completionFrequency || 1}
@@ -148,7 +148,7 @@ const NewHabit = (props) => {
                         />
                         <span>time(s) per</span>
                         <select
-                            className={c.Select}
+                            className={cs.Select}
                             onChange={(e) =>
                                 dispatchNewHabit({
                                     formField: "completionTimescale",
@@ -157,7 +157,7 @@ const NewHabit = (props) => {
                             }
                         >
                             {["day", "week", "month", "year"].map((value) => (
-                                <option key={value} className={c.Option} value={value}>
+                                <option key={value} className={cs.Option} value={value}>
                                     {value}
                                 </option>
                             ))}
@@ -177,8 +177,8 @@ const NewHabit = (props) => {
                         { formField: "startDate", label: "Start" },
                         { formField: "endDate", label: "End" },
                     ].map(({ formField, label }, index) => (
-                        <div key={index} className={c.Field}>
-                            <label className={c.SubLabel}>{label}</label>
+                        <div key={index} className={cs.Field}>
+                            <label className={cs.SubLabel}>{label}</label>
                             <input
                                 onChange={(e) =>
                                     dispatchNewHabit({
@@ -190,7 +190,7 @@ const NewHabit = (props) => {
                                     })
                                 }
                                 type="date"
-                                className={c.Input}
+                                className={cs.Input}
                                 defaultValue={
                                     formField === "startDate" &&
                                     dayjs(newHabit.startDate).format("YYYY-MM-DD")
@@ -204,7 +204,7 @@ const NewHabit = (props) => {
             <input
                 type="submit"
                 onClick={handleSubmitNewHabit}
-                className={c.Button}
+                className={cs.Button}
                 value="Create habit"
             />
         </Form>

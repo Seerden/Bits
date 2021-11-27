@@ -16,27 +16,36 @@
     &:nth-of-type(1) {
         margin-top: 1rem;
     }
+
+    &:hover {
+        // transform: scale(1.01);
+        background: linear-gradient(to right, #1e1e1e 25%, color.$main);
+    }
 }
 
 .NameField {
     display: flex;
     font-weight: 500;
     min-height: 3rem;
-    background-color: color.$dark-tint;
+    background-color: color.$main;
+    box-shadow: 0 0.1rem 1.1em 0 #0d0d0d;
     border-radius: 5px;
     align-items: center;
     padding-left: 1rem;
-    font-size: 1rem;
+    border: 2px solid transparent;
+
     width: shared.$habitNameWidth; // match shared.$width - shared.$timeline-entry-margin (horizontal part)
 
-    transition: all 70ms linear;
+    transition: all 55ms ease-in-out;
 
     &:hover {
         transform: translateX(0.3rem);
-        box-shadow: -0.3rem 0 0 -0.1rem #333;
+        box-shadow: 0 0.1rem 1.1em 0 #0d0d0d, -0.3em 0 0 -0.1rem #666;
     }
 
     span {
+        user-select: none;
+        font-size: 0.95em;
         display: inline-flex;
         width: shared.$habitNameWidth;
         height: 100%;
@@ -45,6 +54,7 @@
     &__input {
         width: 100%;
         background-color: inherit;
+        line-height: 100%;
         color: inherit;
     }
 }
