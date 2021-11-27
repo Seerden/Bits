@@ -1,4 +1,5 @@
 @use "../../style/shared/color";
+@use "../../style/shared/shared";
 
 .Habits {
     display: flex;
@@ -7,4 +8,10 @@
 
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+.Header {
+    display: grid;
+    grid-template-columns: shared.$habitNameWidth 1fr;
+    height: 2.4rem;
 }

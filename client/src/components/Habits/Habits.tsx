@@ -5,6 +5,7 @@ import { useHabits } from "./useHabits";
 import cs from "./Habits.module.scss";
 import { memo, useMemo } from "react";
 import { useNavigate } from "react-router";
+import HabitFilter from "./HabitFilter/HabitFilter";
 
 const Habits = memo(() => {
     const { habitIds, timestep, cycleTimestep, labels, partitionsAsTimes, isFetching } =
@@ -31,7 +32,10 @@ const Habits = memo(() => {
                 <>Fetching habits</>
             ) : habitIds.length > 0 ? (
                 <>
-                    <Timescale {...{ labels, cycleTimestep, timestep }} />
+                    <header className={cs.Header}>
+                        <HabitFilter />
+                        <Timescale {...{ labels, cycleTimestep, timestep }} />
+                    </header>
 
                     {compactHabits}
                 </>
@@ -39,7 +43,7 @@ const Habits = memo(() => {
                 <>It appears you haven't started tracking any habits yet.</>
             )}
 
-            <NewHabitButton onClick={() => navigate("/newhabit")} />
+            <NewHabitButton onClick={() => navigate("new")} />
         </div>
     );
 });

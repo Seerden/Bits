@@ -1,0 +1,106 @@
+@use "../../../style/shared/color";
+@use "../../../style/shared/shared";
+
+$filter-width: shared.$habitNameWidth;
+$label-pad: 0.5rem 1rem;
+$border: 0.1rem solid deepskyblue;
+
+.Filter {
+    margin-left: 1rem;
+    list-style: none;
+    display: flex;
+    position: relative;
+    z-index: 100;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    border: $border;
+    border-bottom: none;
+
+    // @dev
+    width: $filter-width;
+
+    &__header {
+        @extend %default-button;
+        @extend %row-between;
+        width: 100%;
+        outline: 2px solid color.$secondary;
+        background-color: color.$dark-tint;
+        color: black;
+        padding: $label-pad;
+        height: 120%;
+        font-weight: 500;
+        font-size: 0.93em;
+        user-select: none;
+        color: #d0d0d0;
+        transition: all 135ms ease-out;
+
+        &:hover {
+            background-color: color.$secondary;
+        }
+    }
+}
+
+.Options {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    border-radius: 0 0 5px 5px;
+    outline: 2px solid color.$secondary;
+    background-color: color.$secondary;
+    padding: 0.2em;
+}
+
+.Option {
+    position: relative;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    z-index: 10;
+    width: 100%;
+
+    font-size: 0.88em;
+    padding: 0.5em 1.2em;
+    height: 3rem;
+    line-height: 100%;
+    background-color: #1d1d1d;
+    box-shadow: 0 0 0.3rem 0 black;
+    outline: 2px solid transparent;
+
+    transition: all 55ms ease-out;
+
+    &:focus,
+    &:active {
+        background-color: red;
+    }
+
+    &:hover {
+        outline: 2px solid color.$tertiary;
+        background-color: color.$secondary;
+        transform: scale(0.97);
+    }
+
+    &:not(:nth-last-of-type(1)) {
+        margin-bottom: 0.5em;
+    }
+}
+
+.SelectedBox {
+    display: flex;
+    flex-direction: row;
+    width: 2rem;
+}
+
+.Box {
+    $size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    // outline: 1px solid color.$secondary;
+    width: $size;
+    height: $size;
+}

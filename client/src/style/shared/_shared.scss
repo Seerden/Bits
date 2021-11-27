@@ -1,4 +1,4 @@
-@use './color';
+@use "./color";
 
 $width: 6rem;
 
@@ -29,19 +29,25 @@ $habitEntryMarginSmall: 0.3rem;
     color: azure;
     border-radius: 5px;
     border: 2px solid #444;
-
 }
 
 %outline-active {
     &:hover,
-	&:active,
-	&:focus {
+    &:active,
+    &:focus {
         transition: border-color 60ms ease-out;
-		border-color: #bbb;
-	}
+        border-color: #bbb;
+    }
 }
 
 %box {
     border: 3px solid color.$secondary;
     box-shadow: 0 0 0.8rem 0 #111;
+}
+
+%row-between {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
 }
