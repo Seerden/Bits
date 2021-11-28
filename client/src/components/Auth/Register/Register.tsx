@@ -3,10 +3,11 @@ import PasswordField from "../PasswordField";
 import { useRegister } from "./useRegister";
 
 const Register = () => {
-    const { handleChange, handleSubmit, borderColor } = useRegister();
+    const { handleChange, handleSubmit, borderColor, message } = useRegister();
 
     return (
         <form className={cs.Form} onSubmit={handleSubmit}>
+            {message && <div className={cs.Message}>{message}</div>}
             <header>
                 <h2 className={cs.Header}>Create a new account</h2>
             </header>

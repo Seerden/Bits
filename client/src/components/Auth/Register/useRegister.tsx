@@ -4,8 +4,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { NewUser } from "types/User";
 
 export function useRegister() {
-    const [formValue, setFormValue] = useState<NewUser>({});
-    const { mutate, data } = usePostUser();
+    const [formValue, setFormValue] = useState<NewUser>({
+        username: "",
+        password: "",
+        repeatPassword: "",
+    });
+    const [message, setMessage] = useState<string>(null);
+    const { mutate, data, error, isError } = usePostUser();
     const { login } = useAuth();
 
     // If `data` is populated, that means the user POST was successful
@@ -14,6 +19,12 @@ export function useRegister() {
         const { username, password } = formValue;
         data?.userId && login({ username, password });
     }, [data, formValue]);
+
+    useEffect(() => {
+        if (error) {
+            setMessage(error.response.data.message);
+        }
+    }, [error]);
 
     const match = useMemo(() => {
         const { password, repeatPassword } = formValue;
@@ -48,14 +59,22 @@ export function useRegister() {
             e.preventDefault();
             e.stopPropagation();
 
-            const { username, password } = formValue;
+            const { username, password, repeatPassword } = formValue;
 
-            if (username.length > 0 && password.length > 0) {
-                /* @note: is it worth enforcing stronger passwords? */
-                mutate({ username, password });
+            if (!username.length) {
+                setMessage("Account needs a username");
+                return;
             }
+
+            if (!password.length || !repeatPassword.length) {
+                setMessage("Account needs a password");
+                return;
+            }
+
+            /* @note: is it worth enforcing stronger passwords? */
+            mutate({ username, password });
         },
-        [formValue]
+        [formValue, setMessage]
     );
 
     return {
@@ -63,5 +82,6 @@ export function useRegister() {
         borderColor,
         handleChange,
         handleSubmit,
+        message,
     } as const;
 }
