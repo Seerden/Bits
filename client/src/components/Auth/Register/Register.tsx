@@ -1,35 +1,40 @@
-import cs from "./Register.module.scss";
+import cs from "../Auth.module.scss";
 import PasswordField from "../PasswordField";
 import { useRegister } from "./useRegister";
 
 const Register = () => {
-    const { match, handleChange, handleSubmit, borderColor } = useRegister();
+    const { handleChange, handleSubmit, borderColor } = useRegister();
 
     return (
-        <form className={cs.Register} onSubmit={handleSubmit}>
+        <form className={cs.Form} onSubmit={handleSubmit}>
             <header>
-                <h2>Register</h2>
+                <h2 className={cs.Header}>Create a new account</h2>
             </header>
-            <section className={cs.Register__field}>
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" onChange={handleChange} />
-            </section>
+            <fieldset>
+                <p className={cs.Field}>
+                    <label htmlFor="username">Username</label>
 
-            <section className={cs.Register__field}>
-                <PasswordField
-                    htmlFor="password"
-                    text="Password"
-                    onChange={handleChange}
-                    style={{ borderColor }}
-                />
-                <PasswordField
-                    htmlFor="repeatPassword"
-                    text="Repeat password"
-                    onChange={handleChange}
-                    style={{ borderColor }}
-                />
-            </section>
-            <input type="submit" value="Register" className={cs.Register__submit} />
+                    <input type="text" name="username" onChange={handleChange} />
+                </p>
+
+                <p>
+                    <PasswordField
+                        htmlFor="password"
+                        text="Password"
+                        onChange={handleChange}
+                        style={{ borderColor }}
+                    />
+                    <PasswordField
+                        htmlFor="repeatPassword"
+                        text="Repeat password"
+                        onChange={handleChange}
+                        style={{ borderColor }}
+                    />
+                </p>
+                <p>
+                    <input type="submit" value="Register" className={cs.Button} />
+                </p>
+            </fieldset>
         </form>
     );
 };

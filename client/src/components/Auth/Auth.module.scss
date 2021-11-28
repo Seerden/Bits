@@ -1,4 +1,4 @@
-@use '../../../style/shared/shared';
+@use "../../style/shared/shared";
 
 $gap: 0.5rem;
 $pad-x: 4rem;
@@ -7,7 +7,6 @@ $pad-x: 4rem;
     margin: 0 auto;
     width: 30rem;
     margin-top: 2rem;
-
     padding: 2rem $pad-x;
     @extend %box;
 
@@ -18,7 +17,8 @@ $pad-x: 4rem;
     }
 
     input {
-        &[type="text"], &[type="password"] {
+        &[type="text"],
+        &[type="password"] {
             width: 11rem;
             @extend %outline-active;
 
@@ -44,7 +44,7 @@ $pad-x: 4rem;
     border: 3px solid #555;
     color: azure;
     box-shadow: 0 0.2rem 0.5rem 0 black;
-    width: calc(11rem/2);
+    width: calc(11rem / 2);
 
     @extend %outline-active;
 }

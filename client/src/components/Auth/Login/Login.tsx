@@ -1,6 +1,6 @@
 import { useLoginForm } from "./useLoginForm";
 import PasswordField from "../PasswordField";
-import cs from "./Login.module.scss";
+import cs from "../Auth.module.scss";
 
 type LoginProps = {
     message?: string;

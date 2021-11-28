@@ -21,12 +21,12 @@ function Option({ text, selected, onClick }) {
             }}
         >
             <span>{text}</span>
-            <SelectedBox selected={selected} />
+            <CheckmarkOrBox selected={selected} />
         </li>
     );
 }
 
-function SelectedBox({ selected }) {
+function CheckmarkOrBox({ selected }) {
     return (
         <span className={cs.Box}>
             {selected ? <HiCheck fill="green" width="1em" height="1em" /> : <span></span>}
@@ -47,7 +47,7 @@ const HabitFilter = () => {
                     </>
                 ) : (
                     <>
-                        Show <RiArrowDropUpLine />
+                        Show... <RiArrowDropUpLine />
                     </>
                 )}
             </button>

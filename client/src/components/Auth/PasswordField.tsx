@@ -1,7 +1,6 @@
 import { useToggle } from "hooks/useToggle";
 import { useMemo } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
-import cs from "./Register/Register.module.scss";
 
 type PasswordFieldProps = {
     text: string;
@@ -33,7 +32,7 @@ function PasswordField({ text, htmlFor, onChange, style }: PasswordFieldProps) {
                     onChange={onChange}
                     style={style}
                 />
-                <span className={cs.Register__eye} onClick={toggleHidden}>
+                <span onClick={toggleHidden}>
                     {hidden ? <FiEyeOff fill="#111" /> : <FiEye fill="#333" />}
                 </span>
             </span>
