@@ -71,6 +71,11 @@ export function useRegister() {
                 return;
             }
 
+            if (password !== repeatPassword) {
+                setMessage("Passwords don't match");
+                return;
+            }
+
             /* @note: is it worth enforcing stronger passwords? */
             mutate({ username, password });
         },
