@@ -77,7 +77,7 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
                     <Datum label="Age">Tracking since {trackingSince}</Datum>
 
                     {/* HABIT COMPLETION SETTINGS */}
-                    <Datum label="Target">{completionString(habitData)}</Datum>
+                    <Datum label="Goal">{completionString(habitData)}</Datum>
 
                     {/* PROGRESS */}
                     {!isNaN(percentage) && (
@@ -96,12 +96,6 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
                             </div>
                         </Datum>
                     )}
-
-                    {/* CURRENT STREAK */}
-                    <Datum label="Current">Current streak:</Datum>
-
-                    {/* BEST STREAK */}
-                    <Datum label="Best">Best streak:</Datum>
                 </ul>
                 <DeleteButton toggleDetails={toggleDetails} habitId={habitData.habitId} />
             </div>

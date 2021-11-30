@@ -56,8 +56,9 @@ $habitEntryMarginSmall: 0.3rem;
     $color: #ccc;
     display: flex;
     margin-bottom: 1rem;
-    width: 10rem;
+    width: max-content;
     border-bottom: 0.4rem solid $color;
     color: $color;
+    padding-left: 2rem;
     justify-content: end;
 }
