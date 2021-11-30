@@ -12,6 +12,9 @@ html {
 body {
     background-color: #202020;
     color: azure;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 2rem;
 }
 
 #root {

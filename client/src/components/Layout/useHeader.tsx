@@ -2,7 +2,7 @@ import { useAuth } from "hooks/useAuth";
 import { useCallback, useMemo } from "react";
 import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
-import sc from "./header.module.scss";
+import sc from "./Header.module.scss";
 
 export const useHeaderLinks = () => {
     const { currentUser, logout } = useAuth();

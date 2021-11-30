@@ -1,7 +1,7 @@
-import sc from "./header.module.scss";
+import sc from "./Header.module.scss";
 import { useHeaderLinks } from "./useHeader";
 
-const Header = (props) => {
+const Header = () => {
     const links = useHeaderLinks();
 
     return (
