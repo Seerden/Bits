@@ -3,7 +3,7 @@ import Timescale from "components/Timescale/Timescale";
 import NewHabitButton from "./NewHabitButton/NewHabitButton";
 import { useHabits } from "./useHabits";
 import cs from "./Habits.module.scss";
-import { memo, useMemo } from "react";
+import { memo, useMemo, useRef } from "react";
 import { useNavigate } from "react-router";
 import HabitFilter from "./HabitFilter/HabitFilter";
 
@@ -37,7 +37,7 @@ const Habits = memo(() => {
                         <Timescale {...{ labels, cycleTimestep, timestep }} />
                     </header>
 
-                    {compactHabits}
+                    <ul style={{ marginTop: "4.5rem" }}>{compactHabits}</ul>
                 </>
             ) : (
                 <>It appears you haven't started tracking any habits yet.</>

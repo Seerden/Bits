@@ -12,6 +12,14 @@
 
 .Header {
     display: grid;
+    position: fixed;
+    z-index: 2000;
+    top: 5rem;
     grid-template-columns: shared.$habitNameWidth 1fr;
-    height: 2.4rem;
+    align-items: center;
+    background-color: color.$background;
+    padding: 1rem 0;
+    outline: 2px solid color.$secondary;
+    padding-right: 4.7rem;
+    border-radius: 3px;
 }

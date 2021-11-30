@@ -8,7 +8,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import "./index.scss";
 import App from "./App";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 0 } } });
 
 function Root({ children }: { children: JSX.Element }) {
     return <RecoilRoot>{children}</RecoilRoot>;

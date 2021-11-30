@@ -69,7 +69,7 @@ const HabitDetails = memo(({ habitData, toggleDetails }: HabitDetailsProps) => {
 
                 <ul>
                     {/* DESCRIPTION */}
-                    {habitData.description.length > 0 && (
+                    {habitData.description?.length > 0 && (
                         <Datum label="Description">{habitData.description}</Datum>
                     )}
 

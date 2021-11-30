@@ -3,10 +3,10 @@
 
 .CompactHabit {
     outline: 1px solid #222;
-    width: max-content;
+    width: 100%;
     display: flex;
     padding: 0.8rem 1rem;
-    box-shadow: 0.2rem 0.2rem 1rem 0 black;
+    box-shadow: 0rem 0.2rem 0.5rem 0 color.$dark-tint;
     border: 1px solid #333;
     border-radius: 2px;
     height: max-content;
@@ -24,11 +24,12 @@
 }
 
 .NameField {
+    $shadow: 0 0.1rem 0.5em 0 #0d0d0d;
     display: flex;
     font-weight: 500;
     min-height: 3rem;
     background-color: color.$main;
-    box-shadow: 0 0.1rem 1.1em 0 #0d0d0d;
+    box-shadow: $shadow;
     border-radius: 5px;
     align-items: center;
     padding-left: 1rem;
@@ -40,7 +41,7 @@
 
     &:hover {
         transform: translateX(0.3rem);
-        box-shadow: 0 0.1rem 1.1em 0 #0d0d0d, -0.3em 0 0 -0.1rem #666;
+        box-shadow: $shadow, -0.3em 0 0 -0.1rem #666;
     }
 
     span {
