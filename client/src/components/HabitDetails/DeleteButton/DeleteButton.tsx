@@ -1,4 +1,4 @@
-import { useDeleteHabit } from "helpers/api/mutateHabits";
+import { useDeleteHabit } from "helpers/api/habit-mutate";
 import { useToggle } from "hooks/useToggle";
 import { useEffect } from "react";
 import { useHabitsState } from "state/habits/habitFamily";

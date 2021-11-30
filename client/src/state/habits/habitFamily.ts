@@ -21,7 +21,7 @@
         const [habit, setHabit] = useRecoilState(habitFamily(habitId))
 */
 
-import { updateCompletionData } from "helpers/completion/updateCompletionData";
+import { updateCompletionData } from "helpers/completion/update-completion-data";
 import { atom, atomFamily, selectorFamily, useRecoilCallback } from "recoil";
 import { Completion } from "shared/types/Completion";
 import { Habit, HabitWithCompletion } from "shared/types/Habit";

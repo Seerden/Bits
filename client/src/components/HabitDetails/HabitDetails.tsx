@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
-import { useFetchCompletionsById } from "helpers/api/queryCompletions";
-import { getCompletionSuccessPercentage } from "helpers/completion/completionPercentage";
-import { completionString } from "helpers/habit/describe.habit";
+import { useFetchCompletionsById } from "helpers/api/completion-query";
+import { getCompletionSuccessPercentage } from "helpers/completion/completion-percentage";
+import { completionString } from "helpers/habit/describe-habit";
 import { useClickOutside } from "hooks/useClickOutside";
 import { memo, useLayoutEffect, useMemo, useRef } from "react";
 import { useRecoilValue } from "recoil";

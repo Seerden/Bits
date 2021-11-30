@@ -1,4 +1,4 @@
-import { useMutateCompletion } from "helpers/api/mutateCompletion";
+import { useMutateCompletion } from "helpers/api/completion-mutate";
 import { useToggle } from "hooks/useToggle";
 import { useCallback, useEffect } from "react";
 import { useHabitsState } from "state/habits/habitFamily";

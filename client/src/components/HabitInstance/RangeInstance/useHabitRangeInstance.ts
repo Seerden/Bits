@@ -1,4 +1,4 @@
-import { useMutateCompletion } from "helpers/api/mutateCompletion";
+import { useMutateCompletion } from "helpers/api/completion-mutate";
 import { useEffect, useMemo, useState } from "react";
 import { useHabitsState } from "state/habits/habitFamily";
 import { CompletionInstanceProps } from "types/CompletionInstance";

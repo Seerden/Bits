@@ -1,4 +1,4 @@
-import { usePostNewHabit } from "helpers/api/mutateHabits";
+import { usePostNewHabit } from "helpers/api/habit-mutate";
 import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { useAuth } from "hooks/useAuth";
 import { useCallback, useEffect, useReducer } from "react";

@@ -14,7 +14,7 @@
 import { getDateIdentifier } from "helpers/time/truncate";
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
-import { completionSuccessCountPerPartition } from "./completionPercentage";
+import { completionSuccessCountPerPartition } from "./completion-percentage";
 
 /**
  * Given a habit, determine how many successful entries it still needs in order to hit its target

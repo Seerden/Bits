@@ -1,4 +1,4 @@
-import { useFetchHabits } from "helpers/api/queryHabits";
+import { useFetchHabits } from "helpers/api/habit-query";
 import { asDates } from "helpers/time/asDates";
 import { getDatesForLabels, listDatesBetween } from "helpers/time/dateList";
 import { timescaleFormatters } from "helpers/time/format";

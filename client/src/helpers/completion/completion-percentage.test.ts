@@ -1,6 +1,6 @@
 import { Completion } from "../../../../shared/types/Completion";
 import { Habit } from "../../../../shared/types/Habit";
-import { isSuccessfulCompletion } from "./completionPercentage";
+import { isSuccessfulCompletion } from "./completion-percentage";
 
 const completion = {
     completed: true,

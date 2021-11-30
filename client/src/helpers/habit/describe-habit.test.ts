@@ -1,5 +1,5 @@
 import { Habit } from "shared/types/Habit";
-import { completionString } from "./describe.habit";
+import { completionString } from "./describe-habit";
 
 describe("completionString", () => {
     test("return correct string for daily toggle habit", () => {

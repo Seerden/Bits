@@ -1,5 +1,5 @@
-import { Completion } from "../../../../shared/types/Completion";
-import { indexMatches } from "./completionEntries";
+import { Completion } from "shared/types/Completion";
+import { indexMatches } from "./completion-entries";
 
 const partialCompletion = {
     entryIndex: 1,

@@ -1,4 +1,4 @@
-import { usePostUser } from "helpers/api/mutateUser";
+import { usePostUser } from "helpers/api/user-mutate";
 import { useAuth } from "hooks/useAuth";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { NewUser } from "types/User";

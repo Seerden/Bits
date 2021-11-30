@@ -1,4 +1,4 @@
-import { remainingCompletionsForSuccess } from "helpers/completion/completionMessage";
+import { remainingCompletionsForSuccess } from "helpers/completion/completion-message";
 import { atom, selector } from "recoil";
 import { habitIdsAtom, habitsState } from "./habitFamily";
 

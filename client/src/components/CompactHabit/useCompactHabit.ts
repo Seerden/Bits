@@ -1,4 +1,4 @@
-import { usePutHabit } from "helpers/api/mutateHabits";
+import { usePutHabit } from "helpers/api/habit-mutate";
 import { useClickOutside } from "hooks/useClickOutside";
 import { useToggle } from "hooks/useToggle";
 import { useCallback, useRef, useState } from "react";

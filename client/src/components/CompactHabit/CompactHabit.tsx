@@ -3,10 +3,10 @@ import HabitEntry from "components/HabitEntry/HabitEntry";
 import { BiExpandAlt, BiX } from "react-icons/bi";
 import cs from "./CompactHabit.module.scss";
 import HabitDetails from "components/HabitDetails/HabitDetails";
-import { makeCompletionEntries } from "helpers/completion/completionEntries";
+import { makeCompletionEntries } from "helpers/completion/completion-entries";
 import { useCompactHabit } from "./useCompactHabit";
 import { memo } from "react";
-import { remainingCompletionsForSuccess } from "helpers/completion/completionMessage";
+import { remainingCompletionsForSuccess } from "helpers/completion/completion-message";
 
 type CompactHabitProps = {
     habitId: Habit["habitId"];
