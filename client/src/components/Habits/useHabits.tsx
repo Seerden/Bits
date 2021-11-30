@@ -16,7 +16,7 @@ import { timescaleAtom } from "state/timescale";
  * depending on window width
  */
 function getLength(width: number) {
-    if (width > 1080) {
+    if (width > 950) {
         return 6;
     }
 
