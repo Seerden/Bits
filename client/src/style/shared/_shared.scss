@@ -62,3 +62,9 @@ $habitEntryMarginSmall: 0.3rem;
     padding-left: 2rem;
     justify-content: end;
 }
+
+$last-entry-margin: none;
+
+%outline-today {
+    // outline: 3px solid #333;
+}

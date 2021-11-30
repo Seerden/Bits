@@ -33,16 +33,19 @@
             text-align: center;
             -moz-appearance: textfield;
             appearance: textfield;
-            
-            &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
                 -webkit-appearance: none;
                 opacity: 0;
             }
         }
     }
-};
+}
 
-.completed, .underway, .incomplete {
+.completed,
+.underway,
+.incomplete {
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
         margin-top: -0.4rem;
@@ -57,7 +60,7 @@
             transform: scale(1.2);
 
             &::after {
-                content: '-';
+                content: "-";
                 width: 2rem;
                 height: 2rem;
                 border: 10px solid black;

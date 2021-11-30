@@ -36,15 +36,10 @@ const HabitFilter = () => {
     return (
         <ul className={cs.Filter}>
             <button onClick={toggleExpanded} className={cs.Filter__header}>
-                {!expanded ? (
-                    <>
-                        Filter habits <BsFilterRight />
-                    </>
-                ) : (
-                    <>
-                        Show... <RiArrowDropUpLine />
-                    </>
-                )}
+                <span>
+                    Showing <em>{value}</em>{" "}
+                </span>
+                {!expanded ? <BsFilterRight /> : <RiArrowDropUpLine />}
             </button>
             {expanded && (
                 <div className={cs.Options}>

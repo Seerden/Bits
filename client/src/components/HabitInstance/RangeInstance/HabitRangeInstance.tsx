@@ -3,15 +3,13 @@ import { CompletionInstanceProps } from "types/CompletionInstance";
 import { useHabitRangeInstance } from "./useHabitRangeInstance";
 
 const HabitRangeInstance = (props: CompletionInstanceProps) => {
-    const base = "HabitRangeInstance";
-
     const { progressString, sliderValue, handleInputChange, handleInputBlur } =
         useHabitRangeInstance(props);
 
     return (
-        <div className={`${base}`}>
+        <div className="HabitRangeInstance">
             <input
-                className={`${base}__slider ${progressString}`}
+                className={`HabitRangeInstance__slider ${progressString}`}
                 type="range"
                 value={sliderValue}
                 onChange={handleInputChange}
@@ -19,7 +17,7 @@ const HabitRangeInstance = (props: CompletionInstanceProps) => {
                 max={props.completionInterval}
             />
             <input
-                className={`${base}__slider--input`}
+                className="HabitRangeInstance__slider--input"
                 type="number"
                 value={sliderValue}
                 onChange={handleInputChange}

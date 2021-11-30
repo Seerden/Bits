@@ -20,7 +20,7 @@ const CompletionInstance = memo(({ entry }: { entry: CompletionInstanceProps[] }
 
     return (
         <>
-            {entry.map((instance, idx) => (
+            {entry.map((instance) => (
                 <InstanceComponent
                     key={`${instance.habitEntryDate}-${instance.entryIndex}`}
                     {...instance}

@@ -24,7 +24,7 @@
 }
 
 .NameField {
-    $shadow: 0 0.1rem 0.5em 0 #0d0d0d;
+    $shadow: 0 0.1em 0.3em 0 color.$dark-tint;
     display: flex;
     font-weight: 500;
     min-height: 3rem;
@@ -63,6 +63,13 @@
 .List {
     display: flex;
     flex-direction: row;
+
+    li {
+        &:nth-last-of-type(1) {
+            margin-left: shared.$last-entry-margin;
+            @extend %outline-today;
+        }
+    }
 }
 
 .Button {

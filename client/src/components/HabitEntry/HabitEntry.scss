@@ -21,11 +21,3 @@
     align-items: center;
     min-height: 3rem;
 }
-
-.__weekly {
-    $color-main: #444;
-    $color-secondary: #555;
-    box-shadow: 0.5rem 0.5rem 0 -0.4rem $color-main,
-        -0.5rem -0.5rem 0 -0.4rem $color-secondary, 0 0 0.5rem black;
-    border-radius: 0;
-}

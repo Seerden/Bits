@@ -21,6 +21,12 @@
                 margin-left: 0;
             }
 
+            &:nth-last-of-type(1) {
+                margin-left: shared.$last-entry-margin;
+                background-color: #333;
+                @extend %outline-today;
+            }
+
             display: inline-flex;
             width: shared.$habitEntryWidth;
             overflow: hidden;

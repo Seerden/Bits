@@ -2,16 +2,7 @@ import { useRecoilValue } from "recoil";
 import { timescaleAtom } from "state/timescale";
 import "./HabitEntry.scss";
 import DailyEntry from "components/HabitEntry/DailyEntry";
-import { Timestep } from "types/time";
 import { CompletionInstanceProps } from "types/CompletionInstance";
-
-const timescaleToEntryComponentMap = {
-    day: DailyEntry,
-};
-
-export function mapTimescaleToEntryComponent(timescale: Timestep) {
-    return timescaleToEntryComponentMap[timescale];
-}
 
 /**
  * Given a list of completionEntries, render a kind of completion mini-map
@@ -38,12 +29,10 @@ const HabitEntry = ({
 }) => {
     const base = "HabitEntry";
     const timescale = useRecoilValue(timescaleAtom);
-    const EntryComponent = mapTimescaleToEntryComponent(timescale) as typeof DailyEntry;
-
     return (
-        <span className={`${base} ${timescale === "week" ? "__weekly" : ""}`}>
-            <EntryComponent completionEntries={completionEntries} />
-        </span>
+        <li className={`${base} ${timescale === "week" ? "__weekly" : ""}`}>
+            <DailyEntry completionEntries={completionEntries} />
+        </li>
     );
 };
 
