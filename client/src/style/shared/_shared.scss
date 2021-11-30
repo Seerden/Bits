@@ -51,3 +51,13 @@ $habitEntryMarginSmall: 0.3rem;
     justify-content: space-between;
     align-items: center;
 }
+
+%page-title {
+    $color: #ccc;
+    display: flex;
+    margin-bottom: 1rem;
+    width: 10rem;
+    border-bottom: 0.4rem solid $color;
+    color: $color;
+    justify-content: end;
+}

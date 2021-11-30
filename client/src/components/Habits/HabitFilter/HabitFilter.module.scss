@@ -3,7 +3,6 @@
 
 $filter-width: shared.$habitNameWidth;
 $label-pad: 0.5rem 1rem;
-$border: 0.1rem solid deepskyblue;
 
 .Filter {
     margin-left: 1rem;
@@ -13,7 +12,6 @@ $border: 0.1rem solid deepskyblue;
     z-index: 100;
     flex-direction: column;
     justify-content: center;
-    border: $border;
     border-bottom: none;
 
     // @dev

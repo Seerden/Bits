@@ -27,24 +27,27 @@ const Habits = memo(() => {
     );
 
     return (
-        <div className={cs.Habits}>
-            {isFetching ? (
-                <>Fetching habits</>
-            ) : habitIds.length > 0 ? (
-                <>
-                    <header className={cs.Header}>
-                        <HabitFilter />
-                        <Timescale {...{ labels, cycleTimestep, timestep }} />
-                    </header>
+        <>
+            <h1 className={cs.Title}>Habits</h1>
+            <div className={cs.Habits}>
+                {isFetching ? (
+                    <>Fetching habits</>
+                ) : habitIds.length > 0 ? (
+                    <>
+                        <header className={cs.Header}>
+                            <HabitFilter />
+                            <Timescale {...{ labels, cycleTimestep, timestep }} />
+                        </header>
 
-                    <ul style={{ marginTop: "4.5rem" }}>{compactHabits}</ul>
-                </>
-            ) : (
-                <>It appears you haven't started tracking any habits yet.</>
-            )}
+                        <ul>{compactHabits}</ul>
+                    </>
+                ) : (
+                    <>It appears you haven't started tracking any habits yet.</>
+                )}
 
-            <NewHabitButton onClick={() => navigate("new")} />
-        </div>
+                <NewHabitButton onClick={() => navigate("new")} />
+            </div>
+        </>
     );
 });
 
