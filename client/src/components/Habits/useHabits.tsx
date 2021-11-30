@@ -19,6 +19,10 @@ function getLength(width: number) {
     if (width > 1080) {
         return 6;
     }
+
+    if (width > 860) {
+        return 5;
+    }
     return 3;
 }
 

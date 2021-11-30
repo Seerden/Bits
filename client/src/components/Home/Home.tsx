@@ -24,14 +24,10 @@ const Home = () => {
                 <Section>
                     <SectionHeader>About</SectionHeader>
                     Bits is a habit tracking application. You can create various types of
-                    habits, and track however often you want to complete a given task. If
-                    you like to get visual feedback on how well you're sticking to a
-                    habit, you've come to the right place. We'll let you know all about
-                    how well you're sticking to each habit you choose to track.
+                    habits, and track them like a list of tasks.
                 </Section>
                 <Section>
-                    <SectionHeader>Why?</SectionHeader>
-                    Why does Bits exist?
+                    <SectionHeader>Why does Bits exist?</SectionHeader>
                     <ul>
                         <li>
                             It's yet another project to add to my full-stack web
@@ -43,16 +39,6 @@ const Home = () => {
                             did something on a given day.
                         </li>
                     </ul>
-                </Section>
-                <Section>
-                    <SectionHeader>Getting started</SectionHeader>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sit
-                    est, in odit saepe libero atque eveniet eligendi vero esse a adipisci
-                    voluptates ipsa blanditiis? Nobis libero officia impedit. Accusamus
-                    perspiciatis architecto esse consectetur itaque, impedit nobis,
-                    eligendi tenetur sed ut, excepturi pariatur quisquam nesciunt veniam
-                    dolores! Provident, atque quod. rerum? Officia, aliquid dolore. Ullam
-                    magnam incidunt ipsam?
                 </Section>
             </div>
         </>

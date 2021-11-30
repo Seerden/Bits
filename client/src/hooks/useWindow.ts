@@ -6,7 +6,10 @@ type Size = {
 };
 
 export function useWindow() {
-    const [size, setSize] = useState<Size>({ width: 0, height: 0 });
+    const [size, setSize] = useState<Size>({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
 
     const handleResize = useCallback(() => {
         setSize({
