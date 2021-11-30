@@ -1,6 +1,10 @@
 @use "../../style/shared/shared";
 @use "../../style/shared/color";
 
+.Title {
+    @extend %page-title;
+}
+
 .Form {
     display: flex;
     flex-direction: column;
