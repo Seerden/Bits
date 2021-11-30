@@ -3,27 +3,30 @@ import Timescale from "components/Timescale/Timescale";
 import NewHabitButton from "./NewHabitButton/NewHabitButton";
 import { useHabits } from "./useHabits";
 import cs from "./Habits.module.scss";
-import { memo, useMemo, useRef } from "react";
+import { memo, useMemo } from "react";
 import { useNavigate } from "react-router";
 import HabitFilter from "./HabitFilter/HabitFilter";
+import { habitIdsForDisplaySelector } from "state/habits/habit-selectors";
+import { useRecoilValue } from "recoil";
 
 const Habits = memo(() => {
     const { habitIds, timestep, cycleTimestep, labels, partitionsAsTimes, isFetching } =
         useHabits();
     const navigate = useNavigate();
+    const idsForDisplay = useRecoilValue(habitIdsForDisplaySelector);
 
     // derive <CompactHabit />[] from habits state
     const compactHabits = useMemo(
         () =>
-            habitIds?.length > 0 &&
-            habitIds.map((habitId) => (
+            idsForDisplay?.length > 0 &&
+            idsForDisplay.map((habitId) => (
                 <CompactHabit
                     key={habitId}
                     habitId={habitId}
                     partitionsAsTimes={partitionsAsTimes}
                 />
             )),
-        [habitIds, timestep, partitionsAsTimes]
+        [idsForDisplay, timestep, partitionsAsTimes]
     );
 
     return (
@@ -39,7 +42,11 @@ const Habits = memo(() => {
                             <Timescale {...{ labels, cycleTimestep, timestep }} />
                         </header>
 
-                        <ul>{compactHabits}</ul>
+                        {compactHabits.length > 0 ? (
+                            <ul>{compactHabits}</ul>
+                        ) : (
+                            <>All habits were filtered out</>
+                        )}
                     </>
                 ) : (
                     <>It appears you haven't started tracking any habits yet.</>

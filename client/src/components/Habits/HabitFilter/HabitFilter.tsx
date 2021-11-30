@@ -1,15 +1,10 @@
-import { useState } from "react";
 import cs from "./HabitFilter.module.scss";
 import { HiCheck } from "react-icons/hi";
 import { useToggle } from "hooks/useToggle";
-import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+import { RiArrowDropUpLine } from "react-icons/ri";
 import { BsFilterRight } from "react-icons/bs";
-
-enum Options {
-    ALL = "all",
-    COMPLETE = "finished",
-    INCOMPLETE = "incomplete",
-}
+import { HabitFilterOptions, habitFilterValueAtom } from "state/habits/habit-selectors";
+import { useRecoilState } from "recoil";
 
 function Option({ text, selected, onClick }) {
     return (
@@ -35,8 +30,8 @@ function CheckmarkOrBox({ selected }) {
 }
 
 const HabitFilter = () => {
-    const [value, setValue] = useState<string>(Options.ALL);
     const [expanded, toggleExpanded] = useToggle({ initial: false });
+    const [value, setValue] = useRecoilState(habitFilterValueAtom);
 
     return (
         <ul className={cs.Filter}>
@@ -53,7 +48,7 @@ const HabitFilter = () => {
             </button>
             {expanded && (
                 <div className={cs.Options}>
-                    {Object.values(Options).map((option, index) => (
+                    {Object.values(HabitFilterOptions).map((option, index) => (
                         <Option
                             key={index}
                             text={option}
