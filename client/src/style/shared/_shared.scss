@@ -16,7 +16,7 @@ $habitEntryMarginSmall: 0.3rem;
     outline: none;
     padding: none;
     margin: none;
-    color: azure;
+    color: color.$light;
     background: none;
 }
 
@@ -24,11 +24,11 @@ $habitEntryMarginSmall: 0.3rem;
     outline: none;
     border: none;
 
-    background-color: #222;
+    background-color: color.$main;
     padding: 0.4rem;
-    color: azure;
+    color: color.$light;
     border-radius: 5px;
-    border: 2px solid #444;
+    border: 2px solid color.$tertiary;
 }
 
 %outline-active {
@@ -36,7 +36,7 @@ $habitEntryMarginSmall: 0.3rem;
     &:active,
     &:focus {
         transition: border-color 60ms ease-out;
-        border-color: #bbb;
+        border-color: color.$light;
     }
 }
 
@@ -53,7 +53,7 @@ $habitEntryMarginSmall: 0.3rem;
 }
 
 %page-title {
-    $color: #ccc;
+    $color: color.$light-subdued;
     display: flex;
     margin-bottom: 1rem;
     width: max-content;

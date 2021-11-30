@@ -10,7 +10,7 @@
     border: 1px solid #333;
     border-radius: 2px;
     height: max-content;
-    background-color: #1e1e1e;
+    background-color: color.$least-dark;
     align-items: center;
 
     &:nth-of-type(1) {
@@ -19,7 +19,7 @@
 
     &:hover {
         // transform: scale(1.01);
-        background: linear-gradient(to right, #1e1e1e 25%, color.$main);
+        background: linear-gradient(to right, color.$least-dark 25%, color.$main);
     }
 }
 

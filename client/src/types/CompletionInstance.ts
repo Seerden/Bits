@@ -15,4 +15,5 @@ export type CompletionInstanceProps = {
     created: Habit["created"];
     startDate: Habit["startDate"];
     endDate: Habit["endDate"];
+    unit?: Habit["unit"];
 };

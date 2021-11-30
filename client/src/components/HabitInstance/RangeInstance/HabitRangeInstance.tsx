@@ -7,7 +7,7 @@ const HabitRangeInstance = (props: CompletionInstanceProps) => {
         useHabitRangeInstance(props);
 
     return (
-        <div className="HabitRangeInstance">
+        <div className="HabitRangeInstance" title={`${sliderValue} ${props.unit}`}>
             <input
                 className={`HabitRangeInstance__slider ${progressString}`}
                 type="range"

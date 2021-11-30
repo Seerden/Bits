@@ -28,8 +28,6 @@ export function makeCompletionEntries({
     entriesPerDay,
 }: Args) {
     const entryIndices = [...Array(entriesPerDay).keys()];
-    const { created, habitId, completionType, completionInterval, startDate, endDate } =
-        habitData;
 
     return partitionsAsTimes.map((partition) =>
         partition.map((timestamp) => {
@@ -45,18 +43,13 @@ export function makeCompletionEntries({
                 )[0];
 
                 return {
+                    ...habitData,
                     _key: `${timestamp}-${entryIndex}`,
                     habitEntryDate: new Date(timestamp),
-                    habitId,
-                    completionType,
-                    completionInterval,
                     completed: existingEntryAtIndex?.completed || false,
                     rangeValue: existingEntryAtIndex?.rangeValue || 0,
                     completionId: existingEntryAtIndex?.completionId || null,
                     entryIndex,
-                    created,
-                    startDate,
-                    endDate,
                 } as CompletionInstanceProps;
             });
         })

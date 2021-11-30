@@ -30,13 +30,13 @@ const Home = () => {
                     <SectionHeader>Why does Bits exist?</SectionHeader>
                     <ul>
                         <li>
-                            It's yet another project to add to my full-stack web
-                            development portfolio.
-                        </li>
-                        <li>
                             I felt the need for a streamlined habit tracking application
                             that does more than just allow me to track whether or not I
                             did something on a given day.
+                        </li>
+                        <li>
+                            It's yet another project to add to my full-stack web
+                            development portfolio.
                         </li>
                     </ul>
                 </Section>
