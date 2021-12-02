@@ -1,7 +1,10 @@
 import { DateRange } from "@shared/types/Date";
-import { QueryArgs } from "../../dbQuery";
+import { QueryArgs } from "../../query-functions";
 
-export const constructCompletionsByUserQuery = (username: string, { from, to }: DateRange): QueryArgs => ({
+export const constructCompletionsByUserQuery = (
+    username: string,
+    { from, to }: DateRange
+): QueryArgs => ({
     text: `
         select hist.* from habithistories hist
         join habits h
@@ -11,14 +14,17 @@ export const constructCompletionsByUserQuery = (username: string, { from, to }: 
         where habit_entry_date::date between $1 and $2
         and u.username = $3
     `,
-    values: [from, to, username]
+    values: [from, to, username],
 });
 
-export const constructCompletionsByHabitIdsQuery = (habitIds: string[], { from, to }: DateRange): QueryArgs => ({
+export const constructCompletionsByHabitIdsQuery = (
+    habitIds: string[],
+    { from, to }: DateRange
+): QueryArgs => ({
     text: `
         select * from habithistories 
         where habit_entry_date between $1 and $2
         and habit_id = any($3)
     `,
-    values: [from, to, habitIds]
+    values: [from, to, habitIds],
 });

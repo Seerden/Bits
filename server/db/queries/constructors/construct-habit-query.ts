@@ -1,4 +1,4 @@
-import { QueryArgs } from "../../dbQuery";
+import { QueryArgs } from "../../query-functions";
 
 export const constructHabitsByUserQuery = (username: string): QueryArgs => ({
     text: `
@@ -7,7 +7,7 @@ export const constructHabitsByUserQuery = (username: string): QueryArgs => ({
         on h.user_id = u.user_id
         and u.username = $1
     `,
-    values: [username]
+    values: [username],
 });
 
 export const constructHabitsByHabitIdsQuery = (habitIds: string[]): QueryArgs => ({
@@ -15,12 +15,12 @@ export const constructHabitsByHabitIdsQuery = (habitIds: string[]): QueryArgs =>
         select * from habits
         where habit_id = any($1)
     `,
-    values: [habitIds]
+    values: [habitIds],
 });
 
-export function constructAllHabitsQuery (): QueryArgs {
+export function constructAllHabitsQuery(): QueryArgs {
     return {
-        name: 'select all habits',
+        name: "select all habits",
         text: `select * from habits`,
     };
-};
+}

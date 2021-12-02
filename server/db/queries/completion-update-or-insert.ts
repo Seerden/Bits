@@ -1,11 +1,11 @@
 import { Completion } from "@shared/types/Completion";
-import { makePooledQuery } from "../dbQuery";
+import { makePooledQuery } from "../query-functions";
 
 /**
  * Execute a database query that either
  * - inserts a single new row into the habithistories table
  * - updates an existing row in the habithistories table
- * 
+ *
  * and returns the entry that was either updated or added
  */
 export async function insertOrUpdateCompletion({
@@ -13,7 +13,7 @@ export async function insertOrUpdateCompletion({
     habitEntryDate,
     entryIndex,
     completed,
-    rangeValue
+    rangeValue,
 }: Partial<Completion>) {
     const rows = await makePooledQuery<Completion[]>({
         text: `
@@ -26,13 +26,7 @@ export async function insertOrUpdateCompletion({
                     range_value = $5
             returning *
         `,
-        values: [
-            habitId,
-            habitEntryDate,
-            entryIndex,
-            completed,
-            rangeValue
-        ]
+        values: [habitId, habitEntryDate, entryIndex, completed, rangeValue],
     });
-    return rows[0]
+    return rows[0];
 }

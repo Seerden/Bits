@@ -1,4 +1,4 @@
-import { makePooledQuery } from "../dbQuery";
+import { makePooledQuery } from "../query-functions";
 
 export async function getCompletionsByHabitId(habitId: string) {
     try {
@@ -7,9 +7,9 @@ export async function getCompletionsByHabitId(habitId: string) {
                 select * from habithistories h
                 where h.habit_id = $1
             `,
-            values: [habitId]
+            values: [habitId],
         });
     } catch (error) {
-        console.error(error);        
+        console.error(error);
     }
 }

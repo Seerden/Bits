@@ -1,13 +1,13 @@
-import { makePooledQuery } from "../dbQuery";
+import { makePooledQuery } from "../query-functions";
 import type { NewHabit } from "@shared/types/Habit";
 
 /**
  * Insert a new Habit into the database
  */
 export async function insertHabit(newHabit: NewHabit & { created: Date }) {
-    // @todo: figure out a way to programmaticaly extract newHabit properties into an array,
-    // instead of copy-pasting the object destructuring into the the values array
-    // or just use the pg-promise library, or switch to an ORM...
+    /*  @todo: figure out a way to programmaticaly extract newHabit properties into an array,
+        instead of object destructuring and pasting each field into the values array.
+        Maybe use the pg-promise library, or switch to an ORM...  */
     const {
         userId,
         habitName,

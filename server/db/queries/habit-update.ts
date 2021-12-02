@@ -1,5 +1,5 @@
 import { Habit } from "@shared/types/Habit";
-import { makePooledQuery } from "../dbQuery";
+import { makePooledQuery } from "../query-functions";
 
 export async function updateHabit(field: keyof Habit, habitToUpdate: Partial<Habit>) {
     let textFragment: string;
@@ -8,13 +8,13 @@ export async function updateHabit(field: keyof Habit, habitToUpdate: Partial<Hab
     // set textFragment based on the field we want to update
     // this is another case where an ORM or pg-promise would come in handy
     switch (field) {
-        case 'habitName':
-            textFragment = `set habit_name = $1`
+        case "habitName":
+            textFragment = `set habit_name = $1`;
             values.push(habitToUpdate[field]);
 
-        default: 
+        default:
             break;
-    };
+    }
 
     values.push(habitToUpdate.habitId);
 
@@ -25,6 +25,6 @@ export async function updateHabit(field: keyof Habit, habitToUpdate: Partial<Hab
             where habit_id = $2
             returning *
         `,
-        values: values
+        values: values,
     });
-};
+}
