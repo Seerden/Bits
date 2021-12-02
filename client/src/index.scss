@@ -12,11 +12,39 @@ html {
 }
 
 body {
-    background-color: color.$background;
+    --dark: #111;
+    --dark-tint: #181818;
+    --least-dark: #1e1e1e;
+    --background: #202020;
+    --main: #222;
+    --secondary: #333;
+    --tertiary: #3a3a3a;
+    --light: azure;
+    --light-subdued: #d0d0d0;
+    --bluish: #191a20;
+    --text-dark: #bbb;
+
+    background-color: var(--background);
     color: azure;
     overflow-y: scroll;
     overflow-x: hidden;
     padding-bottom: 1.2rem;
+
+    transition: background-color 120ms ease-out;
+
+    &[data-theme="dark"] {
+        // overwrite the above css variables in here
+        --dark: rgb(0, 106, 255);
+        --dark-tint: rgb(92, 150, 232);
+        --least-dark: rgb(144, 181, 241);
+        --background: rgb(135, 179, 230);
+        --main: rgb(133, 179, 232);
+        --secondary: rgb(154, 213, 243);
+        --tertiary: rgb(197, 218, 241);
+        --light: #111;
+        --light-subdued: #191919;
+        --text-dark: #222;
+    }
 }
 
 #root {

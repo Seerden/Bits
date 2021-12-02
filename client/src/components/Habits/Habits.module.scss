@@ -24,9 +24,9 @@
     top: 5rem;
     grid-template-columns: shared.$habitNameWidth 1fr;
     align-items: center;
-    background-color: color.$background;
+    background-color: var(--background);
     padding: 1rem 0;
-    outline: 3px solid color.$secondary;
+    outline: 3px solid var(--secondary);
     padding-right: 4.7rem;
     box-shadow: 0 0.5rem 0.2rem -0.3rem black;
 }

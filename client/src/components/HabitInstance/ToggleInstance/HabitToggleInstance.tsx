@@ -8,7 +8,7 @@ const HabitToggleInstance = (props: CompletionInstanceProps) => {
 
     const checkboxProps = {
         style: {
-            fill: checked ? "green" : "grey",
+            fill: checked ? "green" : "var(--secondary)",
         },
         className: cs.Button,
     };

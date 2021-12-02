@@ -26,7 +26,7 @@
             font-size: 0.7rem;
             outline: none;
             border: none;
-            background-color: #222;
+            background-color: var(--main);
             color: azure;
             padding: 0.3rem;
             border-radius: 10px;
@@ -91,10 +91,10 @@
 
 .incomplete {
     &::-webkit-slider-thumb {
-        background-color: grey;
+        background-color: var(--tertiary);
 
         &:active {
-            background-color: slategrey;
+            background-color: var(--light);
         }
     }
 }

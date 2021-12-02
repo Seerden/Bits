@@ -25,7 +25,7 @@ $pad-x: 4rem;
             @extend %outline-active;
 
             background-color: #222;
-            border: 3px solid color.$tertiary;
+            border: 3px solid var(--tertiary);
             color: azure;
             font-size: 0.95rem;
             line-height: 2rem;
@@ -36,15 +36,15 @@ $pad-x: 4rem;
 }
 
 .Button {
-    $shadow: 0 0.2rem 0.4rem 0 color.$main;
+    $shadow: 0 0.2rem 0.4rem 0 var(--main);
     margin-top: calc(2 * $gap);
     display: flex;
     justify-content: center;
     line-height: 2rem;
     font-size: 0.9em;
     padding: 0.3rem 1.2rem;
-    background-color: color.$dark-tint;
-    border: 3px solid color.$secondary;
+    background-color: var(--dark-tint);
+    border: 3px solid var(--secondary);
     color: azure;
     box-shadow: $shadow;
     @extend %outline-active;
@@ -53,7 +53,7 @@ $pad-x: 4rem;
 
     &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 0.3em 0 -0.2em color.$tertiary, $shadow;
+        box-shadow: 0 0.3em 0 -0.2em var(--tertiary), $shadow;
     }
 }
 
@@ -69,7 +69,7 @@ $pad-x: 4rem;
     font-weight: 700;
     font-size: 1.4rem;
     margin-bottom: $gap;
-    border-bottom: 3px solid color.$tertiary;
+    border-bottom: 3px solid var(--tertiary);
     width: max-content;
     padding-left: $pad;
     margin-left: -$pad;

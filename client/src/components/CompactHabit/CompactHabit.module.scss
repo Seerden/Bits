@@ -6,11 +6,11 @@
     width: 100%;
     display: flex;
     padding: 0.8rem 1rem;
-    box-shadow: 0rem 0.2rem 0.5rem 0 color.$dark-tint;
-    border: 1px solid #333;
+    box-shadow: 0rem 0.2rem 0.5rem 0 var(--dark-tint);
+    border: 1px solid var(--secondary);
     border-radius: 2px;
     height: max-content;
-    background-color: color.$least-dark;
+    background-color: var(--least-dark);
     align-items: center;
 
     &:nth-of-type(1) {
@@ -19,16 +19,16 @@
 
     &:hover {
         // transform: scale(1.01);
-        background: linear-gradient(to right, color.$least-dark 25%, color.$main);
+        background: linear-gradient(to right, var(--least-dark) 25%, var(--main));
     }
 }
 
 .NameField {
-    $shadow: 0 0.1em 0.3em 0 color.$dark-tint;
+    $shadow: 0 0.1em 0.3em 0 var(--dark-tint);
     display: flex;
     font-weight: 500;
     min-height: 3rem;
-    background-color: color.$main;
+    background-color: var(--main);
     box-shadow: $shadow;
     border-radius: 5px;
     align-items: center;
@@ -83,14 +83,14 @@
     margin: 0 0.8rem;
     display: flex;
     justify-content: center;
-    background-color: #181818;
+    background-color: var(--dark-tint);
     border-radius: 10%;
-    box-shadow: 0 0 0 0.15rem #333;
+    box-shadow: 0 0 0 0.15rem var(--secondary);
 
     transition: all 80ms linear;
 
     &:hover {
-        background-color: #333;
+        background-color: var(--secondary);
         border-radius: 5px;
     }
 }

@@ -11,7 +11,7 @@
     align-self: center;
     border: 0.2rem solid #333;
     margin-top: 2rem;
-    background-color: color.$dark-tint;
+    background-color: var(--dark-tint);
     color: white;
     width: $size;
     height: $size;

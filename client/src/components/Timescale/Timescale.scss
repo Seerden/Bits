@@ -23,7 +23,7 @@
 
             &:nth-last-of-type(1) {
                 margin-left: shared.$last-entry-margin;
-                background-color: #333;
+                background-color: var(--tertiary);
                 @extend %outline-today;
             }
 
@@ -32,17 +32,17 @@
             overflow: hidden;
             text-align: center;
             font-size: 1rem;
-            color: color.$light;
+            color: var(--light);
             align-self: center;
             padding: 0.5rem 0;
             justify-content: center;
             place-items: center;
-            background-color: color.$dark-tint;
+            background-color: var(--dark-tint);
             border-radius: 5px;
             user-select: none;
             border: 1px solid #333;
-            box-shadow: 0 0.2rem 0.5rem -0.3rem color.$dark,
-                0 -0.2rem 0.5rem -0.3rem color.$dark-tint;
+            box-shadow: 0 0.2rem 0.5rem -0.3rem var(--dark),
+                0 -0.2rem 0.5rem -0.3rem var(--dark-tint);
 
             @media screen and (min-width: 1280px) {
                 margin: 0 shared.$timelineEntryMarginX;

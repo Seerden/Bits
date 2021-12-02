@@ -18,7 +18,7 @@
     z-index: 10;
     position: fixed;
     top: 20vh;
-    background-color: #212121;
+    background-color: var(--main);
     width: 40rem;
     right: calc(50% - 20rem);
     box-shadow: 0 0 3rem -0.5rem black, 0 0 0 0.3rem #444;
@@ -63,7 +63,7 @@
     font-size: 0.89rem;
     min-width: 9rem;
     display: inline-flex;
-    background-color: #333;
+    background-color: var(--secondary);
     justify-content: flex-end;
     padding: 0.5rem 1rem;
     margin-left: -0.2rem;
@@ -142,6 +142,6 @@ $shadow: 0 0 0.5rem black;
 
     &:hover {
         border: 2px solid #444;
-        background-color: #191919;
+        background-color: var(--dark-tint);
     }
 }

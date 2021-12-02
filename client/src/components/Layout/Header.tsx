@@ -11,6 +11,18 @@ const Header = () => {
                 <BsBookmarkCheck size={25} /> <em>Bits</em>
             </span>
 
+            <button
+                onClick={() => {
+                    const val = document.body.getAttribute("data-theme");
+                    document.body.setAttribute(
+                        "data-theme",
+                        val === "dark" ? "light" : "dark"
+                    );
+                }}
+            >
+                Toggle theme
+            </button>
+
             <div className={sc.Buttons}>{links}</div>
         </nav>
     );
