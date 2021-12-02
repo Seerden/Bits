@@ -1,18 +1,19 @@
 @use "../../../style/shared/shared";
 
-$width: 1.5rem;
-
 .HabitToggleInstance {
+    $size: 1.5rem;
+
     background: none;
-    outline: none;
+    outline: 2px solid transparent;
 
     display: inline-flex;
-    min-width: $width;
+    min-width: $size;
+    min-height: $size;
     justify-content: center;
     align-items: center;
     line-height: 100%;
-    width: $width;
-    height: $width;
+    width: $size;
+    height: $size;
     margin: 0.2rem 0.5rem;
     user-select: none;
 
@@ -22,17 +23,17 @@ $width: 1.5rem;
     transition: all 100ms ease-out;
 
     &:hover {
-        outline: 2px solid #444;
+        outline: 2px solid var(--tertiary);
     }
 
     &:focus {
-        outline: 3px solid azure;
+        outline: 3px solid var(--light);
     }
 }
 
 .Button {
     transition: all 100ms linear;
     &:hover {
-        fill: #777 !important;
+        fill: green !important;
     }
 }

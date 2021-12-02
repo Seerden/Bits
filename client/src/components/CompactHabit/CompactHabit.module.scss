@@ -41,7 +41,7 @@
 
     &:hover {
         transform: translateX(0.3rem);
-        box-shadow: $shadow, -0.3em 0 0 -0.1rem #666;
+        box-shadow: $shadow, -0.3em 0 0 -0.1rem var(--tertiary);
     }
 
     span {
@@ -50,13 +50,14 @@
         display: inline-flex;
         width: shared.$habitNameWidth;
         height: 100%;
+        color: var(--text);
     }
 
     &__input {
         width: 100%;
         background-color: inherit;
         line-height: 100%;
-        color: inherit;
+        color: var(--text);
     }
 }
 

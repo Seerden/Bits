@@ -22,14 +22,14 @@ $label-pad: 0.5rem 1rem;
         @extend %row-between;
         width: 100%;
         outline: 2px solid var(--secondary);
-        background-color: var(--dark-tint);
+        background-color: var(--dark);
         color: black;
         padding: $label-pad;
         height: 120%;
         font-weight: 500;
         font-size: 0.75em;
         user-select: none;
-        color: #d0d0d0;
+        color: azure;
         transition: all 135ms ease-out;
 
         &:hover {
