@@ -1,12 +1,12 @@
 .ThemeButton {
-    $size: 2rem;
+    $size: 1.8rem;
     width: $size;
     height: $size;
     min-width: $size;
     min-height: $size;
     background-color: transparent;
     align-self: center;
-    outline: 2px solid azure;
+    outline: 2px solid var(--tertiary);
     border-radius: 50%;
     line-height: 100%;
     overflow: hidden;

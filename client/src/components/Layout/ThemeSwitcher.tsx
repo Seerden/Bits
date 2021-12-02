@@ -20,7 +20,7 @@ const ThemeSwitcher = () => {
     }, [theme]);
 
     const iconProps: Partial<IconBaseProps> = {
-        fill: theme === "dark" ? "azure" : "yellow",
+        fill: theme === "dark" ? "var(--light-subdued)" : "yellow",
         size: "50%",
     };
 

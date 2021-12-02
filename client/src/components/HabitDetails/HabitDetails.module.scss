@@ -21,7 +21,7 @@
     background-color: var(--main);
     width: 40rem;
     right: calc(50% - 20rem);
-    box-shadow: 0 0 3rem -0.5rem black, 0 0 0 0.3rem #444;
+    box-shadow: 0 0 3rem -0.5rem black, 0 0 0 0.3rem var(--tertiary);
     padding: 1rem 2rem;
     padding-top: 0;
     padding-left: 0;
@@ -40,12 +40,12 @@
 .Name {
     width: max-content;
     padding: 0.2rem 0.5rem;
-    background-color: #ccc;
-    color: #111;
+    background-color: var(--light);
+    color: var(--dark-tint);
 }
 
 .Field {
-    border-left: 4px solid #333;
+    border-left: 4px solid var(--secondary);
     max-width: 100%;
     padding: 0.2rem 0;
     padding-left: -0.2rem;
@@ -63,6 +63,7 @@
     font-size: 0.89rem;
     min-width: 9rem;
     display: inline-flex;
+    color: var(--text);
     background-color: var(--secondary);
     justify-content: flex-end;
     padding: 0.5rem 1rem;
@@ -141,7 +142,8 @@ $shadow: 0 0 0.5rem black;
     transition: background-color 30ms ease-out, border-color 15ms ease-in;
 
     &:hover {
-        border: 2px solid #444;
+        border: 2px solid var(--tertiary);
         background-color: var(--dark-tint);
+        color: azure;
     }
 }
