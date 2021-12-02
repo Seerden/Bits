@@ -17,10 +17,3 @@ export const constructHabitsByHabitIdsQuery = (habitIds: string[]): QueryArgs =>
     `,
     values: [habitIds],
 });
-
-export function constructAllHabitsQuery(): QueryArgs {
-    return {
-        name: "select all habits",
-        text: `select * from habits`,
-    };
-}

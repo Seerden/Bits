@@ -1,5 +1,8 @@
 import { makePooledQuery } from "../query-functions";
 
+/**
+ * Return all habithistories entries belonging to the given `habitId`.
+ */
 export async function getCompletionsByHabitId(habitId: string) {
     try {
         return await makePooledQuery({

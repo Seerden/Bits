@@ -5,18 +5,9 @@ import {
     constructCompletionsByUserQuery,
 } from "./constructors/construct-completion-query";
 import {
-    constructAllHabitsQuery,
     constructHabitsByHabitIdsQuery,
     constructHabitsByUserQuery,
 } from "./constructors/construct-habit-query";
-
-/**
- * Fetch all habits from the database.
- * @dev
- */
-export async function getHabits(options?: any) {
-    return await makePooledQuery(constructAllHabitsQuery());
-}
 
 /**
  * Fetch all habits belonging to the given `username`

@@ -3,8 +3,8 @@ import { makePooledQuery } from "../query-functions";
 
 /**
  * Execute a database query that either
- * - inserts a single new row into the habithistories table
- * - updates an existing row in the habithistories table
+ * 1. inserts a single new row into the habithistories table
+ * 2. updates an existing row in the habithistories table
  *
  * and returns the entry that was either updated or added
  */

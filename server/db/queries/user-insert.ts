@@ -1,6 +1,9 @@
 import { hash } from "bcrypt";
 import { makePooledQuery } from "../query-functions";
 
+/**
+ * Insert a new user into the database.
+ */
 export async function insertUser(username: string, password: string) {
     const hashedPassword = await hash(password, 10);
 

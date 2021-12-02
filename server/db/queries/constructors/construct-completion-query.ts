@@ -8,11 +8,11 @@ export const constructCompletionsByUserQuery = (
     text: `
         select hist.* from habithistories hist
         join habits h
-        on h.habit_id = hist.habit_id
+            on h.habit_id = hist.habit_id
         join users u
-        on h.user_id = u.user_id
+            on h.user_id = u.user_id
         where habit_entry_date::date between $1 and $2
-        and u.username = $3
+            and u.username = $3
     `,
     values: [from, to, username],
 });
