@@ -30,3 +30,12 @@
     padding-right: 4.7rem;
     box-shadow: 0 0.5rem 0.2rem -0.3rem black;
 }
+
+.Message {
+    padding: 2rem;
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-top: 0.5em;
+    outline: 2px solid var(--secondary);
+    color: var(--light);
+}

@@ -45,7 +45,9 @@ const Habits = memo(() => {
                         {compactHabits.length > 0 ? (
                             <ul>{compactHabits}</ul>
                         ) : (
-                            <>All habits were filtered out</>
+                            <span className={cs.Message}>
+                                All habits were filtered out
+                            </span>
                         )}
                     </>
                 ) : (
