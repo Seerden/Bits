@@ -1,6 +1,7 @@
 import sc from "./Header.module.scss";
 import { useHeaderLinks } from "./useHeader";
 import { BsBookmarkCheck } from "react-icons/bs";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Header = () => {
     const links = useHeaderLinks();
@@ -10,19 +11,7 @@ const Header = () => {
             <span className={sc.Header__logo}>
                 <BsBookmarkCheck size={25} /> <em>Bits</em>
             </span>
-
-            <button
-                onClick={() => {
-                    const val = document.body.getAttribute("data-theme");
-                    document.body.setAttribute(
-                        "data-theme",
-                        val === "dark" ? "light" : "dark"
-                    );
-                }}
-            >
-                Toggle theme
-            </button>
-
+            <ThemeSwitcher />
             <div className={sc.Buttons}>{links}</div>
         </nav>
     );

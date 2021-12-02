@@ -1,0 +1,39 @@
+.ThemeButton {
+    $size: 2rem;
+    width: $size;
+    height: $size;
+    min-width: $size;
+    min-height: $size;
+    background-color: transparent;
+    align-self: center;
+    outline: 2px solid azure;
+    border-radius: 50%;
+    line-height: 100%;
+    overflow: hidden;
+}
+
+.Dark {
+    animation: 100ms linear slideright;
+}
+
+.Light {
+    animation: 100ms linear slideleft;
+}
+
+@keyframes slideright {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideleft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -32,7 +32,7 @@ body {
 
     transition: background-color 120ms ease-out;
 
-    &[data-theme="dark"] {
+    &[data-theme="light"] {
         // overwrite the above css variables in here
         --dark: rgb(0, 106, 255);
         --dark-tint: rgb(92, 150, 232);
