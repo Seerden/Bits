@@ -1,5 +1,5 @@
 import { makePooledQueries, makePooledQuery, QueryArgs } from "../query-functions";
-import { HabitQuery } from "../../types/quer.types";
+import { HabitQuery } from "../../types/query.types";
 import {
     constructCompletionsByHabitIdsQuery,
     constructCompletionsByUserQuery,

@@ -1,12 +1,12 @@
-import { Habit } from "../../../../shared/types/Habit";
-import HabitEntry from "components/HabitEntry/HabitEntry";
-import { BiExpandAlt, BiX } from "react-icons/bi";
-import cs from "./CompactHabit.module.scss";
 import HabitDetails from "components/HabitDetails/HabitDetails";
+import HabitEntry from "components/HabitEntry/HabitEntry";
 import { makeCompletionEntries } from "helpers/completion/completion-entries";
-import { useCompactHabit } from "./useCompactHabit";
-import { memo } from "react";
 import { remainingCompletionsForSuccess } from "helpers/completion/completion-message";
+import { memo } from "react";
+import { BiExpandAlt, BiX } from "react-icons/bi";
+import { Habit } from "../../../../shared/types/Habit";
+import cs from "./CompactHabit.module.scss";
+import { useCompactHabit } from "./useCompactHabit";
 
 type CompactHabitProps = {
     habitId: Habit["habitId"];
@@ -34,7 +34,7 @@ const CompactHabit = memo(({ habitId, partitionsAsTimes }: CompactHabitProps) =>
         entriesPerDay,
     });
     const currentIntervalIsSuccessful =
-        remainingCompletionsForSuccess(habitData, completionData) === 0;
+        remainingCompletionsForSuccess(habitData, completionData) <= 0;
 
     return (
         <li

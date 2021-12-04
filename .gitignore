@@ -1,14 +1,16 @@
 **/node_modules
 
 client/dist
+server/dist
 
 # **/*.md
 TODO.md
 
 server/**/*.env
-server/**/*.pgsql
 server/**/*.rest
 
 server/fullstack.md
 
 used_resources.md
+
+pgdata

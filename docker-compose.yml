@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=${PG_PASS}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_DB=${PG_DATABASE}
+    volumes: 
+    - ./pgdata:/var/lib/postgresql/data
+    - ./database/1_bits.sql:/docker-entrypoint-initdb.d/1_bits.sql
+    - ./database/2_connect.sql:/docker-entrypoint-initdb.d/2_connect.sql
+    ports:
+      - '5432:5432'
+  server:
+    build: 
+      context: ./server
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"

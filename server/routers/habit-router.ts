@@ -3,11 +3,7 @@ import { DateRange } from "@shared/types/Date";
 import { Habit, NewHabit } from "@shared/types/Habit";
 import express from "express";
 import { deleteHabitById } from "../db/queries/habit-delete";
-import {
-    getHabits,
-    getHabitsByUser,
-    getHabitsWithCompletion,
-} from "../db/queries/habit-get";
+import { getHabitsByUser, getHabitsWithCompletion } from "../db/queries/habit-get";
 import { insertHabit } from "../db/queries/habit-insert";
 import { updateHabit } from "../db/queries/habit-update";
 import { isPermitted } from "../lib/middleware";
@@ -16,15 +12,6 @@ import completionRouter from "./completion-router";
 const habitRouter = express.Router({ mergeParams: true });
 
 habitRouter.use("/completion", completionRouter);
-
-habitRouter.get("/", async (req, res) => {
-    try {
-        const habits = await getHabits();
-        res.send(habits);
-    } catch (error) {
-        res.status(401).send("Error fetching habits from database");
-    }
-});
 
 habitRouter.get("/range/ids", isPermitted, async (req, res) => {
     const { from, to } = req.query as unknown as DateRange;

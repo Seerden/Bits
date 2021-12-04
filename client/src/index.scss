@@ -11,6 +11,12 @@ html {
     border: none;
 }
 
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
     --dark: #111;
     --dark-tint: #181818;
