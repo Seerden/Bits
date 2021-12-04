@@ -2,49 +2,49 @@ const path = require("path");
 const miniCss = require("mini-css-extract-plugin");
 
 module.exports = {
-  output: {
-    path: path.join(__dirname, "dist"),
-    filename: "bundle.js",
-    publicPath: "/",
-  },
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:5000",
-        pathRewrite: {
-          "^/api": "",
-        },
-        changeOrigin: true,
-      },
+    output: {
+        path: path.join(__dirname, "dist"),
+        filename: "bundle.js",
+        publicPath: "/",
     },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "ts-loader",
+    devServer: {
+        port: 3000,
+        historyApiFallback: true,
+        proxy: {
+            "/api": {
+                target: "http://localhost:5000",
+                pathRewrite: {
+                    "^/api": "",
+                },
+                changeOrigin: true,
+            },
         },
-      },
-      {
-        test: /\.scss$/,
-        use: [miniCss.loader, "css-loader", "sass-loader"],
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".tsx", ".js", ".js", ".ts"],
-    alias: {
-      components: path.resolve(__dirname, "src", "components/"),
-      hooks: path.resolve(__dirname, "src", "hooks/"),
-      helpers: path.resolve(__dirname, "src", "helpers/"),
-      state: path.resolve(__dirname, "src", "state/"),
-      types: path.resolve(__dirname, "src", "types/"),
-      shared: path.resolve(__dirname, "..", "shared/")
     },
-  },
-  plugins: [new miniCss()],
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "ts-loader",
+                },
+            },
+            {
+                test: /\.scss$/,
+                use: [miniCss.loader, "css-loader", "sass-loader"],
+            },
+        ],
+    },
+    resolve: {
+        extensions: [".tsx", ".js", ".js", ".ts"],
+        alias: {
+            components: path.resolve(__dirname, "src", "components/"),
+            hooks: path.resolve(__dirname, "src", "hooks/"),
+            helpers: path.resolve(__dirname, "src", "helpers/"),
+            state: path.resolve(__dirname, "src", "state/"),
+            types: path.resolve(__dirname, "src", "types/"),
+            shared: path.resolve(__dirname, "../server", "shared/"),
+        },
+    },
+    plugins: [new miniCss()],
 };

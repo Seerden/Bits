@@ -3,9 +3,9 @@ import dayjs from "dayjs";
 import { useAuth } from "hooks/useAuth";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import type { DateRange } from "shared/types/Date";
+import { HabitWithCompletion } from "shared/types/Habit";
 import { useHabitsState } from "state/habits/habitFamily";
-import type { DateRange } from "../../../../shared/types/Date";
-import { HabitWithCompletion } from "../../../../shared/types/Habit";
 
 async function fetchHabitsInRange(
     dateRange: DateRange,

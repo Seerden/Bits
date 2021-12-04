@@ -1,8 +1,8 @@
-import { NewCompletion } from "@shared/types/Completion";
 import express from "express";
 import { getCompletionsByHabitId } from "../db/queries/completion-get";
 import { insertOrUpdateCompletion } from "../db/queries/completion-update-or-insert";
 import { isPermitted } from "../lib/middleware";
+import { NewCompletion } from "../shared/types/Completion";
 
 const completionRouter = express.Router({ mergeParams: true });
 

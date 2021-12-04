@@ -1,4 +1,4 @@
-import { DateRange } from "@shared/types/Date";
+import { DateRange } from "../../../shared/types/Date";
 import { QueryArgs } from "../../query-functions";
 
 export const constructCompletionsByUserQuery = (

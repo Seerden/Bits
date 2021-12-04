@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import type { Credentials } from "types/credentials";
 import { useAuth } from "hooks/useAuth";
-import { Maybe } from "../../../../../shared/types/Maybe";
+import { useCallback, useEffect, useState } from "react";
+import { Maybe } from "shared/types/Maybe";
+import type { Credentials } from "types/credentials";
 
 const defaultCredentials = {
     username: "",

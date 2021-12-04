@@ -1,4 +1,4 @@
-import { Habit } from "@shared/types/Habit";
+import { Habit } from "../../shared/types/Habit";
 import { makePooledQuery } from "../query-functions";
 
 /**

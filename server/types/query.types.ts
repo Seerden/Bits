@@ -1,15 +1,15 @@
-import { DateRange } from "@shared/types/Date";
+import { DateRange } from "../shared/types/Date";
 
 type BaseHabitQuery = {
-    dateRange: DateRange
+    dateRange: DateRange;
 };
 
 interface QueryHabitsByUser extends BaseHabitQuery {
-    username: string
-};
+    username: string;
+}
 
 interface QueryHabitsByIds extends BaseHabitQuery {
-    habitIds: string[]
+    habitIds: string[];
 }
 
 export type HabitQuery = QueryHabitsByUser | QueryHabitsByIds;

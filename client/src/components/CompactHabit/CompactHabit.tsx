@@ -4,7 +4,7 @@ import { makeCompletionEntries } from "helpers/completion/completion-entries";
 import { remainingCompletionsForSuccess } from "helpers/completion/completion-message";
 import { memo } from "react";
 import { BiExpandAlt, BiX } from "react-icons/bi";
-import { Habit } from "../../../../shared/types/Habit";
+import { Habit } from "shared/types/Habit";
 import cs from "./CompactHabit.module.scss";
 import { useCompactHabit } from "./useCompactHabit";
 

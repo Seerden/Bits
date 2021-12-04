@@ -2,10 +2,10 @@ import { useLoginMutation } from "helpers/api/login";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
+import type { Maybe } from "shared/types/Maybe";
+import type { UserWithoutPassword } from "shared/types/User";
 import { currentUserAtom } from "state/auth";
 import { Credentials } from "types/credentials";
-import type { Maybe } from "../../../shared/types/Maybe";
-import type { UserWithoutPassword } from "../../../shared/types/User";
 
 export function useAuth() {
     const [currentUser, setCurrentUser] =

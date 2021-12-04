@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { TimescaleType } from "../../../shared/types/Timescale";
+import { TimescaleType } from "shared/types/Timescale";
 
 export type Timestep = TimescaleType["timescale"];
 

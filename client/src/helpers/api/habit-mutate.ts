@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuth } from "hooks/useAuth";
 import { useAuthUrl } from "hooks/useAuthUrl";
 import { useMutation } from "react-query";
-import { Habit, NewHabit } from "../../../../shared/types/Habit";
+import { Habit, NewHabit } from "shared/types/Habit";
 
 // POST HABIT
 async function postNewHabit(newHabit: NewHabit, username: string) {

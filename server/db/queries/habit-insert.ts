@@ -1,5 +1,5 @@
+import type { NewHabit } from "../../shared/types/Habit";
 import { makePooledQuery } from "../query-functions";
-import type { NewHabit } from "@shared/types/Habit";
 
 /**
  * Insert a new Habit into the database

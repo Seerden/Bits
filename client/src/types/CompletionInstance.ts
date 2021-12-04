@@ -1,6 +1,6 @@
-import { Completion } from "../../../shared/types/Completion";
-import { Habit } from "../../../shared/types/Habit";
-import { Maybe } from "../../../shared/types/Maybe";
+import { Completion } from "shared/types/Completion";
+import { Habit } from "shared/types/Habit";
+import { Maybe } from "shared/types/Maybe";
 
 export type CompletionInstanceProps = {
     _key: string;

@@ -1,12 +1,12 @@
-import { Completion } from "@shared/types/Completion";
-import { DateRange } from "@shared/types/Date";
-import { Habit, NewHabit } from "@shared/types/Habit";
 import express from "express";
 import { deleteHabitById } from "../db/queries/habit-delete";
 import { getHabitsByUser, getHabitsWithCompletion } from "../db/queries/habit-get";
 import { insertHabit } from "../db/queries/habit-insert";
 import { updateHabit } from "../db/queries/habit-update";
 import { isPermitted } from "../lib/middleware";
+import { Completion } from "../shared/types/Completion";
+import { DateRange } from "../shared/types/Date";
+import { Habit, NewHabit } from "../shared/types/Habit";
 import completionRouter from "./completion-router";
 
 const habitRouter = express.Router({ mergeParams: true });

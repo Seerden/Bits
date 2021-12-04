@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuth } from "hooks/useAuth";
 import { useMutation } from "react-query";
-import { Completion, NewCompletion } from "../../../../shared/types/Completion";
+import { Completion, NewCompletion } from "shared/types/Completion";
 
 /**
  * Make a PUT request to update a completion entry

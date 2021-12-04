@@ -1,7 +1,7 @@
 import dayjs, { Dayjs } from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import { TimescaleType } from "shared/types/Timescale";
 import { Timestep } from "types/time";
-import { TimescaleType } from "../../../../shared/types/Timescale";
 dayjs.extend(weekOfYear);
 
 /**

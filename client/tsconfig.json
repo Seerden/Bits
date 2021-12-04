@@ -24,7 +24,7 @@
             "helpers/*": ["src/helpers/*"],
             "state/*": ["src/state/*"],
             "types/*": ["src/types/*"],
-            "shared/*": ["../shared/*"]
+            "shared/*": ["../server/shared/*"]
         }
     },
     "exclude": ["node_modules", "./node_modules"],

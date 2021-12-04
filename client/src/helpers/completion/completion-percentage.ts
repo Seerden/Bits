@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { listDatesBetween } from "helpers/time/dateList";
 import { dateToIdentifierMappings } from "helpers/time/truncate";
+import { Completion } from "shared/types/Completion";
+import { Habit } from "shared/types/Habit";
 import { Timestep } from "types/time";
-import { Completion } from "../../../../shared/types/Completion";
-import { Habit } from "../../../../shared/types/Habit";
 
 /**
  * Determine whether a completionEntry can be considered successful or not.

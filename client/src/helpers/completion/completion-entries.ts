@@ -1,7 +1,7 @@
 import { partitionsAsTimestamps } from "helpers/time/partitionDates";
+import { Completion } from "shared/types/Completion";
+import { Habit } from "shared/types/Habit";
 import { CompletionInstanceProps } from "types/CompletionInstance";
-import { Completion } from "../../../../shared/types/Completion";
-import { Habit } from "../../../../shared/types/Habit";
 
 type Args = {
     partitionsAsTimes: ReturnType<typeof partitionsAsTimestamps>;

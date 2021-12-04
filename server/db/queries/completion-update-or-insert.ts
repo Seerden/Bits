@@ -1,4 +1,4 @@
-import { Completion } from "@shared/types/Completion";
+import { Completion } from "../../shared/types/Completion";
 import { makePooledQuery } from "../query-functions";
 
 /**

@@ -3,7 +3,7 @@ import { getCurrentTimestepStartOf } from "helpers/time/makeDate";
 import { useAuth } from "hooks/useAuth";
 import { useCallback, useEffect, useReducer } from "react";
 import { useLocation, useNavigate } from "react-router";
-import type { NewHabit } from "../../../../shared/types/Habit";
+import type { NewHabit } from "shared/types/Habit";
 
 const defaultHabit: Omit<NewHabit, "userId"> = {
     habitName: "",

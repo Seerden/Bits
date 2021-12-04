@@ -12,8 +12,8 @@
 */
 
 import { getDateIdentifier } from "helpers/time/truncate";
-import { Completion } from "../../../../shared/types/Completion";
-import { Habit } from "../../../../shared/types/Habit";
+import { Completion } from "shared/types/Completion";
+import { Habit } from "shared/types/Habit";
 import { completionSuccessCountPerPartition } from "./completion-percentage";
 
 /**
