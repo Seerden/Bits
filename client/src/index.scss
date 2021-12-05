@@ -13,8 +13,8 @@ html {
 
 html,
 body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 body {
@@ -34,7 +34,7 @@ body {
     background-color: var(--background);
     color: azure;
     overflow-y: scroll;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     padding-bottom: 1.2rem;
 
     transition: background-color 120ms ease-out;
@@ -56,5 +56,5 @@ body {
 }
 
 #root {
-    width: 100vw;
+    width: 100%;
 }
