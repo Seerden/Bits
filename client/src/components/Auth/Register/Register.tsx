@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import cs from "../Auth.module.scss";
 import PasswordField from "../PasswordField";
 import { useRegister } from "./useRegister";
@@ -36,6 +37,12 @@ const Register = () => {
                     <input type="submit" value="Register" className={cs.Button} />
                 </p>
             </fieldset>
+            <p className={cs.Paragraph}>
+                Already have an account?{" "}
+                <Link className={cs.Link} to="/login">
+                    Sign in
+                </Link>
+            </p>
         </form>
     );
 };

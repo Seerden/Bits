@@ -1,5 +1,4 @@
 @use "../../style/shared/shared";
-@use "../../style/shared/color";
 
 $gap: 0.5rem;
 $pad-x: 4rem;
@@ -86,4 +85,25 @@ $pad-x: 4rem;
     margin-bottom: 1rem;
     border-radius: 5px;
     box-shadow: 0 0.3rem 0.8rem black;
+}
+
+.Paragraph {
+    padding: 0.2em;
+    margin-top: 1.5em;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.Link {
+    margin-left: 0.5em;
+    padding: 0.4em 0.8em;
+    background-color: var(--dark);
+    color: slateblue;
+    border-radius: 5px;
+
+    &:visited {
+        color: deepskyblue;
+    }
 }
