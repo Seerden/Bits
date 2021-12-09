@@ -5,12 +5,9 @@
  */
 export function snakeToCamelCase(s: string) {
     const splitString = s.split("_");
-
     const n = splitString.length;
 
-    if (n == 1) {
-        return s;
-    }
+    if (n == 1) return s;
 
     for (let i = 1; i < n; i++) {
         let substr = splitString[i];
@@ -32,8 +29,8 @@ export function withCamelCaseKeys(rows: Object | Object[]) {
         //      and thus every row should be a single database row, i.e. an object
         for (const row of rows) {
             // reduce object to new object with mapped keys
-            const convertedRow = Object.keys(row).reduce((acc, property) => {
-                acc[snakeToCamelCase(property)] = row[property];
+            const convertedRow = Object.keys(row).reduce((acc, key) => {
+                acc[snakeToCamelCase(key)] = row[key];
                 return acc;
             }, {});
 
