@@ -1,4 +1,4 @@
-Bits is a habit tracker in the form of a single-page web-application. The application is live on [🔵 bits.seerden.xyz](https://bits.seerden.xyz)
+Bits is a habit tracker in the form of a single-page web-application. The application is currently _not_ live on [🔵 bits.seerden.xyz](https://bits.seerden.xyz)
 
 ## Showcase/overview
 
