@@ -27,7 +27,7 @@ Bits is built with
 -   **TypeScript** (JavaScript)
 -   **React** on the front-end
     -   **Recoil** and **React Query** for UI and server state management
-    -   **Framer Motion** for animations
+    -   **Framer Motion** for animations (NOT YET! Eventually, maybe... 😄)
 -   **Node.js** (TypeScript) on the back-end
     -   **Express** for our RESTful API
     -   **node-postgres** (pg) for interaction with our PostgreSQL database
